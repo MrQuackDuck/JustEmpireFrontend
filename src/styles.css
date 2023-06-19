@@ -1,0 +1,237 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Ebrima;
+    position: relative;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
+}
+
+*::selection {
+    background-color: #732BE0;
+    color: #FFFFFF;
+}
+
+body {
+    overflow-x: hidden;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #191919;
+}
+
+@font-face {
+    font-family: FuturaMd;
+    src: url("assets/fonts/FuturaMd.ttf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Ebrima;
+    src: url("assets/fonts/ebrima.ttf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Ebrima;
+    src: url("assets/fonts/ebrima-bold.ttf");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: BalooThambi2;
+    src: url("assets/fonts/BalooThambi2-Regular.ttf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: BalooThambi2;
+    src: url("assets/fonts/BalooThambi2-Medium.ttf");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: BalooThambi2;
+    src: url("assets/fonts/BalooThambi2-SemiBold.ttf");
+    font-weight: 700;
+}
+
+.button {
+    background-color: #2F63B0;
+    border: 1px solid #738fd7;
+    padding: 10px 64px;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFFFFF;
+    box-shadow: 0px 6px 0px #1C3A68;
+    border-radius: 5px;
+    transition: .04s;
+    user-select: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #3e79d2;
+}
+
+.button:active {
+    background-color: #1C3A68;
+    border-color: #1e5384;
+    transform: translateY(6px);
+    box-shadow: 0px 0px 0px #1C3A68;
+}
+
+.button.green {
+    background-color: #3D9E02;
+    border: 1px solid #83D77B;
+    box-shadow: 0px 6px 0px #1F5A16;
+}
+
+.button.green:hover {
+    background-color: #48b702;
+}
+
+.button.green:active {
+    background-color: #1F5A16;
+    border: 1px solid #52894d;
+    box-shadow: 0px 0px 0px #1C3A68;
+}
+
+.button.gray {
+    background-color: #282828;
+    border: 1px solid #696969;
+    box-shadow: 0px 6px 0px #0e0e0e;
+}
+
+.button.gray:hover {
+    background-color: #3A3A3A;
+}
+
+.button.gray:active {
+    box-shadow: 0px 0px 0px #323232;
+}
+
+.button.gray.active {
+    background-color: #3A3A3A;
+    border: 1px solid #C6C6C6;
+}
+
+.button.gray.active:active {
+    border: 1px solid #8e8e8e;
+}
+
+.table__wrapper {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #616161;
+}
+
+table {
+    width: 100%;
+    border-radius: 10px !important;
+}
+
+table a {
+    color: #3286ED;
+}
+
+table,thead,tbody,tr,th {
+    position: initial;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+table,td,th {
+    border: 1px solid #616161;
+    border-top: none !important;
+    border-bottom: none !important;
+    border-left: none !important;
+}
+
+table,td:last-child,th:last-child {
+    border-right: none !important;
+}
+
+table thead, table thead th  { 
+    border-top: none !important;
+}
+
+table thead {
+    font-size: 22px;
+}
+
+table tbody {
+    font-size: 18px;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #363636;
+}
+
+table thead tr:first-child th:first-child {
+    border-top-left-radius: 10px;
+}
+
+table thead th:last-child {
+    border-top-right-radius: 10px;
+}
+
+table tbody:last-child tr:last-child td:first-child { 
+    border-bottom-left-radius: 10px;
+}
+
+table tbody:last-child tr:last-child td:last-child { 
+    border-bottom-right-radius: 10px;
+}
+
+table thead {
+    background-color: #202020;
+}
+
+table th {
+    padding: 20px;
+    text-align: left;
+}
+
+table td {
+    padding: 20px;
+}
+
+not-found {
+    margin-top: auto;
+}
+
+app-footer {
+    margin-top: auto;
+}
+
+app-login {
+    height: 100%;
+}
+
+
+@media screen and (max-width: 900px) {
+
+    footer {
+        font-size: 16px;
+    }
+
+}
+
+
+@media screen and (max-width: 1000px) {
+    .sections-container {
+        padding: 40px 70px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .sections-container {
+        padding: 40px 20px;
+    }
+}

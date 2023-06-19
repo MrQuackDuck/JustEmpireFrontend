@@ -1,0 +1,151 @@
+main {
+    width: 100%;
+    padding: 30px 175px;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    min-height: 700px;
+}
+
+main aside {
+    width: 35%;
+    background-color: #282828;
+    border-radius: 10px;
+    padding: 40px;
+}
+
+main aside h1 {
+    font-size: 28px;
+}
+
+main aside hr {
+    margin-top: 12px;
+    border: none;
+    height: 2px;
+    background-color: #AAA6A2;
+}
+
+main aside ul {
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+main aside ul li {
+    list-style: none;
+}
+
+main aside ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    line-height: 33px;
+    font-size: 18px;
+}
+
+main aside ul li a:hover {
+    font-weight: bold;
+    font-size: 17.5px;
+}
+
+main article {
+    background-color: #282828;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: 10px;
+    width: 90%;
+}
+
+main article .article-title {
+    padding: 120px 40px;
+    position: relative;
+    width: 100%;
+}
+
+main article .article-title h1 {
+    color: #ffffff;
+    letter-spacing: 0.9px;
+    z-index: 2;
+    font-size: 40px;
+    position: relative;
+}
+
+main article .article-title .title-bg {
+    background-color: #191919;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 0;
+    min-width: 100%;
+    filter: brightness(40%);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px 10px 0px 0px;
+}
+
+main article .article-title .article-date {
+    color: #aaaaaa;
+    position: relative;
+    z-index: 1;
+    font-size: 17.92px;
+    font-family: BalooThambi2;
+}
+
+.content {
+    padding: 22px 40px;
+    padding-bottom: 20px;
+    width: 90%;
+}
+
+.content h1 {
+    color: #e3e3e3;
+    font-size: 28px;
+    letter-spacing: 0.6px;
+    padding: 8px 0px;
+}
+
+.content p {
+    font-size: 21px;
+    line-height: 28px;
+    padding: 0px 0px;
+    padding-right: 0;
+    color: #BAB8B6;
+    font-family: BalooThambi2;
+    font-weight: 600;
+}
+
+.content b {
+    font-weight: 600;
+    line-height: 28px;
+}
+
+@media screen and (max-width: 1400px) {
+    main {
+
+        padding: 30px 30px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    main {
+        padding: 30px 0px;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    main article, main aside {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .content {
+        width: 100%;
+    }
+}

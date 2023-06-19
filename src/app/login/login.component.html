@@ -1,0 +1,11 @@
+<main>
+    <div class="login-block">
+        <h1>Authorization</h1>
+        <span *ngIf="showError" class="error">Username or password aren't correct!</span>
+        <form [formGroup]="form" (submit)="submit()">
+            <input formControlName="username" type="text" placeholder="Email or username">
+            <input formControlName="password" type="password" placeholder="Password">
+            <input class="button" type="submit" value="Login">
+        </form>
+    </div>
+</main>

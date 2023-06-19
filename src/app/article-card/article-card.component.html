@@ -1,0 +1,11 @@
+<a class="article" [routerLink]="['/article', languageCode, article.id, slugifiedTitle ]" draggable="false">
+    <div class="info-section">
+        <div class="article-title">{{ article.title }}</div>
+        <div class="article-date">{{ article.publishDate | date : 'MM/dd/yyyy hh:mm:ss' }}</div>
+        <div class="article-text">{{ article.text }}</div>
+    </div>
+    <div class="image-section">
+        <img src="data:image/png;base64, {{ article.titleImage }}" alt="Image missing">
+        <div style="background-image: url('data:image/png;base64,{{ article.titleImage }}');" class="blurry-bg"></div> 
+    </div>
+</a>

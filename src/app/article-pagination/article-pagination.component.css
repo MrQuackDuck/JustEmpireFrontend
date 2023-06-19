@@ -1,0 +1,27 @@
+.pages {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: 40px;
+}
+
+a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: BalooThambi2;
+    background-color: #282828;
+    border: 1px solid #343434;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+a:hover {
+    background-color: #343434;
+}

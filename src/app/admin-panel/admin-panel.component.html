@@ -1,0 +1,82 @@
+<main>
+    <span class="title">Admin panel</span>
+    <div class="sections-container">
+        <div *ngIf="selectedTab == 1" class="tabs">
+          <a draggable="false" routerLink="stats">
+            <div class="tab">
+              <span class="tab-title">Stats</span>
+              <div class="title-image">
+                <img draggable="false" src="../../assets/images/admin/stats.svg" alt="">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div *ngIf="selectedTab == 2" class="tabs">
+          <div class="tab">
+            <span class="tab-title"><a href="admin-stats.html">Manage articles</a><span *ngIf="articlesCount" class="gray"> ({{ articlesCount }})</span></span>
+            <div class="title-image">
+              <img draggable="false" src="../../assets/images/admin/manageArticles.svg" alt="">
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="selectedTab == 3" class="tabs">
+          <div class="tab">
+            <span class="tab-title"><a href="admin-stats.html">Manage services</a><span *ngIf="servicesCount" class="gray"> ({{ servicesCount }})</span></span>
+            <div class="title-image">
+              <img draggable="false" src="../../assets/images/admin/manageServices.svg" alt="">
+            </div>
+          </div>
+
+          <div class="tab">
+            <span class="tab-title"><a href="admin-stats.html">Manage categories</a><span *ngIf="serviceCategoriesCount" class="gray"> ({{ serviceCategoriesCount }})</span></span>
+            <div class="title-image">
+              <img draggable="false" src="../../assets/images/admin/manageCategories.svg" alt="">
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="selectedTab == 4" class="tabs">
+          <div class="tab">
+            <span class="tab-title"><a href="admin-stats.html">Manage users</a><span class="gray"> (3)</span></span>
+            <div class="title-image">
+              <img draggable="false" src="../../assets/images/admin/manageUsers.svg" alt="">
+            </div>
+          </div>
+
+          <div *ngIf="currentUser.rank == 'Emperor'" class="tab">
+            <span class="tab-title"><a href="admin-stats.html">Awaiting approvements</a><span class="gray"> (3)</span></span>
+            <div class="title-image">
+              <img draggable="false" src="../../assets/images/admin/approvements.svg" alt="">
+            </div>
+          </div>
+        </div>
+        
+        <aside>
+            <h1>Actions</h1>
+            <form>
+                <label class="checkbox-container">
+                    <span class="checkbox-text">Dashboard</span>
+                    <input (change)="selectedTab = 1" name="category" type="radio" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container">
+                    <span class="checkbox-text">Manage articles</span>
+                    <input (change)="selectedTab = 2" name="category" type="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container">
+                    <span class="checkbox-text">Manage services</span>
+                    <input (change)="selectedTab = 3" name="category" type="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container">
+                  <span class="checkbox-text">Manage users</span>
+                  <input (change)="selectedTab = 4" name="category" type="radio">
+                  <span class="checkmark"></span>
+              </label>
+            </form>
+        </aside>
+    </div>
+</main>

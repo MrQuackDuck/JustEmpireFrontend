@@ -1,0 +1,13 @@
+<main [ngClass]="{ 'mainShown': shown }">
+    <div class="displayedImage">
+        <img *ngIf="images" src="data:image/png;base64, {{ (images[selectedImageIndex]).image }}" alt="Screenshot">
+    </div>
+    <div class="otherImages">
+        <img [ngClass]="{ 'selected': i == selectedImageIndex }" *ngFor="let image of images; index as i" (click)="imageChanged(i)" src="data:image/png;base64, {{ image.image }}" alt="Screenshot">
+    </div>
+    
+    <div (click)="close()" class="close">
+        <img src="/assets/images/svg/cross-1.svg" alt="">
+    </div>
+    <div class="background" (click)="close()"></div>
+</main>

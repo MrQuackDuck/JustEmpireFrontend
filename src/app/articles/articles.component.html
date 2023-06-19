@@ -1,0 +1,9 @@
+<main class="mainShown">
+    <span class="section-title">News</span>
+
+    <div class="articles">
+        <article-card *ngFor="let article of (articles$ | async)" [article]="article" />
+    </div>
+
+    <article-pagination [articlesPageName]="pageName" [currentPage]="currentPage" [itemsOnPage]="itemsOnPage" [language]="language"></article-pagination>
+</main>

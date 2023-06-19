@@ -1,0 +1,30 @@
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 175px;
+    height: 100%;
+    gap: 5%;
+}
+
+main .info {
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+main .info h1 {
+    font-size: 128px;
+}
+
+main .info h2 {
+    font-size: 60px;
+}
+
+main .sprite img {
+    user-select: none;
+    max-width: 460px;
+}

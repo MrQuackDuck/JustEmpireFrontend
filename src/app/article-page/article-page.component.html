@@ -1,0 +1,22 @@
+<main>
+    <article>
+        <div class="article-title">
+            <h1>{{ article.title }}</h1>
+            <div class="article-date">{{ article.publishDate | date: 'MMM dd, yyyy' }}</div>
+            <div style="background-image: url('data:image/png;base64,{{ article.titleImage }}');" class="title-bg"></div>
+        </div>
+        <div class="container">
+            <div class="content">
+                <p>{{ article.text}}</p>
+            </div>
+            
+        </div>
+    </article>
+    <aside>
+        <h1>Recent articles</h1>
+        <hr>
+        <ul>
+            <li *ngFor="let recentArticle of recentArticles$ | async"><a [routerLink]="['/article/', getLanguageCode(recentArticle.language), recentArticle.id, getSlugifiedTitle(recentArticle.title)]">{{ recentArticle.title }}</a></li>
+        </ul>
+    </aside>
+</main>

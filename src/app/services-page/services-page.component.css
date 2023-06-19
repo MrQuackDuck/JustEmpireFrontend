@@ -1,0 +1,256 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main .title {
+    color: #FFFFFF;
+    font-size: 42px;
+    font-weight: 600;
+    padding-top: 40px;
+    text-align: center;
+}
+
+.sections-container {
+    display: flex;
+    flex-direction: row;
+    padding: 40px 175px;
+    width: 100%;
+    gap: 25px;
+}
+
+aside {
+    background-color: #282828;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 45px;
+    border-radius: 10px;
+    width: 30%;
+}
+
+aside h1 {
+    font-size: 40px;
+    position: relative;
+}
+
+aside form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-top: 20px;
+}
+
+aside input[type="text"] {
+    color: #FFFFFF;
+    border: 1px solid #7E7E7E;
+    background-color: #2E2E2E;
+    padding: 12px 14px;
+    border-radius: 5px;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+
+aside input[type="text"]::placeholder {
+    color: #6F6F6F;
+    opacity: 1;
+}
+
+aside input:focus[type="text"] {
+    outline: none;
+    outline: 1px solid #7E7E7E;
+}
+
+ .checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    background-color: #2E2E2E;
+    outline: 1px solid #7E7E7E;
+    border-radius: 5px;
+  }
+  
+  .checkbox-container:hover input ~ .checkmark {
+    background-color: #4b4b4b;
+    border: 2px solid #2E2E2E;
+  }
+  
+  .checkbox-container input:checked ~ .checkmark {
+    background-color: #2F63B0;
+    border: 2px solid #2E2E2E;
+  }
+
+  .checkbox-text {
+    position: relative;
+    left: 16px;
+    top: 4px;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  .apply {
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+
+.services {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    overflow: hidden;
+}
+
+app-service-card {
+    width: 100%;
+}
+
+@media screen and (max-width: 1700px) {
+    .sections-container {
+        padding: 40px 60px;
+    }
+}
+
+
+@media screen and (max-width: 1000px) {
+    .sections-container {
+        flex-direction: column-reverse;
+    }
+
+    .sections-container aside {
+        width: 100%;
+    }
+
+    main .title {
+        font-size: 30px;
+        padding-top: 20px;
+    }
+
+    .sections-container {
+        padding-top: 18px !important;
+    }
+
+    aside {
+        padding: 20px 25px;
+    }
+
+    aside h1 {
+        font-size: 32px;
+    }
+
+    aside form {
+        gap: 12px;
+    }
+
+    aside input[type="text"] {
+        padding: 10px;
+        font-size: 18px;
+    }
+
+    .checkbox-container {
+        font-size: 18px;
+    }
+
+    .checkmark {
+        width: 36px;
+        height: 36px;
+    }
+
+    aside .apply {
+        margin-top: 0px;
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .services {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2%;
+    }
+
+    .services .service {
+        flex-direction: column;
+        max-width: 48%;
+    }
+
+    .service .container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .service {
+        margin-bottom: 15px;
+        min-height: unset;
+        max-height: unset !important;
+    }
+
+    .service .image {
+        aspect-ratio: unset !important;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .service .image img {
+        max-width: 220px;
+    }
+
+    .service .info {
+        text-align: center;
+    }
+
+    .service .controls {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .controls div {
+        position: unset !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .services {
+        flex-direction: column;
+        justify-content: center;
+    }
+}

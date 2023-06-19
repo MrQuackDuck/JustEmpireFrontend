@@ -1,0 +1,21 @@
+<main>
+    <span class="title">Our Services & Products</span>
+    <div class="sections-container">
+        <div class="services">
+            <app-service-card *ngFor="let service of services$ | async" [service]="service"></app-service-card>
+            <not-found [show404]="false" *ngIf="nothingFound"/>
+        </div>
+        <aside>
+            <h1>Filters</h1>
+            <form (submit)="search()">
+                <input type="text" [value]="searchString" (input)="updateSearchString($event.target)" placeholder="Name of service">
+                <label *ngFor="let category of serviceCategories$ | async" class="checkbox-container">
+                    <span class="checkbox-text">{{ category.title }}</span>
+                    <input type="checkbox" (change)="categoryClicked($event.target, category.id)" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+                <a (click)="updateData()" class="apply button">Apply</a>
+            </form>
+        </aside>
+    </div>
+</main>

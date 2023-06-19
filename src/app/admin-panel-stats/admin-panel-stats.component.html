@@ -1,0 +1,39 @@
+<main>
+    <div class="title-section">
+        <a class="button gray" routerLink="/admin">Back</a>
+        <span class="title">Admin panel - Stats</span>
+        <a class="button empty" href=""></a>
+    </div>
+    <div class="sections-container">
+        <section class="no-padding">
+            <div class="table__wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Period</th>
+                            <th>Views</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>24 Hours</td>
+                            <td>{{ views24h }}</td>
+                        </tr>
+                        <tr>
+                            <td>7 days</td>
+                            <td>{{ views7d }}</td>
+                        </tr>
+                        <tr>
+                            <td>1 month</td>
+                            <td>{{ views1mo }}</td>
+                        </tr>
+                        <tr>
+                            <td>3 months</td>
+                            <td>{{ views3mo }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>

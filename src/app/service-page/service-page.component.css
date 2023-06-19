@@ -1,0 +1,285 @@
+.sections-container {
+    padding: 40px 175px;
+    overflow-x: hidden;
+}
+
+.service {
+    min-height: 300px;
+    max-height: 300px;
+    width: 100%;
+    background-color: #282828;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    color: #FFFFFF;
+    padding: 25px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-grow: 1;
+}
+
+.image img {
+    max-width: 250px;
+    border-radius: 10px;
+}
+
+.service .info {
+    display: flex;
+    flex-direction: column;
+    padding-top: 25px;
+}
+
+.service .info .name {
+    font-size: 40px;
+}
+
+.service .info .name a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.service .info .name a:hover {
+    text-decoration: underline;
+}
+
+.service .info .type {
+    font-family: BalooThambi2;
+    font-size: 18px;
+    color: #909090;
+}
+
+.service .info .description {
+    font-family: BalooThambi2;
+    font-size: 18px;
+}
+
+.service .controls {
+    width: 40%;
+}
+
+.service .controls div {
+    display: inline-block;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    bottom: 0;
+    right: 0;
+    padding-bottom: 15px;
+    width: min-content;
+}
+
+.service .controls div .button {
+    min-width: 180px;
+    max-width: 180px;
+    padding: 10px 0px;
+}
+
+.service .controls .field {
+    position: relative;
+    font-family: BalooThambi2;
+    font-size: 20px;
+    color: #909090;
+}
+
+.navigation {
+    padding: 18px 0px;
+    display: flex;
+    gap: 8px;
+}
+
+.content {
+    width: 100%;
+    background-color: #282828;
+    border-radius: 10px;
+    color: #FFFFFF;
+    margin-bottom: 20px; /* TODO: Remove this property */
+    display: none;
+}
+
+.contentVisible {
+    display: block;
+}
+
+.content .screenshots-block {
+    display: flex;
+    flex-direction: column;
+    padding: 25px 46px;
+}
+
+.content .screenshots-block h1 {
+    font-size: 36px;
+}
+
+.content .screenshots-block hr {
+    border: none;
+    background-color: #FFFFFF;
+    height: 3px;
+    max-width: 300px;
+}
+
+.screenshots {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.screenshots .screenshot {
+    border-radius: 10px;
+    max-height: 100%;
+    max-width: 200px;
+    cursor: pointer;
+}
+
+.screenshots .screenshot:hover {
+    filter: brightness(120%) contrast(80%);
+    transition: .2s ease-out;
+}
+
+td a {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1700px) {
+    .sections-container {
+        padding: 40px 60px;
+    }
+}
+
+@media screen and (max-width: 1700px) {
+    .service .image {
+        aspect-ratio: 2 / 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .service .controls {
+        min-width: 180px;
+    }
+
+    .service .image img {
+        max-width: 100%;
+        aspect-ratio: 1 / 1;
+        max-height: unset;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .service .info {
+        padding-top: 0;
+    }
+
+    .service .info .name a {
+        font-size: 26px;
+    }
+
+    .service .image {
+        max-width: 200px;
+    }
+
+    .service .info .type {
+        font-size: 18px;
+    }
+
+    .service .info .description {
+        font-size: 16px;
+    }
+
+    .service .controls div .button {
+        font-size: 18px;
+    }
+
+    .service .controls .field {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .content .screenshots-block {
+        align-items: center;
+    }
+
+    .navigation {
+        flex-wrap: wrap;
+    }
+
+    .navigation .button {
+        font-size: 18px;
+    }
+
+    .content .screenshots-block .screenshots {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .service {
+        gap: 20px;
+    }
+
+    .service .container {
+        gap: 0;
+    }
+
+    .service .controls div {
+        gap: 4px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .service {
+        flex-direction: column;
+    }
+
+    .service .container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .service {
+        margin-bottom: 15px;
+        min-height: unset;
+        max-height: unset !important;
+    }
+
+    .service .image {
+        aspect-ratio: unset !important;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .service .image img {
+        max-width: 220px;
+    }
+
+    .service .info {
+        text-align: center;
+    }
+
+    .service .controls {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .controls div {
+        position: unset !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .service {
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    .navigation {
+        justify-content: center;
+    }
+}

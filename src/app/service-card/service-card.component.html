@@ -1,0 +1,17 @@
+<div class="service">
+    <div class="container">
+        <div class="image"><a href="service-page.html"><img src="data:image/png;base64, {{service.titleImage}}"></a></div>
+        <div class="info">
+            <h1 class="name" title="{{ service.title }}"><a [routerLink]="['/service', languageCode, service.id, slugifiedTitle ]">{{ service.title }}</a></h1>
+            <span class="type" *ngIf="currentCategory">Type: {{ currentCategory.title }}</span>
+            <span class="description">{{ service.text }}</span>
+        </div>
+    </div>
+    <div class="controls">
+        <div>
+            <span class="field" *ngIf="latestVersion">Version: {{ latestVersion.title }}</span>
+            <a href="{{ service.url }}" *ngIf="!service.isDownloadable" draggable="false" class="button">Visit</a>
+            <a href="{{ service.url }}" *ngIf="service.isDownloadable" draggable="false" class="button green">Download</a>
+        </div>
+    </div>
+</div>

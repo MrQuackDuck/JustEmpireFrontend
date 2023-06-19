@@ -1,0 +1,85 @@
+* {
+	position: relative;
+}
+
+.background {
+	position: fixed;
+	top: 0;
+	min-width: 100vw;
+	min-height: 100vh;
+	background-color: #161616c9;
+	z-index: 32;
+}
+
+main {
+	overflow-y: scroll;
+	position: fixed;
+	top: 0;
+	justify-content: center;
+	align-items: center;
+	min-width: 100vw;
+	min-height: 100vh;
+    color: #FFFFFF;
+	z-index: 31;
+	flex-direction: column;
+	gap: 20px;
+	display: none;
+}
+
+.mainShown {
+	display: flex !important;
+}
+
+.displayedImage img {
+	max-height: 50vh;
+	max-width: 100vw;
+	border-radius: 4px;
+	z-index: 33;
+}
+
+.otherImages {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.otherImages img {
+	max-height: 10vh;
+	cursor: pointer;
+	z-index: 33;
+}
+
+.close {
+	top: 0;
+	right: 0;
+	min-height: 10vh;
+	min-width: 10vh;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 34;
+	cursor: pointer;
+}
+
+.close:hover {
+	background-color: #444444f6;
+	transition: .1s ease-in;
+}
+
+.close img {
+	width: 40%;
+}
+
+.selected {
+    filter: brightness(125%) contrast(90%);
+}
+
+.otherImages img:hover {
+    filter: brightness(105%) contrast(90%);
+}
+
+.selected:hover {
+    filter: brightness(125%) contrast(90%) !important;
+}
