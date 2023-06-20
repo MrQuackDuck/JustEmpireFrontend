@@ -39,7 +39,7 @@ export class ArticlesComponent implements OnInit {
       totalPageCount = pageCount;
       if (pageIndex < 0 || pageIndex > pageCount) {
         this.currentPage = 1;
-        this.router.navigate([this.pageName, 'EN', 1]);
+        this.router.navigate([this.pageName, 'EN', 1], { replaceUrl: true });
         return;
       } 
       else {
@@ -52,7 +52,7 @@ export class ArticlesComponent implements OnInit {
       let index : number = Number(params.get('pageIndex'))
       if (index < 0 || index > totalPageCount) {
         this.currentPage = 1;
-        this.router.navigate([this.pageName, 'EN', 1]);
+        this.router.navigate([this.pageName, 'EN', 1], { replaceUrl: true });
         return;
       } 
       else {

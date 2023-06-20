@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewsService } from '../services/views.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-admin-panel-stats',

@@ -23,6 +23,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AdminGuard } from './admin-panel/admin-panel.guard';
 import { AdminPanelStatsComponent } from './admin-panel-stats/admin-panel-stats.component';
 import { LoadingService } from './services/loading.service';
+import { AdminPanelTabComponent } from './admin-panel-tab/admin-panel-tab.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { LoadingService } from './services/loading.service';
     LoginComponent,
     AdminPanelComponent,
     AdminPanelStatsComponent,
+    AdminPanelTabComponent,
   ],
   imports: [
     BrowserModule,

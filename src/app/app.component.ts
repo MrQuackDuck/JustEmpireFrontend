@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
       '../../assets/images/svg/block-3-right-bottomwave.svg',
       '../../assets/images/svg/block-5-right-topwave.svg',
       '../../assets/images/svg/block-2-left-topwave.svg',
+      '../../assets/images/characters/NotFound.png',
       '../../assets/images/svg/cross-1.svg',
       '../../assets/images/svg/search_icon.svg',
 

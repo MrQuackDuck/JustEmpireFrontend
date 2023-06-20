@@ -9,6 +9,7 @@ import { ServiceCategory } from '../model/serviceCategory';
 import { ServiceVersion } from '../model/serviceVersion';
 import { ServiceImage } from '../model/serviceImage';
 import { Observable } from 'rxjs';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-service-page',
@@ -21,7 +22,9 @@ export class ServicePageComponent {
   private serviceImageRepository : ServiceImageRepositoryService,
   private serviceCategoryRepository : ServiceCategoryRepositoryService,
   private router : Router,
-  private route : ActivatedRoute) { }
+  private route : ActivatedRoute,
+  private loadingService : LoadingService)
+  { }
 
   id; // Id of the target service
   service? : Service; // The target service
@@ -49,6 +52,8 @@ export class ServicePageComponent {
   }
 
   updateData() {
+    this.loadingService.enableLoading();
+
     // Getting service by id
     this.serviceRepository.getById(this.id).subscribe(async service => {
       this.service = service;
@@ -75,7 +80,12 @@ export class ServicePageComponent {
         this.screenshots = screenshots;
         this.screenshotsCount = screenshots.length;
       })
-    }, error => this.router.navigate(['/404']))
+      
+      this.loadingService.disableLoading();
+    }, error => {
+      this.router.navigate(['/404'])
+      this.loadingService.disableLoading();
+    })
   }
 
   // Check if provided tab is curretly active

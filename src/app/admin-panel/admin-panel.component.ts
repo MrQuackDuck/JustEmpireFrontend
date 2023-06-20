@@ -6,6 +6,8 @@ import { ArticleRepositoryService } from '../services/article-repository.service
 import { ServiceRepositoryService } from '../services/service-repository.service';
 import { ServiceCategoryRepositoryService } from '../services/service-category-repository.service';
 import { ServiceVersionRepositoryService } from '../services/service-version-repository.service';
+import { ActivatedRoute } from '@angular/router';
+import { AdminSelectedTabService } from '../services/admin-selected-tab.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -19,9 +21,8 @@ export class AdminPanelComponent {
   private articleRepository : ArticleRepositoryService, 
   private serviceRepository : ServiceRepositoryService,
   private serviceCategoryRepository : ServiceCategoryRepositoryService,
-  private serviceVersionRepository : ServiceVersionRepositoryService) {}
-
-  selectedTab : number = 1;
+  private serviceVersionRepository : ServiceVersionRepositoryService,
+  public selectedTabService : AdminSelectedTabService) {}
 
   articlesCount : number;
   servicesCount : number;
@@ -30,6 +31,8 @@ export class AdminPanelComponent {
   currentUser : User;
 
   ngOnInit() {
+
+
     this.loadingService.disableLoading();
     this.loadingService.disableLoading();
     this.authService.getUser().subscribe(user => {
