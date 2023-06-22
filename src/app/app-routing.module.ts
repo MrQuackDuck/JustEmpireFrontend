@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AdminGuard } from './admin-panel/admin-panel.guard';
 import { AdminPanelStatsComponent } from './admin-panel-stats/admin-panel-stats.component';
+import { AdminPanelManageArticlesComponent } from './admin-panel-manage-articles/admin-panel-manage-articles.component';
 
 const routes: Routes = [
   {
@@ -108,8 +109,15 @@ const routes: Routes = [
   {
     path: "admin/stats",
     pathMatch: "prefix",
-    title: "JustEmpire | Admin, Stats",
+    title: "JustEmpire | Stats",
     component: AdminPanelStatsComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: "admin/manageArticles",
+    pathMatch: "prefix",
+    title: "JustEmpire | Manage articles",
+    component: AdminPanelManageArticlesComponent,
     canActivate: [AdminGuard]
   },
   // Not found page

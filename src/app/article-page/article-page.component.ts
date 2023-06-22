@@ -20,8 +20,6 @@ export class ArticlePageComponent {
   article : Article;
   recentArticles$ : Observable<Article[]>;
 
-  showLoading : boolean = true;
-
   async ngOnInit() {
     this.id = this.route.snapshot.params['id'];
 

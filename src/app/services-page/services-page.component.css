@@ -3,6 +3,8 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 1920px;
+    margin: 0 auto;
 }
 
 main .title {

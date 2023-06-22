@@ -1,5 +1,5 @@
 
-<div [ngClass]="{'hidden': !imagesLoaded}" class="head-block">
+<div class="head-block">
     <div class="content">
         <div class="left">
             <div class="name">JustEmpire</div>
@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<main [ngClass]="{'hidden': !imagesLoaded}">
+<main>
     <img class="wave" draggable="false" style="top: -5px; left:1px; z-index: 10;" src="../../assets/images/svg/block-1-topwave.svg">
     <section class="left">
         <div class="block left-1 with-image">
@@ -21,7 +21,7 @@
         <div class="block left-2">
             <img draggable="false" class="wave" style="top: -4px; left:0px;" src="../../assets/images/svg/block-2-left-topwave.svg">
             <div class="block-title hidden-left-short">Our services</div>
-            <div class="block-text hidden-left-long">We are creating websites, software, stuff for games and more! You can check it on  <a href="https://justempire.net/services">justempire.net/services</a>
+            <div class="block-text hidden-left-long">We are creating websites, software, stuff for games and more! You can check it on  <a routerLink="/services">justempire.net/services</a>
             </div>
             <img draggable="false" class="wave" style="bottom: -4px; left:0;" src="../../assets/images/svg/block-2-left-bottomwave.svg">
         </div>

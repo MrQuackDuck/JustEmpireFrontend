@@ -1,4 +1,4 @@
-<main>
+<main *ngIf="article">
     <article>
         <div class="article-title">
             <h1>{{ article.title }}</h1>
@@ -16,7 +16,8 @@
         <h1>Recent articles</h1>
         <hr>
         <ul>
-            <li *ngFor="let recentArticle of recentArticles$ | async"><a [routerLink]="['/article/', getLanguageCode(recentArticle.language), recentArticle.id, getSlugifiedTitle(recentArticle.title)]">{{ recentArticle.title }}</a></li>
+            <li *ngFor="let recentArticle of recentArticles$ | async" routerLinkActive="active"><a [routerLink]="['/article/', getLanguageCode(recentArticle.language), recentArticle.id, getSlugifiedTitle(recentArticle.title)]">{{ recentArticle.title }}</a></li>
         </ul>
     </aside>
 </main>
+<app-loading/>

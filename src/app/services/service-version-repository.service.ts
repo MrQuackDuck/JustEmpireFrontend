@@ -10,7 +10,7 @@ export class ServiceVersionRepositoryService {
   constructor(private httpClient : HttpClient) { }
 
   getVersions(serviceId : number) : Observable<ServiceVersion[]> {
-    return this.httpClient.get<ServiceVersion[]>('http://localhost:5228/API/Version/GetVersions', {
+    return this.httpClient.get<ServiceVersion[]>('http://localhost:5228/API/ServiceVersion/GetVersions', {
       params: { "serviceId": serviceId }
     })
   }
@@ -20,7 +20,7 @@ export class ServiceVersionRepositoryService {
   }
 
   getLatestVersion(serviceId : number) : Observable<ServiceVersion> {
-    return this.httpClient.get<ServiceVersion>('http://localhost:5228/API/Version/GetLatestVersion', {
+    return this.httpClient.get<ServiceVersion>('http://localhost:5228/API/ServiceVersion/GetLatestVersion', {
       params: { "serviceId": serviceId }
     })
   }

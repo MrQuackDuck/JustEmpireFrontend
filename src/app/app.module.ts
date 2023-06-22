@@ -24,6 +24,11 @@ import { AdminGuard } from './admin-panel/admin-panel.guard';
 import { AdminPanelStatsComponent } from './admin-panel-stats/admin-panel-stats.component';
 import { LoadingService } from './services/loading.service';
 import { AdminPanelTabComponent } from './admin-panel-tab/admin-panel-tab.component';
+import { AdminPanelManageArticlesComponent } from './admin-panel-manage-articles/admin-panel-manage-articles.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
+import { LangCodePipe } from './pipes/lang-code.pipe';
+import { StatusCodePipe } from './pipes/status-code.pipe';
+import { AuthorPipe } from './pipes/author.pipe';
 
 @NgModule({
   declarations: [
@@ -46,6 +51,11 @@ import { AdminPanelTabComponent } from './admin-panel-tab/admin-panel-tab.compon
     AdminPanelComponent,
     AdminPanelStatsComponent,
     AdminPanelTabComponent,
+    AdminPanelManageArticlesComponent,
+    TruncatePipe,
+    LangCodePipe,
+    StatusCodePipe,
+    AuthorPipe
   ],
   imports: [
     BrowserModule,

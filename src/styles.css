@@ -83,7 +83,7 @@ body {
     background-color: #1C3A68;
     border-color: #1e5384;
     transform: translateY(6px);
-    box-shadow: 0px 0px 0px #1C3A68;
+    box-shadow: 0px 0px 0px #1C3A68 !important;
 }
 
 .button.green {
@@ -123,6 +123,36 @@ body {
 
 .button.gray.active:active {
     border: 1px solid #8e8e8e;
+}
+
+.button.red {
+    background-color: #CF1515;
+    border: 1px solid #c78e8e;
+    box-shadow: 0px 6px 0px #671818;
+}
+
+.button.red:hover {
+    background-color: #df1515;
+}
+
+.button.red:active {
+    background-color: #671818;
+    border: 1px solid #8b6363;
+}
+
+.button.orange {
+    background-color: #D97227;
+    border: 1px solid #C99E8C;
+    box-shadow: 0px 6px 0px #673918;
+}
+
+.button.orange:hover {
+    background-color: #ea7a2b;
+}
+
+.button.orange:active {
+    background-color: #673918;
+    border: 1px solid rgb(106, 75, 75);
 }
 
 .table__wrapper {
@@ -199,7 +229,7 @@ table th {
 }
 
 table td {
-    padding: 20px;
+    padding: 10px;
 }
 
 not-found {

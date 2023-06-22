@@ -125,6 +125,10 @@ main article .article-title .article-date {
     line-height: 28px;
 }
 
+.active {
+    text-decoration: underline;
+}
+
 @media screen and (max-width: 1400px) {
     main {
 

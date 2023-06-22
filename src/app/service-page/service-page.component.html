@@ -28,7 +28,7 @@
                 <h1>Screenshots</h1>
                 <hr>
                 <div class="screenshots">
-                    <img (click)="showImageViewer(i)" *ngFor="let screenshot of screenshots$ | async; index as i" class="screenshot" src="data:image/png;base64, {{ screenshot.image }}">
+                    <img (click)="showImageViewer(i)" *ngFor="let screenshot of screenshots; index as i" class="screenshot" src="data:image/png;base64, {{ screenshot.image }}">
                 </div>
             </div>
         </div>
@@ -57,3 +57,4 @@
 </main>
 <app-image-viewer (onClose)="disableImageViewer()" (onImageChanged)="imageChanged($event)" [selectedImageIndex]="imageViewerIndex" [images]="screenshots" [shown]="isImageViewerShown" />
 <app-version-reader (onClose)="hideVersionReader()" [shown]="isVersionReaderShown" [version]="currentReaderVersion"/>
+<app-loading/>

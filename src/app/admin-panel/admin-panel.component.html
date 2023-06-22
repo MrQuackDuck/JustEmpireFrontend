@@ -6,19 +6,21 @@
       </div>
 
       <div *ngIf="selectedTabService.selectedTab == 1" class="tabs">
-        <admin-panel-tab [title]="'Manage articles'" [grayText]="articlesCount" routerLink="/admin/stats" [icon]="'../../assets/images/admin/manageArticles.svg'"/>
+        <admin-panel-tab [title]="'Manage articles'" [grayText]="articlesCount" routerLink="/admin/manageArticles" [icon]="'../../assets/images/admin/manageArticles.svg'"/>
       </div>
 
       <div *ngIf="selectedTabService.selectedTab == 2" class="tabs">
         <admin-panel-tab [title]="'Manage services'" [grayText]="servicesCount" routerLink="/admin/stats" [icon]="'./../assets/images/admin/manageServices.svg'"/>
 
         <admin-panel-tab [title]="'Manage categories'" [grayText]="serviceCategoriesCount" routerLink="/admin/stats" [icon]="'../../assets/images/admin/manageCategories.svg'"/>
+
+        <admin-panel-tab [title]="'Manage versions'" [grayText]="serviceVersionsCount" routerLink="/admin/stats" [icon]="'../../assets/images/admin/manageVersions.svg'"/>
       </div>
 
       <div *ngIf="selectedTabService.selectedTab == 3" class="tabs">          
-        <admin-panel-tab [title]="'Manage users'" [grayText]="'USERS COUNT'" routerLink="/admin/stats" [icon]="'../../assets/images/admin/manageUsers.svg'"/>
+        <admin-panel-tab [title]="'Manage users'" [grayText]="userCount" routerLink="/admin/stats" [icon]="'../../assets/images/admin/manageUsers.svg'"/>
 
-        <admin-panel-tab *ngIf="currentUser.rank == 'Emperor'" [title]="'Awaiting approvements'" [grayText]="'APPROVEMENTS COUNT'" routerLink="stats" [icon]="'../../assets/images/admin/approvements.svg'"/>
+        <admin-panel-tab *ngIf="currentUser?.rank == 'Emperor'" [title]="'Awaiting approvements'" [grayText]="'APPROVEMENTS COUNT'" routerLink="stats" [icon]="'../../assets/images/admin/approvements.svg'"/>
 
       </div>
       
@@ -27,22 +29,22 @@
           <form>
               <label class="checkbox-container">
                   <span class="checkbox-text">Dashboard</span>
-                  <input (change)="selectedTabService.selectedTab = 0" name="category" type="radio" [checked]="selectedTabService.selectedTab == 0">
+                  <input (change)="setTab(0)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 0">
                   <span class="checkmark"></span>
               </label>
               <label class="checkbox-container">
                   <span class="checkbox-text">Manage articles</span>
-                  <input (change)="selectedTabService.selectedTab = 1" name="category" type="radio" [checked]="selectedTabService.selectedTab == 1">
+                  <input (change)="setTab(1)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 1">
                   <span class="checkmark"></span>
               </label>
               <label class="checkbox-container">
                   <span class="checkbox-text">Manage services</span>
-                  <input (change)="selectedTabService.selectedTab = 2" name="category" type="radio" [checked]="selectedTabService.selectedTab == 2">
+                  <input (change)="setTab(2)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 2">
                   <span class="checkmark"></span>
               </label>
               <label class="checkbox-container">
                 <span class="checkbox-text">Manage users</span>
-                <input (change)="selectedTabService.selectedTab = 3" name="category" type="radio" [checked]="selectedTabService.selectedTab == 3">
+                <input (change)="setTab(3)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 3">
                 <span class="checkmark"></span>
             </label>
           </form>
