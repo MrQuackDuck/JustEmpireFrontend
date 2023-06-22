@@ -13,6 +13,10 @@
     color: #FFFFFF;
 }
 
+.ck-editor {
+    color: black;
+}
+
 body {
     overflow-x: hidden;
     display: flex;
@@ -158,6 +162,7 @@ body {
 .table__wrapper {
     border-radius: 10px;
     overflow: hidden;
+    overflow-x: auto;
     border: 1px solid #616161;
 }
 

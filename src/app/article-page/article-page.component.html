@@ -1,13 +1,13 @@
 <main *ngIf="article">
     <article>
         <div class="article-title">
-            <h1>{{ article.title }}</h1>
+            <h1>{{ article.title! | truncate: 100 }}</h1>
             <div class="article-date">{{ article.publishDate | date: 'MMM dd, yyyy' }}</div>
             <div style="background-image: url('data:image/png;base64,{{ article.titleImage }}');" class="title-bg"></div>
         </div>
         <div class="container">
             <div class="content">
-                <p>{{ article.text}}</p>
+                <p>{{ article.text }}</p>
             </div>
             
         </div>
@@ -16,7 +16,7 @@
         <h1>Recent articles</h1>
         <hr>
         <ul>
-            <li *ngFor="let recentArticle of recentArticles$ | async" routerLinkActive="active"><a [routerLink]="['/article/', getLanguageCode(recentArticle.language), recentArticle.id, getSlugifiedTitle(recentArticle.title)]">{{ recentArticle.title }}</a></li>
+            <li *ngFor="let recentArticle of recentArticles$ | async" routerLinkActive="active"><a [routerLink]="['/article/', getLanguageCode(recentArticle.language), recentArticle.id, getSlugifiedTitle(recentArticle.title)]">{{ recentArticle.title! | truncate: 20 }}</a></li>
         </ul>
     </aside>
 </main>

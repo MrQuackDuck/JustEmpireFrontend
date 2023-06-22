@@ -29,6 +29,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { LangCodePipe } from './pipes/lang-code.pipe';
 import { StatusCodePipe } from './pipes/status-code.pipe';
 import { AuthorPipe } from './pipes/author.pipe';
+import { ModalComponent } from './modal/modal.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ import { AuthorPipe } from './pipes/author.pipe';
     TruncatePipe,
     LangCodePipe,
     StatusCodePipe,
-    AuthorPipe
+    AuthorPipe,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +66,7 @@ import { AuthorPipe } from './pipes/author.pipe';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    CKEditorModule
   ],
   providers: [
     AdminGuard,
