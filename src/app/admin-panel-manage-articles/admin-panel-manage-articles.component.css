@@ -105,7 +105,3 @@ form input:focus[type="text"] {
 form input[type="button"] {
     cursor: pointer;
 }
-
-.ck-editor__editable {
-    min-height: 200px !important;
-}

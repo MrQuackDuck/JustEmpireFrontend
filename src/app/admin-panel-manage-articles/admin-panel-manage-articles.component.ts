@@ -4,7 +4,6 @@ import { Article } from '../model/article';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Language } from '../enum/Language';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-admin-panel-manage-articles',
@@ -17,7 +16,7 @@ export class AdminPanelManageArticlesComponent {
   articles$ : Observable<Article[]>;
   newArticleModalShown : boolean;
   newArticleForm : FormGroup;
-  public newArticleEditor = ClassicEditor;
+  public newArticleEditor;
 
   ngOnInit() {
     this.articles$ = this.articleRepository.getAll();

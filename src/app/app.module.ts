@@ -30,7 +30,6 @@ import { LangCodePipe } from './pipes/lang-code.pipe';
 import { StatusCodePipe } from './pipes/status-code.pipe';
 import { AuthorPipe } from './pipes/author.pipe';
 import { ModalComponent } from './modal/modal.component';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -65,8 +64,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    CKEditorModule
+    ReactiveFormsModule
   ],
   providers: [
     AdminGuard,

@@ -47,8 +47,7 @@
     <form [formGroup]="newArticleForm" method="post">
         <input formControlName="title" type="text" placeholder="Title">
         <input formControlName="titleImage" type="file" placeholder="Title image">
-        <ckeditor [editor]="newArticleEditor">
-        </ckeditor>
+        
         <input formControlName="language" type="text" placeholder="Language">
         <input class="button" type="submit" value="Submit">
     </form>
