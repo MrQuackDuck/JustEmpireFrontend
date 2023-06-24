@@ -48,7 +48,7 @@
     <form (submit)="submitNewArticle()" [formGroup]="newArticleForm" method="post" enctype="multipart/form-data">
         <input formControlName="title" type="text" placeholder="Title">
         <quill-editor formControlName="text"></quill-editor>
-        <select formControlName="language" required>
+        <select formControlName="language" required> 
             <option *ngFor="let lang of languages" [ngValue]="lang.value">{{ lang.key }}</option>
         </select>
         <label class="upload-photo-label" for="upload-photo">Browse</label>
