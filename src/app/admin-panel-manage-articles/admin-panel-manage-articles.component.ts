@@ -18,6 +18,11 @@ export class AdminPanelManageArticlesComponent {
   newArticleForm : FormGroup;
   public newArticleEditor;
 
+  languages = [
+    {key: 'English', value: 'EN'},
+    {key: 'Ukrainian', value: 'UA'},
+  ];
+
   ngOnInit() {
     this.articles$ = this.articleRepository.getAll();
     this.newArticleForm = this.formBuilder.group({
@@ -26,6 +31,19 @@ export class AdminPanelManageArticlesComponent {
       text: '',
       language : Language
     });
+  }
+
+  uploadFile(event: Event) {
+    const element = event.currentTarget as HTMLInputElement;
+    let fileList: FileList | null = element.files;
+    if (fileList) {
+      console.log(fileList[0].name);
+    }
+  }
+
+
+  submitNewArticle() {
+    console.log(this.newArticleForm.getRawValue());
   }
 
   showNewArticleModal() {

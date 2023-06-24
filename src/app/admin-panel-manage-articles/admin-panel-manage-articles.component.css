@@ -25,7 +25,7 @@ main .title-section .button, .empty {
     flex-grow: 1;
 }
 
-main .title-section .title {
+.title {
     flex-grow: 10;
     justify-self: center;
     color: #FFFFFF;
@@ -75,6 +75,11 @@ b {
     padding: 0px;
 }
 
+app-modal h1 {
+    width: 100%;
+    padding: 10px 20px;
+}
+
 form {
     width: 100%;
     display: flex;
@@ -97,6 +102,17 @@ form input[type="text"]::placeholder {
     opacity: 1;
 }
 
+form input[type="file"] {
+    display: none;
+}
+
+form .upload-photo-label {
+    padding: 12px 14px;
+    border: 2px dashed #7E7E7E;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 form input:focus[type="text"] {
     outline: none;
     outline: 1px solid #7E7E7E;
@@ -104,4 +120,13 @@ form input:focus[type="text"] {
 
 form input[type="button"] {
     cursor: pointer;
+}
+
+form select {
+    color: white;
+    padding: 12px 14px;
+    border-radius: 5px;
+    border: 1px solid #7E7E7E;
+    background-color: #2E2E2E;
+    font-size: 20px;
 }
