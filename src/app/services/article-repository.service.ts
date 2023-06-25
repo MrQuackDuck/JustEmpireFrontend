@@ -10,6 +10,12 @@ import { Observable } from 'rxjs';
 export class ArticleRepositoryService {
   constructor(private httpClient : HttpClient) { }
 
+  create(createArticleModel) : Observable<Article> {
+    return this.httpClient.post<Article>('http://localhost:5228/API/Article/Create', { withCredentials: true, params: {
+      "createArticleModel": createArticleModel
+    }})
+  }
+
   getAll() : Observable<Article[]> {
     return this.httpClient.get<Article[]>('http://localhost:5228/API/Article/GetAllStaff', { withCredentials: true })
   }

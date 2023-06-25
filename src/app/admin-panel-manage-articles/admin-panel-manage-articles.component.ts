@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ArticleRepositoryService } from '../services/article-repository.service';
 import { Article } from '../model/article';
 import { Observable } from 'rxjs';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Language } from '../enum/Language';
 
 @Component({
@@ -26,10 +26,10 @@ export class AdminPanelManageArticlesComponent {
   ngOnInit() {
     this.articles$ = this.articleRepository.getAll();
     this.newArticleForm = this.formBuilder.group({
-      title: '',
-      titleImage: '',
-      text: '',
-      language : Language
+      title: new FormControl(null, Validators.required),
+      titleImage: new FormControl(null, Validators.required),
+      text: new FormControl(null, Validators.required),
+      language : new FormControl("EN", Validators.required)
     });
   }
 
@@ -37,14 +37,23 @@ export class AdminPanelManageArticlesComponent {
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
     if (fileList) {
-      console.log(fileList[0].name);
-      console.log(fileList[0]);
+      let file = fileList[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        let label : any = document.querySelector('.upload-photo-label')
+        label.innerHTML = "<img src='"+ reader.result +"'>";
+        this.newArticleForm.controls['titleImage'].setValue(reader.result);
+      };
     }
   }
 
-
   submitNewArticle() {
-    console.log(this.newArticleForm.getRawValue());
+    if (this.newArticleForm.valid === false) {
+      return; 
+    }
+    
+    this.articleRepository.create(this.newArticleForm.getRawValue()).subscribe();
   }
 
   showNewArticleModal() {

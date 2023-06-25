@@ -45,14 +45,14 @@
 </main>
 <app-modal [showModal]="newArticleModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Create Article</h1>
-    <form (submit)="submitNewArticle()" [formGroup]="newArticleForm" method="post" enctype="multipart/form-data">
-        <input formControlName="title" type="text" placeholder="Title">
+    <form (ngSubmit)="submitNewArticle()" [formGroup]="newArticleForm" method="post" enctype="multipart/form-data">
+        <input required="text" formControlName="title" type="text" placeholder="Title">
         <quill-editor formControlName="text"></quill-editor>
-        <select formControlName="language">
-            <option *ngFor="let lang of languages" [ngValue]="lang.value">{{ lang.key }}</option>
+        <select formControlName="language" required>
+            <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
         </select>
-        <label class="upload-photo-label" for="upload-photo">Browse</label>
-        <input (change)="uploadFile($event)" id="upload-photo" formControlName="titleImage" type="file" placeholder="Title image">
+        <label class="upload-photo-label" for="upload-photo"><span>Browse</span></label>
+        <input (change)="uploadFile($event)" accept="image/*" id="upload-photo" formControlName="titleImage" type="file" placeholder="Title image">
         <input class="button" type="submit" value="Submit">
     </form>
 </app-modal>

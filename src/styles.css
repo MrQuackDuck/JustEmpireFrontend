@@ -251,6 +251,11 @@ app-login {
     height: 100%;
 }
 
+form .upload-photo-label img {
+    max-width: 100%;
+    max-height: 300px;
+}
+
 
 @media screen and (max-width: 900px) {
 

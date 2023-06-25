@@ -77,7 +77,8 @@ b {
 
 app-modal h1 {
     width: 100%;
-    padding: 10px 20px;
+    padding: 30px 20px;
+    padding-top: 0px;
 }
 
 form {
@@ -107,11 +108,25 @@ form input[type="file"] {
 }
 
 form .upload-photo-label {
-    padding: 12px 14px;
     font-size: 18px;
     border: 2px dashed #7E7E7E;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
     cursor: pointer;
+}
+
+form .upload-photo-label span {
+    display: block;
+    padding: 40px 14px;
+    width: 100%;
+    text-align: left;
+}
+
+form .upload-photo-label:hover {
+    background-color: #515151;
+    border-color: #515151;
+    transition: 0.1s;
 }
 
 form input:focus[type="text"] {
@@ -131,4 +146,14 @@ form select {
     border: 1px solid #7E7E7E;
     background-color: #2E2E2E;
     font-size: 20px;
+    cursor: pointer;
+}
+
+form.ng-submitted .ng-invalid {
+    border-color: #FF6363;
+    outline: 1px solid #FF6363;
+}
+
+.draghover {
+    background-color: red;
 }
