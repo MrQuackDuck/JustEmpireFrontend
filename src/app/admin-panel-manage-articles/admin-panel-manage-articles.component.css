@@ -108,6 +108,7 @@ form input[type="file"] {
 
 form .upload-photo-label {
     padding: 12px 14px;
+    font-size: 18px;
     border: 2px dashed #7E7E7E;
     border-radius: 5px;
     cursor: pointer;
@@ -118,7 +119,8 @@ form input:focus[type="text"] {
     outline: 1px solid #7E7E7E;
 }
 
-form input[type="button"] {
+form input[type="submit"] {
+    margin-top: 40px;
     cursor: pointer;
 }
 

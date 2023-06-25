@@ -38,6 +38,7 @@ export class AdminPanelManageArticlesComponent {
     let fileList: FileList | null = element.files;
     if (fileList) {
       console.log(fileList[0].name);
+      console.log(fileList[0]);
     }
   }
 
