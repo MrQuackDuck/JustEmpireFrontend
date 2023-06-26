@@ -5,7 +5,7 @@
         <div class="article-text">{{ article.text! | truncate: 255 }}</div>
     </div>
     <div class="image-section">
-        <img src="data:image/png;base64, {{ article.titleImage }}" alt="Image missing">
-        <div style="background-image: url('data:image/png;base64,{{ article.titleImage }}');" class="blurry-bg"></div> 
+        <img src="{{ article.titleImage }}" alt="Image missing">
+        <div style="background-image: url('{{ article.titleImage }}');" class="blurry-bg"></div> 
     </div>
 </a>

@@ -3,6 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { Language } from '../enum/Language';
 import { Article } from '../model/article';
 import { Observable } from 'rxjs';
+import { CreateArticleModel } from '../model/createArticleModel';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,17 @@ import { Observable } from 'rxjs';
 export class ArticleRepositoryService {
   constructor(private httpClient : HttpClient) { }
 
-  create(createArticleModel) : Observable<Article> {
-    return this.httpClient.post<Article>('http://localhost:5228/API/Article/Create', { withCredentials: true, params: {
-      "createArticleModel": createArticleModel
-    }})
-  }
+  create(articleModel: CreateArticleModel): Observable<Article> {
+    let title = articleModel.title;
+    let text = articleModel.text;
+    let titleImage = articleModel.titleImage;
+    let language = articleModel.language;
 
+    return this.httpClient.post<any>("http://localhost:5228/API/Article/Create", 
+    { title, text, titleImage, language },
+    { withCredentials: true });
+  }
+  
   getAll() : Observable<Article[]> {
     return this.httpClient.get<Article[]>('http://localhost:5228/API/Article/GetAllStaff', { withCredentials: true })
   }

@@ -19,8 +19,8 @@ export class AdminPanelManageArticlesComponent {
   public newArticleEditor;
 
   languages = [
-    {key: 'English', value: 'EN'},
-    {key: 'Ukrainian', value: 'UA'},
+    {key: 'English', value: 0},
+    {key: 'Ukrainian', value: 1},
   ];
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class AdminPanelManageArticlesComponent {
       title: new FormControl(null, Validators.required),
       titleImage: new FormControl(null, Validators.required),
       text: new FormControl(null, Validators.required),
-      language : new FormControl("EN", Validators.required)
+      language : new FormControl(0, Validators.required)
     });
   }
 
