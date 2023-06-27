@@ -199,7 +199,7 @@ footer .select-lang ul li a:hover {
 }
 
 .flag-ua {
-  background: url("/assets/images/icons/icon_ua.png");
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUBAMAAAB/pwA+AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURQBbu//VAGIAizkAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAARSURBVBjTY6AvEIQDmjMFBQFuJwal6aWE/gAAAABJRU5ErkJggg==");
   background-size: cover;
   background-position: center center;
 }

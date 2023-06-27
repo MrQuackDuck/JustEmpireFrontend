@@ -37,6 +37,7 @@ export class ArticlePageComponent {
     this.articleRepository.getById(this.id)
       .subscribe(async data => {
         this.article = data;
+        delay(300);
         this.loadingService.disableLoading();
       }, error => this.router.navigate(['/404']));
   }

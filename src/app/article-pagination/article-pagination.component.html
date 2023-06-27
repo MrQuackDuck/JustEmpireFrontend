@@ -1,3 +1,3 @@
-<div class="pages">
-    <a [routerLink]="['/' + articlesPageName, languageCode , page]" *ngFor="let page of pages" draggable="false">{{ page }}</a>
+<div *ngIf="pages.length > 1" class="pages">
+    <a routerLink="/{{articlesPageName}}/{{language}}/{{page}}" *ngFor="let page of pages" draggable="false">{{ page }}</a>
 </div>

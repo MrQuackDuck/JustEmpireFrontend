@@ -32,6 +32,9 @@ export class ArticlesComponent implements OnInit {
       this.language = Language.EN;
       this.router.navigate([this.pageName, 'EN']); // TODO: Get actual site language
     }
+    else {
+      this.language = language
+    }
 
     let totalPageCount : number;
     

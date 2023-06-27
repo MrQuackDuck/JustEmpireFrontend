@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Renderer2 } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class LoadingService {
   constructor() { }
 
-  private showLoading : boolean;
+  public showLoading : boolean;
 
   enableLoading() {
     this.showLoading = true;

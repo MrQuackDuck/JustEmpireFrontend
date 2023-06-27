@@ -2,12 +2,12 @@
     <div class="title-section">
         <a class="button gray" routerLink="/admin">Back</a>
         <span class="title">Admin panel - Manage articles</span>
-        <a (click)="showNewArticleModal()" class="button">New</a>
+        <a (click)="this.newArticleModalShown = true" class="button">New</a>
     </div>
     <div class="sections-container">
         <section class="no-padding">
             <div class="table__wrapper">
-                <table *ngIf="articles$">
+                <table *ngIf="articles">
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -22,7 +22,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let article of articles$ | async">
+                        <tr *ngFor="let article of articles">
                             <td>{{ article.id }}</td>
                             <td>{{ article.authorId | author | async }}</td>
                             <td>{{ article.title | truncate: 20 }}</td>
@@ -33,7 +33,7 @@
                             <td>{{ article.originalId }}</td>
                             <td class="actions">
                                 <a routerLink="/article/{{ article.language | langCode }}/{{ article.id }}" class="button green">View</a>
-                                <a class="button orange">Edit</a>
+                                <a (click)="editArticle(article.id)" class="button orange">Edit</a>
                                 <a class="button red">Delete</a>
                             </td>
                         </tr>
@@ -43,7 +43,7 @@
         </section>
     </div>
 </main>
-<app-modal [showModal]="newArticleModalShown" (onClose)="closeAllModals()">
+<modal-window [showModal]="newArticleModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Create Article</h1>
     <form (ngSubmit)="submitNewArticle()" [formGroup]="newArticleForm" method="post" enctype="multipart/form-data">
         <input required="text" formControlName="title" type="text" placeholder="Title">
@@ -53,6 +53,32 @@
         </select>
         <label class="upload-photo-label" for="upload-photo"><span>Browse</span></label>
         <input (change)="uploadFile($event)" accept="image/*" id="upload-photo" formControlName="titleImage" type="file" placeholder="Title image">
-        <input class="button" type="submit" value="Submit">
+        <input class="button" type="submit" value="Create">
     </form>
-</app-modal>
+</modal-window>
+
+<modal-window [showModal]="editArticleModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Edit Article</h1>
+    <form *ngIf="currentArticleEdited" (ngSubmit)="submitEditedArticle()" [formGroup]="editArticleForm" method="post" enctype="multipart/form-data">
+        <input value="{{ currentArticleEdited.title }}" required="text" formControlName="title" type="text" placeholder="Title">
+        <quill-editor formControlName="text">{{ currentArticleEdited.text }}</quill-editor>
+        <select formControlName="language" required>
+            <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
+        </select>
+        <label class="upload-photo-label" for="upload-photo"><span>Browse</span></label>
+        <input (change)="uploadFile($event)" accept="image/*" id="upload-photo" formControlName="titleImage" type="file" placeholder="Title image">
+        <input class="button" type="submit" value="Create">
+    </form>
+</modal-window>
+
+<modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Success!</h1><br>
+    <hr>
+    <img src="https://media.tenor.com/JzgronqM0nsAAAAM/dancing-steve.gif" alt="">
+</modal-window>
+
+<modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Oops! Something went wrong...</h1><br>
+    <hr>
+    <img src="https://media.discordapp.net/attachments/983448971089432577/1078404457676685402/jsrip.gif" alt="">
+</modal-window>
