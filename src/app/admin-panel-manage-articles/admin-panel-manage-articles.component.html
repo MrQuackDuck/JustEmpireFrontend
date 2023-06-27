@@ -33,7 +33,7 @@
                             <td>{{ article.originalId }}</td>
                             <td class="actions">
                                 <a routerLink="/article/{{ article.language | langCode }}/{{ article.id }}" class="button green">View</a>
-                                <a (click)="editArticle(article.id)" class="button orange">Edit</a>
+                                <a (click)="showEditModal(article.id)" class="button orange">Edit</a>
                                 <a class="button red">Delete</a>
                             </td>
                         </tr>
@@ -52,22 +52,22 @@
             <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
         </select>
         <label class="upload-photo-label" for="upload-photo"><span>Browse</span></label>
-        <input (change)="uploadFile($event)" accept="image/*" id="upload-photo" formControlName="titleImage" type="file" placeholder="Title image">
+        <input (change)="uploadFile($event, newArticleForm, '.upload-photo-label')" accept="image/*" id="upload-photo" formControlName="titleImage" type="file" placeholder="Title image">
         <input class="button" type="submit" value="Create">
     </form>
 </modal-window>
 
 <modal-window [showModal]="editArticleModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Edit Article</h1>
-    <form *ngIf="currentArticleEdited" (ngSubmit)="submitEditedArticle()" [formGroup]="editArticleForm" method="post" enctype="multipart/form-data">
-        <input value="{{ currentArticleEdited.title }}" required="text" formControlName="title" type="text" placeholder="Title">
-        <quill-editor formControlName="text">{{ currentArticleEdited.text }}</quill-editor>
+    <form (ngSubmit)="submitEditedArticle()" [formGroup]="editArticleForm" method="post" enctype="multipart/form-data">
+        <input value="{{ currentArticleEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
+        <quill-editor formControlName="text">{{ currentArticleEdited?.text }}</quill-editor>
         <select formControlName="language" required>
             <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
         </select>
-        <label class="upload-photo-label" for="upload-photo"><span>Browse</span></label>
-        <input (change)="uploadFile($event)" accept="image/*" id="upload-photo" formControlName="titleImage" type="file" placeholder="Title image">
-        <input class="button" type="submit" value="Create">
+        <label #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo"><span>Browse</span></label>
+        <input (change)="uploadFile($event, editArticleForm, '.upload-photo-label-edit')" accept="image/*" id="upload-photo" type="file" placeholder="Title image">
+        <input class="button green" type="submit" value="Confirm edit">
     </form>
 </modal-window>
 

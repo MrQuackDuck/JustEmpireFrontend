@@ -39,10 +39,11 @@ main .title-section .button, .empty {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    gap: 4px;
+    gap: 8px;
 }
 
 .actions .button {
+    width: 100%;
     padding: 10px 15px;
 }
 

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, ViewChildren } from '@angular/core';
 import { ArticleRepositoryService } from '../services/article-repository.service';
 import { Article } from '../model/article';
 import { Observable } from 'rxjs';
@@ -22,7 +22,7 @@ export class AdminPanelManageArticlesComponent {
   successModalShown : boolean;
   failModalShown : boolean;
 
-  currentArticleEdited : Article;
+  currentArticleEdited? : Article;
   editArticleForm : FormGroup;
   editArticleModalShown : boolean;
 
@@ -38,7 +38,15 @@ export class AdminPanelManageArticlesComponent {
       this.loadingService.disableLoading();
     });
     
+    // Setting up input forms
     this.newArticleForm = this.formBuilder.group({
+      title: new FormControl(null, Validators.required),
+      titleImage: new FormControl(null, Validators.required),
+      text: new FormControl(null, Validators.required),
+      language : new FormControl(0, Validators.required)
+    });
+
+    this.editArticleForm = this.formBuilder.group({
       title: new FormControl(null, Validators.required),
       titleImage: new FormControl(null, Validators.required),
       text: new FormControl(null, Validators.required),
@@ -46,7 +54,7 @@ export class AdminPanelManageArticlesComponent {
     });
   }
 
-  uploadFile(event: Event) {
+  uploadFile(event: Event, targetForm : FormGroup, browseLabel : string) {
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
     if (fileList) {
@@ -54,9 +62,11 @@ export class AdminPanelManageArticlesComponent {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        let label : any = document.querySelector('.upload-photo-label')
+        let label : any = document.querySelector(browseLabel)
         label.innerHTML = "<img src='"+ reader.result +"'>";
-        this.newArticleForm.controls['titleImage'].setValue(reader.result);
+        try {
+          targetForm.controls['titleImage'].setValue(reader.result);
+        } catch { }
       };
     }
   }
@@ -81,6 +91,22 @@ export class AdminPanelManageArticlesComponent {
       });
   }
 
+  showEditModal(id : number) {
+    let targetArticle = this.articles.find(article => article.id === id)
+    if (targetArticle) {
+      this.editArticleModalShown = true; // Show modal of article that being edited
+      this.currentArticleEdited = targetArticle;
+
+      this.editArticleForm.controls['title'].setValue(targetArticle.title);
+      this.editArticleForm.controls['text'].setValue(targetArticle.text);
+      this.editArticleForm.controls['language'].setValue(targetArticle.language);
+      this.editArticleForm.controls['titleImage'].setValue(targetArticle.titleImage);
+      
+      let label : any = document.querySelector('.upload-photo-label-edit')
+      label.innerHTML = "<img src='"+ targetArticle.titleImage +"'>";
+    }
+  }
+
   submitEditedArticle() {
     if (this.editArticleForm.valid === false) {
       return; 
@@ -89,25 +115,14 @@ export class AdminPanelManageArticlesComponent {
     console.log(this.editArticleForm.getRawValue());
   }
 
-  editArticle(id : number) {
-    let targetArticle = this.articles.find(article => article.id === id)
-    if (targetArticle) {
-      this.editArticleModalShown = true; // Show modal of article that being edited
-      this.currentArticleEdited = targetArticle;
-
-      this.editArticleForm = this.formBuilder.group({
-        title: new FormControl(targetArticle.title, Validators.required),
-        titleImage: new FormControl(targetArticle.titleImage, Validators.required),
-        text: new FormControl(targetArticle.text, Validators.required),
-        language : new FormControl(targetArticle.language, Validators.required)
-      });
-    }
-  }
-
   closeAllModals() {
     this.newArticleModalShown = false;
     this.successModalShown = false;
     this.failModalShown = false;
     this.editArticleModalShown = false;
+  }
+
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 }

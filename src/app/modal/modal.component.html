@@ -1,4 +1,4 @@
-<main *ngIf="showModal">
+<main [ngClass]="{'modalShown': showModal}">
     <div class="content">
         <ng-content></ng-content>
     </div>
