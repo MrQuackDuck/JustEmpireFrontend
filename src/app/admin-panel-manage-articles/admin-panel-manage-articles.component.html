@@ -10,14 +10,14 @@
                 <table *ngIf="articles">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>ID</th>
                             <th>Author</th>
                             <th>Title</th>
                             <th>Language</th>
                             <th>Status</th>
-                            <th>PublishDate</th>
-                            <th>LastChangeDate</th>
-                            <th>Original Id</th>
+                            <th>Publish date</th>
+                            <th>Last change date</th>
+                            <th>Original ID</th>
                             <th style="text-align: center;">Actions</th>
                         </tr>
                     </thead>
@@ -34,7 +34,7 @@
                             <td class="actions">
                                 <a routerLink="/article/{{ article.language | langCode }}/{{ article.id }}" class="button green">View</a>
                                 <a (click)="showEditModal(article.id)" class="button orange">Edit</a>
-                                <a class="button red">Delete</a>
+                                <a (click)="showArticleDeleteModal(article)" class="button red">Delete</a>
                             </td>
                         </tr>
                     </tbody>
@@ -69,6 +69,15 @@
         <input (change)="uploadFile($event, editArticleForm, uploadPhotoLabelEdit)" id="upload-photo-edit" accept="image/*" type="file">
         <input class="button green" type="submit" value="Confirm edit">
     </form>
+</modal-window>
+
+<modal-window [showModal]="confirmDeleteModalShown" (onClose)="closeAllModals()">
+    <h1 class="title left">Are you sure?</h1><br>
+    <p>You are about to delete <b>{{ articleToDelete?.title }}</b></p>
+    <div class="block padding-top">
+        <a class="button" (click)="closeAllModals()">Cancel</a>
+        <a class="button red">Delete</a>
+    </div>
 </modal-window>
 
 <modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">

@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { ArticleRepositoryService } from '../services/article-repository.service';
 import { Article } from '../model/article';
 import { Observable } from 'rxjs';
@@ -12,7 +12,7 @@ import { LoadingService } from '../services/loading.service';
 })
 export class AdminPanelManageArticlesComponent {
   constructor(private articleRepository : ArticleRepositoryService, private formBuilder : FormBuilder, 
-  private loadingService : LoadingService) {}
+  private loadingService : LoadingService, private renderer: Renderer2) {}
 
   articles : Article[];
 
@@ -25,6 +25,9 @@ export class AdminPanelManageArticlesComponent {
   currentArticleEdited? : Article;
   editArticleForm : FormGroup;
   editArticleModalShown : boolean;
+
+  confirmDeleteModalShown : boolean;
+  articleToDelete? : Article;
 
   languages = [
     {key: '🇬🇧 English', value: 0},
@@ -128,11 +131,18 @@ export class AdminPanelManageArticlesComponent {
       });
   }
 
+  showArticleDeleteModal(article : Article) {
+    this.articleToDelete = article;
+    this.confirmDeleteModalShown = true;
+  }
+
   closeAllModals() {
+    this.renderer.removeClass(document.body, 'disable-scroll');
     this.newArticleModalShown = false;
     this.successModalShown = false;
     this.failModalShown = false;
     this.editArticleModalShown = false;
+    this.confirmDeleteModalShown = false;
   }
 
   updateData() {
