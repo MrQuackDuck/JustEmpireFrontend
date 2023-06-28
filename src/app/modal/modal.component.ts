@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges, Renderer2 } from '@angular/core';
+import { ScrollService } from '../services/scroll.service';
 
 @Component({
   selector: 'modal-window',
@@ -6,7 +7,7 @@ import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges, Rende
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnChanges {
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2, private scrollService : ScrollService) { }
 
   @Input()
   showModal: boolean = false;
@@ -26,11 +27,11 @@ export class ModalComponent implements OnChanges {
     document.body.style.top = `-${window.scrollY}px`;
     this.scrollY = +document.body.style.top.slice(0, -2);
     console.log(this.scrollY);
-    this.renderer.addClass(document.body, 'disable-scroll');
+    this.scrollService.disableScrolling();
   }
 
   close() {
-    this.renderer.removeClass(document.body, 'disable-scroll');
+    this.scrollService.enableScrolling();
     this.onClose.emit(false);
     
     const body = document.body;

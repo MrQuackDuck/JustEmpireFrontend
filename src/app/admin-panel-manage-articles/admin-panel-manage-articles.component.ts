@@ -137,8 +137,10 @@ export class AdminPanelManageArticlesComponent {
   }
 
   deleteArticle() {
+    this.closeAllModals();
+    this.loadingService.enableLoading();
+
     if (this.articleToDelete) {
-      console.log(this.articleToDelete);
       this.articleRepository.delete(this.articleToDelete.id).subscribe(
         success => {
           this.loadingService.disableLoading();
@@ -150,6 +152,11 @@ export class AdminPanelManageArticlesComponent {
           this.loadingService.disableLoading();
           this.failModalShown = true;
         });
+    }
+    else
+    {
+      this.loadingService.disableLoading();
+      this.failModalShown = true;
     }
   }
 
