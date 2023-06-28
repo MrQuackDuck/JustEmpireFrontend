@@ -41,6 +41,7 @@ main {
 	align-items: center;
 	z-index: 34;
 	cursor: pointer;
+	user-select: none;
 }
 
 .close:hover {

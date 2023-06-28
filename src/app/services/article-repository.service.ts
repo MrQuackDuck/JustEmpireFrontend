@@ -23,16 +23,24 @@ export class ArticleRepositoryService {
     { withCredentials: true });
   }
 
-  edit(articleModel: EditArticleModel): Observable<Article> {
+  edit(articleModel: EditArticleModel): Observable<boolean> {
     let id = articleModel.id
     let title = articleModel.title;
     let text = articleModel.text;
     let titleImage = articleModel.titleImage;
     let language = articleModel.language;
 
-    return this.httpClient.put<any>("http://localhost:5228/API/Article/Edit", 
+    return this.httpClient.put<boolean>("http://localhost:5228/API/Article/Edit", 
     { id, title, text, titleImage, language },
     { withCredentials: true });
+  }
+
+  delete(id : number) : Observable<boolean> {
+    return this.httpClient.get<any>('http://localhost:5228/API/Article/Delete', { 
+      params: { 
+        "id": id
+      }, withCredentials: true
+    })
   }
   
   getAll() : Observable<Article[]> {
@@ -44,7 +52,11 @@ export class ArticleRepositoryService {
   }
 
   getById(id : number) : Observable<Article> {
-    return this.httpClient.get<Article>('http://localhost:5228/API/Article/GetById', { params: { "id": id } })
+    return this.httpClient.get<Article>('http://localhost:5228/API/Article/GetById', { 
+      params: { 
+        "id": id
+      } 
+    })
   }
 
   getRecent(language : Language, count : number) : Observable<Article[]> {

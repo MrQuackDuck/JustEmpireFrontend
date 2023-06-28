@@ -136,6 +136,23 @@ export class AdminPanelManageArticlesComponent {
     this.confirmDeleteModalShown = true;
   }
 
+  deleteArticle() {
+    if (this.articleToDelete) {
+      console.log(this.articleToDelete);
+      this.articleRepository.delete(this.articleToDelete.id).subscribe(
+        success => {
+          this.loadingService.disableLoading();
+          this.successModalShown = true;
+          this.newArticleForm.reset();
+          this.updateData()
+        },
+        fail => {
+          this.loadingService.disableLoading();
+          this.failModalShown = true;
+        });
+    }
+  }
+
   closeAllModals() {
     this.renderer.removeClass(document.body, 'disable-scroll');
     this.newArticleModalShown = false;

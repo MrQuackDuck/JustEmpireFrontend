@@ -76,7 +76,7 @@
     <p>You are about to delete <b>{{ articleToDelete?.title }}</b></p>
     <div class="block padding-top">
         <a class="button" (click)="closeAllModals()">Cancel</a>
-        <a class="button red">Delete</a>
+        <a class="button red" (click)="deleteArticle()">Delete</a>
     </div>
 </modal-window>
 
