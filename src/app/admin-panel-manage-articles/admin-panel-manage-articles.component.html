@@ -51,8 +51,8 @@
         <select formControlName="language" required>
             <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
         </select>
-        <label class="upload-photo-label" for="upload-photo"><span>Browse</span></label>
-        <input (change)="uploadFile($event, newArticleForm, '.upload-photo-label')" accept="image/*" id="upload-photo" formControlName="titleImage" type="file" placeholder="Title image">
+        <label #uploadPhotoLabelNew class="upload-photo-label" for="upload-photo"><span>Browse</span></label>
+        <input (change)="uploadFile($event, newArticleForm, uploadPhotoLabelNew)" id="upload-photo" accept="image/*" formControlName="titleImage" type="file" placeholder="Title image">
         <input class="button" type="submit" value="Create">
     </form>
 </modal-window>
@@ -65,8 +65,8 @@
         <select formControlName="language" required>
             <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
         </select>
-        <label #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo"><span>Browse</span></label>
-        <input (change)="uploadFile($event, editArticleForm, '.upload-photo-label-edit')" accept="image/*" id="upload-photo" type="file" placeholder="Title image">
+        <label #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo-edit"><span>Browse</span></label>
+        <input (change)="uploadFile($event, editArticleForm, uploadPhotoLabelEdit)" id="upload-photo-edit" accept="image/*" type="file">
         <input class="button green" type="submit" value="Confirm edit">
     </form>
 </modal-window>

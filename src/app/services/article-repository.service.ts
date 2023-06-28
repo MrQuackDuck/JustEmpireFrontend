@@ -4,6 +4,7 @@ import { Language } from '../enum/Language';
 import { Article } from '../model/article';
 import { Observable } from 'rxjs';
 import { CreateArticleModel } from '../model/createArticleModel';
+import { EditArticleModel } from '../model/editArticleModel';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,18 @@ export class ArticleRepositoryService {
 
     return this.httpClient.post<any>("http://localhost:5228/API/Article/Create", 
     { title, text, titleImage, language },
+    { withCredentials: true });
+  }
+
+  edit(articleModel: EditArticleModel): Observable<Article> {
+    let id = articleModel.id
+    let title = articleModel.title;
+    let text = articleModel.text;
+    let titleImage = articleModel.titleImage;
+    let language = articleModel.language;
+
+    return this.httpClient.put<any>("http://localhost:5228/API/Article/Edit", 
+    { id, title, text, titleImage, language },
     { withCredentials: true });
   }
   

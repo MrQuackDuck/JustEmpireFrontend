@@ -28,6 +28,11 @@ body {
     background-color: #191919;
 }
 
+.disable-scroll {
+    position: fixed;
+    width: 100%;
+}
+
 @font-face {
     font-family: FuturaMd;
     src: url("assets/fonts/FuturaMd.ttf");

@@ -32,11 +32,7 @@ export class AdminPanelManageArticlesComponent {
   ];
 
   ngOnInit() {
-    this.loadingService.enableLoading();
-    this.articleRepository.getAll().subscribe((articles) => {
-      this.articles = articles;
-      this.loadingService.disableLoading();
-    });
+    this.updateData()
     
     // Setting up input forms
     this.newArticleForm = this.formBuilder.group({
@@ -47,6 +43,7 @@ export class AdminPanelManageArticlesComponent {
     });
 
     this.editArticleForm = this.formBuilder.group({
+      id: new FormControl(null, Validators.required),
       title: new FormControl(null, Validators.required),
       titleImage: new FormControl(null, Validators.required),
       text: new FormControl(null, Validators.required),
@@ -54,7 +51,9 @@ export class AdminPanelManageArticlesComponent {
     });
   }
 
-  uploadFile(event: Event, targetForm : FormGroup, browseLabel : string) {
+  uploadFile(event: Event, targetForm : FormGroup, browseLabel : HTMLLabelElement) {
+    console.log(browseLabel);
+    
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
     if (fileList) {
@@ -62,8 +61,7 @@ export class AdminPanelManageArticlesComponent {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        let label : any = document.querySelector(browseLabel)
-        label.innerHTML = "<img src='"+ reader.result +"'>";
+        browseLabel.innerHTML = "<img src='"+ reader.result +"'>";
         try {
           targetForm.controls['titleImage'].setValue(reader.result);
         } catch { }
@@ -83,6 +81,7 @@ export class AdminPanelManageArticlesComponent {
       success => {
         this.loadingService.disableLoading();
         this.successModalShown = true;
+        this.updateData()
         this.newArticleForm.reset();
       },
       fail => {
@@ -97,6 +96,7 @@ export class AdminPanelManageArticlesComponent {
       this.editArticleModalShown = true; // Show modal of article that being edited
       this.currentArticleEdited = targetArticle;
 
+      this.editArticleForm.controls['id'].setValue(targetArticle.id);
       this.editArticleForm.controls['title'].setValue(targetArticle.title);
       this.editArticleForm.controls['text'].setValue(targetArticle.text);
       this.editArticleForm.controls['language'].setValue(targetArticle.language);
@@ -112,7 +112,20 @@ export class AdminPanelManageArticlesComponent {
       return; 
     }
 
-    console.log(this.editArticleForm.getRawValue());
+    this.closeAllModals();
+    this.loadingService.enableLoading();
+    
+    this.articleRepository.edit(this.editArticleForm.getRawValue()).subscribe(
+      success => {
+        this.loadingService.disableLoading();
+        this.successModalShown = true;
+        this.newArticleForm.reset();
+        this.updateData()
+      },
+      fail => {
+        this.loadingService.disableLoading();
+        this.failModalShown = true;
+      });
   }
 
   closeAllModals() {
@@ -120,6 +133,14 @@ export class AdminPanelManageArticlesComponent {
     this.successModalShown = false;
     this.failModalShown = false;
     this.editArticleModalShown = false;
+  }
+
+  updateData() {
+    this.loadingService.enableLoading();
+    this.articleRepository.getAll().subscribe((articles) => {
+      this.articles = articles;
+      this.loadingService.disableLoading();
+    });
   }
 
   delay(ms: number) {
