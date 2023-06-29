@@ -11,12 +11,10 @@ export class LoadingService {
 
   enableLoading() {
     this.showLoading = true;
-    this.scrollService.disableScrolling();
   }
 
   disableLoading() {
     this.showLoading = false;
-    this.scrollService.enableScrolling();
   }
 
   isLoading() : boolean {

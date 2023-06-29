@@ -4,6 +4,10 @@ import { Article } from '../model/article';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoadingService } from '../services/loading.service';
+import { User } from '../model/user';
+import { AuthService } from '../services/auth.service';
+import { Rank } from '../model/rank';
+import { Status } from '../enum/Status';
 
 @Component({
   selector: 'app-admin-panel-manage-articles',
@@ -12,7 +16,9 @@ import { LoadingService } from '../services/loading.service';
 })
 export class AdminPanelManageArticlesComponent {
   constructor(private articleRepository : ArticleRepositoryService, private formBuilder : FormBuilder, 
-  private loadingService : LoadingService, private renderer: Renderer2) {}
+  private loadingService : LoadingService, private renderer: Renderer2, private authService : AuthService) {}
+
+  currentUser : User;
 
   articles : Article[];
 
@@ -29,6 +35,8 @@ export class AdminPanelManageArticlesComponent {
   confirmDeleteModalShown : boolean;
   articleToDelete? : Article;
 
+  currentRank : Rank;
+
   languages = [
     {key: '🇬🇧 English', value: 0},
     {key: '🇺🇦 Ukrainian', value: 1},
@@ -36,7 +44,17 @@ export class AdminPanelManageArticlesComponent {
 
   ngOnInit() {
     this.updateData()
+
+    this.authService.getCurrentRank().subscribe(rank => {
+      this.currentRank = rank
+      console.log(rank);
+    })
     
+    this.authService.getUser().subscribe(user => {
+      this.currentUser = user
+      console.log(user);
+    })
+
     // Setting up input forms
     this.newArticleForm = this.formBuilder.group({
       title: new FormControl(null, Validators.required),
@@ -177,7 +195,41 @@ export class AdminPanelManageArticlesComponent {
     });
   }
 
-  delay(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+  canEdit(article : Article) : boolean {
+    if (article.status != Status.POSTED) {
+      return false;
+    }
+
+    // If user is author of the article and he has permission to delete own postable
+    if (article.authorId == this.currentUser.id && this.currentRank.editPostableOwn)
+    {
+      return true;
+    }
+    // If user is not author of the article and he has permission to delete others postable
+    else if (article.authorId != this.currentUser.id && this.currentRank.editPostableOthers)
+    {
+      return true;
+    }
+
+    return false;
+  }
+
+  canDelete(article : Article) : boolean {
+    if (article.status != Status.POSTED) {
+      return false;
+    }
+
+    // If user is author of the article and he has permission to delete own postable
+    if (article.authorId == this.currentUser.id && this.currentRank.deletePostableOwn)
+    {
+      return true;
+    }
+    // If user is not author of the article and he has permission to delete others postable
+    else if (article.authorId != this.currentUser.id && this.currentRank.deletePostableOthers)
+    {
+      return true;
+    }
+
+    return false;
   }
 }

@@ -18,7 +18,7 @@
       </div>
 
       <div *ngIf="selectedTabService.selectedTab == 3" class="tabs">          
-        <admin-panel-tab [title]="'Manage users'" [grayText]="userCount" routerLink="/admin/stats" [icon]="'../../assets/images/admin/manageUsers.svg'"/>
+        <admin-panel-tab *ngIf="currentUser?.rank == 'Emperor'" [title]="'Manage users'" [grayText]="userCount" routerLink="/admin/stats" [icon]="'../../assets/images/admin/manageUsers.svg'"/>
 
         <admin-panel-tab *ngIf="currentUser?.rank == 'Emperor'" [title]="'Awaiting approvements'" [grayText]="'APPROVEMENTS COUNT'" routerLink="stats" [icon]="'../../assets/images/admin/approvements.svg'"/>
 
@@ -42,7 +42,7 @@
                   <input (change)="setTab(2)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 2">
                   <span class="checkmark"></span>
               </label>
-              <label class="checkbox-container">
+              <label *ngIf="currentUser?.rank == 'Emperor'" class="checkbox-container">
                 <span class="checkbox-text">Manage users</span>
                 <input (change)="setTab(3)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 3">
                 <span class="checkmark"></span>

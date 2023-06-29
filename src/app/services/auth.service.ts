@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
+import { Rank } from '../model/rank';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,10 @@ export class AuthService {
   getUser() : Observable<User> {
     return this.httpClient.get<User>("http://localhost:5228/API/Auth/User",
       { withCredentials: true });
+  }
+
+  getCurrentRank() : Observable<Rank> {
+    return this.httpClient.get<Rank>("http://localhost:5228/API/Auth/CurrentRank",
+    { withCredentials: true });
   }
 }

@@ -9,6 +9,7 @@ import { ServiceVersionRepositoryService } from '../services/service-version-rep
 import { AdminSelectedTabService } from '../services/admin-selected-tab.service';
 import { UserRepositoryService } from '../services/user-repository.service';
 import { ImageLoaderService } from '../services/image-loader.service';
+import { Rank } from '../model/rank';
 
 @Component({
   selector: 'app-admin-panel',
@@ -34,14 +35,20 @@ export class AdminPanelComponent {
   userCount : number;
 
   currentUser : User;
+  currentRank : Rank;
 
   ngOnInit() {
+    this.loadingService.disableLoading();
+    this.loadingService.disableLoading();
 
-    this.loadingService.disableLoading();
-    this.loadingService.disableLoading();
     this.authService.getUser().subscribe(user => {
       this.currentUser = user
       console.log(user);
+    })
+
+    this.authService.getCurrentRank().subscribe(rank => {
+      this.currentRank = rank
+      console.log(rank);
     })
 
     this.articleRepository.getCount().subscribe(count => this.articlesCount = count);

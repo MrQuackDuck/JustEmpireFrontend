@@ -24,19 +24,11 @@ export class ModalComponent implements OnChanges {
   }
 
   onShowModal() {
-    document.body.style.top = `-${window.scrollY}px`;
-    this.scrollY = +document.body.style.top.slice(0, -2);
-    console.log(this.scrollY);
     this.scrollService.disableScrolling();
   }
 
   close() {
     this.scrollService.enableScrolling();
     this.onClose.emit(false);
-    
-    const body = document.body;
-    body.style.position = '';
-    body.style.top = '';
-    window.scrollTo(0, -this.scrollY);
   }
 }
