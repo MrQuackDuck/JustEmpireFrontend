@@ -12,6 +12,9 @@ export class ModalComponent implements OnChanges {
   @Input()
   showModal: boolean = false;
 
+  @Input()
+  noPadding : boolean = false;
+
   @Output()
   onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
 

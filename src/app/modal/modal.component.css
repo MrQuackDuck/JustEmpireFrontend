@@ -66,6 +66,10 @@ main {
     padding: 30px 40px;
 }
 
+.content.no-padding {
+	padding: 0px !important;
+}
+
 .content h1 {
 	color: #ffffff;
     font-size: 28px;
