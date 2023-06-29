@@ -22,6 +22,9 @@ export class AdminPanelManageArticlesComponent {
 
   articles : Article[];
 
+  viewArticleModalShown : boolean;
+  currentViewedArticle : Article;
+
   newArticleModalShown : boolean;
   newArticleForm : FormGroup;
 
@@ -88,6 +91,11 @@ export class AdminPanelManageArticlesComponent {
         } catch { }
       };
     }
+  }
+
+  viewArticle(article : Article) {
+    this.currentViewedArticle = article;
+    this.viewArticleModalShown = true;
   }
 
   submitNewArticle() {
@@ -180,11 +188,12 @@ export class AdminPanelManageArticlesComponent {
 
   closeAllModals() {
     this.renderer.removeClass(document.body, 'disable-scroll');
+    this.viewArticleModalShown = false;
     this.newArticleModalShown = false;
-    this.successModalShown = false;
-    this.failModalShown = false;
     this.editArticleModalShown = false;
     this.confirmDeleteModalShown = false;
+    this.successModalShown = false;
+    this.failModalShown = false;
   }
 
   updateData() {

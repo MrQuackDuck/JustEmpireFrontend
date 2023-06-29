@@ -1,5 +1,5 @@
 <main [ngClass]="{'modalShown': showModal}">
-    <div [ngClass]="{'no-padding': noPadding}" class="content">
+    <div class="content" [ngClass]="{'no-padding': noPadding}">
         <ng-content></ng-content>
     </div>
     <div (click)="close()" class="close">

@@ -10,10 +10,10 @@ export class ModalComponent implements OnChanges {
   constructor(private renderer: Renderer2, private scrollService : ScrollService) { }
 
   @Input()
-  showModal: boolean = false;
+  showModal: boolean;
 
   @Input()
-  noPadding : boolean = false;
+  noPadding : boolean;
 
   @Output()
   onClose: EventEmitter<boolean> = new EventEmitter<boolean>();

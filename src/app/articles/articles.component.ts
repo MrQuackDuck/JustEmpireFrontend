@@ -17,7 +17,7 @@ export class ArticlesComponent implements OnInit {
     private loadingService : LoadingService) {}
 
   articles$ : Observable<Article[]>;
-  itemsOnPage : number = 3; // How many articles will be displayed per page
+  itemsOnPage : number = 5; // How many articles will be displayed per page
   currentPage : number;
   language : Language = Language.EN;
 

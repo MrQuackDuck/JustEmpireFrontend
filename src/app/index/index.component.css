@@ -297,19 +297,19 @@ section .right-1 {
 }
 
 .hidden-right-short {
-    opacity: 0.4;
+    opacity: 0;
     transition: .8s ease-out;
     transform: translateX(30%);
 }
 
 .hidden-right-long {
-    opacity: 0.4;
+    opacity: 0;
     transition: .8s ease-out;
     transform: translateX(30%);
 }
 
 .hidden-left-short {
-    opacity: 0.4;
+    opacity: 0;
     transition: .8s ease-out;
     transform: translateX(-30%);
 }

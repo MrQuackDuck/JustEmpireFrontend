@@ -1,12 +1,10 @@
-import { Injectable, Renderer2 } from '@angular/core';
+import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { ScrollService } from './scroll.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoadingService {
-  constructor(private scrollService : ScrollService) { }
-
   public showLoading : boolean;
 
   enableLoading() {
