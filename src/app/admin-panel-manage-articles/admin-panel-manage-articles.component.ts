@@ -209,7 +209,7 @@ export class AdminPanelManageArticlesComponent {
 
   canEdit(article : Article) : [boolean, string] {
     if (article.status != Status.POSTED) {
-      return [false, "You can't edit article that is not posted"];
+      return [false, "You can't edit pending article"];
     }
 
     // If user is author of the article and he has permission to delete own postable
@@ -228,12 +228,12 @@ export class AdminPanelManageArticlesComponent {
 
   canDelete(article : Article) : [boolean, string] {
     if (article.status != Status.POSTED) {
-      return [false, "You can't delete article which is not posted"];
+      return [false, "You can't delete unpublished article"];
     }
     
     let target = this.articles.find(a => a.originalId == article.id)
     if (target) {
-      return [false, `Couldn't delete because of article ID: ${target.id}`];
+      return [false, `Article ID ${target.id} pending for action`];
     }
 
     // If user is author of the article and he has permission to delete own postable

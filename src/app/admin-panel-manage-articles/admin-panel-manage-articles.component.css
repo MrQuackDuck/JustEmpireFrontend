@@ -42,9 +42,8 @@ main .title-section btn, .empty {
     gap: 8px;
 }
 
-.actions .button {
+.actions div {
     width: 100%;
-    padding: 10px 15px;
 }
 
 .sections-container {
