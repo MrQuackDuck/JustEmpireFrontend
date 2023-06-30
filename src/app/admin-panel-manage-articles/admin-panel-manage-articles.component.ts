@@ -26,7 +26,7 @@ export class AdminPanelManageArticlesComponent {
   articles : Article[];
 
   viewArticleModalShown : boolean;
-  currentViewedArticle : Article;
+  currentViewedArticle? : Article;
 
   newArticleModalShown : boolean;
   newArticleForm : FormGroup;
@@ -207,45 +207,46 @@ export class AdminPanelManageArticlesComponent {
     });
   }
 
-  canEdit(article : Article) : boolean {
+  canEdit(article : Article) : [boolean, string] {
     if (article.status != Status.POSTED) {
-      return false;
+      return [false, "You can't edit article that is not posted"];
     }
 
     // If user is author of the article and he has permission to delete own postable
     if (article.authorId == this.currentUser.id && this.currentRank.editPostableOwn)
     {
-      return true;
+      return [true, ""];
     }
     // If user is not author of the article and he has permission to delete others postable
     else if (article.authorId != this.currentUser.id && this.currentRank.editPostableOthers)
     {
-      return true;
+      return [true, ""];
     }
 
-    return false;
+    return [false, "You don't have enough permissions"];
   }
 
-  canDelete(article : Article) : boolean {
+  canDelete(article : Article) : [boolean, string] {
     if (article.status != Status.POSTED) {
-      return false;
+      return [false, "You can't delete article which is not posted"];
     }
     
-    if (this.articles.find(a => a.originalId == article.id)) {
-      return false;
+    let target = this.articles.find(a => a.originalId == article.id)
+    if (target) {
+      return [false, `Couldn't delete because of article ID: ${target.id}`];
     }
 
     // If user is author of the article and he has permission to delete own postable
     if (article.authorId == this.currentUser.id && this.currentRank.deletePostableOwn)
     {
-      return true;
+      return [true, ""];
     }
     // If user is not author of the article and he has permission to delete others postable
     else if (article.authorId != this.currentUser.id && this.currentRank.deletePostableOthers)
     {
-      return true;
+      return [true, ""];
     }
 
-    return false;
+    return [false, "You don't have enough permissions"];
   }
 }

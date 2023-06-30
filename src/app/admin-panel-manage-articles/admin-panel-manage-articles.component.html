@@ -32,9 +32,9 @@
                             <td>{{ article.lastChangeDate | date: "MM/dd/yyyy hh:mm:ss" }}</td>
                             <td>{{ article.originalId }}</td>
                             <td class="actions">
-                                <btn (click)="viewArticle(article)" [small]="true" [color]="'green'">View</btn>
-                                <btn (click)="showEditModal(article.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(article)}">Edit</btn>
-                                <btn (click)="showArticleDeleteModal(article)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(article)}">Delete</btn>
+                                <div class="wrp"><btn (click)="viewArticle(article)" [small]="true" [color]="'green'">View</btn></div>
+                                <div [tp]="canEdit(article)[1]" class="wrp"><btn (click)="showEditModal(article.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(article)[0]}">Edit</btn></div>
+                                <div [tp]="canDelete(article)[1]" class="wrp"><btn (click)="showArticleDeleteModal(article)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(article)[0]}">Delete</btn></div>
                             </td>
                         </tr>
                     </tbody>
@@ -45,14 +45,14 @@
 </main>
 
 <modal-window [showModal]="viewArticleModalShown" [noPadding]="true" (onClose)="closeAllModals()">
-    <article *ngIf="currentViewedArticle">
+    <article>
         <div class="article-title">
-            <h1>{{ currentViewedArticle.title! | truncate: 100 }}</h1>
-            <div class="article-date">{{ currentViewedArticle.publishDate | date: 'MMM dd, yyyy' }}</div>
-            <div style="background-image: url('{{ currentViewedArticle.titleImage }}');" class="title-bg"></div>
+            <h1>{{ currentViewedArticle?.title! | truncate: 100 }}</h1>
+            <div class="article-date">{{ currentViewedArticle?.publishDate | date: 'MMM dd, yyyy' }}</div>
+            <div style="background-image: url('{{ currentViewedArticle?.titleImage }}');" class="title-bg"></div>
         </div>
         <div class="container">
-            <div class="content" [innerHTML]="currentViewedArticle.text | safeHtml"></div>
+            <div class="content" [innerHTML]="currentViewedArticle?.text | safeHtml"></div>
         </div>
     </article>
 </modal-window>

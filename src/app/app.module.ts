@@ -33,6 +33,7 @@ import { ModalComponent } from './modal/modal.component';
 import { QuillModule } from 'ngx-quill';
 import { Safe } from './pipes/safe.pipe';
 import { ButtonComponent } from './button/button.component';
+import { provideTippyConfig, tooltipVariation, popperVariation, TippyDirective } from '@ngneat/helipopper';
 
 @NgModule({
   declarations: [
@@ -70,11 +71,20 @@ import { ButtonComponent } from './button/button.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    QuillModule
+    QuillModule,
+    TippyDirective
   ],
   providers: [
     LoadingService,
     AdminGuard,
+    TippyDirective,
+    provideTippyConfig({
+      defaultVariation: 'tooltip',
+      variations: {
+        tooltip: tooltipVariation,
+        popper: popperVariation,
+      }
+    })
   ],
   bootstrap: [AppComponent]
 })
