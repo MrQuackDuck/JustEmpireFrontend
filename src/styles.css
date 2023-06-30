@@ -19,6 +19,10 @@
     color: black;
 }
 
+.hidden {
+    display: none;
+}
+
 body {
     overflow-x: hidden;
     display: flex;
@@ -136,6 +140,10 @@ body {
     border: 1px solid #8e8e8e;
 }
 
+.button.small {
+    padding: 10px 15px;
+}
+
 .button.red {
     background-color: #CF1515;
     border: 1px solid #c78e8e;
@@ -166,7 +174,7 @@ body {
     border: 1px solid rgb(106, 75, 75);
 }
 
-.button.disabled {
+btn.disabled {
     filter: brightness(60%);
     pointer-events: none;
 }

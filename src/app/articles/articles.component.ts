@@ -25,6 +25,8 @@ export class ArticlesComponent implements OnInit {
   readonly pageName = 'news';
 
   ngOnInit() {
+    this.loadingService.enableLoading();
+
     let language : Language = this.route.snapshot.params['language'];
     let pageIndex : number = +this.route.snapshot.params['pageIndex'];
     

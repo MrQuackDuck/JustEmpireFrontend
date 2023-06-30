@@ -10,8 +10,8 @@
     <div class="controls">
         <div>
             <span class="field" *ngIf="latestVersion">Version: {{ latestVersion.title }}</span>
-            <a href="{{ service.url }}" *ngIf="!service.isDownloadable" draggable="false" class="button">Visit</a>
-            <a href="{{ service.url }}" *ngIf="service.isDownloadable" draggable="false" class="button green">Download</a>
+            <btn [paddingLeft]="0" [paddingRight]="0" [href]="service.url" *ngIf="!service.isDownloadable">Visit</btn>
+            <btn [paddingLeft]="0" [paddingRight]="0" [color]="'green'" [href]="service.url" *ngIf="service.isDownloadable">Download</btn>
         </div>
     </div>
 </div>

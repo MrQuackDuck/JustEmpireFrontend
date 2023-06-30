@@ -1,8 +1,8 @@
 <main>
     <div class="title-section">
-        <a class="button gray" routerLink="/admin">Back</a>
+        <btn [color]="'gray'" routerLink="/admin">Back</btn>
         <span class="title">Admin panel - Manage articles</span>
-        <a (click)="this.newArticleModalShown = true" class="button">New</a>
+        <btn (click)="this.newArticleModalShown = true">New</btn>
     </div>
     <div class="sections-container">
         <section class="no-padding">
@@ -32,9 +32,9 @@
                             <td>{{ article.lastChangeDate | date: "MM/dd/yyyy hh:mm:ss" }}</td>
                             <td>{{ article.originalId }}</td>
                             <td class="actions">
-                                <a (click)="viewArticle(article)" class="button green">View</a>
-                                <a (click)="showEditModal(article.id)" class="button orange" [ngClass]="{'disabled': !canEdit(article)}">Edit</a>
-                                <a (click)="showArticleDeleteModal(article)" class="button red" [ngClass]="{'disabled': !canDelete(article)}">Delete</a>
+                                <btn (click)="viewArticle(article)" [small]="true" [color]="'green'">View</btn>
+                                <btn (click)="showEditModal(article.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(article)}">Edit</btn>
+                                <btn (click)="showArticleDeleteModal(article)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(article)}">Delete</btn>
                             </td>
                         </tr>
                     </tbody>
@@ -89,8 +89,8 @@
     <h1 class="title left">Are you sure?</h1><br>
     <p>You are about to delete <b>{{ articleToDelete?.title }}</b></p>
     <div class="block padding-top">
-        <a class="button" (click)="closeAllModals()">Cancel</a>
-        <a class="button red" (click)="deleteArticle()">Delete</a>
+        <btn (click)="closeAllModals()">Cancel</btn>
+        <btn [color]="'red'" (click)="deleteArticle()">Delete</btn>
     </div>
 </modal-window>
 

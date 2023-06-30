@@ -32,10 +32,12 @@ import { AuthorPipe } from './pipes/author.pipe';
 import { ModalComponent } from './modal/modal.component';
 import { QuillModule } from 'ngx-quill';
 import { Safe } from './pipes/safe.pipe';
+import { ButtonComponent } from './button/button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoadingComponent,
     HeaderComponent,
     FooterComponent,
     IndexComponent,
@@ -44,7 +46,6 @@ import { Safe } from './pipes/safe.pipe';
     NotFoundComponent,
     ArticlePageComponent,
     ArticlePaginationComponent,
-    LoadingComponent,
     ServicesPageComponent,
     ServiceCardComponent,
     ServicePageComponent,
@@ -60,7 +61,8 @@ import { Safe } from './pipes/safe.pipe';
     StatusCodePipe,
     AuthorPipe,
     Safe,
-    ModalComponent
+    ModalComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -71,8 +73,8 @@ import { Safe } from './pipes/safe.pipe';
     QuillModule
   ],
   providers: [
+    LoadingService,
     AdminGuard,
-    LoadingService
   ],
   bootstrap: [AppComponent]
 })

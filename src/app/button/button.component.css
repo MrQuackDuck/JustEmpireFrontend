@@ -1,0 +1,11 @@
+/* Other buttons styles defined in main styles.css file */
+
+.wrapper {
+    width: 100%;
+    display: inline-block;
+}
+
+a {
+    display: inline-block;
+    width: 100%;
+}

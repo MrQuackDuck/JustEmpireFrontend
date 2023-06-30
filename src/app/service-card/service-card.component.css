@@ -67,7 +67,7 @@
     width: min-content;
 }
 
-.service .controls div .button {
+.service .controls div btn {
     min-width: 180px;
     max-width: 180px;
     padding: 10px 0px;

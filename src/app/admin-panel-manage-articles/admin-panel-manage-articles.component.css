@@ -21,7 +21,7 @@ main .title-section .empty {
     visibility: hidden;
 }
 
-main .title-section .button, .empty {
+main .title-section btn, .empty {
     flex-grow: 1;
 }
 
