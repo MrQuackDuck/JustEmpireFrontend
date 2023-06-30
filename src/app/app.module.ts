@@ -31,6 +31,7 @@ import { StatusCodePipe } from './pipes/status-code.pipe';
 import { AuthorPipe } from './pipes/author.pipe';
 import { ModalComponent } from './modal/modal.component';
 import { QuillModule } from 'ngx-quill';
+import { Safe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { QuillModule } from 'ngx-quill';
     LangCodePipe,
     StatusCodePipe,
     AuthorPipe,
+    Safe,
     ModalComponent
   ],
   imports: [

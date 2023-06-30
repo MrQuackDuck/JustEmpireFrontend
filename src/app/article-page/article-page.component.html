@@ -6,10 +6,7 @@
             <div style="background-image: url('{{ article.titleImage }}');" class="title-bg"></div>
         </div>
         <div class="container">
-            <div class="content">
-                <p>{{ article.text }}</p>
-            </div>
-            
+            <div class="content" [innerHTML]="article.text | safeHtml"></div>
         </div>
     </article>
     <aside>

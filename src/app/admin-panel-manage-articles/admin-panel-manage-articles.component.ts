@@ -8,15 +8,18 @@ import { User } from '../model/user';
 import { AuthService } from '../services/auth.service';
 import { Rank } from '../model/rank';
 import { Status } from '../enum/Status';
+import { ViewEncapsulation } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-panel-manage-articles',
   templateUrl: './admin-panel-manage-articles.component.html',
-  styleUrls: ['./admin-panel-manage-articles.component.css']
+  styleUrls: ['./admin-panel-manage-articles.component.css'],
 })
 export class AdminPanelManageArticlesComponent {
   constructor(private articleRepository : ArticleRepositoryService, private formBuilder : FormBuilder, 
-  private loadingService : LoadingService, private renderer: Renderer2, private authService : AuthService) {}
+  private loadingService : LoadingService, private renderer: Renderer2, private authService : AuthService,
+  private sanitizer: DomSanitizer) {}
 
   currentUser : User;
 
@@ -225,6 +228,10 @@ export class AdminPanelManageArticlesComponent {
 
   canDelete(article : Article) : boolean {
     if (article.status != Status.POSTED) {
+      return false;
+    }
+    
+    if (this.articles.find(a => a.originalId == article.id)) {
       return false;
     }
 

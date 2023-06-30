@@ -266,6 +266,34 @@ form .upload-photo-label img {
     max-height: 300px;
 }
 
+.container .content {
+    padding: 22px 40px;
+    padding-bottom: 20px;
+    width: 90%;
+}
+
+.container .content h1 {
+    color: #e3e3e3;
+    font-size: 28px;
+    letter-spacing: 0.6px;
+    padding: 8px 0px;
+}
+
+.container .content p {
+    font-size: 21px;
+    line-height: 28px;
+    padding: 0px 0px;
+    padding-right: 0;
+    color: #BAB8B6;
+    font-family: BalooThambi2;
+    font-weight: 600;
+}
+
+.container .content b {
+    font-weight: 600;
+    line-height: 28px;
+}
+
 
 @media screen and (max-width: 900px) {
 

@@ -17,12 +17,13 @@ export class ArticlesComponent implements OnInit {
     private loadingService : LoadingService) {}
 
   articles$ : Observable<Article[]>;
+  articles : Article[];
   itemsOnPage : number = 5; // How many articles will be displayed per page
   currentPage : number;
   language : Language = Language.EN;
 
   readonly pageName = 'news';
-  
+
   ngOnInit() {
     let language : Language = this.route.snapshot.params['language'];
     let pageIndex : number = +this.route.snapshot.params['pageIndex'];
@@ -70,7 +71,10 @@ export class ArticlesComponent implements OnInit {
     await this.delay(300);
     this.articles$ = this.articleRepository.getPage(this.language, this.currentPage, this.itemsOnPage);
     await this.delay(30);
-    this.articles$.subscribe(() => this.loadingService.disableLoading())
+    this.articles$.subscribe(articles => {
+      this.articles = articles;
+      this.loadingService.disableLoading()
+    })
   }
 
   delay(ms: number) {

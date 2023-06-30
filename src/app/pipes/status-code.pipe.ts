@@ -7,10 +7,18 @@ import { Status } from '../enum/Status';
 })
 export class StatusCodePipe implements PipeTransform {
   transform(value: Status | undefined): string {
-    if (value === undefined) {
-        return "UNDEFINED"
-    }
     let status : Status = value ?? Status.POSTED;
-    return Status[status];
+    switch (status) {
+      case Status.POSTED:
+        return "✅ Posted";
+      case Status.QUEUE_CREATE:
+        return "🕒 In queue to create";
+      case Status.QUEUE_UPDATE:
+        return "📝 Pending editing";
+      case Status.QUEUE_DELETE:
+        return "❌ Pending delete";
+    }
+
+    return "UNDEFINED";
   }
 }

@@ -100,34 +100,6 @@ main article .article-title .article-date {
     font-family: BalooThambi2;
 }
 
-.content {
-    padding: 22px 40px;
-    padding-bottom: 20px;
-    width: 90%;
-}
-
-.content h1 {
-    color: #e3e3e3;
-    font-size: 28px;
-    letter-spacing: 0.6px;
-    padding: 8px 0px;
-}
-
-.content p {
-    font-size: 21px;
-    line-height: 28px;
-    padding: 0px 0px;
-    padding-right: 0;
-    color: #BAB8B6;
-    font-family: BalooThambi2;
-    font-weight: 600;
-}
-
-.content b {
-    font-weight: 600;
-    line-height: 28px;
-}
-
 .active {
     text-decoration: underline;
 }
