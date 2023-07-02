@@ -10,6 +10,8 @@ import { Rank } from '../model/rank';
 import { Status } from '../enum/Status';
 import { ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ImageUploaderService } from '../services/image-uploader.service';
+import { API_URL } from 'src/globals';
 
 @Component({
   selector: 'app-admin-panel-manage-articles',
@@ -19,11 +21,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class AdminPanelManageArticlesComponent {
   constructor(private articleRepository : ArticleRepositoryService, private formBuilder : FormBuilder, 
   private loadingService : LoadingService, private renderer: Renderer2, private authService : AuthService,
-  private sanitizer: DomSanitizer) {}
+  private imageUploader : ImageUploaderService) {}
 
   currentUser : User;
 
   articles : Article[];
+
+  API_URL = API_URL;
 
   viewArticleModalShown : boolean;
   currentViewedArticle? : Article;
@@ -81,20 +85,19 @@ export class AdminPanelManageArticlesComponent {
   }
 
   uploadFile(event: Event, targetForm : FormGroup, browseLabel : HTMLLabelElement) {
-    console.log(browseLabel);
-    
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
     if (fileList) {
-      let file = fileList[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        browseLabel.innerHTML = "<img src='"+ reader.result +"'>";
-        try {
-          targetForm.controls['titleImage'].setValue(reader.result);
-        } catch { }
-      };
+      let file : File = fileList[0];
+      this.imageUploader.uploadImage(file).subscribe(file => {
+        let filename = file.filename;
+        browseLabel.innerHTML = `<img src='${API_URL}/uploads/${filename}'>`;
+        try 
+        {
+          targetForm.controls['titleImage'].setValue(filename);
+        } 
+        catch { }
+      });
     }
   }
 
@@ -103,7 +106,7 @@ export class AdminPanelManageArticlesComponent {
     this.viewArticleModalShown = true;
   }
 
-  submitNewArticle() {
+  submitNewArticle(browseLabel : HTMLLabelElement) {
     if (this.newArticleForm.valid === false) {
       return; 
     }
@@ -115,8 +118,11 @@ export class AdminPanelManageArticlesComponent {
       success => {
         this.loadingService.disableLoading();
         this.successModalShown = true;
-        this.updateData()
+        this.updateData();
+        browseLabel.innerHTML = "<span>Browse</span>";
         this.newArticleForm.reset();
+        this.newArticleForm.markAsPristine();
+        this.newArticleForm.markAsUntouched();
       },
       fail => {
         this.loadingService.disableLoading();
@@ -137,7 +143,7 @@ export class AdminPanelManageArticlesComponent {
       this.editArticleForm.controls['titleImage'].setValue(targetArticle.titleImage);
       
       let label : any = document.querySelector('.upload-photo-label-edit')
-      label.innerHTML = "<img src='"+ targetArticle.titleImage +"'>";
+      label.innerHTML = `<img src='${API_URL}/uploads/${targetArticle.titleImage}'>`;
     }
   }
 

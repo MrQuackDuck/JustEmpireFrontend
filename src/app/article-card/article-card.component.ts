@@ -3,6 +3,7 @@ import { Article } from '../model/article';
 import { Language } from '../enum/Language';
 import slugify from 'slugify';
 import { ActivatedRoute } from '@angular/router';
+import { API_URL } from 'src/globals';
 
 @Component({
   selector: 'article-card',
@@ -17,6 +18,8 @@ export class ArticleCardComponent {
   languageCode : string;
 
   slugifiedTitle : string;
+  
+  API_URL = API_URL;
 
   ngOnInit() {
     this.languageCode = Language[this.article.language];

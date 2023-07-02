@@ -6,6 +6,7 @@ import { Article } from '../model/article';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { LoadingService } from '../services/loading.service';
+import { API_URL } from 'src/globals';
 
 @Component({
   selector: 'app-articles',

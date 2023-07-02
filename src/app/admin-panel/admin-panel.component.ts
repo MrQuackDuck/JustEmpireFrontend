@@ -40,8 +40,7 @@ export class AdminPanelComponent {
   currentRank : Rank;
 
   ngOnInit() {
-    this.loadingService.disableLoading();
-    this.loadingService.disableLoading();
+    this.imageLoader.loadImages();
 
     this.authService.getUser().subscribe(user => {
       this.currentUser = user

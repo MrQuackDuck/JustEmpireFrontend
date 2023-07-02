@@ -104,6 +104,10 @@ main article .article-title .article-date {
     text-decoration: underline;
 }
 
+.content {
+    overflow-wrap: break-word;
+}
+
 @media screen and (max-width: 1400px) {
     main {
         padding: 30px 30px;

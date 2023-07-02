@@ -305,6 +305,21 @@ form .upload-photo-label img {
     line-height: 28px;
 }
 
+form .upload-photo-label span {
+    display: block;
+    padding: 40px 14px;
+    width: 100%;
+    text-align: left;
+}
+
+.article .info-section .article-text * {
+    font-family: BalooThambi2;
+    font-size: 19px !important;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    font-weight: 500;
+    background-color: transparent;
+}
 
 @media screen and (max-width: 900px) {
 

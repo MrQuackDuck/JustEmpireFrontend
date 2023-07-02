@@ -2,10 +2,10 @@
     <div class="info-section">
         <div class="article-title">{{ article.title! | truncate: 50 }}</div>
         <div class="article-date">{{ article.publishDate | date : 'MM/dd/yyyy hh:mm:ss' }}</div>
-        <div class="article-text">{{ article.text! | truncate: 255 }}</div>
+        <div class="article-text" [innerHTML]="article.text! | truncate: 100"></div>
     </div>
     <div class="image-section">
-        <img src="{{ article.titleImage }}" alt="Image missing">
-        <div style="background-image: url('{{ article.titleImage }}');" class="blurry-bg"></div> 
+        <img loading="lazy" src="{{ API_URL }}/uploads/{{ article.titleImage }}" alt="Image missing">
+        <div style="background-image: url('{{ API_URL }}/uploads/{{ article.titleImage }}');" class="blurry-bg"></div> 
     </div>
 </a>

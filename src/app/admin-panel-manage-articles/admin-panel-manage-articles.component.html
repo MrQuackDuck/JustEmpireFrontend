@@ -49,7 +49,7 @@
         <div class="article-title">
             <h1>{{ currentViewedArticle?.title! | truncate: 100 }}</h1>
             <div class="article-date">{{ currentViewedArticle?.publishDate | date: 'MMM dd, yyyy' }}</div>
-            <div style="background-image: url('{{ currentViewedArticle?.titleImage }}');" class="title-bg"></div>
+            <div style="background-image: url('{{ API_URL }}/uploads/{{ currentViewedArticle?.titleImage }}');" class="title-bg"></div>
         </div>
         <div class="container">
             <div class="content" [innerHTML]="currentViewedArticle?.text | safeHtml"></div>
@@ -59,7 +59,7 @@
 
 <modal-window [showModal]="newArticleModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Create Article</h1>
-    <form (ngSubmit)="submitNewArticle()" [formGroup]="newArticleForm" method="post" enctype="multipart/form-data">
+    <form (ngSubmit)="submitNewArticle(uploadPhotoLabelNew)" [formGroup]="newArticleForm" method="post" enctype="multipart/form-data">
         <input required="text" formControlName="title" type="text" placeholder="Title">
         <quill-editor formControlName="text"></quill-editor>
         <select tp="Select language" [tpOffset]="[-100,0]" formControlName="language" required>
