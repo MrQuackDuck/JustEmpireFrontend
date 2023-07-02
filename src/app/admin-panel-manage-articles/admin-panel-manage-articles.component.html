@@ -27,10 +27,10 @@
                             <td>{{ article.authorId | author | async }}</td>
                             <td>{{ article.title | truncate: 20 }}</td>
                             <td>{{ article.language | langCode }}</td>
-                            <td>{{ article.status | statusCode }}</td>
+                            <td [tp]="article.status | statusDescription : 'article'" [tpDelay]="200">{{ article.status | statusCode }}</td>
                             <td>{{ article.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
                             <td>{{ article.lastChangeDate | date: "MM/dd/yyyy hh:mm:ss" }}</td>
-                            <td>{{ article.originalId }}</td>
+                            <td [tp]="article.status | originalIdTp : article.originalId : 'article'" [tpDelay]="200"><b>{{ article.originalId }}</b></td>
                             <td class="actions">
                                 <div class="wrp"><btn (click)="viewArticle(article)" [small]="true" [color]="'green'">View</btn></div>
                                 <div [tp]="canEdit(article)[1]" class="wrp"><btn (click)="showEditModal(article.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(article)[0]}">Edit</btn></div>
@@ -97,6 +97,7 @@
 <modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Success!</h1><br>
     <hr>
+    <p class="message" [innerHTML]="successMessage | safeHtml"></p>
     <img src="https://media.tenor.com/JzgronqM0nsAAAAM/dancing-steve.gif" alt="">
 </modal-window>
 

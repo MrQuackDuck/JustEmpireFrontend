@@ -14,11 +14,9 @@ export class StatusCodePipe implements PipeTransform {
       case Status.QUEUE_CREATE:
         return "🕒 In queue to create";
       case Status.QUEUE_UPDATE:
-        return "📝 Pending editing";
+        return "📝 Pending edit";
       case Status.QUEUE_DELETE:
         return "❌ Pending delete";
     }
-
-    return "UNDEFINED";
   }
 }

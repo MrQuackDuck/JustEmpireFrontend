@@ -7,15 +7,3 @@ import { AppComponent } from './app/app.component';
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
-
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideTippyConfig({
-      defaultVariation: 'tooltip',
-      variations: {
-        tooltip: tooltipVariation,
-        popper: popperVariation,
-      }
-    })
-  ]
-})

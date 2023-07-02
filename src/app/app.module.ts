@@ -34,6 +34,8 @@ import { QuillModule } from 'ngx-quill';
 import { Safe } from './pipes/safe.pipe';
 import { ButtonComponent } from './button/button.component';
 import { provideTippyConfig, tooltipVariation, popperVariation, TippyDirective } from '@ngneat/helipopper';
+import { StatusDescriptionPipe } from './pipes/status-description.pipe';
+import { OriginalIdTooltip } from './pipes/original-id-tooltip.pipe';
 
 @NgModule({
   declarations: [
@@ -57,13 +59,15 @@ import { provideTippyConfig, tooltipVariation, popperVariation, TippyDirective }
     AdminPanelStatsComponent,
     AdminPanelTabComponent,
     AdminPanelManageArticlesComponent,
+    Safe,
+    ModalComponent,
+    ButtonComponent,
     TruncatePipe,
     LangCodePipe,
     StatusCodePipe,
+    StatusDescriptionPipe,
+    OriginalIdTooltip,
     AuthorPipe,
-    Safe,
-    ModalComponent,
-    ButtonComponent
   ],
   imports: [
     BrowserModule,

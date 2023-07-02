@@ -31,7 +31,9 @@ export class AdminPanelManageArticlesComponent {
   newArticleModalShown : boolean;
   newArticleForm : FormGroup;
 
+  successMessage : string = "";
   successModalShown : boolean;
+
   failModalShown : boolean;
 
   currentArticleEdited? : Article;
@@ -173,7 +175,9 @@ export class AdminPanelManageArticlesComponent {
       this.articleRepository.delete(this.articleToDelete.id).subscribe(
         success => {
           this.loadingService.disableLoading();
+          this.successMessage = this.getSuccessDeleteMessage();
           this.successModalShown = true;
+          this.successMessage = this.getSuccessDeleteMessage();
           this.newArticleForm.reset();
           this.updateData()
         },
@@ -197,6 +201,17 @@ export class AdminPanelManageArticlesComponent {
     this.confirmDeleteModalShown = false;
     this.successModalShown = false;
     this.failModalShown = false;
+  }
+
+  getSuccessDeleteMessage() : string {
+    if (this.currentRank.approvementToDeletePostableOthers) 
+    {
+      return "Your article is now <b>pending to be deleted</b>. Emperor can approve this request or decline it";
+    }
+    else 
+    {
+      return "You have successfully deleted article!";
+    }
   }
 
   updateData() {
@@ -233,7 +248,7 @@ export class AdminPanelManageArticlesComponent {
     
     let target = this.articles.find(a => a.originalId == article.id)
     if (target) {
-      return [false, `Article ID ${target.id} pending for action`];
+      return [false, `Article ID ${target.id} is pending for action`];
     }
 
     // If user is author of the article and he has permission to delete own postable
