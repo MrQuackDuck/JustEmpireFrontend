@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
 import { Rank } from '../model/rank';
+import { API_URL } from 'src/globals';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthService {
   constructor(private httpClient : HttpClient) { }
 
   login(username, password) {
-    return this.httpClient.post<any>("http://localhost:5228/API/Auth/Login", 
+    return this.httpClient.post<any>(`${API_URL}/API/Auth/Login`, 
       { username, password },
       { withCredentials: true });
   }
@@ -26,17 +27,17 @@ export class AuthService {
   }
 
   getUser() : Observable<User> {
-    return this.httpClient.get<User>("http://localhost:5228/API/Auth/User",
+    return this.httpClient.get<User>(`${API_URL}/API/Auth/User`,
       { withCredentials: true });
   }
 
   getCurrentRank() : Observable<Rank> {
-    return this.httpClient.get<Rank>("http://localhost:5228/API/Auth/CurrentRank",
+    return this.httpClient.get<Rank>(`${API_URL}/API/Auth/CurrentRank`,
     { withCredentials: true });
   }
 
   logOut() {
-    return this.httpClient.get<any>("http://localhost:5228/API/Auth/Logout",
+    return this.httpClient.get<any>(`${API_URL}/API/Auth/Logout`,
     { withCredentials: true });
   }
 }
