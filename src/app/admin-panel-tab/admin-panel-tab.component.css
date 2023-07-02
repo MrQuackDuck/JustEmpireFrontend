@@ -47,7 +47,7 @@
 }
 
 .tab img {
-    max-width: 130px;
+    min-width: 130px;
     max-height: 130px;
 }
 

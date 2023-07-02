@@ -21,7 +21,8 @@ export class ImageLoaderService {
       '../../assets/images/admin/manageServices.svg',
       '../../assets/images/admin/manageCategories.svg',
       '../../assets/images/admin/manageUsers.svg',
-      '../../assets/images/admin/approvements.svg'
+      '../../assets/images/admin/approvements.svg',
+      '../../assets/images/admin/logout.svg'
     ];
     const imagesToLoad = imagePaths.length;
     let loadedImages = 0;

@@ -34,4 +34,9 @@ export class AuthService {
     return this.httpClient.get<Rank>("http://localhost:5228/API/Auth/CurrentRank",
     { withCredentials: true });
   }
+
+  logOut() {
+    return this.httpClient.get<any>("http://localhost:5228/API/Auth/Logout",
+    { withCredentials: true });
+  }
 }

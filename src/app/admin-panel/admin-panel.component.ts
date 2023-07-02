@@ -10,6 +10,7 @@ import { AdminSelectedTabService } from '../services/admin-selected-tab.service'
 import { UserRepositoryService } from '../services/user-repository.service';
 import { ImageLoaderService } from '../services/image-loader.service';
 import { Rank } from '../model/rank';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-panel',
@@ -26,6 +27,7 @@ export class AdminPanelComponent {
   private serviceVersionRepository : ServiceVersionRepositoryService,
   private userRepository : UserRepositoryService,
   private imageLoader : ImageLoaderService,
+  private router : Router,
   public selectedTabService : AdminSelectedTabService) {}
 
   articlesCount : number;
@@ -61,5 +63,11 @@ export class AdminPanelComponent {
   setTab(tabIndex : number) {
     this.imageLoader.loadImages();
     this.selectedTabService.selectedTab = tabIndex;
+  }
+
+  logout() {
+    this.authService.logOut().subscribe(() => {
+      this.router.navigate(["/login"]);
+    });
   }
 }
