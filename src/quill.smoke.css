@@ -437,6 +437,7 @@
   .ql-snow .ql-toolbar input.ql-image[type=file] {
     display: none;
   }
+
   .ql-snow.ql-toolbar button:hover,
   .ql-snow .ql-toolbar button:hover,
   .ql-snow.ql-toolbar button:focus,
@@ -678,7 +679,7 @@
     line-height: 22px;
   }
   .ql-snow .ql-picker-options {
-    background-color: #fff;
+    background-color: #252525;
     display: none;
     min-width: 100%;
     padding: 4px 8px;
@@ -882,6 +883,7 @@
   }
   .ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options {
     border-color: #7E7E7E;
+    color: white;
   }
   .ql-toolbar.ql-snow .ql-color-picker .ql-picker-item.ql-selected,
   .ql-toolbar.ql-snow .ql-color-picker .ql-picker-item:hover {
@@ -899,7 +901,7 @@
     white-space: nowrap;
   }
   .ql-snow .ql-tooltip::before {
-    content: "Visit URL:";
+    content: "Insert image";
     line-height: 26px;
     margin-right: 8px;
   }
@@ -960,4 +962,11 @@
     border: 1px solid #7E7E7E;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+  }
+
+  .ql-editing {
+    left: 40px !important;
+    top: 0px !important;
+    border: none !important;
+    box-shadow: none !important;
   }

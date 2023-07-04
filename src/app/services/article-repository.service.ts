@@ -31,7 +31,7 @@ export class ArticleRepositoryService {
     let titleImage = articleModel.titleImage;
     let language = articleModel.language;
 
-    return this.httpClient.put<boolean>(`${API_URL}/Article/Edit`, 
+    return this.httpClient.put<boolean>(`${API_URL}/API/Article/Edit`, 
     { id, title, text, titleImage, language },
     { withCredentials: true });
   }

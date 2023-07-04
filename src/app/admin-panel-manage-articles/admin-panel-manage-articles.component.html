@@ -61,8 +61,8 @@
     <h1 class="title">Create Article</h1>
     <form (ngSubmit)="submitNewArticle(uploadPhotoLabelNew)" [formGroup]="newArticleForm" method="post" enctype="multipart/form-data">
         <input required="text" formControlName="title" type="text" placeholder="Title">
-        <quill-editor formControlName="text"></quill-editor>
-        <select tp="Select language" [tpOffset]="[-100,0]" formControlName="language" required>
+        <quill-editor [modules]="quillModules" formControlName="text"></quill-editor>
+        <select formControlName="language" required>
             <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
         </select>
         <label #uploadPhotoLabelNew class="upload-photo-label" for="upload-photo"><span>Browse</span></label>
@@ -75,7 +75,7 @@
     <h1 class="title">Edit Article</h1>
     <form (ngSubmit)="submitEditedArticle()" [formGroup]="editArticleForm" method="post" enctype="multipart/form-data">
         <input value="{{ currentArticleEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
-        <quill-editor formControlName="text">{{ currentArticleEdited?.text }}</quill-editor>
+        <quill-editor [modules]="quillModules" formControlName="text">{{ currentArticleEdited?.text }}</quill-editor>
         <select formControlName="language" required>
             <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
         </select>

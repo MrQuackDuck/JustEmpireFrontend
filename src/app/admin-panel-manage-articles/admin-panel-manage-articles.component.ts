@@ -12,6 +12,8 @@ import { ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageUploaderService } from '../services/image-uploader.service';
 import { API_URL } from 'src/globals';
+import { QuillModules, defaultModules } from 'ngx-quill';
+import { imageHandler } from '../quill/handlers/imageHandler';
 
 @Component({
   selector: 'app-admin-panel-manage-articles',
@@ -22,6 +24,15 @@ export class AdminPanelManageArticlesComponent {
   constructor(private articleRepository : ArticleRepositoryService, private formBuilder : FormBuilder, 
   private loadingService : LoadingService, private renderer: Renderer2, private authService : AuthService,
   private imageUploader : ImageUploaderService) {}
+
+  quillModules: QuillModules = {
+    toolbar: {
+      container: defaultModules.toolbar, 
+      handlers: {
+        image: imageHandler
+      }
+    },
+  };
 
   currentUser : User;
 

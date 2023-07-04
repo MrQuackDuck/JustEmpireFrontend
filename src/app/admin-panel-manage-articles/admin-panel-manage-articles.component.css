@@ -242,3 +242,9 @@ modal-window article .article-title .article-date {
     font-size: 17.92px;
     font-family: BalooThambi2;
 }
+
+@media screen and (max-width: 1150px) {
+    main .title-section, main .sections-container {
+        padding: 20px 20px;
+    }
+}
