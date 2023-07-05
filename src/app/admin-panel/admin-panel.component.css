@@ -72,7 +72,7 @@ aside h1 {
 aside form {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 12px;
     padding-top: 20px;
 }
 

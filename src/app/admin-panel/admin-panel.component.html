@@ -10,7 +10,7 @@
       </div>
 
       <div *ngIf="selectedTabService.selectedTab == 2" class="tabs">
-        <admin-panel-tab [title]="'Manage services'" [grayText]="servicesCount" routerLink="/admin/stats" [icon]="'./../assets/images/admin/manageServices.svg'"/>
+        <admin-panel-tab [title]="'Manage services'" [grayText]="servicesCount" routerLink="/admin/manageServices" [icon]="'./../assets/images/admin/manageServices.svg'"/>
 
         <admin-panel-tab [title]="'Manage categories'" [grayText]="serviceCategoriesCount" routerLink="/admin/stats" [icon]="'../../assets/images/admin/manageCategories.svg'"/>
 
@@ -30,29 +30,29 @@
       <aside>
           <h1>Actions</h1>
           <form>
-              <label class="checkbox-container">
-                  <span class="checkbox-text">Dashboard</span>
-                  <input (change)="setTab(0)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 0">
-                  <span class="checkmark"></span>
-              </label>
-              <label class="checkbox-container">
-                  <span class="checkbox-text">Manage articles</span>
-                  <input (change)="setTab(1)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 1">
-                  <span class="checkmark"></span>
-              </label>
-              <label class="checkbox-container">
-                  <span class="checkbox-text">Manage services</span>
-                  <input (change)="setTab(2)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 2">
-                  <span class="checkmark"></span>
-              </label>
-              <label *ngIf="currentUser?.rank == 'Emperor'" class="checkbox-container">
-                <span class="checkbox-text">Manage users</span>
-                <input (change)="setTab(3)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 3">
+              <label (mousedown)="setTab(0)" class="checkbox-container">
+                <span class="checkbox-text">Dashboard</span>
+                <input name="category" type="radio" [checked]="selectedTabService.selectedTab == 0">
                 <span class="checkmark"></span>
               </label>
-              <label class="checkbox-container">
+              <label (mousedown)="setTab(1)" class="checkbox-container">
+                <span class="checkbox-text">Manage articles</span>
+                <input name="category" type="radio" [checked]="selectedTabService.selectedTab == 1">
+                <span class="checkmark"></span>
+              </label>
+              <label (mousedown)="setTab(2)" class="checkbox-container">
+                <span class="checkbox-text">Manage services</span>
+                <input name="category" type="radio" [checked]="selectedTabService.selectedTab == 2">
+                <span class="checkmark"></span>
+              </label>
+              <label (mousedown)="setTab(3)" *ngIf="currentUser?.rank == 'Emperor'" class="checkbox-container">
+                <span class="checkbox-text">Manage users</span>
+                <input name="category" type="radio" [checked]="selectedTabService.selectedTab == 3">
+                <span class="checkmark"></span>
+              </label>
+              <label (mousedown)="setTab(4)" class="checkbox-container">
                 <span class="checkbox-text">Other</span>
-                <input (change)="setTab(4)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 4">
+                <input name="category" type="radio" [checked]="selectedTabService.selectedTab == 4">
                 <span class="checkmark"></span>
               </label>
           </form>

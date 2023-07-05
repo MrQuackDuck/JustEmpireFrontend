@@ -1,19 +1,17 @@
 import { Component, ElementRef, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { ArticleRepositoryService } from '../services/article-repository.service';
 import { Article } from '../model/article';
-import { Observable } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoadingService } from '../services/loading.service';
 import { User } from '../model/user';
 import { AuthService } from '../services/auth.service';
 import { Rank } from '../model/rank';
 import { Status } from '../enum/Status';
-import { ViewEncapsulation } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ImageUploaderService } from '../services/image-uploader.service';
 import { API_URL } from 'src/globals';
 import { QuillModules, defaultModules } from 'ngx-quill';
 import { imageHandler } from '../quill/handlers/imageHandler';
+import { AdminSelectedTabService } from '../services/admin-selected-tab.service';
 
 @Component({
   selector: 'app-admin-panel-manage-articles',
@@ -23,7 +21,7 @@ import { imageHandler } from '../quill/handlers/imageHandler';
 export class AdminPanelManageArticlesComponent {
   constructor(private articleRepository : ArticleRepositoryService, private formBuilder : FormBuilder, 
   private loadingService : LoadingService, private renderer: Renderer2, private authService : AuthService,
-  private imageUploader : ImageUploaderService) {}
+  private imageUploader : ImageUploaderService, private adminSelectedTab : AdminSelectedTabService) {}
 
   quillModules: QuillModules = {
     toolbar: {
@@ -67,6 +65,8 @@ export class AdminPanelManageArticlesComponent {
 
   ngOnInit() {
     this.updateData()
+
+    this.adminSelectedTab.selectedTab = 1;
 
     this.authService.getCurrentRank().subscribe(rank => {
       this.currentRank = rank

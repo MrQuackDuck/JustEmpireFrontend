@@ -23,14 +23,14 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let article of articles">
-                            <td>{{ article.id }}</td>
-                            <td>{{ article.authorId | author | async }}</td>
-                            <td>{{ article.title | truncate: 20 }}</td>
-                            <td>{{ article.language | langCode }}</td>
-                            <td [tp]="article.status | statusDescription : 'article'" [tpDelay]="200">{{ article.status | statusCode }}</td>
-                            <td>{{ article.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
-                            <td>{{ article.lastChangeDate | date: "MM/dd/yyyy hh:mm:ss" }}</td>
-                            <td [tp]="article.status | originalIdTp : article.originalId : 'article'" [tpDelay]="200"><b>{{ article.originalId }}</b></td>
+                            <td data-title="ID:">{{ article.id }}</td>
+                            <td data-title="Author:">{{ article.authorId | author | async }}</td>
+                            <td data-title="Title:">{{ article.title | truncate: 20 }}</td>
+                            <td data-title="Text:">{{ article.language | langCode }}</td>
+                            <td data-title="Status:" [tp]="article.status | statusDescription : 'article'" [tpDelay]="200">{{ article.status | statusCode }}</td>
+                            <td data-title="Publish date:">{{ article.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td data-title="Last change date:">{{ article.lastChangeDate | date: "MM/dd/yyyy hh:mm:ss" }}</td>
+                            <td data-title="Original ID:" [tp]="article.status | originalIdTp : article.originalId : 'article'" [tpDelay]="200"><b>{{ article.originalId }}</b></td>
                             <td class="actions">
                                 <div class="wrp"><btn (click)="viewArticle(article)" [small]="true" [color]="'green'">View</btn></div>
                                 <div [tp]="canEdit(article)[1]" class="wrp"><btn (click)="showEditModal(article.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(article)[0]}">Edit</btn></div>

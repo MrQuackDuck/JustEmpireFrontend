@@ -1,0 +1,99 @@
+<main>
+    <div class="title-section">
+        <btn [color]="'gray'" routerLink="/admin">Back</btn>
+        <span class="title">Admin panel - Manage services</span>
+        <btn (click)="this.newServiceModalShown = true">New</btn>
+    </div>
+    <div class="sections-container">
+        <section class="no-padding">
+            <div class="table__wrapper">
+                <table *ngIf="services">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Author</th>
+                            <th>Title</th>
+                            <th>Language</th>
+                            <th>Status</th>
+                            <th>Publish date</th>
+                            <th>Last change date</th>
+                            <th>Original ID</th>
+                            <th style="text-align: center;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let service of services">
+                            <td data-title="ID:">{{ service.id }}</td>
+                            <td data-title="Author:">{{ service.authorId | author | async }}</td>
+                            <td data-title="Title:">{{ service.title | truncate: 20 }}</td>
+                            <td data-title="Text:">{{ service.language | langCode }}</td>
+                            <td data-title="Status:" [tp]="service.status | statusDescription : 'service'" [tpDelay]="200">{{ service.status | statusCode }}</td>
+                            <td data-title="Publish date:">{{ service.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td data-title="Last change date:">{{ service.lastChangeDate | date: "MM/dd/yyyy hh:mm:ss" }}</td>
+                            <td data-title="Original ID:" [tp]="service.status | originalIdTp : service.originalId : 'service'" [tpDelay]="200"><b>{{ service.originalId }}</b></td>
+                            <td class="actions">
+                                <div class="wrp"><btn (click)="viewService(service)" [small]="true" [color]="'green'">View</btn></div>
+                                <div [tp]="canEdit(service)[1]" class="wrp"><btn (click)="showEditModal(service.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(service)[0]}">Edit</btn></div>
+                                <div [tp]="canDelete(service)[1]" class="wrp"><btn (click)="showServiceDeleteModal(service)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(service)[0]}">Delete</btn></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+
+<modal-window [showModal]="viewServiceModalShown" [noPadding]="true" (onClose)="closeAllModals()">
+
+</modal-window>
+
+<modal-window [showModal]="newServiceModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Create Service</h1>
+    <form (ngSubmit)="submitNewService(uploadPhotoLabelNew)" [formGroup]="newServiceForm" method="post" enctype="multipart/form-data">
+        <input required="text" formControlName="title" type="text" placeholder="Title">
+        <quill-editor [modules]="quillModules" formControlName="text"></quill-editor>
+        <select formControlName="language" required>
+            <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
+        </select>
+        <label #uploadPhotoLabelNew class="upload-photo-label" for="upload-photo"><span>Browse</span></label>
+        <input (change)="uploadFile($event, newServiceForm, uploadPhotoLabelNew)" id="upload-photo" accept="image/*" formControlName="titleImage" type="file" placeholder="Title image">
+        <input class="button" type="submit" value="Create">
+    </form>
+</modal-window>
+
+<modal-window [showModal]="editServiceModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Edit Service</h1>
+    <form (ngSubmit)="submitEditedService()" [formGroup]="editServiceForm" method="post" enctype="multipart/form-data">
+        <input value="{{ currentServiceEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
+        <quill-editor [modules]="quillModules" formControlName="text">{{ currentServiceEdited?.text }}</quill-editor>
+        <select formControlName="language" required>
+            <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
+        </select>
+        <label #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo-edit"><span>Browse</span></label>
+        <input (change)="uploadFile($event, editServiceForm, uploadPhotoLabelEdit)" id="upload-photo-edit" accept="image/*" type="file">
+        <input class="button green" type="submit" value="Confirm edit">
+    </form>
+</modal-window>
+
+<modal-window [showModal]="confirmDeleteModalShown" (onClose)="closeAllModals()">
+    <h1 class="title left">Are you sure?</h1><br>
+    <p>You are about to delete <b>{{ serviceToDelete?.title }}</b></p>
+    <div class="block padding-top">
+        <btn (click)="closeAllModals()">Cancel</btn>
+        <btn [color]="'red'" (click)="deleteService()">Delete</btn>
+    </div>
+</modal-window>
+
+<modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Success!</h1><br>
+    <hr>
+    <p class="message" [innerHTML]="successMessage | safeHtml"></p>
+    <img src="https://media.tenor.com/JzgronqM0nsAAAAM/dancing-steve.gif" alt="">
+</modal-window>
+
+<modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Oops! Something went wrong...</h1><br>
+    <hr>
+    <img src="https://media.discordapp.net/attachments/983448971089432577/1078404457676685402/jsrip.gif" alt="">
+</modal-window>

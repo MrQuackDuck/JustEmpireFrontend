@@ -322,13 +322,49 @@ form .upload-photo-label span {
 }
 
 @media screen and (max-width: 900px) {
-
     footer {
         font-size: 16px;
     }
-
 }
 
+@media screen and (max-width: 1150px) {
+    table {
+        display: flex;
+        flex-direction: column;
+    }
+
+    table thead {
+        display: none;
+    }
+
+    table tr {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    table td::before {
+        content: attr(data-title);
+        color: #6b6b6b;
+        font-size: 16px;
+        font-weight: bold;
+        padding-right: 10px;
+        display: block;
+        width: 100%;
+    }
+
+    table .actions::before {
+        display: none;
+    }
+
+    table tbody tr:nth-child(odd) {
+        background-color: #282828;
+    }
+
+    table tbody tr:nth-child(even) {
+        background-color: #363636;
+    }
+}
 
 @media screen and (max-width: 1000px) {
     .sections-container {

@@ -36,6 +36,7 @@ import { ButtonComponent } from './button/button.component';
 import { provideTippyConfig, tooltipVariation, popperVariation, TippyDirective } from '@ngneat/helipopper';
 import { StatusDescriptionPipe } from './pipes/status-description.pipe';
 import { OriginalIdTooltip } from './pipes/original-id-tooltip.pipe';
+import { AdminPanelManageServicesComponent } from './admin-panel-manage-services/admin-panel-manage-services.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { OriginalIdTooltip } from './pipes/original-id-tooltip.pipe';
     AdminPanelStatsComponent,
     AdminPanelTabComponent,
     AdminPanelManageArticlesComponent,
+    AdminPanelManageServicesComponent,
     Safe,
     ModalComponent,
     ButtonComponent,
