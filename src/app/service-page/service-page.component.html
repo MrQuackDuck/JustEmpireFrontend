@@ -2,11 +2,11 @@
     <div class="sections-container">
         <div class="service">
             <div class="container">
-                <div class="image"><img src="images/services/PoemPass.png"></div>
+                <div class="image"><img src="{{ API_URL }}/uploads/{{ service?.titleImage }}"></div>
                 <div class="info">
                     <h1 class="name">{{ service?.title }}</h1>
                     <span class="type" *ngIf="currentCategory">Type: {{ currentCategory.title }}</span>
-                    <span class="description">{{ service?.text }}</span>
+                    <span class="description" [innerHTML]="service?.text | safeHtml"></span>
                 </div>
             </div>
             <div class="controls">
@@ -28,7 +28,7 @@
                 <h1>Screenshots</h1>
                 <hr>
                 <div class="screenshots">
-                    <img (click)="showImageViewer(i)" *ngFor="let screenshot of screenshots; index as i" class="screenshot" src="data:image/png;base64, {{ screenshot.image }}">
+                    <img (click)="showImageViewer(i)" *ngFor="let screenshot of screenshots; index as i" class="screenshot" src="{{ API_URL }}/uploads/{{ screenshot.image }}">
                 </div>
             </div>
         </div>

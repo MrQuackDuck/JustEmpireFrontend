@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ServiceImage } from '../model/serviceImage';
+import { API_URL } from 'src/globals';
 
 @Component({
   selector: 'app-image-viewer',
@@ -7,6 +8,8 @@ import { ServiceImage } from '../model/serviceImage';
   styleUrls: ['./image-viewer.component.css']
 })
 export class ImageViewerComponent {
+  API_URL = API_URL;
+
   @Input()
   selectedImageIndex : number = 0;
 

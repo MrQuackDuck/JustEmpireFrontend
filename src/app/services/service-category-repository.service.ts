@@ -24,4 +24,8 @@ export class ServiceCategoryRepositoryService {
     return this.httpClient.get<ServiceCategory[]>(`${API_URL}/API/ServiceCategory/GetAll`, 
     { params: { "language": language } })
   }
+
+  getAllStaff() : Observable<ServiceCategory[]> {
+    return this.httpClient.get<ServiceCategory[]>(`${API_URL}/API/ServiceCategory/GetAllStaff`, { withCredentials: true })
+  }
 }

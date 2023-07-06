@@ -156,10 +156,11 @@ form .upload-photo-label {
 }
 
 form .upload-photo-label span {
-    display: block;
+    display: flex;
     padding: 40px 14px;
     width: 100%;
     text-align: left;
+    align-items: center;
 }
 
 form .upload-photo-label:hover {
@@ -191,6 +192,15 @@ form select {
 form.ng-submitted .ng-invalid {
     border-color: #FF6363;
     outline: 1px solid #FF6363;
+}
+
+form .screenshots {
+    display: flex;
+    gap: 5px;
+}
+
+form .screenshots label {
+    width: 100%;
 }
 
 @media screen and (max-width: 1150px) {

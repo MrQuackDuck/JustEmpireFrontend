@@ -10,6 +10,7 @@ import { ServiceVersion } from '../model/serviceVersion';
 import { ServiceImage } from '../model/serviceImage';
 import { Observable } from 'rxjs';
 import { LoadingService } from '../services/loading.service';
+import { API_URL } from 'src/globals';
 
 @Component({
   selector: 'app-service-page',
@@ -25,6 +26,8 @@ export class ServicePageComponent {
   private route : ActivatedRoute,
   private loadingService : LoadingService)
   { }
+
+  API_URL = API_URL;
 
   id; // Id of the target service
   service? : Service; // The target service

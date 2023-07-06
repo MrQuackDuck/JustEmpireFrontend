@@ -6,6 +6,7 @@ import { ServiceCategory } from '../model/serviceCategory';
 import { ServiceCategoryRepositoryService } from '../services/service-category-repository.service';
 import { Language } from '../enum/Language';
 import slugify from 'slugify';
+import { API_URL } from 'src/globals';
 
 @Component({
   selector: 'app-service-card',
@@ -14,6 +15,8 @@ import slugify from 'slugify';
 })
 export class ServiceCardComponent {
   constructor(private versionRepository : ServiceVersionRepositoryService, private serviceCategoryRepository : ServiceCategoryRepositoryService) {}
+
+  API_URL = API_URL;
 
   @Input()
   service : Service;
