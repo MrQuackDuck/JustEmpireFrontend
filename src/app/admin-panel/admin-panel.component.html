@@ -32,27 +32,27 @@
           <form>
               <label (mousedown)="setTab(0)" class="checkbox-container">
                 <span class="checkbox-text">Dashboard</span>
-                <input name="category" type="radio" [checked]="selectedTabService.selectedTab == 0">
+                <input (change)="setTab(0)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 0">
                 <span class="checkmark"></span>
               </label>
               <label (mousedown)="setTab(1)" class="checkbox-container">
                 <span class="checkbox-text">Manage articles</span>
-                <input name="category" type="radio" [checked]="selectedTabService.selectedTab == 1">
+                <input (change)="setTab(1)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 1">
                 <span class="checkmark"></span>
               </label>
               <label (mousedown)="setTab(2)" class="checkbox-container">
                 <span class="checkbox-text">Manage services</span>
-                <input name="category" type="radio" [checked]="selectedTabService.selectedTab == 2">
+                <input (change)="setTab(2)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 2">
                 <span class="checkmark"></span>
               </label>
               <label (mousedown)="setTab(3)" *ngIf="currentUser?.rank == 'Emperor'" class="checkbox-container">
                 <span class="checkbox-text">Manage users</span>
-                <input name="category" type="radio" [checked]="selectedTabService.selectedTab == 3">
+                <input (change)="setTab(3)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 3">
                 <span class="checkmark"></span>
               </label>
               <label (mousedown)="setTab(4)" class="checkbox-container">
                 <span class="checkbox-text">Other</span>
-                <input name="category" type="radio" [checked]="selectedTabService.selectedTab == 4">
+                <input (change)="setTab(4)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 4">
                 <span class="checkmark"></span>
               </label>
           </form>
