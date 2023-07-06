@@ -1,6 +1,6 @@
 <div class="service">
     <div class="container">
-        <div class="image"><a href="service-page.html"><img src="{{ API_URL }}/uploads/{{service.titleImage}}"></a></div>
+        <div class="image"><a [routerLink]="['/service', languageCode, service.id, slugifiedTitle ]"><img src="{{ API_URL }}/uploads/{{service.titleImage}}"></a></div>
         <div class="info">
             <h1 class="name" title="{{ service.title }}"><a [routerLink]="['/service', languageCode, service.id, slugifiedTitle ]">{{ service.title }}</a></h1>
             <span class="type" *ngIf="currentCategory">Type: {{ currentCategory.title }}</span>
