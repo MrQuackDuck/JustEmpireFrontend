@@ -38,6 +38,7 @@ import { StatusDescriptionPipe } from './pipes/status-description.pipe';
 import { OriginalIdTooltip } from './pipes/original-id-tooltip.pipe';
 import { AdminPanelManageServicesComponent } from './admin-panel-manage-services/admin-panel-manage-services.component';
 import { ServicePageContentComponent } from './service-page-content/service-page-content.component';
+import { ServiceCategoryPipe } from './pipes/service-category.pipe';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { ServicePageContentComponent } from './service-page-content/service-page
     StatusDescriptionPipe,
     OriginalIdTooltip,
     AuthorPipe,
+    ServiceCategoryPipe,
     ServicePageContentComponent,
   ],
   imports: [

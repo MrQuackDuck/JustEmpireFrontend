@@ -6,6 +6,7 @@ import { Service } from '../model/service';
 import { API_URL } from 'src/globals';
 import { CreateArticleModel } from '../model/createArticleModel';
 import { CreateServiceModel } from '../model/createServiceModel';
+import { EditServiceModel } from '../model/editServiceModel';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,28 @@ export class ServiceRepositoryService {
     return this.httpClient.post<any>(`${API_URL}/API/Service/Create`, 
     { title, text, titleImage, language, isDownloadable, url, categoryId },
     { withCredentials: true });
+  }
+
+  edit(serviceModel: EditServiceModel) : Observable<Service> {
+    let id = serviceModel.id
+    let title = serviceModel.title;
+    let text = serviceModel.text;
+    let titleImage = serviceModel.titleImage;
+    let language = serviceModel.language;
+    let categoryId = serviceModel.categoryId;
+    let url = serviceModel.url;
+
+    return this.httpClient.put<Service>(`${API_URL}/API/Service/Edit`, 
+    { id, title, text, titleImage, language, categoryId, url },
+    { withCredentials: true });
+  }
+
+  delete(id : number) {
+    return this.httpClient.get<any>(`${API_URL}/API/Service/Delete`, { 
+      params: { 
+        "serviceId": id
+      }, withCredentials: true
+    })
   }
 
   getAllStaff() : Observable<Service[]> {

@@ -26,9 +26,9 @@ import { CreateImageModel } from '../model/createImageModel';
 export class AdminPanelManageServicesComponent {
   constructor(private loadingService : LoadingService, private serviceRepository : ServiceRepositoryService,
     private adminSelectedTab : AdminSelectedTabService, private authService : AuthService,
-    private formBuilder : FormBuilder, private serviceVersionRepository : ServiceVersionRepositoryService,
-    private serviceCategoryRepository : ServiceCategoryRepositoryService, private renderer : Renderer2,
-    private imageUploader : ImageUploaderService, private serviceImageRepository : ServiceImageRepositoryService) {}
+    private formBuilder : FormBuilder, private serviceCategoryRepository : ServiceCategoryRepositoryService, 
+    private renderer : Renderer2, private imageUploader : ImageUploaderService,
+    private serviceImageRepository : ServiceImageRepositoryService) {}
 
   currentRank : Rank;
   currentUser : User;
@@ -43,7 +43,7 @@ export class AdminPanelManageServicesComponent {
 
   API_URL = API_URL;
 
-  successMessage : string;
+  successMessage : string = "";
 
   // When creating a service, these screenshots will be linked to service
   newServiceScreenshots : Screenshot[] = [];
@@ -78,7 +78,7 @@ export class AdminPanelManageServicesComponent {
       text: new FormControl(null, Validators.required),
       url: new FormControl(null, Validators.required),
       isDownloadable: new FormControl(true, Validators.required),
-      category: new FormControl(null, Validators.required),
+      categoryId: new FormControl(null, Validators.required),
       language : new FormControl(0, Validators.required)
     });
 
@@ -87,6 +87,9 @@ export class AdminPanelManageServicesComponent {
       title: new FormControl(null, Validators.required),
       titleImage: new FormControl(null, Validators.required),
       text: new FormControl(null, Validators.required),
+      url: new FormControl(null, Validators.required),
+      isDownloadable: new FormControl(true, Validators.required),
+      categoryId: new FormControl(null, Validators.required),
       language : new FormControl(0, Validators.required)
     });
 
@@ -120,7 +123,10 @@ export class AdminPanelManageServicesComponent {
       this.editServiceForm.controls['title'].setValue(targetService.title);
       this.editServiceForm.controls['text'].setValue(targetService.text);
       this.editServiceForm.controls['language'].setValue(targetService.language);
+      this.editServiceForm.controls['categoryId'].setValue(targetService.categoryId);
+      this.editServiceForm.controls['isDownloadable'].setValue(targetService.isDownloadable);
       this.editServiceForm.controls['titleImage'].setValue(targetService.titleImage);
+      this.editServiceForm.controls['url'].setValue(targetService.url);
       
       let label : any = document.querySelector('.upload-photo-label-edit')
       label.innerHTML = `<img src='${API_URL}/uploads/${targetService.titleImage}'>`;
@@ -149,6 +155,7 @@ export class AdminPanelManageServicesComponent {
           this.serviceImageRepository.create(model).subscribe();
         });
 
+        this.successMessage = "";
         this.loadingService.disableLoading();
         this.successModalShown = true;
         this.updateData();
@@ -181,7 +188,7 @@ export class AdminPanelManageServicesComponent {
     }
   }
 
-  uploadScreenshot(event: Event, targetArray : Screenshot[], index : number) {
+  uploadScreenshot(event: Event, screenshotsArray : Screenshot[], index : number) {
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
     if (fileList) {
@@ -191,13 +198,55 @@ export class AdminPanelManageServicesComponent {
         let scr : Screenshot = new Screenshot();
         scr.labelIndex = index;
         scr.screenshot = filename;
-        targetArray.push(scr);
+        screenshotsArray.push(scr);
       });
     }
   }
 
-  submitEditedService() {}
-  deleteService() {}
+  removeScreenshot(index, screenshotsArray : Screenshot[]) {
+    screenshotsArray.splice(index, 1);
+  }
+  
+  submitEditedService() {
+    if (!this.editServiceForm.valid) {
+      return; 
+    }
+
+    this.closeAllModals();
+    this.loadingService.enableLoading();
+    
+    this.serviceRepository.edit(this.editServiceForm.getRawValue()).subscribe(
+      success => {
+        this.loadingService.disableLoading();
+        this.successModalShown = true;
+        this.editServiceForm.reset();
+        this.updateData()
+      },
+      fail => {
+        this.loadingService.disableLoading();
+        this.failModalShown = true;
+      });
+  }
+  
+  deleteService() {
+    this.closeAllModals();
+    this.loadingService.enableLoading();
+
+    if (this.serviceToDelete) {
+      this.serviceRepository.delete(this.serviceToDelete.id).subscribe(
+        success => {
+          this.loadingService.disableLoading();
+          this.successMessage = this.getSuccessDeleteMessage();
+          this.successModalShown = true;
+          this.successMessage = this.getSuccessDeleteMessage();
+          this.updateData()
+        },
+        fail => {
+          this.loadingService.disableLoading();
+          this.failModalShown = true;
+        });
+    }
+  }
 
   canEdit(service : Service) : [boolean, string] {
     if (service.status != Status.POSTED) {
@@ -247,7 +296,7 @@ export class AdminPanelManageServicesComponent {
     
     this.serviceCategoryRepository.getAllStaff().subscribe(categories => {
       this.categories = categories;
-      this.newServiceForm.controls["category"].setValue(categories[0].id)
+      this.newServiceForm.controls["categoryId"].setValue(categories[0].id)
 
       this.serviceRepository.getAllStaff().subscribe(services => {
         this.services = services;
@@ -264,6 +313,17 @@ export class AdminPanelManageServicesComponent {
     this.confirmDeleteModalShown = false;
     this.successModalShown = false;
     this.failModalShown = false;
+  }
+
+  getSuccessDeleteMessage() : string {
+    if (this.currentRank.approvementToDeletePostableOthers) 
+    {
+      return "Your service is now <b>pending to be deleted</b>. Emperor can approve this request or decline it";
+    }
+    else 
+    {
+      return "You have successfully deleted service!";
+    }
   }
 
   range(number){

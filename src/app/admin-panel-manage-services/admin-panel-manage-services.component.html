@@ -14,9 +14,9 @@
                             <th>Author</th>
                             <th>Title</th>
                             <th>Language</th>
+                            <th>Category</th>
                             <th>Status</th>
                             <th>URL</th>
-                            <th>Downloadable</th>
                             <th>Publish date</th>
                             <th>Last change date</th>
                             <th>Original ID</th>
@@ -29,9 +29,9 @@
                             <td data-title="Author:">{{ service.authorId | author | async }}</td>
                             <td data-title="Title:">{{ service.title | truncate: 20 }}</td>
                             <td data-title="Language:">{{ service.language | langCode }}</td>
+                            <td data-title="Category:">{{ (service.categoryId | category | async)?.title }}</td>
                             <td data-title="Status:" [tp]="service.status | statusDescription : 'service'" [tpDelay]="200">{{ service.status | statusCode }}</td>
-                            <td data-title="URL:">{{ service.url | truncate: 10 }}</td>
-                            <td data-title="Downloadable:">{{ service.isDownloadable }}</td>
+                            <td data-title="URL:">{{ service.url | truncate: 20 }}</td>
                             <td data-title="Publish date:">{{ service.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
                             <td data-title="Last change date:">{{ service.lastChangeDate | date: "MM/dd/yyyy hh:mm:ss" }}</td>
                             <td data-title="Original ID:" [tp]="service.status | originalIdTp : service.originalId : 'service'" [tpDelay]="200"><b>{{ service.originalId }}</b></td>
@@ -61,8 +61,8 @@
         <select formControlName="language" required>
             <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
         </select>
-        <select formControlName="category" required>
-            <option *ngFor="let category of categories; index as i" [ngValue]="category.id">{{ category.title }}</option>
+        <select formControlName="categoryId" required>
+            <option *ngFor="let category of categories;" [ngValue]="category.id">{{ category.title }}</option>
         </select>
         <select formControlName="isDownloadable" required>
             <option [ngValue]="true">Downloadable ['Download' button]</option>
@@ -71,9 +71,7 @@
         <label [class.ng-invalid]="newServiceForm.controls['titleImage'].invalid" #uploadPhotoLabelNew class="upload-photo-label" for="upload-photo"><span>Browse</span></label>
         <input (change)="uploadFile($event, newServiceForm, uploadPhotoLabelNew)" id="upload-photo" accept="image/*" formControlName="titleImage" type="file" placeholder="Title image">
         <div class="screenshots">
-            <div *ngFor="let screenshot of newServiceScreenshots" class="screenshot">
-                <label class="upload-photo-label upload-photo-label"><img src='{{ API_URL }}/uploads/{{ screenshot.screenshot }}'></label>
-            </div>
+            <label *ngFor="let screenshot of newServiceScreenshots; index as i" tp="Remove screenshot" [tpDelay]="200" (click)="removeScreenshot(i, newServiceScreenshots)" class="upload-photo-label screenshot"><img src='{{ API_URL }}/uploads/{{ screenshot.screenshot }}'></label>
 
             <label class="upload-photo-label upload-photo-label" for="upload-screenshot-new-service-1"><span>Add screenshot</span></label>
             <input (change)="uploadScreenshot($event, newServiceScreenshots, newServiceScreenshots.length)" id="upload-screenshot-new-service-1" accept="image/*" type="file">
@@ -87,11 +85,20 @@
     <form (ngSubmit)="submitEditedService()" [formGroup]="editServiceForm" method="post" enctype="multipart/form-data">
         <input value="{{ currentServiceEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
         <quill-editor [modules]="quillModules" formControlName="text">{{ currentServiceEdited?.text }}</quill-editor>
+        <input required="text" formControlName="url" type="text" placeholder="URL">
         <select formControlName="language" required>
             <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
         </select>
+        <select formControlName="categoryId" required>
+            <option *ngFor="let category of categories; index as i" [ngValue]="category.id">{{ category.title }}</option>
+        </select>
+        <select formControlName="isDownloadable" required>
+            <option [ngValue]="true">Downloadable ['Download' button]</option>
+            <option [ngValue]="true">Not downloadable ['Visit' button]</option>
+        </select>
         <label [class.ng-invalid]="editServiceForm.controls['titleImage'].invalid" #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo-edit"><span>Browse</span></label>
         <input (change)="uploadFile($event, editServiceForm, uploadPhotoLabelEdit)" id="upload-photo-edit" accept="image/*" type="file">
+        <span class="tip">*If you want to manage screenshots, you should go to dedicated page of admin panel</span>
 
         <input class="button green" type="submit" value="Confirm edit">
     </form>

@@ -15,7 +15,7 @@ export class ServiceCategoryRepositoryService {
     return this.httpClient.get<number>(`${API_URL}/API/ServiceCategory/GetCount`, { withCredentials: true })
   }
 
-  getById(id : number) {
+  getById(id : number) : Observable<ServiceCategory> {
     return this.httpClient.get<ServiceCategory>(`${API_URL}/API/ServiceCategory/GetById`, 
     { params: { "id": id } })
   }
