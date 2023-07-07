@@ -37,6 +37,7 @@ import { provideTippyConfig, tooltipVariation, popperVariation, TippyDirective }
 import { StatusDescriptionPipe } from './pipes/status-description.pipe';
 import { OriginalIdTooltip } from './pipes/original-id-tooltip.pipe';
 import { AdminPanelManageServicesComponent } from './admin-panel-manage-services/admin-panel-manage-services.component';
+import { ServicePageContentComponent } from './service-page-content/service-page-content.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { AdminPanelManageServicesComponent } from './admin-panel-manage-services
     StatusDescriptionPipe,
     OriginalIdTooltip,
     AuthorPipe,
+    ServicePageContentComponent,
   ],
   imports: [
     BrowserModule,

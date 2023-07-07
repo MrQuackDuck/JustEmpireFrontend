@@ -1,0 +1,58 @@
+<div class="sections-container">
+    <div class="service">
+        <div class="container">
+            <div class="image"><img src="{{ API_URL }}/uploads/{{ service?.titleImage }}"></div>
+            <div class="info">
+                <h1 class="name">{{ service?.title }}</h1>
+                <span class="type" *ngIf="currentCategory">Type: {{ currentCategory.title }}</span>
+                <span class="description" [innerHTML]="service?.text | safeHtml"></span>
+            </div>
+        </div>
+        <div class="controls">
+            <div>
+                <span class="field" *ngIf="currentVersion">Version: {{ currentVersion.title }}</span>            
+                <btn [paddingLeft]="0" [paddingRight]="0" [href]="service?.url ?? ''" *ngIf="!service?.isDownloadable" draggable="false">Visit</btn>
+                <btn [paddingLeft]="0" [paddingRight]="0" [href]="service?.url ?? ''" *ngIf="service?.isDownloadable" draggable="false" [color]="'green'">Download</btn>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <a *ngIf="screenshotsCount > 0" (mousedown)="setTab('screenshots')" [ngClass]="{ 'active': isTabCurrentlyActive('screenshots') }" draggable="false" class="button gray">Screenshots</a>
+        <a *ngIf="versionsCount > 0" (mousedown)="setTab('versions')" [ngClass]="{ 'active': isTabCurrentlyActive('versions') }" draggable="false" class="button gray">Versions</a>
+    </div>
+
+    <div *ngIf="screenshotsCount > 0" [ngClass]="{'contentVisible': isTabCurrentlyActive('screenshots')}" class="content">
+        <div class="screenshots-block block">
+            <h1>Screenshots</h1>
+            <hr>
+            <div class="screenshots">
+                <img (click)="showImageViewer(i)" *ngFor="let screenshot of screenshots; index as i" class="screenshot" src="{{ API_URL }}/uploads/{{ screenshot.image }}">
+            </div>
+        </div>
+    </div>
+    
+    <div *ngIf="versionsCount > 0" [ngClass]="{'contentVisible': isTabCurrentlyActive('versions')}" class="content">
+        <div class="table__wrapper block">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Version</th>
+                        <th>Publish date</th>
+                        <th>Changes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let version of versions$ | async">
+                    <td>{{ version?.title }}</td>
+                    <td>{{ version?.publishDate | date: "M/d/yyyy hh:mm:ss" }}</td>
+                    <td><a (click)="showVersionReader(version)">Read</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<app-image-viewer *ngIf="isImageViewerShown" (onClose)="disableImageViewer()" (onImageChanged)="imageChanged($event)" [selectedImageIndex]="imageViewerIndex" [images]="screenshots" [shown]="isImageViewerShown" />
+<app-version-reader (onClose)="hideVersionReader()" [shown]="isVersionReaderShown" [version]="currentReaderVersion"/>
+<app-loading/>

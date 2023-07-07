@@ -54,4 +54,12 @@ export class ServiceRepositoryService {
       }
     })
   }
+
+  getByIdStaff(serviceId : number) : Observable<Service> {
+    return this.httpClient.get<Service>(`${API_URL}/API/Service/GetByIdStaff`, {
+      params: {
+        "serviceId": serviceId,
+      }, withCredentials: true
+    })
+  }
 }

@@ -22,6 +22,14 @@ export class ServiceImageRepositoryService {
       }
     })
   }
+  
+  getImagesStaff(serviceId : number) : Observable<ServiceImage[]> {
+    return this.httpClient.get<ServiceImage[]>(`${API_URL}/API/ServiceImage/GetImagesStaff`, {
+      params: {
+        "serviceId": serviceId,
+      }, withCredentials: true
+    })
+  }
 
   create(createImageModel : CreateImageModel) {
     let serviceId = createImageModel.serviceId;

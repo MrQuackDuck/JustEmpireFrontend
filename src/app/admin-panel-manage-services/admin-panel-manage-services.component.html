@@ -49,7 +49,7 @@
 </main>
 
 <modal-window [showModal]="viewServiceModalShown" [noPadding]="true" (onClose)="closeAllModals()">
-
+    <service-page-content *ngIf="currentViewedService" [isStaff]="true" [staffServiceId]="currentViewedService.id"></service-page-content>
 </modal-window>
 
 <modal-window [showModal]="newServiceModalShown" (onClose)="closeAllModals()">
