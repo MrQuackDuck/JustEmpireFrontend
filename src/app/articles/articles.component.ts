@@ -17,7 +17,6 @@ export class ArticlesComponent implements OnInit {
   constructor(private route : ActivatedRoute, private router: Router, private articleRepository : ArticleRepositoryService,
     private loadingService : LoadingService) {}
 
-  articles$ : Observable<Article[]>;
   articles : Article[];
   itemsOnPage : number = 5; // How many articles will be displayed per page
   currentPage : number;
@@ -62,19 +61,22 @@ export class ArticlesComponent implements OnInit {
         this.router.navigate([this.pageName, 'EN', 1], { replaceUrl: true });
         return;
       } 
-      else {
+      else 
+      {
+        let oldPage = this.currentPage;
         this.currentPage = index;
+        if (!this.articles || oldPage != index) {
+          this.updateData();
+        }
       }
-      this.updateData();
     });  
   }
 
   async updateData() {
     this.loadingService.enableLoading()
     await this.delay(300);
-    this.articles$ = this.articleRepository.getPage(this.language, this.currentPage, this.itemsOnPage);
     await this.delay(30);
-    this.articles$.subscribe(articles => {
+    this.articleRepository.getPage(this.language, this.currentPage, this.itemsOnPage).subscribe(articles => {
       this.articles = articles;
       this.loadingService.disableLoading()
     })

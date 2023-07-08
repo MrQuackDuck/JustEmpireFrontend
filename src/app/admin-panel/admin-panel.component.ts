@@ -11,6 +11,7 @@ import { UserRepositoryService } from '../services/user-repository.service';
 import { ImageLoaderService } from '../services/image-loader.service';
 import { Rank } from '../model/rank';
 import { Router } from '@angular/router';
+import { ServiceImageRepositoryService } from '../services/service-image-repository.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -19,12 +20,12 @@ import { Router } from '@angular/router';
 })
 export class AdminPanelComponent {
   constructor(
-  private authService : AuthService, 
-  private loadingService : LoadingService, 
+  private authService : AuthService,
   private articleRepository : ArticleRepositoryService, 
   private serviceRepository : ServiceRepositoryService,
   private serviceCategoryRepository : ServiceCategoryRepositoryService,
   private serviceVersionRepository : ServiceVersionRepositoryService,
+  private serviceImageRepository : ServiceImageRepositoryService,
   private userRepository : UserRepositoryService,
   private imageLoader : ImageLoaderService,
   private router : Router,
@@ -34,7 +35,7 @@ export class AdminPanelComponent {
   servicesCount : number;
   serviceCategoriesCount : number;
   serviceVersionsCount : number;
-  serviceImagesCount : number = 0;
+  serviceImagesCount : number;
   userCount : number;
 
   currentUser : User;
@@ -55,8 +56,9 @@ export class AdminPanelComponent {
 
     this.articleRepository.getCount().subscribe(count => this.articlesCount = count);
     this.serviceRepository.getCount().subscribe(count => this.servicesCount = count);
-    this.serviceVersionRepository.getCount().subscribe(count => this.serviceVersionsCount = count)
     this.serviceCategoryRepository.getCount().subscribe(count => this.serviceCategoriesCount = count);
+    this.serviceVersionRepository.getCount().subscribe(count => this.serviceVersionsCount = count)
+    this.serviceImageRepository.getCount().subscribe(count => this.serviceImagesCount = count);
     this.userRepository.getCount().subscribe(count => this.userCount = count);
   }
 
