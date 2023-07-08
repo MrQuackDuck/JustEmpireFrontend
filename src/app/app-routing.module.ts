@@ -13,6 +13,7 @@ import { AdminPanelStatsComponent } from './admin-panel-stats/admin-panel-stats.
 import { AdminPanelManageArticlesComponent } from './admin-panel-manage-articles/admin-panel-manage-articles.component';
 import { AdminPanelManageServicesComponent } from './admin-panel-manage-services/admin-panel-manage-services.component';
 import { AdminPanelManageServiceCategoriesComponent } from './admin-panel-manage-service-categories/admin-panel-manage-service-categories.component';
+import { AdminPanelManageServiceVersionsComponent } from './admin-panel-manage-service-versions/admin-panel-manage-service-versions.component';
 
 const routes: Routes = [
   {
@@ -134,6 +135,13 @@ const routes: Routes = [
     pathMatch: "prefix",
     title: "JustEmpire | Manage service categories",
     component: AdminPanelManageServiceCategoriesComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: "admin/manageServiceVersions",
+    pathMatch: "prefix",
+    title: "JustEmpire | Manage service versions",
+    component: AdminPanelManageServiceVersionsComponent,
     canActivate: [AdminGuard]
   },
   // Not found page

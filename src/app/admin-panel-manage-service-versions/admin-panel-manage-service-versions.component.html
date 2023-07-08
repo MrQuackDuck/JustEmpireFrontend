@@ -1,0 +1,99 @@
+<main>
+    <div class="title-section">
+        <btn [color]="'gray'" routerLink="/admin">Back</btn>
+        <span class="title">Admin panel - Manage service versions</span>
+        <btn (click)="this.newVersionModalShown = true">New</btn>
+    </div>
+    <div class="sections-container">
+        <section class="no-padding">
+            <div class="table__wrapper">
+                <table *ngIf="serviceVersions">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Author</th>
+                            <th>Service</th>
+                            <th>Title</th>
+                            <th>Status</th>
+                            <th>Publish date</th>
+                            <th>Last change date</th>
+                            <th>Original ID</th>
+                            <th style="text-align: center;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let version of serviceVersions">
+                            <td data-title="ID:">{{ version.id }}</td>
+                            <td data-title="Author:">{{ version.authorId | author | async }}</td>
+                            <td tp="Service ID {{ (version.serviceId |serviceName | async)?.id }}" data-title="Service:">{{ (version.serviceId |serviceName | async)?.title }}</td>
+                            <td data-title="Title:">{{ version.title | truncate: 30 }}</td>
+                            <td data-title="Status:" [tp]="version.status | statusDescription : 'version'" [tpDelay]="200">{{ version.status | statusCode }}</td>
+                            <td data-title="Publish date:">{{ version.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td data-title="Last change date:">{{ version.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td data-title="Original ID:" [tp]="version.status | originalIdTp : version.originalId : 'category'" [tpDelay]="200"><b>{{ version.originalId }}</b></td>
+                            <td class="actions">
+
+                                <div class="wrp"><btn (click)="viewVersion(version)" [small]="true" [color]="'green'">View</btn></div>
+                                <div [tp]="canEdit(version)[1]" class="wrp"><btn (click)="showEditModal(version.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(version)[0]}">Edit</btn></div>
+                                <div [tp]="canDelete(version)[1]" class="wrp"><btn (click)="showDeleteModal(version)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(version)[0]}">Delete</btn></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+
+<modal-window [showModal]="newVersionModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Create Version</h1>
+    <form (ngSubmit)="submitNewVersion()" [formGroup]="newVersionForm" method="post" enctype="multipart/form-data">
+        <input required="text" formControlName="title" type="text" placeholder="Title">
+        <quill-editor [modules]="quillModules" formControlName="text"></quill-editor>
+        <select formControlName="language" required>
+            <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
+        </select>
+        <select tp="Select service" formControlName="serviceId" required>
+            <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
+        </select>
+        <input class="button" type="submit" value="Create">
+    </form>
+</modal-window>
+
+<modal-window [showModal]="editVersionModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Edit Version</h1>
+    <form (ngSubmit)="submitEditedVersion()" [formGroup]="editVersionForm" method="post" enctype="multipart/form-data">
+        <input value="{{ currentVersionEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
+        <quill-editor [modules]="quillModules" formControlName="text"></quill-editor>
+        <select tp="Select service" formControlName="language" required>
+            <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
+        </select>
+        <select formControlName="serviceId" required>
+            <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
+        </select>
+        <input class="button green" type="submit" value="Confirm edit">
+    </form>
+</modal-window>
+
+<modal-window [showModal]="confirmDeleteModalShown" (onClose)="closeAllModals()">
+    <h1 class="title left">Are you sure?</h1><br>
+    <p>You are about to delete <b>{{ versionToDelete?.title }}</b></p>
+    <div class="block padding-top">
+        <btn (click)="closeAllModals()">Cancel</btn>
+        <btn [color]="'red'" (click)="deleteVersion()">Delete</btn>
+    </div>
+</modal-window>
+
+<modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Success!</h1><br>
+    <hr>
+    <p class="message" [innerHTML]="successMessage | safeHtml"></p>
+    <img src="https://media.tenor.com/JzgronqM0nsAAAAM/dancing-steve.gif" alt="">
+</modal-window>
+
+<modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Oops! Something went wrong...</h1><br>
+    <hr>
+    <p class="message"></p>
+    <img src="https://media.discordapp.net/attachments/983448971089432577/1078404457676685402/jsrip.gif" alt="">
+</modal-window>

@@ -40,6 +40,8 @@ import { AdminPanelManageServicesComponent } from './admin-panel-manage-services
 import { ServicePageContentComponent } from './service-page-content/service-page-content.component';
 import { ServiceCategoryPipe } from './pipes/service-category.pipe';
 import { AdminPanelManageServiceCategoriesComponent } from './admin-panel-manage-service-categories/admin-panel-manage-service-categories.component';
+import { AdminPanelManageServiceVersionsComponent } from './admin-panel-manage-service-versions/admin-panel-manage-service-versions.component';
+import { ServiceNamePipe } from './pipes/service-name.pipe';
 
 @NgModule({
   declarations: [
@@ -71,11 +73,13 @@ import { AdminPanelManageServiceCategoriesComponent } from './admin-panel-manage
     LangCodePipe,
     StatusCodePipe,
     StatusDescriptionPipe,
+    ServiceNamePipe,
     OriginalIdTooltip,
     AuthorPipe,
     ServiceCategoryPipe,
     ServicePageContentComponent,
     AdminPanelManageServiceCategoriesComponent,
+    AdminPanelManageServiceVersionsComponent,
   ],
   imports: [
     BrowserModule,

@@ -89,12 +89,12 @@ export class AdminPanelManageServiceCategoriesComponent {
 
   canDelete(category : ServiceCategory) : [boolean, string] {
     if (category.status != Status.POSTED) {
-      return [false, "You can't delete unpublished article"];
+      return [false, "You can't delete unpublished category"];
     }
     
     let target = this.serviceCategories.find(a => a.originalId == category.id)
     if (target) {
-      return [false, `Article ID ${target.id} is pending for action`];
+      return [false, `Category ID ${target.id} is pending for action`];
     }
 
     // If user is author of the article and he has permission to delete own postable

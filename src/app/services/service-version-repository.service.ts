@@ -10,6 +10,12 @@ import { API_URL } from 'src/globals';
 export class ServiceVersionRepositoryService {
   constructor(private httpClient : HttpClient) { }
 
+  getAllStaff() : Observable<ServiceVersion[]> {
+    return this.httpClient.get<ServiceVersion[]>(`${API_URL}/API/ServiceVersion/GetAllStaff`, {
+      withCredentials: true
+    })
+  }
+
   getVersions(serviceId : number) : Observable<ServiceVersion[]> {
     return this.httpClient.get<ServiceVersion[]>(`${API_URL}/API/ServiceVersion/GetVersions`, {
       params: { "serviceId": serviceId }

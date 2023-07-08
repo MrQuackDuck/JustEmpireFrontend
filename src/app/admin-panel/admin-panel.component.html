@@ -14,7 +14,7 @@
 
         <admin-panel-tab [title]="'Manage categories'" [grayText]="serviceCategoriesCount" routerLink="/admin/manageServiceCategories" [icon]="'../../assets/images/admin/manageCategories.svg'"/>
 
-        <admin-panel-tab [title]="'Manage versions'" [grayText]="serviceVersionsCount" routerLink="/admin/stats" [icon]="'../../assets/images/admin/manageVersions.svg'"/>
+        <admin-panel-tab [title]="'Manage versions'" [grayText]="serviceVersionsCount" routerLink="/admin/manageServiceVersions" [icon]="'../../assets/images/admin/manageVersions.svg'"/>
       </div>
 
       <div *ngIf="selectedTabService.selectedTab == 3" class="tabs">          
