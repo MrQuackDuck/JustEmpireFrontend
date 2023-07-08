@@ -34,6 +34,7 @@ export class AdminPanelComponent {
   servicesCount : number;
   serviceCategoriesCount : number;
   serviceVersionsCount : number;
+  serviceImagesCount : number = 0;
   userCount : number;
 
   currentUser : User;

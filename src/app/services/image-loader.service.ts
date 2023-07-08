@@ -20,6 +20,7 @@ export class ImageLoaderService {
       '../../assets/images/admin/manageArticles.svg',
       '../../assets/images/admin/manageServices.svg',
       '../../assets/images/admin/manageCategories.svg',
+      '../../assets/images/admin/image.svg',
       '../../assets/images/admin/manageUsers.svg',
       '../../assets/images/admin/approvements.svg',
       '../../assets/images/admin/logout.svg'
