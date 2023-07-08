@@ -34,6 +34,7 @@ export class ArticlesComponent implements OnInit {
     if (!Object.values(Language).includes(language)) {
       this.language = Language.EN;
       this.router.navigate([this.pageName, 'EN']); // TODO: Get actual site language
+      return;
     }
     else {
       this.language = language
