@@ -1,7 +1,7 @@
 import { Component, Renderer2 } from '@angular/core';
 import { ServiceVersion } from '../model/serviceVersion';
 import { ServiceVersionRepositoryService } from '../services/service-version-repository.service';
-import { LANGUAGES } from 'src/globals';
+import { API_URL, LANGUAGES } from 'src/globals';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../model/user';
 import { Rank } from '../model/rank';
@@ -55,16 +55,14 @@ export class AdminPanelManageServiceVersionsComponent {
   confirmDeleteModalShown : boolean;
 
   failModalShown : boolean;
-
-  languages = LANGUAGES;
-
-  currentUser : User;
+  
+  currentUser? : User;
   currentRank : Rank;
 
   ngOnInit() {
     this.updateData()
 
-    this.adminSelectedTab.selectedTab = 1;
+    this.adminSelectedTab.selectedTab = 2;
 
     this.authService.getCurrentRank().subscribe(rank => {
       this.currentRank = rank
@@ -93,26 +91,90 @@ export class AdminPanelManageServiceVersionsComponent {
     });
   }
 
-  viewVersion(version : ServiceVersion) { }
+  viewVersion(version : ServiceVersion) {
+    this.viewVersionModalShown = true; 
+    this.currentViewedVersion = version;
+  }
 
-  submitNewVersion() { }
+  submitNewVersion() { 
+    if (!this.newVersionForm.valid) {
+      return; 
+    }
 
-  submitEditedVersion() { }
+    this.closeAllModals();
+    this.loadingService.enableLoading();
+    
+    this.serviceVersionRepository.create(this.newVersionForm.getRawValue()).subscribe(
+      success => {
+        this.loadingService.disableLoading();
+        this.successModalShown = true;
+        this.updateData();
+        this.newVersionForm.reset();
+        this.newVersionForm.markAsPristine();
+        this.newVersionForm.markAsUntouched();
+      },
+      fail => {
+        this.loadingService.disableLoading();
+        this.failModalShown = true;
+      });
+  }
+
+  submitEditedVersion() { 
+    if (!this.editVersionForm.valid) {
+      return; 
+    }
+
+    this.closeAllModals();
+    this.loadingService.enableLoading();
+    
+    this.serviceVersionRepository.edit(this.editVersionForm.getRawValue()).subscribe(
+      success => {
+        this.loadingService.disableLoading();
+        this.successModalShown = true;
+        this.updateData()
+      },
+      fail => {
+        this.loadingService.disableLoading();
+        this.failModalShown = true;
+      });
+  }
   
-  deleteVersion() { }
+  deleteVersion() { 
+    this.closeAllModals();
+    this.loadingService.enableLoading();
+
+    if (this.versionToDelete) {
+      this.serviceVersionRepository.delete(this.versionToDelete.id).subscribe(
+        success => {
+          this.loadingService.disableLoading();
+          this.successMessage = this.getSuccessDeleteMessage();
+          this.successModalShown = true;
+          this.updateData()
+        },
+        fail => {
+          this.loadingService.disableLoading();
+          this.failModalShown = true;
+        });
+    }
+    else
+    {
+      this.loadingService.disableLoading();
+      this.failModalShown = true;
+    }
+  }
 
   canEdit(version : ServiceVersion) : [boolean, string] { 
     if (version.status != Status.POSTED) {
       return [false, "You can't edit pending version"];
     }
 
-    // If user is author of the category and he has permission to delete own postable
-    if (version.authorId == this.currentUser.id && this.currentRank.editPostableOwn)
+    // If user is author of the version and he has permission to delete own postable
+    if (this.currentUser && version.authorId == this.currentUser.id && this.currentRank.editPostableOwn)
     {
       return [true, ""];
     }
-    // If user is not author of the category and he has permission to delete others postable
-    else if (version.authorId != this.currentUser.id && this.currentRank.editPostableOthers)
+    // If user is not author of the version and he has permission to delete others postable
+    else if (this.currentUser && version.authorId != this.currentUser.id && this.currentRank.editPostableOthers)
     {
       return [true, ""];
     }
@@ -131,12 +193,12 @@ export class AdminPanelManageServiceVersionsComponent {
     }
 
     // If user is author of the article and he has permission to delete own postable
-    if (version.authorId == this.currentUser.id && this.currentRank.deletePostableOwn)
+    if (this.currentUser && version.authorId == this.currentUser.id && this.currentRank.deletePostableOwn)
     {
       return [true, ""];
     }
     // If user is not author of the article and he has permission to delete others postable
-    else if (version.authorId != this.currentUser.id && this.currentRank.deletePostableOthers)
+    else if (this.currentUser && version.authorId != this.currentUser.id && this.currentRank.deletePostableOthers)
     {
       return [true, ""];
     }
@@ -144,8 +206,23 @@ export class AdminPanelManageServiceVersionsComponent {
     return [false, "You don't have enough permissions"];
   }
 
-  showEditModal(id : number) {}
-  showDeleteModal(version : ServiceVersion) { }
+  showEditModal(id : number) {
+    let targetVersion = this.serviceVersions.find(article => article.id === id)
+    if (targetVersion) {
+      this.editVersionModalShown = true; // Show modal of article that being edited
+      this.currentVersionEdited = targetVersion;
+
+      this.editVersionForm.controls['id'].setValue(targetVersion.id);
+      this.editVersionForm.controls['title'].setValue(targetVersion.title);
+      this.editVersionForm.controls['text'].setValue(targetVersion.text);
+      this.editVersionForm.controls['serviceId'].setValue(targetVersion.serviceId);
+    }
+  }
+  
+  showDeleteModal(version : ServiceVersion) { 
+    this.versionToDelete = version;
+    this.confirmDeleteModalShown = true;
+  }
 
   getSuccessDeleteMessage() : string {
     if (this.currentRank.approvementToDeletePostableOthers) 

@@ -12,7 +12,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Author</th>
-                            <th>Service</th>
+                            <th>Service name</th>
                             <th>Title</th>
                             <th>Status</th>
                             <th>Publish date</th>
@@ -45,14 +45,17 @@
     </div>
 </main>
 
+<modal-window [showModal]="viewVersionModalShown" (onClose)="closeAllModals()">
+    <h1>{{ currentViewedVersion?.title }}</h1>
+    <div class="date">{{ currentViewedVersion?.publishDate | date: "MMM d yyyy hh:mm:ss" }}</div>
+    <p [innerHTML]="currentVersionEdited?.text | safeHtml"></p>
+</modal-window>
+
 <modal-window [showModal]="newVersionModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Create Version</h1>
     <form (ngSubmit)="submitNewVersion()" [formGroup]="newVersionForm" method="post" enctype="multipart/form-data">
         <input required="text" formControlName="title" type="text" placeholder="Title">
         <quill-editor [modules]="quillModules" formControlName="text"></quill-editor>
-        <select formControlName="language" required>
-            <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
-        </select>
         <select tp="Select service" formControlName="serviceId" required>
             <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
         </select>
@@ -65,9 +68,6 @@
     <form (ngSubmit)="submitEditedVersion()" [formGroup]="editVersionForm" method="post" enctype="multipart/form-data">
         <input value="{{ currentVersionEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
         <quill-editor [modules]="quillModules" formControlName="text"></quill-editor>
-        <select tp="Select service" formControlName="language" required>
-            <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
-        </select>
         <select formControlName="serviceId" required>
             <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
         </select>
