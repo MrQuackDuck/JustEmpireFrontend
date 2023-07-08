@@ -39,6 +39,7 @@ import { OriginalIdTooltip } from './pipes/original-id-tooltip.pipe';
 import { AdminPanelManageServicesComponent } from './admin-panel-manage-services/admin-panel-manage-services.component';
 import { ServicePageContentComponent } from './service-page-content/service-page-content.component';
 import { ServiceCategoryPipe } from './pipes/service-category.pipe';
+import { AdminPanelManageServiceCategoriesComponent } from './admin-panel-manage-service-categories/admin-panel-manage-service-categories.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { ServiceCategoryPipe } from './pipes/service-category.pipe';
     AuthorPipe,
     ServiceCategoryPipe,
     ServicePageContentComponent,
+    AdminPanelManageServiceCategoriesComponent,
   ],
   imports: [
     BrowserModule,

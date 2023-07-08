@@ -13,7 +13,7 @@ import { ServiceVersionRepositoryService } from '../services/service-version-rep
 import { Status } from '../enum/Status';
 import { ServiceCategory } from '../model/serviceCategory';
 import { ServiceCategoryRepositoryService } from '../services/service-category-repository.service';
-import { API_URL } from 'src/globals';
+import { API_URL, LANGUAGES } from 'src/globals';
 import { ImageUploaderService } from '../services/image-uploader.service';
 import { ServiceImageRepositoryService } from '../services/service-image-repository.service';
 import { CreateImageModel } from '../model/createImageModel';
@@ -65,10 +65,7 @@ export class AdminPanelManageServicesComponent {
     },
   };
 
-  languages = [
-    {key: '🇬🇧 English', value: 0},
-    {key: '🇺🇦 Ukrainian', value: 1},
-  ];
+  languages = LANGUAGES;
 
   async ngOnInit() {
     // Setting up input forms

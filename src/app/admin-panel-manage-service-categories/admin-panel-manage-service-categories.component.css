@@ -174,7 +174,7 @@ form input:focus[type="text"] {
 }
 
 form input[type="submit"] {
-    margin-top: 40px;
+    margin-top: 10px;
     cursor: pointer;
 }
 
@@ -191,56 +191,6 @@ form select {
 form.ng-submitted .ng-invalid {
     border-color: #FF6363;
     outline: 1px solid #FF6363;
-}
-
-modal-window article {
-    background-color: #282828;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    border-radius: 10px;
-    min-width: 100%;
-    max-width: 100%;
-}
-
-modal-window article .article-title {
-    padding: 120px 40px;
-    position: relative;
-    width: 100%;
-}
-
-modal-window article .article-title h1 {
-    color: #ffffff;
-    letter-spacing: 0.9px;
-    z-index: 2;
-    font-size: 40px;
-    position: relative;
-    overflow-wrap: break-word;
-}
-
-modal-window article .article-title .title-bg {
-    background-color: #191919;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    z-index: 0;
-    min-width: 100%;
-    filter: brightness(40%);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 10px 10px 0px 0px;
-}
-
-modal-window article .article-title .article-date {
-    color: #aaaaaa;
-    position: relative;
-    z-index: 1;
-    font-size: 17.92px;
-    font-family: BalooThambi2;
 }
 
 @media screen and (max-width: 1150px) {

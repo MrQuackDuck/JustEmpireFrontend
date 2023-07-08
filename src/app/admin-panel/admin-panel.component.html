@@ -12,7 +12,7 @@
       <div *ngIf="selectedTabService.selectedTab == 2" class="tabs">
         <admin-panel-tab [title]="'Manage services'" [grayText]="servicesCount" routerLink="/admin/manageServices" [icon]="'./../assets/images/admin/manageServices.svg'"/>
 
-        <admin-panel-tab [title]="'Manage categories'" [grayText]="serviceCategoriesCount" routerLink="/admin/stats" [icon]="'../../assets/images/admin/manageCategories.svg'"/>
+        <admin-panel-tab [title]="'Manage categories'" [grayText]="serviceCategoriesCount" routerLink="/admin/manageServiceCategories" [icon]="'../../assets/images/admin/manageCategories.svg'"/>
 
         <admin-panel-tab [title]="'Manage versions'" [grayText]="serviceVersionsCount" routerLink="/admin/stats" [icon]="'../../assets/images/admin/manageVersions.svg'"/>
       </div>

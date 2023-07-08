@@ -1,0 +1,89 @@
+<main>
+    <div class="title-section">
+        <btn [color]="'gray'" routerLink="/admin">Back</btn>
+        <span class="title">Admin panel - Manage service categories</span>
+        <btn (click)="this.newCategoryModalShown = true">New</btn>
+    </div>
+    <div class="sections-container">
+        <section class="no-padding">
+            <div class="table__wrapper">
+                <table *ngIf="serviceCategories">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Author</th>
+                            <th>Title</th>
+                            <th>Language</th>
+                            <th>Status</th>
+                            <th>Publish date</th>
+                            <th>Last change date</th>
+                            <th>Original ID</th>
+                            <th style="text-align: center;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let category of serviceCategories">
+                            <td data-title="ID:">{{ category.id }}</td>
+                            <td data-title="Author:">{{ category.authorId | author | async }}</td>
+                            <td data-title="Title:">{{ category.title | truncate: 30 }}</td>
+                            <td data-title="Language:">{{ category.language | langCode }}</td>
+                            <td data-title="Status:" [tp]="category.status | statusDescription : 'category'" [tpDelay]="200">{{ category.status | statusCode }}</td>
+                            <td data-title="Publish date:">{{ category.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td data-title="Last change date:">{{ category.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td data-title="Original ID:" [tp]="category.status | originalIdTp : category.originalId : 'category'" [tpDelay]="200"><b>{{ category.originalId }}</b></td>
+                            <td class="actions">
+                                <div [tp]="canEdit(category)[1]" class="wrp"><btn (click)="showEditModal(category.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(category)[0]}">Edit</btn></div>
+                                <div [tp]="canDelete(category)[1]" class="wrp"><btn (click)="showDeleteModal(category)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(category)[0]}">Delete</btn></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+
+<modal-window [showModal]="newCategoryModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Create Category</h1>
+    <form (ngSubmit)="submitNewCategory()" [formGroup]="newCategoryForm" method="post" enctype="multipart/form-data">
+        <input required="text" formControlName="title" type="text" placeholder="Title">
+        <select formControlName="language" required>
+            <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
+        </select>
+        <input class="button" type="submit" value="Create">
+    </form>
+</modal-window>
+
+<modal-window [showModal]="editCategoryModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Edit Category</h1>
+    <form (ngSubmit)="submitEditedCategory()" [formGroup]="editCategoryForm" method="post" enctype="multipart/form-data">
+        <input value="{{ currentCategoryEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
+        <select formControlName="language" required>
+            <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
+        </select>
+        <input class="button green" type="submit" value="Confirm edit">
+    </form>
+</modal-window>
+
+<modal-window [showModal]="confirmDeleteModalShown" (onClose)="closeAllModals()">
+    <h1 class="title left">Are you sure?</h1><br>
+    <p>You are about to delete <b>{{ categoryToDelete?.title }}</b></p>
+    <div class="block padding-top">
+        <btn (click)="closeAllModals()">Cancel</btn>
+        <btn [color]="'red'" (click)="deleteCategory()">Delete</btn>
+    </div>
+</modal-window>
+
+<modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Success!</h1><br>
+    <hr>
+    <p class="message" [innerHTML]="successMessage | safeHtml"></p>
+    <img src="https://media.tenor.com/JzgronqM0nsAAAAM/dancing-steve.gif" alt="">
+</modal-window>
+
+<modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Oops! Something went wrong...</h1><br>
+    <hr>
+    <p class="message"></p>
+    <img src="https://media.discordapp.net/attachments/983448971089432577/1078404457676685402/jsrip.gif" alt="">
+</modal-window>

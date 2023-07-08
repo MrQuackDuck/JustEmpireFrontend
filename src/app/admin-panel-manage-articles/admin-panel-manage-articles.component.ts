@@ -8,7 +8,7 @@ import { AuthService } from '../services/auth.service';
 import { Rank } from '../model/rank';
 import { Status } from '../enum/Status';
 import { ImageUploaderService } from '../services/image-uploader.service';
-import { API_URL } from 'src/globals';
+import { API_URL, LANGUAGES } from 'src/globals';
 import { QuillModules, defaultModules } from 'ngx-quill';
 import { imageHandler } from '../quill/handlers/imageHandler';
 import { AdminSelectedTabService } from '../services/admin-selected-tab.service';
@@ -58,10 +58,7 @@ export class AdminPanelManageArticlesComponent {
 
   currentRank : Rank;
 
-  languages = [
-    {key: '🇬🇧 English', value: 0},
-    {key: '🇺🇦 Ukrainian', value: 1},
-  ];
+  languages = LANGUAGES;
 
   ngOnInit() {
     this.updateData()
@@ -170,7 +167,6 @@ export class AdminPanelManageArticlesComponent {
       success => {
         this.loadingService.disableLoading();
         this.successModalShown = true;
-        this.newArticleForm.reset();
         this.updateData()
       },
       fail => {

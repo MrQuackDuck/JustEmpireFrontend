@@ -29,11 +29,11 @@
                             <td data-title="Author:">{{ service.authorId | author | async }}</td>
                             <td data-title="Title:">{{ service.title | truncate: 20 }}</td>
                             <td data-title="Language:">{{ service.language | langCode }}</td>
-                            <td data-title="Category:">{{ (service.categoryId | category | async)?.title }}</td>
+                            <td tp="Category ID {{ service.categoryId }}" data-title="Category:">{{ (service.categoryId | category | async)?.title }}</td>
                             <td data-title="Status:" [tp]="service.status | statusDescription : 'service'" [tpDelay]="200">{{ service.status | statusCode }}</td>
                             <td data-title="URL:">{{ service.url | truncate: 20 }}</td>
                             <td data-title="Publish date:">{{ service.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
-                            <td data-title="Last change date:">{{ service.lastChangeDate | date: "MM/dd/yyyy hh:mm:ss" }}</td>
+                            <td data-title="Last change date:">{{ service.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
                             <td data-title="Original ID:" [tp]="service.status | originalIdTp : service.originalId : 'service'" [tpDelay]="200"><b>{{ service.originalId }}</b></td>
                             <td class="actions">
                                 <div class="wrp"><btn (click)="viewService(service)" [small]="true" [color]="'green'">View</btn></div>

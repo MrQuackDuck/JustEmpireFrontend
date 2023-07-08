@@ -4,12 +4,41 @@ import { ServiceCategory } from '../model/serviceCategory';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_URL } from 'src/globals';
+import { CreateServiceCategoryModel } from '../model/createServiceCategoryModel';
+import { EditServiceCategoryModel } from '../model/editServiceCategoryModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceCategoryRepositoryService {
   constructor(private httpClient : HttpClient) { }
+
+  create(categoryModel: CreateServiceCategoryModel): Observable<ServiceCategory> {
+    let title = categoryModel.title;
+    let language = categoryModel.language;
+
+    return this.httpClient.post<any>(`${API_URL}/API/ServiceCategory/Create`, 
+    { title, language },
+    { withCredentials: true });
+  }
+
+  edit(categoryModel: EditServiceCategoryModel): Observable<boolean> {
+    let id = categoryModel.id
+    let title = categoryModel.title;
+    let language = categoryModel.language;
+
+    return this.httpClient.put<boolean>(`${API_URL}/API/ServiceCategory/Edit`, 
+    { id, title, language },
+    { withCredentials: true });
+  }
+
+  delete(id : number) : Observable<boolean> {
+    return this.httpClient.get<any>(`${API_URL}/API/ServiceCategory/Delete`, { 
+      params: { 
+        "serviceCategoryId": id
+      }, withCredentials: true
+    })
+  }
 
   getCount() : Observable<number> {
     return this.httpClient.get<number>(`${API_URL}/API/ServiceCategory/GetCount`, { withCredentials: true })
