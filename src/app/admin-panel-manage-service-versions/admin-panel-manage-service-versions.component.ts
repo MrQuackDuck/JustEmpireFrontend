@@ -192,12 +192,12 @@ export class AdminPanelManageServiceVersionsComponent {
       return [false, `Version ID ${target.id} is pending for action`];
     }
 
-    // If user is author of the article and he has permission to delete own postable
+    // If user is author of the image and he has permission to delete own postable
     if (this.currentUser && version.authorId == this.currentUser.id && this.currentRank.deletePostableOwn)
     {
       return [true, ""];
     }
-    // If user is not author of the article and he has permission to delete others postable
+    // If user is not author of the image and he has permission to delete others postable
     else if (this.currentUser && version.authorId != this.currentUser.id && this.currentRank.deletePostableOthers)
     {
       return [true, ""];
@@ -207,9 +207,9 @@ export class AdminPanelManageServiceVersionsComponent {
   }
 
   showEditModal(id : number) {
-    let targetVersion = this.serviceVersions.find(article => article.id === id)
+    let targetVersion = this.serviceVersions.find(image => image.id === id)
     if (targetVersion) {
-      this.editVersionModalShown = true; // Show modal of article that being edited
+      this.editVersionModalShown = true; // Show modal of image that being edited
       this.currentVersionEdited = targetVersion;
 
       this.editVersionForm.controls['id'].setValue(targetVersion.id);
@@ -227,11 +227,11 @@ export class AdminPanelManageServiceVersionsComponent {
   getSuccessDeleteMessage() : string {
     if (this.currentRank.approvementToDeletePostableOthers) 
     {
-      return "Your category is now <b>pending to be deleted</b>. Emperor can approve this request or decline it";
+      return "Your image is now <b>pending to be deleted</b>. Emperor can approve this request or decline it";
     }
     else 
     {
-      return "You have successfully deleted category!";
+      return "You have successfully deleted image!";
     }
   }
 

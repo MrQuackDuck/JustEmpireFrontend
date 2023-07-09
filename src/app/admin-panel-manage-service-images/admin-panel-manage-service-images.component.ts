@@ -1,7 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { ServiceImage } from '../model/serviceImage';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Service } from '../model/service';
+import { User } from '../model/user';
+import { Rank } from '../model/rank';
+import { AuthService } from '../services/auth.service';
+import { LoadingService } from '../services/loading.service';
+import { ServiceImageRepositoryService } from '../services/service-image-repository.service';
+import { AdminSelectedTabService } from '../services/admin-selected-tab.service';
+import { ServiceVersion } from '../model/serviceVersion';
+import { Status } from '../enum/Status';
+import { ServiceRepositoryService } from '../services/service-repository.service';
+import { API_URL } from 'src/globals';
 
 @Component({
   selector: 'app-admin-panel-manage-service-images',
@@ -9,7 +19,12 @@ import { Service } from '../model/service';
   styleUrls: ['./admin-panel-manage-service-images.component.css']
 })
 export class AdminPanelManageServiceImagesComponent {
-  constructor() { }
+  constructor(private authService : AuthService, private loadingService : LoadingService, 
+    private serviceImageRepository : ServiceImageRepositoryService,
+    private adminSelectedTab : AdminSelectedTabService, private formBuilder : FormBuilder,
+    private serviceRepository : ServiceRepositoryService, private renderer : Renderer2,) { }
+
+  API_URL = API_URL;
 
   allServices : Service[];
 
@@ -36,30 +51,160 @@ export class AdminPanelManageServiceImagesComponent {
 
   failModalShown : boolean;
 
+  currentUser? : User;
+  currentRank : Rank;
+
   ngOnInit() { 
+    this.updateData()
+
+    this.adminSelectedTab.selectedTab = 2;
+
+    this.authService.getCurrentRank().subscribe(rank => {
+      this.currentRank = rank
+      console.log(rank);
+    })
     
+    this.authService.getUser().subscribe(user => {
+      this.currentUser = user
+      console.log(user);
+    })
+
+    // Setting up input forms
+    this.newImageForm = this.formBuilder.group({
+      serviceId: new FormControl(null, Validators.required),
+      image : new FormControl(null, Validators.required),
+    });
+
+    this.editImageForm = this.formBuilder.group({
+      id: new FormControl(null, Validators.required),
+      serviceId: new FormControl(null, Validators.required),
+      image : new FormControl(null, Validators.required),
+    });
   }
 
-  viewImage(image : ServiceImage) { }
+  viewImage(version : ServiceImage) {
+    this.viewImageModalShown = true; 
+    this.currentViewedImage = version;
+  }
 
-  showEditModal(imageId : number) { }
-  showDeleteModal(image : ServiceImage) { }
+  showEditModal(imageId : number) { 
+    let targetImage = this.serviceImages.find(image => image.id === imageId)
+    if (targetImage) {
+      this.editImageModalShown = true; // Show modal of image that being edited
+      this.currentImageEdited = targetImage;
 
-  submitNewImage() { }
+      this.editImageForm.controls['id'].setValue(targetImage.id);
+      this.editImageForm.controls['image'].setValue(targetImage.image);
+      this.editImageForm.controls['serviceId'].setValue(targetImage.serviceId);
+    }
+  }
+  
+  showDeleteModal(image : ServiceImage) {
+    this.imageToDelete = image;
+    this.confirmDeleteModalShown = true;
+  }
+
+  submitNewImage() { 
+    if (!this.newImageForm.valid) {
+      return; 
+    }
+
+    this.closeAllModals();
+    this.loadingService.enableLoading();
+    
+    this.serviceImageRepository.create(this.newImageForm.getRawValue()).subscribe(
+      success => {
+        this.loadingService.disableLoading();
+        this.successModalShown = true;
+        this.updateData();
+        this.newImageForm.reset();
+        this.newImageForm.markAsPristine();
+        this.newImageForm.markAsUntouched();
+      },
+      fail => {
+        this.loadingService.disableLoading();
+        this.failModalShown = true;
+      });
+  }
 
   submitEditedImage() { }
 
   deleteImage() { }
   
   canEdit(image : ServiceImage): [boolean, string] { 
-    return [false, ""];
+    if (image.status != Status.POSTED) {
+      return [false, "You can't edit pending image"];
+    }
+
+    // If user is author of the image and he has permission to delete own postable
+    if (this.currentUser && image.authorId == this.currentUser.id && this.currentRank.editPostableOwn)
+    {
+      return [true, ""];
+    }
+    // If user is not author of the image and he has permission to delete others postable
+    else if (this.currentUser && image.authorId != this.currentUser.id && this.currentRank.editPostableOthers)
+    {
+      return [true, ""];
+    }
+
+    return [false, "You don't have enough permissions"];
   }
 
   canDelete(image : ServiceImage): [boolean, string] { 
-    return [false, ""];
+    if (image.status != Status.POSTED) {
+      return [false, "You can't delete unpublished image"];
+    }
+    
+    let target = this.serviceImages.find(a => a.originalId == image.id)
+    if (target) {
+      return [false, `Image ID ${target.id} is pending for action`];
+    }
+
+    // If user is author of the image and he has permission to delete own postable
+    if (this.currentUser && image.authorId == this.currentUser.id && this.currentRank.deletePostableOwn)
+    {
+      return [true, ""];
+    }
+    // If user is not author of the image and he has permission to delete others postable
+    else if (this.currentUser && image.authorId != this.currentUser.id && this.currentRank.deletePostableOthers)
+    {
+      return [true, ""];
+    }
+
+    return [false, "You don't have enough permissions"];
   }
 
-  closeAllModals() { }
+  getSuccessDeleteMessage() : string {
+    if (this.currentRank.approvementToDeletePostableOthers) 
+    {
+      return "Your image is now <b>pending to be deleted</b>. Emperor can approve this request or decline it";
+    }
+    else 
+    {
+      return "You have successfully deleted image!";
+    }
+  }
 
-  updateData() { }
+  closeAllModals() { 
+    this.renderer.removeClass(document.body, 'disable-scroll');
+    this.viewImageModalShown = false;
+    this.newImageModalShown = false;
+    this.editImageModalShown = false;
+    this.confirmDeleteModalShown = false;
+    this.successModalShown = false;
+    this.failModalShown = false;
+  }
+
+  updateData() { 
+    this.loadingService.enableLoading();
+    this.serviceImageRepository.getAllStaff().subscribe((images) => {
+      this.serviceRepository.getAllStaff().subscribe(services => {
+        this.allServices = services;
+        this.newImageForm.controls["serviceId"].setValue(services[0]?.id);
+      });
+
+      this.serviceImages = images;
+      this.loadingService.disableLoading();
+    });
+  }
 }

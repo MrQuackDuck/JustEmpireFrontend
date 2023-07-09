@@ -11,9 +11,9 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Image</th>
                             <th>Author</th>
                             <th>Service name</th>
-                            <th>Title</th>
                             <th>Status</th>
                             <th>Publish date</th>
                             <th>Last change date</th>
@@ -24,9 +24,9 @@
                     <tbody>
                         <tr *ngFor="let image of serviceImages">
                             <td data-title="ID:">{{ image.id }}</td>
+                            <td data-title="Image:"><img src="{{API_URL}}/uploads/{{ image.image }}" /></td>
                             <td data-title="Author:">{{ image.authorId | author | async }}</td>
                             <td tp="Service ID {{ (image.serviceId |serviceName | async)?.id }}" data-title="Service:">{{ (image.serviceId |serviceName | async)?.title }}</td>
-                            <td data-title="Title:">{{ image.title | truncate: 30 }}</td>
                             <td data-title="Status:" [tp]="image.status | statusDescription : 'image'" [tpDelay]="200">{{ image.status | statusCode }}</td>
                             <td data-title="Publish date:">{{ image.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
                             <td data-title="Last change date:">{{ image.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
@@ -53,7 +53,6 @@
 <modal-window [showModal]="newImageModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Create Image</h1>
     <form (ngSubmit)="submitNewImage()" [formGroup]="newImageForm" method="post" enctype="multipart/form-data">
-        <input required="text" formControlName="title" type="text" placeholder="Title">
         <select tp="Select service" formControlName="serviceId" required>
             <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
         </select>
@@ -64,7 +63,6 @@
 <modal-window [showModal]="editImageModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Edit Image</h1>
     <form (ngSubmit)="submitEditedImage()" [formGroup]="editImageForm" method="post" enctype="multipart/form-data">
-        <input value="{{ currentImageEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
         <select formControlName="serviceId" required>
             <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
         </select>

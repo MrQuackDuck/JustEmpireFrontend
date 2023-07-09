@@ -11,6 +11,10 @@ import { CreateImageModel } from '../model/createImageModel';
 export class ServiceImageRepositoryService {
   constructor(private httpClient : HttpClient) { }
 
+  getAllStaff() : Observable<ServiceImage[]> {
+    return this.httpClient.get<ServiceImage[]>(`${API_URL}/API/ServiceImage/GetAllStaff`, { withCredentials: true })
+  }
+
   getCount() : Observable<number> {
     return this.httpClient.get<number>(`${API_URL}/API/ServiceImage/GetCount`, { withCredentials: true })
   }
