@@ -1,0 +1,96 @@
+<main>
+    <div class="title-section">
+        <btn [color]="'gray'" routerLink="/admin">Back</btn>
+        <span class="title">Admin panel - Manage service images</span>
+        <btn (click)="this.newImageModalShown = true">New</btn>
+    </div>
+    <div class="sections-container">
+        <section class="no-padding">
+            <div class="table__wrapper">
+                <table *ngIf="serviceImages">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Author</th>
+                            <th>Service name</th>
+                            <th>Title</th>
+                            <th>Status</th>
+                            <th>Publish date</th>
+                            <th>Last change date</th>
+                            <th>Original ID</th>
+                            <th style="text-align: center;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let image of serviceImages">
+                            <td data-title="ID:">{{ image.id }}</td>
+                            <td data-title="Author:">{{ image.authorId | author | async }}</td>
+                            <td tp="Service ID {{ (image.serviceId |serviceName | async)?.id }}" data-title="Service:">{{ (image.serviceId |serviceName | async)?.title }}</td>
+                            <td data-title="Title:">{{ image.title | truncate: 30 }}</td>
+                            <td data-title="Status:" [tp]="image.status | statusDescription : 'image'" [tpDelay]="200">{{ image.status | statusCode }}</td>
+                            <td data-title="Publish date:">{{ image.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td data-title="Last change date:">{{ image.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td data-title="Original ID:" [tp]="image.status | originalIdTp : image.originalId : 'image'" [tpDelay]="200"><b>{{ image.originalId }}</b></td>
+                            <td class="actions">
+
+                                <div class="wrp"><btn (click)="viewImage(image)" [small]="true" [color]="'green'">View</btn></div>
+                                <div [tp]="canEdit(image)[1]" class="wrp"><btn (click)="showEditModal(image.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(image)[0]}">Edit</btn></div>
+                                <div [tp]="canDelete(image)[1]" class="wrp"><btn (click)="showDeleteModal(image)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(image)[0]}">Delete</btn></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+
+<modal-window [showModal]="viewImageModalShown" (onClose)="closeAllModals()">
+    <h1>{{ currentViewedImage?.title }}</h1>
+    <div class="date">{{ currentViewedImage?.publishDate | date: "MMM d yyyy hh:mm:ss" }}</div>
+</modal-window>
+
+<modal-window [showModal]="newImageModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Create Image</h1>
+    <form (ngSubmit)="submitNewImage()" [formGroup]="newImageForm" method="post" enctype="multipart/form-data">
+        <input required="text" formControlName="title" type="text" placeholder="Title">
+        <select tp="Select service" formControlName="serviceId" required>
+            <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
+        </select>
+        <input class="button" type="submit" value="Create">
+    </form>
+</modal-window>
+
+<modal-window [showModal]="editImageModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Edit Image</h1>
+    <form (ngSubmit)="submitEditedImage()" [formGroup]="editImageForm" method="post" enctype="multipart/form-data">
+        <input value="{{ currentImageEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
+        <select formControlName="serviceId" required>
+            <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
+        </select>
+        <input class="button green" type="submit" value="Confirm edit">
+    </form>
+</modal-window>
+
+<modal-window [showModal]="confirmDeleteModalShown" (onClose)="closeAllModals()">
+    <h1 class="title left">Are you sure?</h1><br>
+    <p>You are about to delete <b>{{ imageToDelete?.title }}</b></p>
+    <div class="block padding-top">
+        <btn (click)="closeAllModals()">Cancel</btn>
+        <btn [color]="'red'" (click)="deleteImage()">Delete</btn>
+    </div>
+</modal-window>
+
+<modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Success!</h1><br>
+    <hr>
+    <p class="message" [innerHTML]="successMessage | safeHtml"></p>
+    <img src="https://media.tenor.com/JzgronqM0nsAAAAM/dancing-steve.gif" alt="">
+</modal-window>
+
+<modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Oops! Something went wrong...</h1><br>
+    <hr>
+    <p class="message"></p>
+    <img src="https://media.discordapp.net/attachments/983448971089432577/1078404457676685402/jsrip.gif" alt="">
+</modal-window>

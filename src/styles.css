@@ -325,6 +325,10 @@ modal-window .sections-container {
     padding: 10px 25px !important;
 }
 
+admin-panel-tab {
+    height: min-content;
+}
+
 @media screen and (max-width: 900px) {
     footer {
         font-size: 16px;
