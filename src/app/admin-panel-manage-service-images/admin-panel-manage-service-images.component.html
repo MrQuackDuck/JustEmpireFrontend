@@ -86,7 +86,7 @@
     </div>
 </modal-window>
 
-<modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
+<modal-window [showModal]="successModalShown" (onClose)="closeAllModals()"> 
     <h1 class="title">Success!</h1><br>
     <hr>
     <p class="message" [innerHTML]="successMessage | safeHtml"></p>
