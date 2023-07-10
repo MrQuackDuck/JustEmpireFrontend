@@ -186,6 +186,7 @@ form select {
     background-color: #2E2E2E;
     font-size: 20px;
     cursor: pointer;
+    width: 100%;
 }
 
 form.ng-submitted .ng-invalid {

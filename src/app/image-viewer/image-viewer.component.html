@@ -3,7 +3,7 @@
         <img *ngIf="images" src="{{ API_URL }}/uploads/{{ (images[selectedImageIndex]).image }}" alt="Screenshot">
     </div>
     <div class="otherImages">
-        <img [ngClass]="{ 'selected': i == selectedImageIndex }" *ngFor="let image of images; index as i" (click)="imageChanged(i)" src="{{ API_URL }}/uploads/{{ image.image }}" alt="Screenshot">
+        <img [ngClass]="{ 'selected': i == selectedImageIndex }" *ngFor="let image of images; index as i" (click)="imageChanged(i)" src="{{ API_URL }}/uploads/{{ image.image }}" alt="">
     </div>
     
     <div (click)="close()" class="close">

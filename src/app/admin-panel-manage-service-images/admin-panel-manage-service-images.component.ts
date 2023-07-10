@@ -12,6 +12,7 @@ import { ServiceVersion } from '../model/serviceVersion';
 import { Status } from '../enum/Status';
 import { ServiceRepositoryService } from '../services/service-repository.service';
 import { API_URL } from 'src/globals';
+import { ImageUploaderService } from '../services/image-uploader.service';
 
 @Component({
   selector: 'app-admin-panel-manage-service-images',
@@ -22,7 +23,8 @@ export class AdminPanelManageServiceImagesComponent {
   constructor(private authService : AuthService, private loadingService : LoadingService, 
     private serviceImageRepository : ServiceImageRepositoryService,
     private adminSelectedTab : AdminSelectedTabService, private formBuilder : FormBuilder,
-    private serviceRepository : ServiceRepositoryService, private renderer : Renderer2,) { }
+    private serviceRepository : ServiceRepositoryService, private renderer : Renderer2,
+    private imageUploader : ImageUploaderService) { }
 
   API_URL = API_URL;
 
@@ -82,6 +84,23 @@ export class AdminPanelManageServiceImagesComponent {
     });
   }
 
+  uploadFile(event: Event, targetForm : FormGroup, browseLabel : HTMLLabelElement) {
+    const element = event.currentTarget as HTMLInputElement;
+    let fileList: FileList | null = element.files;
+    if (fileList) {
+      let file : File = fileList[0];
+      this.imageUploader.uploadImage(file).subscribe(file => {
+        let filename = file.filename;
+        browseLabel.innerHTML = `<img src='${API_URL}/uploads/${filename}'>`;
+        try 
+        {
+          targetForm.controls['image'].setValue(filename);
+        } 
+        catch { }
+      });
+    }
+  }
+
   viewImage(version : ServiceImage) {
     this.viewImageModalShown = true; 
     this.currentViewedImage = version;
@@ -96,6 +115,9 @@ export class AdminPanelManageServiceImagesComponent {
       this.editImageForm.controls['id'].setValue(targetImage.id);
       this.editImageForm.controls['image'].setValue(targetImage.image);
       this.editImageForm.controls['serviceId'].setValue(targetImage.serviceId);
+
+      let label : any = document.querySelector('.upload-photo-label-edit');
+      label.innerHTML = `<img src='${API_URL}/uploads/${targetImage.image}'>`;
     }
   }
   
@@ -120,6 +142,9 @@ export class AdminPanelManageServiceImagesComponent {
         this.newImageForm.reset();
         this.newImageForm.markAsPristine();
         this.newImageForm.markAsUntouched();
+
+        let browseImageLabel : any = document.querySelector('.upload-photo-label'); 
+        browseImageLabel.innerHTML = "<span>Browse</span>";
       },
       fail => {
         this.loadingService.disableLoading();
@@ -127,7 +152,26 @@ export class AdminPanelManageServiceImagesComponent {
       });
   }
 
-  submitEditedImage() { }
+  submitEditedImage() { 
+    if (!this.editImageForm.valid) {
+      return; 
+    }
+
+    this.closeAllModals();
+    this.loadingService.enableLoading();
+    
+    this.serviceImageRepository.edit(this.editImageForm.getRawValue()).subscribe(
+      success => {
+        this.loadingService.disableLoading();
+        this.successModalShown = true;
+        this.editImageForm.reset();
+        this.updateData()
+      },
+      fail => {
+        this.loadingService.disableLoading();
+        this.failModalShown = true;
+      });
+  }
 
   deleteImage() { }
   

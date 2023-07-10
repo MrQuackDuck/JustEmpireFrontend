@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ServiceImage } from '../model/serviceImage';
 import { API_URL } from 'src/globals';
 import { CreateImageModel } from '../model/createImageModel';
+import { EditImageModel } from '../model/editImageModel';
 
 @Injectable({
   providedIn: 'root'
@@ -35,12 +36,22 @@ export class ServiceImageRepositoryService {
     })
   }
 
-  create(createImageModel : CreateImageModel) {
-    let serviceId = createImageModel.serviceId;
-    let image = createImageModel.image;
+  create(imageModel : CreateImageModel) {
+    let serviceId = imageModel.serviceId;
+    let image = imageModel.image;
 
     return this.httpClient.post<any>(`${API_URL}/API/ServiceImage/Create`, 
     { serviceId, image },
+    { withCredentials: true });
+  }
+
+  edit(imageModel: EditImageModel): Observable<boolean> {
+    let id = imageModel.id
+    let serviceId = imageModel.serviceId;
+    let image = imageModel.image;
+
+    return this.httpClient.put<boolean>(`${API_URL}/API/ServiceImage/Edit`, 
+    { id, serviceId, image },
     { withCredentials: true });
   }
 }

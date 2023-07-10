@@ -277,6 +277,10 @@ form .upload-photo-label img {
     max-height: 300px;
 }
 
+form input[type="submit"] {
+    position: initial !important;
+}
+
 .container .content {
     padding: 22px 40px;
     padding-bottom: 20px;
@@ -327,6 +331,18 @@ modal-window .sections-container {
 
 admin-panel-tab {
     height: min-content;
+}
+
+form .select-wrapper::before, form input::before {
+    content: attr(data-title);
+    color: #6b6b6b;
+    font-size: 16px;
+    font-weight: bold;
+    padding-right: 10px;
+    display: block;
+    width: 100%;
+    bottom: 2px;
+    position: relative;
 }
 
 @media screen and (max-width: 900px) {

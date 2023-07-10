@@ -37,8 +37,8 @@
                             <td data-title="Original ID:" [tp]="service.status | originalIdTp : service.originalId : 'service'" [tpDelay]="200"><b>{{ service.originalId }}</b></td>
                             <td class="actions">
                                 <div class="wrp"><btn (click)="viewService(service)" [small]="true" [color]="'green'">View</btn></div>
-                                <div [tp]="canEdit(service)[1]" class="wrp"><btn (click)="showEditModal(service.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(service)[0]}">Edit</btn></div>
-                                <div [tp]="canDelete(service)[1]" class="wrp"><btn (click)="showServiceDeleteModal(service)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(service)[0]}">Delete</btn></div>
+                                <div [tp]="canEdit(service)[1]" [tpIsEnabled]="canEdit(service)[1].length > 0" class="wrp"><btn (click)="showEditModal(service.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(service)[0]}">Edit</btn></div>
+                                <div [tp]="canDelete(service)[1]" [tpIsEnabled]="canDelete(service)[1].length > 0" class="wrp"><btn (click)="showServiceDeleteModal(service)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(service)[0]}">Delete</btn></div>
                             </td>
                         </tr>
                     </tbody>

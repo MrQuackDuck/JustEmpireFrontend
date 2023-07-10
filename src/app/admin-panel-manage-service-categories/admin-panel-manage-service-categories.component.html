@@ -32,8 +32,8 @@
                             <td data-title="Last change date:">{{ category.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
                             <td data-title="Original ID:" [tp]="category.status | originalIdTp : category.originalId : 'category'" [tpDelay]="200"><b>{{ category.originalId }}</b></td>
                             <td class="actions">
-                                <div [tp]="canEdit(category)[1]" class="wrp"><btn (click)="showEditModal(category.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(category)[0]}">Edit</btn></div>
-                                <div [tp]="canDelete(category)[1]" class="wrp"><btn (click)="showDeleteModal(category)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(category)[0]}">Delete</btn></div>
+                                <div [tp]="canEdit(category)[1]" [tpIsEnabled]="canEdit(category)[1].length > 0" class="wrp"><btn (click)="showEditModal(category.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(category)[0]}">Edit</btn></div>
+                                <div [tp]="canDelete(category)[1]" [tpIsEnabled]="canDelete(category)[1].length > 0" class="wrp"><btn (click)="showDeleteModal(category)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(category)[0]}">Delete</btn></div>
                             </td>
                         </tr>
                     </tbody>

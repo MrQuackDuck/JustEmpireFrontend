@@ -34,8 +34,8 @@
                             <td class="actions">
 
                                 <div class="wrp"><btn (click)="viewVersion(version)" [small]="true" [color]="'green'">View</btn></div>
-                                <div [tp]="canEdit(version)[1]" class="wrp"><btn (click)="showEditModal(version.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(version)[0]}">Edit</btn></div>
-                                <div [tp]="canDelete(version)[1]" class="wrp"><btn (click)="showDeleteModal(version)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(version)[0]}">Delete</btn></div>
+                                <div [tp]="canEdit(version)[1]" [tpIsEnabled]="canEdit(version)[1].length > 0" class="wrp"><btn (click)="showEditModal(version.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(version)[0]}">Edit</btn></div>
+                                <div [tp]="canDelete(version)[1]" [tpIsEnabled]="canDelete(version)[1].length > 0" class="wrp"><btn (click)="showDeleteModal(version)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(version)[0]}">Delete</btn></div>
                             </td>
                         </tr>
                     </tbody>

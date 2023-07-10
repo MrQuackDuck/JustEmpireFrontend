@@ -24,7 +24,7 @@
                     <tbody>
                         <tr *ngFor="let image of serviceImages">
                             <td data-title="ID:">{{ image.id }}</td>
-                            <td data-title="Image:"><img src="{{API_URL}}/uploads/{{ image.image }}" /></td>
+                            <td data-title="Image:"><img style="cursor: zoom-in;" (click)="viewImage(image)" src="{{API_URL}}/uploads/{{ image.image }}" /></td>
                             <td data-title="Author:">{{ image.authorId | author | async }}</td>
                             <td tp="Service ID {{ (image.serviceId |serviceName | async)?.id }}" data-title="Service:">{{ (image.serviceId |serviceName | async)?.title }}</td>
                             <td data-title="Status:" [tp]="image.status | statusDescription : 'image'" [tpDelay]="200">{{ image.status | statusCode }}</td>
@@ -34,8 +34,8 @@
                             <td class="actions">
 
                                 <div class="wrp"><btn (click)="viewImage(image)" [small]="true" [color]="'green'">View</btn></div>
-                                <div [tp]="canEdit(image)[1]" class="wrp"><btn (click)="showEditModal(image.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(image)[0]}">Edit</btn></div>
-                                <div [tp]="canDelete(image)[1]" class="wrp"><btn (click)="showDeleteModal(image)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(image)[0]}">Delete</btn></div>
+                                <div [tp]="canEdit(image)[1]" [tpIsEnabled]="canEdit(image)[1].length > 0" class="wrp"><btn (click)="showEditModal(image.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(image)[0]}">Edit</btn></div>
+                                <div [tp]="canDelete(image)[1]" [tpIsEnabled]="canDelete(image)[1].length > 0" class="wrp"><btn (click)="showDeleteModal(image)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(image)[0]}">Delete</btn></div>
                             </td>
                         </tr>
                     </tbody>
@@ -45,17 +45,20 @@
     </div>
 </main>
 
-<modal-window [showModal]="viewImageModalShown" (onClose)="closeAllModals()">
-    <h1>{{ currentViewedImage?.title }}</h1>
-    <div class="date">{{ currentViewedImage?.publishDate | date: "MMM d yyyy hh:mm:ss" }}</div>
+<modal-window [showModal]="viewImageModalShown" [noPadding]="true" (onClose)="closeAllModals()">
+    <img src="{{ API_URL }}/uploads/{{ currentViewedImage?.image }}" alt="">
 </modal-window>
 
 <modal-window [showModal]="newImageModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Create Image</h1>
     <form (ngSubmit)="submitNewImage()" [formGroup]="newImageForm" method="post" enctype="multipart/form-data">
-        <select tp="Select service" formControlName="serviceId" required>
-            <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
-        </select>
+        <div data-title="Target service" class="select-wrapper">
+            <select tp="Select service" formControlName="serviceId" required>
+                <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
+            </select>
+        </div>
+        <label [class.ng-invalid]="newImageForm.controls['image'].invalid" #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-new" for="upload-photo-new"><span>Browse</span></label>
+        <input (change)="uploadFile($event, newImageForm, uploadPhotoLabelEdit)" id="upload-photo-new" accept="image/*" type="file">
         <input class="button" type="submit" value="Create">
     </form>
 </modal-window>
@@ -63,16 +66,20 @@
 <modal-window [showModal]="editImageModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Edit Image</h1>
     <form (ngSubmit)="submitEditedImage()" [formGroup]="editImageForm" method="post" enctype="multipart/form-data">
-        <select formControlName="serviceId" required>
-            <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
-        </select>
+        <div data-title="Target service" class="select-wrapper">
+            <select formControlName="serviceId" required>
+                <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
+            </select>
+        </div>
+        <label [class.ng-invalid]="editImageForm.controls['image'].invalid" #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo-edit"><span>Browse</span></label>
+        <input (change)="uploadFile($event, editImageForm, uploadPhotoLabelEdit)" id="upload-photo-edit" accept="image/*" type="file">
         <input class="button green" type="submit" value="Confirm edit">
     </form>
 </modal-window>
 
 <modal-window [showModal]="confirmDeleteModalShown" (onClose)="closeAllModals()">
     <h1 class="title left">Are you sure?</h1><br>
-    <p>You are about to delete <b>{{ imageToDelete?.title }}</b></p>
+    <p>You are about to delete image <b>ID {{ imageToDelete?.id }}</b></p>
     <div class="block padding-top">
         <btn (click)="closeAllModals()">Cancel</btn>
         <btn [color]="'red'" (click)="deleteImage()">Delete</btn>
