@@ -43,6 +43,8 @@ import { AdminPanelManageServiceCategoriesComponent } from './admin-panel-manage
 import { AdminPanelManageServiceVersionsComponent } from './admin-panel-manage-service-versions/admin-panel-manage-service-versions.component';
 import { ServiceNamePipe } from './pipes/service-name.pipe';
 import { AdminPanelManageServiceImagesComponent } from './admin-panel-manage-service-images/admin-panel-manage-service-images.component';
+import { AdminPanelManageUsersComponent } from './admin-panel-manage-users/admin-panel-manage-users.component';
+import { RankPipe } from './pipes/rank.pipe';
 
 @NgModule({
   declarations: [
@@ -78,10 +80,12 @@ import { AdminPanelManageServiceImagesComponent } from './admin-panel-manage-ser
     OriginalIdTooltip,
     AuthorPipe,
     ServiceCategoryPipe,
+    RankPipe,
     ServicePageContentComponent,
     AdminPanelManageServiceCategoriesComponent,
     AdminPanelManageServiceVersionsComponent,
     AdminPanelManageServiceImagesComponent,
+    AdminPanelManageUsersComponent,
   ],
   imports: [
     BrowserModule,

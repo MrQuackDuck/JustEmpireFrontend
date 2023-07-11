@@ -173,7 +173,29 @@ export class AdminPanelManageServiceImagesComponent {
       });
   }
 
-  deleteImage() { }
+  deleteImage() { 
+    this.closeAllModals();
+    this.loadingService.enableLoading();
+
+    if (this.imageToDelete) {
+      this.serviceImageRepository.delete(this.imageToDelete.id).subscribe(
+        success => {
+          this.loadingService.disableLoading();
+          this.successMessage = this.getSuccessDeleteMessage();
+          this.successModalShown = true;
+          this.updateData()
+        },
+        fail => {
+          this.loadingService.disableLoading();
+          this.failModalShown = true;
+        });
+    }
+    else
+    {
+      this.loadingService.disableLoading();
+      this.failModalShown = true;
+    }
+  }
   
   canEdit(image : ServiceImage): [boolean, string] { 
     if (image.status != Status.POSTED) {

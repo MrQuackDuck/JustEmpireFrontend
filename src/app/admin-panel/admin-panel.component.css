@@ -141,6 +141,7 @@ aside form {
   @media screen and (max-width: 1000px) {
     .sections-container {
         flex-direction: column-reverse;
+        padding: 20px;
     }
 
     aside {

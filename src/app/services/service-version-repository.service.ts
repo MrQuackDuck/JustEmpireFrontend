@@ -12,23 +12,21 @@ import { EditVersionModel } from '../model/editVersionModel';
 export class ServiceVersionRepositoryService {
   constructor(private httpClient : HttpClient) { }
 
-  create(serviceModel: CreateVersionModel): Observable<ServiceVersion> {
-    console.log(serviceModel);
-    
-    let title = serviceModel.title;
-    let text = serviceModel.text;
-    let serviceId = serviceModel.serviceId;
+  create(versionModel: CreateVersionModel): Observable<ServiceVersion> {
+    let title = versionModel.title;
+    let text = versionModel.text;
+    let serviceId = versionModel.serviceId;
 
     return this.httpClient.post<ServiceVersion>(`${API_URL}/API/ServiceVersion/Create`, 
     { title, text, serviceId },
     { withCredentials: true });
   }
 
-  edit(serviceModel: EditVersionModel) : Observable<ServiceVersion> {
-    let id = serviceModel.id
-    let title = serviceModel.title;
-    let text = serviceModel.text;
-    let serviceId = serviceModel.serviceId;
+  edit(versionModel: EditVersionModel) : Observable<ServiceVersion> {
+    let id = versionModel.id
+    let title = versionModel.title;
+    let text = versionModel.text;
+    let serviceId = versionModel.serviceId;
 
     return this.httpClient.put<ServiceVersion>(`${API_URL}/API/ServiceVersion/Edit`, 
     { id, title, text, serviceId },

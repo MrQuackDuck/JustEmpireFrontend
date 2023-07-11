@@ -54,11 +54,15 @@
 <modal-window [showModal]="newVersionModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Create Version</h1>
     <form (ngSubmit)="submitNewVersion()" [formGroup]="newVersionForm" method="post" enctype="multipart/form-data">
-        <input required="text" formControlName="title" type="text" placeholder="Title">
+        <div data-title="Version name" class="tip">
+            <input required="text" formControlName="title" type="text" placeholder="Title">
+        </div>
         <quill-editor [modules]="quillModules" formControlName="text"></quill-editor>
-        <select tp="Select service" formControlName="serviceId" required>
-            <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
-        </select>
+        <div data-title="Target service (to which the version will be applied)" class="tip">
+            <select tp="Select service" formControlName="serviceId" required>
+                <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
+            </select>
+        </div>
         <input class="button" type="submit" value="Create">
     </form>
 </modal-window>
@@ -66,11 +70,15 @@
 <modal-window [showModal]="editVersionModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Edit Version</h1>
     <form (ngSubmit)="submitEditedVersion()" [formGroup]="editVersionForm" method="post" enctype="multipart/form-data">
-        <input value="{{ currentVersionEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
+        <div data-title="Version title" class="tip">
+            <input value="{{ currentVersionEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
+        </div>
         <quill-editor [modules]="quillModules" formControlName="text"></quill-editor>
-        <select formControlName="serviceId" required>
-            <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
-        </select>
+        <div data-title="Target service (to which the version is applied)" class="tip">
+            <select formControlName="serviceId" required>
+                <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
+            </select>
+        </div>
         <input class="button green" type="submit" value="Confirm edit">
     </form>
 </modal-window>

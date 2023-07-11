@@ -46,10 +46,14 @@
 <modal-window [showModal]="newCategoryModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Create Category</h1>
     <form (ngSubmit)="submitNewCategory()" [formGroup]="newCategoryForm" method="post" enctype="multipart/form-data">
-        <input required="text" formControlName="title" type="text" placeholder="Title">
-        <select formControlName="language" required>
-            <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
-        </select>
+        <div data-title="Category title" class="tip">
+            <input required="text" formControlName="title" type="text" placeholder="Title">
+        </div>
+        <div data-title="Category language" class="tip">
+            <select formControlName="language" required>
+                <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
+            </select>
+        </div>
         <input class="button" type="submit" value="Create">
     </form>
 </modal-window>
@@ -57,10 +61,14 @@
 <modal-window [showModal]="editCategoryModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Edit Category</h1>
     <form (ngSubmit)="submitEditedCategory()" [formGroup]="editCategoryForm" method="post" enctype="multipart/form-data">
-        <input value="{{ currentCategoryEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
-        <select formControlName="language" required>
-            <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
-        </select>
+        <div data-title="Category title" class="tip">
+            <input value="{{ currentCategoryEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
+        </div>
+        <div data-title="Category language" class="tip">
+            <select formControlName="language" required>
+                <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
+            </select>
+        </div>
         <input class="button green" type="submit" value="Confirm edit">
     </form>
 </modal-window>

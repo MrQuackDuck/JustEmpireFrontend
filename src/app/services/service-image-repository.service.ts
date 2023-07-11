@@ -54,4 +54,12 @@ export class ServiceImageRepositoryService {
     { id, serviceId, image },
     { withCredentials: true });
   }
+
+  delete(id : number) : Observable<boolean> {
+    return this.httpClient.get<any>(`${API_URL}/API/ServiceImage/Delete`, { 
+      params: { 
+        "imageId": id
+      }, withCredentials: true
+    })
+  }
 }

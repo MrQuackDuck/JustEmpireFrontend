@@ -55,27 +55,41 @@
 <modal-window [showModal]="newServiceModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Create Service</h1>
     <form (ngSubmit)="submitNewService(uploadPhotoLabelNew)" [formGroup]="newServiceForm" method="post" enctype="multipart/form-data">
-        <input required="text" formControlName="title" type="text" placeholder="Title">
+        <div data-title="Service title" class="tip">
+            <input required="text" formControlName="title" type="text" placeholder="Title">
+        </div>
         <quill-editor [modules]="quillModules" formControlName="text"></quill-editor>
-        <input required="text" formControlName="url" type="text" placeholder="URL">
-        <select formControlName="language" required>
-            <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
-        </select>
-        <select formControlName="categoryId" required>
-            <option *ngFor="let category of categories;" [ngValue]="category.id">{{ category.title }}</option>
-        </select>
-        <select formControlName="isDownloadable" required>
-            <option [ngValue]="true">Downloadable ['Download' button]</option>
-            <option [ngValue]="true">Not downloadable ['Visit' button]</option>
-        </select>
-        <label [class.ng-invalid]="newServiceForm.controls['titleImage'].invalid" #uploadPhotoLabelNew class="upload-photo-label" for="upload-photo"><span>Browse</span></label>
+        <div data-title="Service URL (will be applied to 'Visit' or 'Download' button)" class="tip">
+            <input required="text" formControlName="url" type="text" placeholder="URL">
+        </div>
+        <div data-title="Service language" class="tip">
+            <select formControlName="language" required>
+                <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
+            </select>
+        </div>
+        <div data-title="Service category" class="tip">
+            <select formControlName="categoryId" required>
+                <option *ngFor="let category of categories;" [ngValue]="category.id">{{ category.title }}</option>
+            </select>
+        </div>
+        <div data-title="Is downlodable?" class="tip">
+            <select formControlName="isDownloadable" required>
+                <option [ngValue]="true">Downloadable ['Download' button]</option>
+                <option [ngValue]="true">Not downloadable ['Visit' button]</option>
+            </select>
+        </div>
+        <div data-title="Title image (recommended aspect ratio 1 : 1)" class="tip">
+            <label [class.ng-invalid]="newServiceForm.controls['titleImage'].invalid" #uploadPhotoLabelNew class="upload-photo-label" for="upload-photo"><span>Browse</span></label>
+        </div>
         <input (change)="uploadFile($event, newServiceForm, uploadPhotoLabelNew)" id="upload-photo" accept="image/*" formControlName="titleImage" type="file" placeholder="Title image">
-        <div class="screenshots">
-            <label *ngFor="let screenshot of newServiceScreenshots; index as i" tp="Remove screenshot" [tpDelay]="200" (click)="removeScreenshot(i, newServiceScreenshots)" class="upload-photo-label screenshot"><img src='{{ API_URL }}/uploads/{{ screenshot.screenshot }}'></label>
+        <div data-title="Service screenshots" class="tip">
+            <div class="screenshots">
+                <label *ngFor="let screenshot of newServiceScreenshots; index as i" tp="Remove screenshot" [tpDelay]="200" (click)="removeScreenshot(i, newServiceScreenshots)" class="upload-photo-label screenshot"><img src='{{ API_URL }}/uploads/{{ screenshot.screenshot }}'></label>
 
-            <label class="upload-photo-label upload-photo-label" for="upload-screenshot-new-service-1"><span>Add screenshot</span></label>
-            <input (change)="uploadScreenshot($event, newServiceScreenshots, newServiceScreenshots.length)" id="upload-screenshot-new-service-1" accept="image/*" type="file">
-         </div>
+                <label class="upload-photo-label upload-photo-label" for="upload-screenshot-new-service-1"><span>Add screenshot</span></label>
+                <input (change)="uploadScreenshot($event, newServiceScreenshots, newServiceScreenshots.length)" id="upload-screenshot-new-service-1" accept="image/*" type="file">
+            </div>
+        </div>
         <input class="button" type="submit" value="Create">
     </form>
 </modal-window>
@@ -83,22 +97,34 @@
 <modal-window [showModal]="editServiceModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Edit Service</h1>
     <form (ngSubmit)="submitEditedService()" [formGroup]="editServiceForm" method="post" enctype="multipart/form-data">
-        <input value="{{ currentServiceEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
+        <div data-title="Service title" class="tip">
+            <input value="{{ currentServiceEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
+        </div>
         <quill-editor [modules]="quillModules" formControlName="text">{{ currentServiceEdited?.text }}</quill-editor>
-        <input required="text" formControlName="url" type="text" placeholder="URL">
-        <select formControlName="language" required>
-            <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
-        </select>
-        <select formControlName="categoryId" required>
-            <option *ngFor="let category of categories; index as i" [ngValue]="category.id">{{ category.title }}</option>
-        </select>
-        <select formControlName="isDownloadable" required>
-            <option [ngValue]="true">Downloadable ['Download' button]</option>
-            <option [ngValue]="true">Not downloadable ['Visit' button]</option>
-        </select>
-        <label [class.ng-invalid]="editServiceForm.controls['titleImage'].invalid" #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo-edit"><span>Browse</span></label>
+        <div data-title="Service URL (will be applied to 'Visit' or 'Download' button)" class="tip">
+            <input required="text" formControlName="url" type="text" placeholder="URL">
+        </div>
+        <div data-title="Service language" class="tip">
+            <select formControlName="language" required>
+                <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
+            </select>
+        </div>
+        <div data-title="Service category" class="tip">
+            <select formControlName="categoryId" required>
+                <option *ngFor="let category of categories; index as i" [ngValue]="category.id">{{ category.title }}</option>
+            </select>
+        </div>
+        <div data-title="Is downlodable?" class="tip">
+            <select formControlName="isDownloadable" required>
+                <option [ngValue]="true">Downloadable ['Download' button]</option>
+                <option [ngValue]="true">Not downloadable ['Visit' button]</option>
+            </select>
+        </div>
+        <div data-title="Title image (recommended aspect ratio 1 : 1)" class="tip">
+            <label [class.ng-invalid]="editServiceForm.controls['titleImage'].invalid" #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo-edit"><span>Browse</span></label>
+        </div>
         <input (change)="uploadFile($event, editServiceForm, uploadPhotoLabelEdit)" id="upload-photo-edit" accept="image/*" type="file">
-        <span class="tip">*If you want to manage screenshots, you should go to dedicated page of admin panel</span>
+        <span class="suggestion">*If you want to manage screenshots, you should go to dedicated page of admin panel</span>
 
         <input class="button green" type="submit" value="Confirm edit">
     </form>

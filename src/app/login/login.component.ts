@@ -29,10 +29,14 @@ export class LoginComponent {
   }
 
   submit() : void {
+    this.loadingService.enableLoading();
     let formData = this.form.getRawValue();
     this.authService.login(formData.username, formData.password)
       .subscribe(() => this.router.navigate(['/admin']),
-      error => this.showError = true);
+      error => {
+        this.showError = true;
+        this.loadingService.disableLoading();
+      });
   }
 }
 

@@ -120,10 +120,6 @@ modal-window .block.padding-top {
     padding-top: 50px;
 }
 
-modal-window .suggestion {
-    color: #a2a2a2;
-}
-
 form {
     width: 100%;
     display: flex;
@@ -160,11 +156,10 @@ form .upload-photo-label {
 }
 
 form .upload-photo-label span {
-    display: flex;
+    display: block;
     padding: 40px 14px;
     width: 100%;
     text-align: left;
-    align-items: center;
 }
 
 form .upload-photo-label:hover {
@@ -196,31 +191,6 @@ form select {
 form.ng-submitted .ng-invalid {
     border-color: #FF6363;
     outline: 1px solid #FF6363;
-}
-
-form .screenshots {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-}
-
-form .screenshots label {
-    flex: 1 0 21%; /* explanation below */
-    width: 100%;
-}
-
-.screenshot .screenshot {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-}
-
-div .screenshot img {
-    max-height: unset;
-}
-
-div .screenshot:hover img {
-    filter: saturate(2.2) blur(3px) grayscale(1);
 }
 
 @media screen and (max-width: 1150px) {

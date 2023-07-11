@@ -197,6 +197,7 @@ form.ng-submitted .ng-invalid {
 td img {
     max-width: 12em;
     max-height: 6em;
+    border-radius: 4px;
 }
 
 @media screen and (max-width: 1150px) {

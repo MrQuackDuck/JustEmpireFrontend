@@ -20,7 +20,7 @@
       </div>
 
       <div *ngIf="selectedTabService.selectedTab == 3" class="tabs">          
-        <admin-panel-tab *ngIf="currentUser?.rank == 'Emperor'" [title]="'Manage users'" [grayText]="userCount" routerLink="/admin/stats" [icon]="'../../assets/images/admin/manageUsers.svg'"/>
+        <admin-panel-tab *ngIf="currentUser?.rank == 'Emperor'" [title]="'Manage users'" [grayText]="userCount" routerLink="/admin/manageUsers" [icon]="'../../assets/images/admin/manageUsers.svg'"/>
 
         <admin-panel-tab *ngIf="currentUser?.rank == 'Emperor'" [title]="'Awaiting approvements'" [grayText]="'APPROVEMENTS COUNT'" routerLink="stats" [icon]="'../../assets/images/admin/approvements.svg'"/>
       </div>

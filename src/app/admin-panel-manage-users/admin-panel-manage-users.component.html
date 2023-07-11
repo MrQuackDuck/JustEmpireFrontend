@@ -1,0 +1,90 @@
+<main>
+    <div class="title-section">
+        <btn [color]="'gray'" routerLink="/admin">Back</btn>
+        <span class="title">Admin panel - Manage users</span>
+        <btn (click)="this.newUserModalShown = true">New</btn>
+    </div>
+    <div class="sections-container">
+        <section class="no-padding">
+            <div class="table__wrapper">
+                <table *ngIf="users">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Rank</th>
+                            <th style="text-align: center;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users">
+                            <td data-title="ID:">{{ user.id }}</td>
+                            <td data-title="Username:">{{ user.username | truncate: 30 }}</td>
+                            <td data-title="Rank:">{{ user.rankId | rank | async }}</td>
+                            <td class="actions">
+                                <div class="wrp"><btn (click)="showEditModal(user.id)" [small]="true" [color]="'orange'">Edit</btn></div>
+                                <div [tp]="canDelete(user)[1]" [tpIsEnabled]="canDelete(user)[1].length > 0" class="wrp"><btn (click)="showDeleteModal(user)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(user)[0]}">Delete</btn></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+
+<modal-window [showModal]="newUserModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Create User</h1>
+    <form (ngSubmit)="submitNewUser()" [formGroup]="newUserForm" method="post" enctype="multipart/form-data">
+        <div data-title="Username" class="tip">
+            <input required="text" formControlName="username" type="text" placeholder="Username">
+        </div>
+        <div data-title="Password" class="tip">
+            <input required="text" formControlName="password" type="text" placeholder="Password">
+        </div>
+        <div data-title="User rank" class="tip">
+            <select formControlName="rankId" required>
+                <option *ngFor="let rank of ranks; index as i" [ngValue]="rank.id">{{ rank.name }}</option>
+            </select>
+        </div>
+        <input class="button" type="submit" value="Create">
+    </form>
+</modal-window>
+
+<modal-window [showModal]="editUserModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Edit User</h1>
+    <form (ngSubmit)="submitEditedUser()" [formGroup]="editUserForm" method="post" enctype="multipart/form-data">
+        <div data-title="Username" class="tip">
+            <input value="{{ currentUserEdited?.username }}" required="text" formControlName="username" type="text" placeholder="Title">
+        </div>
+        <div data-title="User rank" class="tip">
+            <select formControlName="rankId" required>
+                <option *ngFor="let rank of ranks; index as i" [ngValue]="rank.id">{{ rank.name }}</option>
+            </select>
+        </div>
+        <input class="button green" type="submit" value="Confirm edit">
+    </form>
+</modal-window>
+
+<modal-window [showModal]="confirmDeleteModalShown" (onClose)="closeAllModals()">
+    <h1 class="title left">Are you sure?</h1><br>
+    <p>You are about to delete <b>{{ userToDelete?.username }}</b></p>
+    <div class="block padding-top">
+        <btn (click)="closeAllModals()">Cancel</btn>
+        <btn [color]="'red'" (click)="deleteUser()">Delete</btn>
+    </div>
+</modal-window>
+
+<modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Success!</h1><br>
+    <hr>
+    <p class="message" [innerHTML]="successMessage | safeHtml"></p>
+    <img src="https://media.tenor.com/JzgronqM0nsAAAAM/dancing-steve.gif" alt="">
+</modal-window>
+
+<modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Oops! Something went wrong...</h1><br>
+    <hr>
+    <p class="message"></p>
+    <img src="https://media.discordapp.net/attachments/983448971089432577/1078404457676685402/jsrip.gif" alt="">
+</modal-window>

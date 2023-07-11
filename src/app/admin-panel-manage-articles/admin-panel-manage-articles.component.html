@@ -60,12 +60,18 @@
 <modal-window [showModal]="newArticleModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Create Article</h1>
     <form (ngSubmit)="submitNewArticle(uploadPhotoLabelNew)" [formGroup]="newArticleForm" method="post" enctype="multipart/form-data">
-        <input required="text" formControlName="title" type="text" placeholder="Title">
+        <div data-title="Article title" class="tip">
+            <input data-title="Title" required="text" formControlName="title" type="text" placeholder="Title">
+        </div>
         <quill-editor [modules]="quillModules" formControlName="text"></quill-editor>
-        <select formControlName="language" required>
-            <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
-        </select>
-        <label [class.ng-invalid]="newArticleForm.controls['titleImage'].invalid" #uploadPhotoLabelNew class="upload-photo-label" for="upload-photo"><span>Browse</span></label>
+        <div data-title="Article language" class="tip">
+            <select formControlName="language" required>
+                <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
+            </select>
+        </div>
+        <div data-title="Article title image" class="tip">
+            <label [class.ng-invalid]="newArticleForm.controls['titleImage'].invalid" #uploadPhotoLabelNew class="upload-photo-label" for="upload-photo"><span>Browse</span></label>
+        </div>
         <input (change)="uploadFile($event, newArticleForm, uploadPhotoLabelNew)" id="upload-photo" accept="image/*" formControlName="titleImage" type="file" placeholder="Title image">
         <input class="button" type="submit" value="Create">
     </form>
@@ -74,12 +80,18 @@
 <modal-window [showModal]="editArticleModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Edit Article</h1>
     <form (ngSubmit)="submitEditedArticle()" [formGroup]="editArticleForm" method="post" enctype="multipart/form-data">
-        <input value="{{ currentArticleEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
+        <div data-title="Article title" class="tip">
+            <input value="{{ currentArticleEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
+        </div>
         <quill-editor [modules]="quillModules" formControlName="text">{{ currentArticleEdited?.text }}</quill-editor>
-        <select formControlName="language" required>
-            <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
-        </select>
-        <label [class.ng-invalid]="editArticleForm.controls['titleImage'].invalid" #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo-edit"><span>Browse</span></label>
+        <div data-title="Article language" class="tip">
+            <select formControlName="language" required>
+                <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
+            </select>
+        </div>
+        <div data-title="Article title image" class="tip">
+            <label [class.ng-invalid]="editArticleForm.controls['titleImage'].invalid" #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo-edit"><span>Browse</span></label>
+        </div>
         <input (change)="uploadFile($event, editArticleForm, uploadPhotoLabelEdit)" id="upload-photo-edit" accept="image/*" type="file">
         <input class="button green" type="submit" value="Confirm edit">
     </form>

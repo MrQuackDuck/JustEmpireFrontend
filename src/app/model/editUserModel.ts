@@ -1,6 +1,5 @@
-export class User {
+export class EditUserModel {
     id : number;
     username : string;
     rankId : number;
-    rank : string;
 }

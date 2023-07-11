@@ -333,7 +333,11 @@ admin-panel-tab {
     height: min-content;
 }
 
-form .select-wrapper::before, form input::before {
+form .tip input, form .tip select {
+    width: 100%;
+}
+
+form .select-wrapper::before, form .tip::before {
     content: attr(data-title);
     color: #6b6b6b;
     font-size: 16px;
