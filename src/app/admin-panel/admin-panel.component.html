@@ -26,6 +26,8 @@
       </div>
 
       <div *ngIf="selectedTabService.selectedTab == 4" class="tabs">          
+        <admin-panel-tab (click)="changePasswordModalShown = true" [title]="'Change password'" [icon]="'../../assets/images/admin/changePassword.svg'"/>
+
         <admin-panel-tab (click)="logout()" [title]="'Logout'" [icon]="'../../assets/images/admin/logout.svg'"/>
       </div>
       
@@ -61,3 +63,34 @@
       </aside>
   </div>
 </main>
+
+<modal-window [showModal]="changePasswordModalShown" (onClose)="changePasswordModalShown = false">
+  <h1 class="title">Change password</h1><br>
+  <span *ngIf="passwordsDontMatch" class="error">Passwords don't match!</span>
+  <form (ngSubmit)="changePassword()" [formGroup]="changePasswordForm">
+    <div data-title="Current password" class="tip">
+      <input placeholder="Your current password" formControlName="oldPassword" type="password">
+    </div>
+    <div data-title="New password" class="tip">
+      <input [ngClass]="{ 'ng-invalid': passwordsDontMatch }" placeholder="New password you want to set" formControlName="newPassword" type="password">
+    </div>
+    <div data-title="New password confirm" class="tip">
+      <input [ngClass]="{ 'ng-invalid': passwordsDontMatch }" placeholder="Re-type your new password" formControlName="newPasswordConfirm" type="password">
+    </div>
+    <input value="Confirm change" class="button green" type="submit"/>
+  </form>
+</modal-window>
+
+<modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
+  <h1 class="title">Success!</h1><br>
+  <hr>
+  <p class="message" [innerHTML]="successMessage | safeHtml"></p>
+  <img src="https://media.tenor.com/JzgronqM0nsAAAAM/dancing-steve.gif" alt="">
+</modal-window>
+
+<modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
+  <h1 class="title">Oops! Something went wrong...</h1><br>
+  <hr>
+  <p class="message"></p>
+  <img src="https://media.discordapp.net/attachments/983448971089432577/1078404457676685402/jsrip.gif" alt="">
+</modal-window>

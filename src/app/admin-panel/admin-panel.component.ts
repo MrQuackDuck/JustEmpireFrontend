@@ -13,6 +13,7 @@ import { Rank } from '../model/rank';
 import { Router } from '@angular/router';
 import { ServiceImageRepositoryService } from '../services/service-image-repository.service';
 import { ApprovementsService } from '../services/approvements.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-panel',
@@ -31,7 +32,9 @@ export class AdminPanelComponent {
   private approvementRepository : ApprovementsService,
   private imageLoader : ImageLoaderService,
   private router : Router,
-  public selectedTabService : AdminSelectedTabService) {}
+  public selectedTabService : AdminSelectedTabService,
+  private formBuilder : FormBuilder,
+  private loadingService : LoadingService) {}
 
   articlesCount : number;
   servicesCount : number;
@@ -41,11 +44,26 @@ export class AdminPanelComponent {
   userCount : number;
   approvementsCount : number;
 
+  passwordsDontMatch : boolean;
+  changePasswordModalShown : boolean;
+  changePasswordForm : FormGroup;
+
   currentUser : User;
   currentRank : Rank;
 
+  successModalShown : boolean;
+  successMessage : string = "";
+
+  failModalShown : boolean;
+
   ngOnInit() {
     this.imageLoader.loadImages();
+
+    this.changePasswordForm = this.formBuilder.group({
+      oldPassword: new FormControl(null, Validators.required),
+      newPassword: new FormControl(null, Validators.required),
+      newPasswordConfirm: new FormControl(null, Validators.required),
+    })
 
     this.authService.getUser().subscribe(user => {
       this.currentUser = user
@@ -77,5 +95,36 @@ export class AdminPanelComponent {
     this.authService.logOut().subscribe(() => {
       this.router.navigate(["/login"]);
     });
+  }
+
+  changePassword() {
+    let formData : any = this.changePasswordForm.getRawValue();
+    if (formData.newPassword != formData.newPasswordConfirm) 
+    {
+      this.passwordsDontMatch = true;
+      return;
+    }
+    else this.passwordsDontMatch = false;
+
+    if (!this.changePasswordForm.valid) return;
+
+    this.loadingService.enableLoading();
+    this.authService.changePassword(formData.oldPassword, formData.newPassword).subscribe(
+      success => {
+        this.successModalShown = true;
+        this.router.navigate(['/login']);
+        this.loadingService.disableLoading();
+      }, 
+      fail => {
+        this.failModalShown = true;
+        this.loadingService.disableLoading();
+      }
+    )
+  }
+
+  closeAllModals() {
+    this.changePasswordModalShown = false;
+    this.successModalShown = false;
+    this.failModalShown = false;
   }
 }
