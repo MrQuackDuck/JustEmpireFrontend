@@ -1,7 +1,6 @@
-import { Language } from "../enum/Language";
+import { Language } from "../../enum/Language";
 
-export class EditArticleModel {
-    public id : number;
+export class CreateArticleModel {
     public title : string; 
     public titleImage : string;
     public language : Language;

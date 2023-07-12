@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ServiceImage } from '../model/serviceImage';
 import { API_URL } from 'src/globals';
-import { CreateImageModel } from '../model/createImageModel';
-import { EditImageModel } from '../model/editImageModel';
+import { CreateImageModel } from '../model/requestModels/createImageModel';
+import { EditImageModel } from '../model/requestModels/editImageModel';
 
 @Injectable({
   providedIn: 'root'
@@ -61,5 +61,15 @@ export class ServiceImageRepositoryService {
         "imageId": id
       }, withCredentials: true
     })
+  }
+
+  getQueued() : Observable<ServiceImage[]> {
+    return this.httpClient.get<ServiceImage[]>(`${API_URL}/API/ServiceImage/GetQueued`,
+    { withCredentials: true })
+  }
+
+  getQueuedCount() : Observable<number> {
+    return this.httpClient.get<number>(`${API_URL}/API/ServiceImage/GetQueuedCount`,
+    { withCredentials: true })
   }
 }

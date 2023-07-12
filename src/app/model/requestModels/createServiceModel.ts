@@ -1,7 +1,6 @@
-import { Language } from "../enum/Language";
+import { Language } from "src/app/enum/Language";
 
-export class EditServiceModel {
-    id: number;
+export class CreateServiceModel {
     title: string;
     titleImage: string;
     text: string;

@@ -4,9 +4,8 @@ import { Language } from '../enum/Language';
 import { Observable } from 'rxjs';
 import { Service } from '../model/service';
 import { API_URL } from 'src/globals';
-import { CreateArticleModel } from '../model/createArticleModel';
-import { CreateServiceModel } from '../model/createServiceModel';
-import { EditServiceModel } from '../model/editServiceModel';
+import { CreateServiceModel } from '../model/requestModels/createServiceModel';
+import { EditServiceModel } from '../model/requestModels/editServiceModel';
 
 @Injectable({
   providedIn: 'root'
@@ -84,5 +83,15 @@ export class ServiceRepositoryService {
         "serviceId": serviceId,
       }, withCredentials: true
     })
+  }
+
+  getQueued() : Observable<Service[]> {
+    return this.httpClient.get<Service[]>(`${API_URL}/API/Service/GetQueued`,
+    { withCredentials: true })
+  }
+
+  getQueuedCount() : Observable<number> {
+    return this.httpClient.get<number>(`${API_URL}/API/Service/GetQueuedCount`,
+    { withCredentials: true })
   }
 }

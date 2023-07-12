@@ -1,4 +1,4 @@
-import { Language } from "../enum/Language";
+import { Language } from "src/app/enum/Language";
 
 export class EditServiceCategoryModel
 {

@@ -12,6 +12,7 @@ import { ImageLoaderService } from '../services/image-loader.service';
 import { Rank } from '../model/rank';
 import { Router } from '@angular/router';
 import { ServiceImageRepositoryService } from '../services/service-image-repository.service';
+import { ApprovementsService } from '../services/approvements.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -27,6 +28,7 @@ export class AdminPanelComponent {
   private serviceVersionRepository : ServiceVersionRepositoryService,
   private serviceImageRepository : ServiceImageRepositoryService,
   private userRepository : UserRepositoryService,
+  private approvementRepository : ApprovementsService,
   private imageLoader : ImageLoaderService,
   private router : Router,
   public selectedTabService : AdminSelectedTabService) {}
@@ -37,6 +39,7 @@ export class AdminPanelComponent {
   serviceVersionsCount : number;
   serviceImagesCount : number;
   userCount : number;
+  approvementsCount : number;
 
   currentUser : User;
   currentRank : Rank;
@@ -51,7 +54,11 @@ export class AdminPanelComponent {
 
     this.authService.getCurrentRank().subscribe(rank => {
       this.currentRank = rank
-      console.log(rank);
+
+      if (this.currentRank.name == "Emperor") {
+        this.userRepository.getCount().subscribe(count => this.userCount = count);
+        this.approvementRepository.getCount().subscribe(count => this.approvementsCount = count)
+      }
     })
 
     this.articleRepository.getCount().subscribe(count => this.articlesCount = count);
@@ -59,7 +66,6 @@ export class AdminPanelComponent {
     this.serviceCategoryRepository.getCount().subscribe(count => this.serviceCategoriesCount = count);
     this.serviceVersionRepository.getCount().subscribe(count => this.serviceVersionsCount = count)
     this.serviceImageRepository.getCount().subscribe(count => this.serviceImagesCount = count);
-    this.userRepository.getCount().subscribe(count => this.userCount = count);
   }
 
   setTab(tabIndex : number) {

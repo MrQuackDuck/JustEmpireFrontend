@@ -4,8 +4,8 @@ import { ServiceCategory } from '../model/serviceCategory';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_URL } from 'src/globals';
-import { CreateServiceCategoryModel } from '../model/createServiceCategoryModel';
-import { EditServiceCategoryModel } from '../model/editServiceCategoryModel';
+import { CreateServiceCategoryModel } from '../model/requestModels/createServiceCategoryModel';
+import { EditServiceCategoryModel } from '../model/requestModels/editServiceCategoryModel';
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +56,15 @@ export class ServiceCategoryRepositoryService {
 
   getAllStaff() : Observable<ServiceCategory[]> {
     return this.httpClient.get<ServiceCategory[]>(`${API_URL}/API/ServiceCategory/GetAllStaff`, { withCredentials: true })
+  }
+
+  getQueued() : Observable<ServiceCategory[]> {
+    return this.httpClient.get<ServiceCategory[]>(`${API_URL}/API/ServiceCategory/GetQueued`,
+    { withCredentials: true })
+  }
+
+  getQueuedCount() : Observable<number> {
+    return this.httpClient.get<number>(`${API_URL}/API/ServiceCategory/GetQueuedCount`,
+    { withCredentials: true })
   }
 }

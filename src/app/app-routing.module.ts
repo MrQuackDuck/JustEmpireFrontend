@@ -16,6 +16,7 @@ import { AdminPanelManageServiceCategoriesComponent } from './admin-panel-manage
 import { AdminPanelManageServiceVersionsComponent } from './admin-panel-manage-service-versions/admin-panel-manage-service-versions.component';
 import { AdminPanelManageServiceImagesComponent } from './admin-panel-manage-service-images/admin-panel-manage-service-images.component';
 import { AdminPanelManageUsersComponent } from './admin-panel-manage-users/admin-panel-manage-users.component';
+import { AdminPanelManageApprovementsComponent } from './admin-panel-manage-approvements/admin-panel-manage-approvements.component';
 
 const routes: Routes = [
   {
@@ -158,6 +159,13 @@ const routes: Routes = [
     pathMatch: "prefix",
     title: "JustEmpire | Manage users",
     component: AdminPanelManageUsersComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: "admin/manageApprovements",
+    pathMatch: "prefix",
+    title: "JustEmpire | Manage approvements",
+    component: AdminPanelManageApprovementsComponent,
     canActivate: [AdminGuard]
   },
   // Not found page

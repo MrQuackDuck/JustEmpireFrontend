@@ -148,7 +148,7 @@ export class AdminPanelManageUsersComponent {
           this.loadingService.disableLoading();
           this.successMessage = this.getSuccessDeleteMessage();
           this.successModalShown = true;
-          this.updateData()
+          this.updateData()// 1920 / 2645
         },
         fail => {
           this.loadingService.disableLoading();

@@ -45,6 +45,9 @@ import { ServiceNamePipe } from './pipes/service-name.pipe';
 import { AdminPanelManageServiceImagesComponent } from './admin-panel-manage-service-images/admin-panel-manage-service-images.component';
 import { AdminPanelManageUsersComponent } from './admin-panel-manage-users/admin-panel-manage-users.component';
 import { RankPipe } from './pipes/rank.pipe';
+import { AdminPanelManageApprovementsComponent } from './admin-panel-manage-approvements/admin-panel-manage-approvements.component';
+import { PostableTypePipe } from './pipes/postableType.pipe';
+import { PostableTypeShortPipe } from './pipes/postableTypeShort.pipe';
 
 @NgModule({
   declarations: [
@@ -81,11 +84,14 @@ import { RankPipe } from './pipes/rank.pipe';
     AuthorPipe,
     ServiceCategoryPipe,
     RankPipe,
+    PostableTypePipe,
+    PostableTypeShortPipe,
     ServicePageContentComponent,
     AdminPanelManageServiceCategoriesComponent,
     AdminPanelManageServiceVersionsComponent,
     AdminPanelManageServiceImagesComponent,
     AdminPanelManageUsersComponent,
+    AdminPanelManageApprovementsComponent,
   ],
   imports: [
     BrowserModule,

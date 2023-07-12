@@ -3,8 +3,8 @@ import { Injectable, OnInit } from '@angular/core';
 import { Language } from '../enum/Language';
 import { Article } from '../model/article';
 import { Observable } from 'rxjs';
-import { CreateArticleModel } from '../model/createArticleModel';
-import { EditArticleModel } from '../model/editArticleModel';
+import { CreateArticleModel } from '../model/requestModels/createArticleModel';
+import { EditArticleModel } from '../model/requestModels/editArticleModel';
 import { API_URL } from 'src/globals';
 
 @Injectable({
@@ -87,5 +87,15 @@ export class ArticleRepositoryService {
         "itemsOnPage": itemsOnPage 
       }
     })
+  }
+
+  getQueued() : Observable<Article[]> {
+    return this.httpClient.get<Article[]>(`${API_URL}/API/Article/GetQueued`,
+    { withCredentials: true })
+  }
+
+  getQueuedCount() : Observable<number> {
+    return this.httpClient.get<number>(`${API_URL}/API/Article/GetQueuedCount`,
+    { withCredentials: true })
   }
 }

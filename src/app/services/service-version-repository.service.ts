@@ -3,8 +3,8 @@ import { ServiceVersion } from '../model/serviceVersion';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from 'src/globals';
-import { CreateVersionModel } from '../model/createVersionModel';
-import { EditVersionModel } from '../model/editVersionModel';
+import { CreateVersionModel } from '../model/requestModels/createVersionModel';
+import { EditVersionModel } from '../model/requestModels/editVersionModel';
 
 @Injectable({
   providedIn: 'root'
@@ -61,5 +61,15 @@ export class ServiceVersionRepositoryService {
     return this.httpClient.get<ServiceVersion>(`${API_URL}/API/ServiceVersion/GetLatestVersion`, {
       params: { "serviceId": serviceId }
     })
+  }
+
+  getQueued() : Observable<ServiceVersion[]> {
+    return this.httpClient.get<ServiceVersion[]>(`${API_URL}/API/ServiceVersion/GetQueued`,
+    { withCredentials: true })
+  }
+
+  getQueuedCount() : Observable<number> {
+    return this.httpClient.get<number>(`${API_URL}/API/ServiceVersion/GetQueuedCount`,
+    { withCredentials: true })
   }
 }

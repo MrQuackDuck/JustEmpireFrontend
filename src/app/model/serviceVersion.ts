@@ -1,8 +1,9 @@
 import { Language } from "../enum/Language";
 import { PostableType } from "../enum/PostableType";
 import { Status } from "../enum/Status";
+import { Postable } from "./postable";
 
-export class ServiceVersion {
+export class ServiceVersion implements Postable {
     id : number;
     serviceId : number;
     originalId? : number;

@@ -1,0 +1,200 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+main .title-section {
+    padding: 0px 175px;
+    padding-top: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+main .title-section .empty {
+    visibility: hidden;
+}
+
+main .title-section btn, .empty {
+    flex-grow: 1;
+}
+
+.title {
+    flex-grow: 10;
+    justify-self: center;
+    color: #FFFFFF;
+    font-size: 36px;
+    font-weight: 600;
+    text-align: center;
+    display: inline-block;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.actions div {
+    width: 100%;
+}
+
+.sections-container {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 175px;
+    width: 100%;
+    gap: 25px;
+    height: 100%;
+}
+
+.sections-container section {
+    width: 100%;
+    background-color: #282828;
+    padding: 30px;
+    border-radius: 10px;
+    color: #FFFFFF;
+}
+
+h1 {
+    font-weight: normal;
+}
+
+b {
+    font-weight: bold;
+}
+
+.sections-container section.no-padding {
+    padding: 0px;
+}
+
+modal-window h1 {
+    width: 100%;
+    padding: 30px 0px;
+    padding-bottom: 10px;
+    padding-top: 0px;
+}
+
+modal-window h1.left {
+    text-align: left;
+}
+
+modal-window hr {
+    border: none;
+    background-color: #7E7E7E;
+    height: 2px;
+}
+
+modal-window p {
+    font-size: 18px;
+    overflow: hidden;
+}
+
+modal-window img {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-height: 500px;
+}
+
+modal-window .block {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: right;
+}
+
+modal-window .message {
+    padding: 20px 0px;
+    font-size: 20px;
+}
+
+modal-window .block.padding-top {
+    padding-top: 50px;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form input[type="text"] {
+    color: #FFFFFF;
+    border: 1px solid #7E7E7E;
+    background-color: #2E2E2E;
+    padding: 12px 14px;
+    border-radius: 5px;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+
+form input[type="text"]::placeholder {
+    color: #6F6F6F;
+    opacity: 1;
+}
+
+form input[type="file"] {
+    display: none;
+}
+
+form .upload-photo-label {
+    font-size: 18px;
+    border: 2px dashed #7E7E7E;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+form .upload-photo-label span {
+    display: block;
+    padding: 40px 14px;
+    width: 100%;
+    text-align: left;
+}
+
+form .upload-photo-label:hover {
+    background-color: #515151;
+    border-color: #515151;
+    transition: 0.1s;
+}
+
+form input:focus[type="text"] {
+    outline: none;
+    outline: 1px solid #7E7E7E;
+}
+
+form input[type="submit"] {
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+form select {
+    color: white;
+    padding: 12px 14px;
+    border-radius: 5px;
+    border: 1px solid #7E7E7E;
+    background-color: #2E2E2E;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+form.ng-submitted .ng-invalid {
+    border-color: #FF6363;
+    outline: 1px solid #FF6363;
+}
+
+@media screen and (max-width: 1150px) {
+    main .title-section, main .sections-container {
+        padding: 20px 20px;
+    }
+}

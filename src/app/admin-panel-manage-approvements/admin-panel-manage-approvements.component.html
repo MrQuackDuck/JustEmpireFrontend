@@ -1,0 +1,56 @@
+<main>
+    <div class="title-section">
+        <btn [color]="'gray'" routerLink="/admin">Back</btn>
+        <span class="title">Admin panel - Manage approvements</span>
+        <a class="button empty" href=""></a>
+    </div>
+    <div class="sections-container">
+        <section class="no-padding">
+            <div class="table__wrapper">
+                <table *ngIf="approvements">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Content type</th>
+                            <th>Author</th>
+                            <th>Title</th>
+                            <th>Status</th>
+                            <th>Publish date</th>
+                            <th>Original ID</th>
+                            <th style="text-align: center;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let approvement of approvements">
+                            <td data-title="ID:">{{ approvement.id }}</td>
+                            <td data-title="Content type:">{{ approvement.type | postableType }}</td>
+                            <td data-title="Author:">{{ approvement.authorId | author | async }}</td>
+                            <td data-title="Title:">{{ approvement.title | truncate: 20 }}</td>
+                            <td data-title="Status:" [tp]="approvement.status | statusDescription : (approvement.type | postableTypeShort)" [tpDelay]="200">{{ approvement.status | statusCode }}</td>
+                            <td data-title="Publish date:">{{ approvement.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td data-title="Original ID:" [tp]="approvement.status | originalIdTp : approvement.originalId : 'article'" [tpDelay]="200"><b>{{ approvement.originalId }}</b></td>
+                            <td class="actions">
+                                <div class="wrp"><btn [small]="true">View</btn></div>
+                                <div class="wrp"><btn [small]="true" [color]="'green'">Approve</btn></div>
+                                <div class="wrp"><btn [small]="true" [color]="'red'">Decline</btn></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+
+<modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Success!</h1><br>
+    <hr>
+    <p class="message" [innerHTML]="successMessage | safeHtml"></p>
+    <img src="https://media.tenor.com/JzgronqM0nsAAAAM/dancing-steve.gif" alt="">
+</modal-window>
+
+<modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
+    <h1 class="title">Oops! Something went wrong...</h1><br>
+    <hr>
+    <img src="https://media.discordapp.net/attachments/983448971089432577/1078404457676685402/jsrip.gif" alt="">
+</modal-window>

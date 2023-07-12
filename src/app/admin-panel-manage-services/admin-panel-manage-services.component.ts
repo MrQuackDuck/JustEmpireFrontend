@@ -16,7 +16,7 @@ import { ServiceCategoryRepositoryService } from '../services/service-category-r
 import { API_URL, LANGUAGES } from 'src/globals';
 import { ImageUploaderService } from '../services/image-uploader.service';
 import { ServiceImageRepositoryService } from '../services/service-image-repository.service';
-import { CreateImageModel } from '../model/createImageModel';
+import { CreateImageModel } from '../model/requestModels/createImageModel';
 
 @Component({
   selector: 'app-admin-panel-manage-services',
