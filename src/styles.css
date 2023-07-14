@@ -337,7 +337,7 @@ form .tip input, form .tip select {
     width: 100%;
 }
 
-form .select-wrapper::before, form .tip::before {
+form .select-wrapper::before, .tip::before {
     content: attr(data-title);
     color: #6b6b6b;
     font-size: 16px;

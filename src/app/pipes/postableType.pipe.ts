@@ -16,7 +16,7 @@ export class PostableTypePipe implements PipeTransform {
         case PostableType.CATEGORY:
             return "🔠 Category";
         case PostableType.VERSION:
-            return "Version";
+            return "🐧 Version";
         case PostableType.IMAGE:
             return "🖼️ Image";
             

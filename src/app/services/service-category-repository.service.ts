@@ -67,4 +67,37 @@ export class ServiceCategoryRepositoryService {
     return this.httpClient.get<number>(`${API_URL}/API/ServiceCategory/GetQueuedCount`,
     { withCredentials: true })
   }
+
+  
+  getByIdStaff(id : number) : Observable<ServiceCategory> {
+    return this.httpClient.get<ServiceCategory>(`${API_URL}/API/ServiceCategory/GetByIdStaff`, { 
+      params: { 
+        "categoryId": id
+      }, withCredentials: true
+    })
+  }
+
+  approveCreate(categoryId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/ServiceCategory/ApproveCreate`, categoryId, { 
+      withCredentials: true
+    })
+  }
+
+  approveEdit(categoryId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/ServiceCategory/ApproveEdit`, categoryId, { 
+      withCredentials: true
+    })
+  }
+
+  approveDelete(categoryId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/ServiceCategory/ApproveDelete`, categoryId, { 
+      withCredentials: true
+    })
+  }
+
+  declineRequest(categoryId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/ServiceCategory/Decline`, categoryId, { 
+      withCredentials: true
+    })
+  }
 }

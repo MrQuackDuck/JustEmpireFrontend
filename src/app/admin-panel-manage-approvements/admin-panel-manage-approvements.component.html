@@ -30,9 +30,11 @@
                             <td data-title="Publish date:">{{ approvement.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
                             <td data-title="Original ID:" [tp]="approvement.status | originalIdTp : approvement.originalId : 'article'" [tpDelay]="200"><b>{{ approvement.originalId }}</b></td>
                             <td class="actions">
-                                <div class="wrp"><btn [small]="true">View</btn></div>
-                                <div class="wrp"><btn [small]="true" [color]="'green'">Approve</btn></div>
-                                <div class="wrp"><btn [small]="true" [color]="'red'">Decline</btn></div>
+                                <div *ngIf="approvement.status != 2" class="wrp"><btn (click)="viewPostable(approvement)" [small]="true">View</btn></div>
+                                <div *ngIf="approvement.status == 2" class="wrp"><btn (click)="viewOriginalPostable(approvement)" [small]="true">View original</btn></div>
+                                <div *ngIf="approvement.status == 2" class="wrp"><btn (click)="viewPostable(approvement)" [small]="true" [color]="'orange'">View edited</btn></div>
+                                <div class="wrp"><btn (click)="showModalToApprove(approvement)" [small]="true" [color]="'green'">Approve</btn></div>
+                                <div class="wrp"><btn (click)="showModalToDecline(approvement)" [small]="true" [color]="'red'">Decline</btn></div>
                             </td>
                         </tr>
                     </tbody>
@@ -41,6 +43,79 @@
         </section>
     </div>
 </main>
+
+<modal-window [showModal]="viewArticleModalShown" [noPadding]="true" (onClose)="closeAllModals()">
+    <article>
+        <div class="article-title">
+            <h1>{{ currentViewedArticle?.title! | truncate: 100 }}</h1>
+            <div class="article-date">{{ currentViewedArticle?.publishDate | date: 'MMM dd, yyyy' }}</div>
+            <div style="background-image: url('{{ API_URL }}/uploads/{{ currentViewedArticle?.titleImage }}');" class="title-bg"></div>
+        </div>
+        <div class="container">
+            <div class="content" [innerHTML]="currentViewedArticle?.text | safeHtml"></div>
+        </div>
+    </article>
+</modal-window>
+
+<modal-window [showModal]="viewServiceModalShown" [noPadding]="true" (onClose)="closeAllModals()">
+    <service-page-content *ngIf="currentViewedService" [isStaff]="true" [staffServiceId]="currentViewedService.id"></service-page-content>
+</modal-window>
+
+<modal-window [showModal]="viewServiceVersioModalShown" (onClose)="closeAllModals()">
+    <div class="version">
+        <h1>{{ currentViewedVersion?.title }}</h1>
+        <div class="date">{{ currentViewedVersion?.publishDate | date: "MMM d yyyy hh:mm:ss" }}</div>
+        <p [innerHTML]="currentViewedVersion?.text | safeHtml"></p>
+    </div>
+</modal-window>
+
+<modal-window [showModal]="viewServiceCategoryModalShown" (onClose)="closeAllModals()">
+    <div class="category">
+        <div data-title="Id" class="tip">
+            {{ currentViewedCategory?.id }}
+        </div>
+        <div data-title="Title" class="tip">
+            {{ currentViewedCategory?.title }}
+        </div>
+        <div data-title="Author" class="tip">
+            {{ currentViewedCategory?.authorId! | author | async }}
+        </div>
+        <div data-title="Status" class="tip">
+            {{ currentViewedCategory?.status | statusCode }}
+        </div>
+        <div data-title="Language" class="tip">
+            {{ currentViewedCategory?.language! | langFull }}
+        </div>
+        <div data-title="Publish date" class="tip">
+            {{ currentViewedCategory?.publishDate | date: "MMM dd yyyy hh:mm:ss" }}
+        </div>
+        <div data-title="Last change date" class="tip">
+            {{ currentViewedCategory?.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}
+        </div>
+    </div>
+</modal-window>
+
+<modal-window [showModal]="viewImageModalShown" [noPadding]="true" (onClose)="closeAllModals()">
+    <img src="{{ API_URL }}/uploads/{{ currentViewedImage?.image }}" alt="">
+</modal-window>
+
+<modal-window [showModal]="confirmApproveModalShown" (onClose)="closeAllModals()">
+    <h1 class="title left">Are you sure?</h1><br>
+    <p>You are about to approve the request</p>
+    <div class="block padding-top">
+        <btn (click)="closeAllModals()">Cancel</btn>
+        <btn [color]="'green'" (click)="approvePostable(postableToBeApproved!)">Approve</btn>
+    </div>
+</modal-window>
+
+<modal-window [showModal]="confirmDeclineModalShown" (onClose)="closeAllModals()">
+    <h1 class="title left">Are you sure?</h1><br>
+    <p>You are about to decline the request</p>
+    <div class="block padding-top">
+        <btn (click)="closeAllModals()">Cancel</btn>
+        <btn [color]="'red'" (click)="approvePostable(postableToBeDeclined!)">Decline</btn>
+    </div>
+</modal-window>
 
 <modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Success!</h1><br>
@@ -52,5 +127,6 @@
 <modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
     <h1 class="title">Oops! Something went wrong...</h1><br>
     <hr>
+    <p class="message"></p>
     <img src="https://media.discordapp.net/attachments/983448971089432577/1078404457676685402/jsrip.gif" alt="">
 </modal-window>

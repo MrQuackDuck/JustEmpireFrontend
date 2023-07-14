@@ -48,6 +48,7 @@ import { RankPipe } from './pipes/rank.pipe';
 import { AdminPanelManageApprovementsComponent } from './admin-panel-manage-approvements/admin-panel-manage-approvements.component';
 import { PostableTypePipe } from './pipes/postableType.pipe';
 import { PostableTypeShortPipe } from './pipes/postableTypeShort.pipe';
+import { LangFullPipe } from './pipes/lang-full.pipe';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { PostableTypeShortPipe } from './pipes/postableTypeShort.pipe';
     RankPipe,
     PostableTypePipe,
     PostableTypeShortPipe,
+    LangFullPipe,
     ServicePageContentComponent,
     AdminPanelManageServiceCategoriesComponent,
     AdminPanelManageServiceVersionsComponent,

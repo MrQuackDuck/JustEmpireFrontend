@@ -60,6 +60,14 @@ export class ArticleRepositoryService {
     })
   }
 
+  getByIdStaff(id : number) : Observable<Article> {
+    return this.httpClient.get<Article>(`${API_URL}/API/Article/GetByIdStaff`, { 
+      params: { 
+        "articleId": id
+      }, withCredentials: true
+    })
+  }
+
   getRecent(language : Language, count : number) : Observable<Article[]> {
     return this.httpClient.get<Article[]>(`${API_URL}/API/Article/GetRecent`, {
       params: {
@@ -75,7 +83,8 @@ export class ArticleRepositoryService {
       params: {
         "language": language,
         "pageIndex": pageIndex,
-        "itemsOnPage": itemsOnPage }
+        "itemsOnPage": itemsOnPage 
+      }
     })
   }
 
@@ -97,5 +106,29 @@ export class ArticleRepositoryService {
   getQueuedCount() : Observable<number> {
     return this.httpClient.get<number>(`${API_URL}/API/Article/GetQueuedCount`,
     { withCredentials: true })
+  }
+
+  approveCreate(articleId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/Article/ApproveCreate`, articleId, { 
+      withCredentials: true
+    })
+  }
+
+  approveEdit(articleId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/Article/ApproveEdit`, articleId, { 
+      withCredentials: true
+    })
+  }
+
+  approveDelete(articleId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/Article/ApproveDelete`, articleId, { 
+      withCredentials: true
+    })
+  }
+
+  declineRequest(articleId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/Article/Decline`, articleId, { 
+      withCredentials: true
+    })
   }
 }

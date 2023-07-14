@@ -72,4 +72,36 @@ export class ServiceVersionRepositoryService {
     return this.httpClient.get<number>(`${API_URL}/API/ServiceVersion/GetQueuedCount`,
     { withCredentials: true })
   }
+
+  getByIdStaff(id : number) : Observable<ServiceVersion> {
+    return this.httpClient.get<ServiceVersion>(`${API_URL}/API/ServiceVersion/GetByIdStaff`, {
+      params: {
+        "versionId": id,
+      }, withCredentials: true
+    })
+  }
+
+  approveCreate(versionId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/ServiceVersion/ApproveCreate`, versionId, { 
+      withCredentials: true
+    })
+  }
+
+  approveEdit(versionId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/ServiceVersion/ApproveEdit`, versionId, { 
+      withCredentials: true
+    })
+  }
+
+  approveDelete(versionId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/ServiceVersion/ApproveDelete`, versionId, { 
+      withCredentials: true
+    })
+  }
+
+  declineRequest(versionId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/ServiceVersion/Decline`, versionId, { 
+      withCredentials: true
+    })
+  }
 }

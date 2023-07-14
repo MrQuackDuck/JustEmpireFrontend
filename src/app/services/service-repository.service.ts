@@ -94,4 +94,28 @@ export class ServiceRepositoryService {
     return this.httpClient.get<number>(`${API_URL}/API/Service/GetQueuedCount`,
     { withCredentials: true })
   }
+
+  approveCreate(serviceId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/Service/ApproveCreate`, serviceId, { 
+      withCredentials: true
+    })
+  }
+
+  approveEdit(serviceId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/Service/ApproveEdit`, serviceId, { 
+      withCredentials: true
+    })
+  }
+
+  approveDelete(serviceId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/Service/ApproveDelete`, serviceId, { 
+      withCredentials: true
+    })
+  }
+
+  declineRequest(serviceId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/Service/Decline`, serviceId, { 
+      withCredentials: true
+    })
+  }
 }

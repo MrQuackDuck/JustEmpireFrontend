@@ -36,6 +36,14 @@ export class ServiceImageRepositoryService {
     })
   }
 
+  getByIdStaff(id : number) : Observable<ServiceImage> {
+    return this.httpClient.get<ServiceImage>(`${API_URL}/API/ServiceImage/GetByIdStaff`, {
+      params: {
+        "imageId": id,
+      }, withCredentials: true
+    })
+  }
+
   create(imageModel : CreateImageModel) {
     let serviceId = imageModel.serviceId;
     let image = imageModel.image;
@@ -71,5 +79,29 @@ export class ServiceImageRepositoryService {
   getQueuedCount() : Observable<number> {
     return this.httpClient.get<number>(`${API_URL}/API/ServiceImage/GetQueuedCount`,
     { withCredentials: true })
+  }
+
+  approveCreate(imageId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/ServiceImage/ApproveCreate`, imageId, { 
+      withCredentials: true
+    })
+  }
+
+  approveEdit(imageId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/ServiceImage/ApproveEdit`, imageId, { 
+      withCredentials: true
+    })
+  }
+
+  approveDelete(imageId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/ServiceImage/ApproveDelete`, imageId, { 
+      withCredentials: true
+    })
+  }
+
+  declineRequest(imageId : number) {
+    return this.httpClient.put<any>(`${API_URL}/API/ServiceImage/Decline`, imageId, { 
+      withCredentials: true
+    })
   }
 }

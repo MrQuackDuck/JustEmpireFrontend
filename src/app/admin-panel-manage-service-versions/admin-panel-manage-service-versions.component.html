@@ -48,7 +48,7 @@
 <modal-window [showModal]="viewVersionModalShown" (onClose)="closeAllModals()">
     <h1>{{ currentViewedVersion?.title }}</h1>
     <div class="date">{{ currentViewedVersion?.publishDate | date: "MMM d yyyy hh:mm:ss" }}</div>
-    <p [innerHTML]="currentVersionEdited?.text | safeHtml"></p>
+    <p [innerHTML]="currentViewedVersion?.text | safeHtml"></p>
 </modal-window>
 
 <modal-window [showModal]="newVersionModalShown" (onClose)="closeAllModals()">
