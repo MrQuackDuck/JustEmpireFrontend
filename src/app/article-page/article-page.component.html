@@ -3,7 +3,7 @@
         <div class="article-title">
             <h1>{{ article.title! | truncate: 100 }}</h1>
             <div class="article-date">{{ article.publishDate | date: 'MMM dd, yyyy' }}</div>
-            <div style="background-image: url('{{ article.titleImage }}');" class="title-bg"></div>
+            <div style="background-image: url('{{ API_URL }}/uploads/{{ article.titleImage }}');" class="title-bg"></div>
         </div>
         <div class="container">
             <div class="content" [innerHTML]="article.text | safeHtml"></div>

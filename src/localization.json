@@ -1,6 +1,6 @@
 {
 "Localization": {
-    "Localization_EN": {
+    "EN": {
         "INDEX_SUBTITLE": "Team of individuals who create unique products. We are specialized on creating software, websites, Discord bots, Minecraft stuff and more!",
         "ABOUT_US": "About us",
         "ABOUT_US_TEXT": "We have started our path in 2018. We are creating interesting and unique products such as programs on different platforms, websites, gaming stuff and more! Products that are ready are displayed on",
@@ -47,10 +47,9 @@
         "BROWSE": "Browse",
         "CREATE": "Create",
         "CONFIRM_EDIT": "Confirm edit"
-
     },
-    "Localization_UA": {
-
+    "UA": {
+      "INDEX_SUBTITLE": "Команда ентузіастів, які створюють унікальні продукти. Ми спеціалізуємося на створенні програмного забезпечення, веб-сайтів, ботів Discord, матеріалів Minecraft тощо!"
     }
   }
 }

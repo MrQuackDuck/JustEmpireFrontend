@@ -10,8 +10,8 @@
                 <div class="triangle"></div>
                 <div class="hitbox"></div>
                   <ul>
-                    <li><i class="sl-flag flag-usa"><div id="germany"></div></i><span class="active">English</span></li>
-                    <li (mouseover)="addTriangle()" (mouseleave)="removeTriangle()" class="ua"><i class="sl-flag flag-ua"><div id="ukraine"></div></i><span>Ukrainian</span></li>
+                    <li (click)="setLanguage(0)"><i class="sl-flag flag-usa"><div id="germany"></div></i><span class="active">English</span></li>
+                    <li (click)="setLanguage(1)" (mouseover)="addTriangle()" (mouseleave)="removeTriangle()" class="ua"><i class="sl-flag flag-ua"><div id="ukraine"></div></i><span>Ukrainian</span></li>
                   </ul>
                 </li>
               </ul>

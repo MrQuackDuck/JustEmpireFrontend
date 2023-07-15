@@ -49,6 +49,7 @@ import { AdminPanelManageApprovementsComponent } from './admin-panel-manage-appr
 import { PostableTypePipe } from './pipes/postableType.pipe';
 import { PostableTypeShortPipe } from './pipes/postableTypeShort.pipe';
 import { LangFullPipe } from './pipes/lang-full.pipe';
+import { TranslatePipe } from './pipes/translate.pipe';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { LangFullPipe } from './pipes/lang-full.pipe';
     PostableTypePipe,
     PostableTypeShortPipe,
     LangFullPipe,
+    TranslatePipe,
     ServicePageContentComponent,
     AdminPanelManageServiceCategoriesComponent,
     AdminPanelManageServiceVersionsComponent,

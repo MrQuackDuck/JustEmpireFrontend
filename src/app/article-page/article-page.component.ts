@@ -6,6 +6,7 @@ import { Article } from '../model/article';
 import { Language } from '../enum/Language';
 import slugify from 'slugify';
 import { LoadingService } from '../services/loading.service';
+import { API_URL } from 'src/globals';
 
 @Component({
   selector: 'app-article-page',
@@ -15,6 +16,8 @@ import { LoadingService } from '../services/loading.service';
 export class ArticlePageComponent {
   constructor(private route : ActivatedRoute, private router: Router, private articleRepository : ArticleRepositoryService,
     private loadingService : LoadingService) {}
+
+  API_URL = API_URL;
 
   id;
   article : Article;
