@@ -1,0 +1,56 @@
+{
+"Localization": {
+    "Localization_EN": {
+        "INDEX_SUBTITLE": "Team of individuals who create unique products. We are specialized on creating software, websites, Discord bots, Minecraft stuff and more!",
+        "ABOUT_US": "About us",
+        "ABOUT_US_TEXT": "We have started our path in 2018. We are creating interesting and unique products such as programs on different platforms, websites, gaming stuff and more! Products that are ready are displayed on",
+        "HOME": "Home",
+        "News": "News",
+        "Services": "Services",
+        "POWERED_BY": "Powered by ASP.NET & Angular",
+        "LANGUAGE": "Language",
+        "RECENT_ARTICLES": "Recent articles",
+        "IMAGE_MISSING": "Image missing",
+        "OUR_SERVICES_AND_PRODUCTS": "Our Services & Products",
+        "TYPE": "Type",
+        "FILTERS": "Filters",
+        "SEARCH_HERE": "Search here...",
+        "SCREENSHOTS": "Screenshots",
+        "VERSIONS": "Versions",
+        "ADMIN_PANEL": "Admin panel",
+        "ACTIONS": "Actions",
+        "STATS": "Stats",
+        "PERIOD": "Period",
+        "VIEWS": "Views",
+        "HOURS": "Hours",
+        "DAYS": "Days",
+        "MONTH": "Month",
+        "MANAGE_ARTICLES": "Manage articles",
+        "AUTHOR": "Author",
+        "TITLE": "Title",
+        "STATUS": "Status",
+        "PUBLISH_DATE": "Publish date",
+        "LAST_CHANGE_DATE": "Last change date",
+        "ORIGINAL_ID": "Original ID",
+        "STATUS_POSTED": "✅ Posted",
+        "STATUS_EDIT": "📝 Pending edit",
+        "STATUS_DELETE": "❌ Pending delete",
+        "VIEW": "View",
+        "EDIT": "Edit",
+        "DELETE": "Delete",
+        "NEW": "New",
+        "CREATE_ARTICLE": "Create Article",
+        "ARTICLE_TITLE": "Article title",
+        "INSERT_TEXT_HERE": "Insert text here",
+        "ARTICLE_LANGUAGE": "Article language",
+        "ARTICLE_TITLE_IMAGE": "Article title image",
+        "BROWSE": "Browse",
+        "CREATE": "Create",
+        "CONFIRM_EDIT": "Confirm edit"
+
+    },
+    "Localization_UA": {
+
+    }
+  }
+}

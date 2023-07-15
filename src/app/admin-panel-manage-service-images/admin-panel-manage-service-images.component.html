@@ -57,8 +57,8 @@
                 <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
             </select>
         </div>
-        <label [class.ng-invalid]="newImageForm.controls['image'].invalid" #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-new" for="upload-photo-new"><span>Browse</span></label>
-        <input (change)="uploadFile($event, newImageForm, uploadPhotoLabelEdit)" id="upload-photo-new" accept="image/*" type="file">
+        <label [class.ng-invalid]="newImageForm.controls['image'].invalid" #uploadPhotoLabelNew class="upload-photo-label upload-photo-label-new" for="upload-photo-new"><span>Browse</span></label>
+        <input (change)="uploadFile($event, newImageForm, uploadPhotoLabelNew)" id="upload-photo-new" accept="image/*" type="file">
         <input class="button" type="submit" value="Create">
     </form>
 </modal-window>

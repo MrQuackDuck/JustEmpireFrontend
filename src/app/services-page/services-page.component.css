@@ -147,6 +147,10 @@ app-service-card {
     .sections-container {
         padding: 40px 60px;
     }
+
+    .service .image img {
+        max-height: 80% !important;
+    }
 }
 
 
