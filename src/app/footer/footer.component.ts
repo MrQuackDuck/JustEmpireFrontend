@@ -8,7 +8,7 @@ import { LanguageService } from '../services/language.service';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
-  constructor(private languageService : LanguageService) { }
+  constructor(public languageService : LanguageService) { }
 
   addTriangle() : void {
     let triangle = document.querySelector('.triangle');

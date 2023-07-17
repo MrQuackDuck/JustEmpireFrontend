@@ -3,15 +3,15 @@
         <div class="image"><a [routerLink]="['/service', languageCode, service.id, slugifiedTitle ]"><img src="{{ API_URL }}/uploads/{{service.titleImage}}"></a></div>
         <div class="info">
             <h1 class="name" title="{{ service.title }}"><a [routerLink]="['/service', languageCode, service.id, slugifiedTitle ]">{{ service.title }}</a></h1>
-            <span class="type" *ngIf="currentCategory">Type: {{ currentCategory.title }}</span>
+            <span class="type" *ngIf="currentCategory">{{ 'TYPE' | translate }}: {{ currentCategory.title }}</span>
             <span class="description" [innerHTML]="service.text | safeHtml"></span>
         </div>
     </div>
     <div class="controls">
         <div>
-            <span class="field" *ngIf="latestVersion">Version: {{ latestVersion.title }}</span>
-            <btn [paddingLeft]="0" [paddingRight]="0" [href]="service.url" *ngIf="!service.isDownloadable">Visit</btn>
-            <btn [paddingLeft]="0" [paddingRight]="0" [color]="'green'" [href]="service.url" *ngIf="service.isDownloadable">Download</btn>
+            <span class="field" *ngIf="latestVersion">{{ 'VERSION' | translate }}: {{ latestVersion.title }}</span>
+            <btn [paddingLeft]="0" [paddingRight]="0" [href]="service.url" *ngIf="!service.isDownloadable">{{ 'VISIT' | translate }}</btn>
+            <btn [paddingLeft]="0" [paddingRight]="0" [color]="'green'" [href]="service.url" *ngIf="service.isDownloadable">{{ 'DOWNLOAD' | translate }}</btn>
         </div>
     </div>
 </div>

@@ -13,12 +13,12 @@ export class TranslatePipe implements PipeTransform {
   currentLanguage : string = 'EN';
 
   transform(value: string, ...params): string {
-    this.currentLanguage = Language[this.languageService.getLanguage()];
+    this.currentLanguage = Language[this.languageService.getLanguage() ?? 'EN'] ?? 'EN';
 
     let result : string = this.localization.Localization[this.currentLanguage][value];
 
     for (let i = 0; i < params.length; i++) {
-        result = result.replace(`{${i}}`, params[i]);
+        result = result.replaceAll(`{${i}}`, params[i]);
     }
 
     return result;

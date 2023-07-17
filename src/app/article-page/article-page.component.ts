@@ -7,6 +7,7 @@ import { Language } from '../enum/Language';
 import slugify from 'slugify';
 import { LoadingService } from '../services/loading.service';
 import { API_URL } from 'src/globals';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-article-page',
@@ -15,7 +16,7 @@ import { API_URL } from 'src/globals';
 })
 export class ArticlePageComponent {
   constructor(private route : ActivatedRoute, private router: Router, private articleRepository : ArticleRepositoryService,
-    private loadingService : LoadingService) {}
+    private loadingService : LoadingService, private language : LanguageService) {}
 
   API_URL = API_URL;
 
@@ -26,7 +27,7 @@ export class ArticlePageComponent {
   async ngOnInit() {
     this.id = this.route.snapshot.params['id'];
 
-    this.recentArticles$ = this.articleRepository.getRecent(Language.EN, 3);
+    this.recentArticles$ = this.articleRepository.getRecent(this.language.getLanguage(), 3);
 
     this.route.paramMap.subscribe((params: ParamMap)=>
     {

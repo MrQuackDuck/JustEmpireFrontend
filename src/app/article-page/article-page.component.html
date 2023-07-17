@@ -10,7 +10,7 @@
         </div>
     </article>
     <aside>
-        <h1>Recent articles</h1>
+        <h1>{{ 'RECENT_ARTICLES' | translate }}</h1>
         <hr>
         <ul>
             <li *ngFor="let recentArticle of recentArticles$ | async" routerLinkActive="active"><a [routerLink]="['/article/', getLanguageCode(recentArticle.language), recentArticle.id, getSlugifiedTitle(recentArticle.title)]">{{ recentArticle.title! | truncate: 20 }}</a></li>

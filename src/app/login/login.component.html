@@ -1,11 +1,11 @@
 <main>
     <div class="login-block">
-        <h1>Authorization</h1>
-        <span *ngIf="showError" class="error">Username or password aren't correct!</span>
+        <h1>{{ 'AUTHORIZATION' | translate }}</h1>
+        <span *ngIf="showError" class="error">{{ 'USERNAME_PASSWORD_NOT_CORRECT' | translate }}</span>
         <form [formGroup]="form" (submit)="submit()">
-            <input formControlName="username" type="text" placeholder="Email or username">
-            <input formControlName="password" type="password" placeholder="Password">
-            <input class="button" type="submit" value="Login">
+            <input formControlName="username" type="text" placeholder="{{ 'EMAIL_OR_USERNAME' | translate }}">
+            <input formControlName="password" type="password" placeholder="{{ 'PASSWORD' | translate }}">
+            <input class="button" type="submit" value="{{ 'LOGIN' | translate }}">
         </form>
     </div>
 </main>

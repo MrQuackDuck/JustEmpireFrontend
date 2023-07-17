@@ -1,17 +1,17 @@
 <footer>
     <div>JustEmpire, 2018 - 2023</div>
     <div>
-        <span>Powered by ASP.NET & Angular</span>
+        <span>{{ 'POWERED_BY' | translate }}</span>
         <div class="nav-wrapper">
             <div class="sl-nav">
-              Language:
+              {{ 'LANGUAGE' | translate }}:
               <ul>
-                <li><b>English</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
+                <li><b *ngIf="languageService.getLanguage() == '0'">English</b><b *ngIf="languageService.getLanguage() == '1'">Ukrainian</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
                 <div class="triangle"></div>
                 <div class="hitbox"></div>
                   <ul>
-                    <li (click)="setLanguage(0)"><i class="sl-flag flag-usa"><div id="germany"></div></i><span class="active">English</span></li>
-                    <li (click)="setLanguage(1)" (mouseover)="addTriangle()" (mouseleave)="removeTriangle()" class="ua"><i class="sl-flag flag-ua"><div id="ukraine"></div></i><span>Ukrainian</span></li>
+                    <li (click)="setLanguage(0)"><i class="sl-flag flag-usa"></i><span [ngClass]="{'active': languageService.getLanguage() == '0'}">English</span></li>
+                    <li (click)="setLanguage(1)" (mouseover)="addTriangle()" (mouseleave)="removeTriangle()" class="ua"><i class="sl-flag flag-ua"><div id="ukraine"></div></i><span [ngClass]="{'active': languageService.getLanguage() == '1'}">Ukrainian</span></li>
                   </ul>
                 </li>
               </ul>

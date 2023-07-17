@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  constructor(public language : LanguageService) { }
+
   // Search icon | Cross icon
   currentIcon = "../../assets/images/svg/search_icon.svg";
 

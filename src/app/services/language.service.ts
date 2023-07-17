@@ -8,11 +8,16 @@ import { CookieService } from 'ngx-cookie-service';
 export class LanguageService {
   constructor(private cookieService : CookieService) { }
 
-  setLanguage(language : Language) { 
+  setLanguage(language : Language) {
     this.cookieService.set('language', language.toString());
+    window.location.reload();
   }
 
-  getLanguage() { 
+  getLanguage() : any { 
     return this.cookieService.get('language');
+  }
+
+  getLanguageCode() { 
+    return Language[this.cookieService.get('language') ?? 0] ?? 'EN';
   }
 }

@@ -5,14 +5,14 @@
     <div class="right-side">
         <ul class="nav-links">
             <i (click)="closeNav()" #navCloseBtn class="uil uil-times navCloseBtn"></i>
-            <li><a draggable="false" routerLinkActive="active" routerLink="home">Home</a></li>
-            <li><a draggable="false" routerLinkActive="active" routerLink="news">News</a></li>
-            <li><a draggable="false" routerLinkActive="active" routerLink="services">Services</a></li>
+            <li><a draggable="false" routerLinkActive="active" routerLink="home">{{ "HOME" | translate }}</a></li>
+            <li><a draggable="false" routerLinkActive="active" routerLink="news/{{ language.getLanguageCode() }}">{{ "NEWS" | translate }}</a></li>
+            <li><a draggable="false" routerLinkActive="active" routerLink="services">{{ "SERVICES" | translate }}</a></li>
           </ul>
           
           <img draggable="false" src="{{ currentIcon }}"(click)="toggleSearch()" #searchIcon id="searchIcon">
     </div>
     <div class="search-box">
-        <input type="text" placeholder="Search here..." />
+        <input type="text" [placeholder]="'SEARCH_HERE' | translate" />
       </div>
 </nav>

@@ -1,61 +1,61 @@
 <main>
-  <span class="title">Admin panel</span>
+  <span class="title">{{ 'ADMIN_PANEL' | translate }}</span>
   <div class="sections-container">
       <div *ngIf="selectedTabService.selectedTab == 0" class="tabs">
-        <admin-panel-tab [title]="'Stats'" routerLink="stats" [icon]="'../../assets/images/admin/stats.svg'"/>
+        <admin-panel-tab [title]="'STATS' | translate" routerLink="stats" [icon]="'../../assets/images/admin/stats.svg'"/>
       </div>
 
       <div *ngIf="selectedTabService.selectedTab == 1" class="tabs">
-        <admin-panel-tab [title]="'Manage articles'" [grayText]="articlesCount" routerLink="/admin/manageArticles" [icon]="'../../assets/images/admin/manageArticles.svg'"/>
+        <admin-panel-tab [title]="'MANAGE_ARTICLES' | translate" [grayText]="articlesCount" routerLink="/admin/manageArticles" [icon]="'../../assets/images/admin/manageArticles.svg'"/>
       </div>
 
       <div *ngIf="selectedTabService.selectedTab == 2" class="tabs">
-        <admin-panel-tab [title]="'Manage services'" [grayText]="servicesCount" routerLink="/admin/manageServices" [icon]="'./../assets/images/admin/manageServices.svg'"/>
+        <admin-panel-tab [title]="'MANAGE_SERVICES' | translate" [grayText]="servicesCount" routerLink="/admin/manageServices" [icon]="'./../assets/images/admin/manageServices.svg'"/>
 
-        <admin-panel-tab [title]="'Manage categories'" [grayText]="serviceCategoriesCount" routerLink="/admin/manageServiceCategories" [icon]="'../../assets/images/admin/manageCategories.svg'"/>
+        <admin-panel-tab [title]="'MANAGE_CATEGORIES' | translate" [grayText]="serviceCategoriesCount" routerLink="/admin/manageServiceCategories" [icon]="'../../assets/images/admin/manageCategories.svg'"/>
 
-        <admin-panel-tab [title]="'Manage versions'" [grayText]="serviceVersionsCount" routerLink="/admin/manageServiceVersions" [icon]="'../../assets/images/admin/manageVersions.svg'"/>
+        <admin-panel-tab [title]="'MANAGE_VERSIONS' | translate" [grayText]="serviceVersionsCount" routerLink="/admin/manageServiceVersions" [icon]="'../../assets/images/admin/manageVersions.svg'"/>
 
-        <admin-panel-tab [title]="'Manage images'" [grayText]="serviceImagesCount" routerLink="/admin/manageServiceImages" [icon]="'../../assets/images/admin/image.svg'"/>
+        <admin-panel-tab [title]="'MANAGE_IMAGES' | translate" [grayText]="serviceImagesCount" routerLink="/admin/manageServiceImages" [icon]="'../../assets/images/admin/image.svg'"/>
       </div>
 
       <div *ngIf="selectedTabService.selectedTab == 3" class="tabs">          
-        <admin-panel-tab *ngIf="currentUser?.rank == 'Emperor'" [title]="'Manage users'" [grayText]="userCount" routerLink="/admin/manageUsers" [icon]="'../../assets/images/admin/manageUsers.svg'"/>
+        <admin-panel-tab *ngIf="currentUser?.rank == 'Emperor'" [title]="'MANAGE_USERS' | translate" [grayText]="userCount" routerLink="/admin/manageUsers" [icon]="'../../assets/images/admin/manageUsers.svg'"/>
 
-        <admin-panel-tab *ngIf="currentUser?.rank == 'Emperor'" [title]="'Awaiting approvements'" [grayText]="approvementsCount" routerLink="/admin/manageApprovements" [icon]="'../../assets/images/admin/approvements.svg'"/>
+        <admin-panel-tab *ngIf="currentUser?.rank == 'Emperor'" [title]="'AWAITING_APPROVEMENTS' | translate" [grayText]="approvementsCount" routerLink="/admin/manageApprovements" [icon]="'../../assets/images/admin/approvements.svg'"/>
       </div>
 
       <div *ngIf="selectedTabService.selectedTab == 4" class="tabs">          
-        <admin-panel-tab (click)="changePasswordModalShown = true" [title]="'Change password'" [icon]="'../../assets/images/admin/changePassword.svg'"/>
+        <admin-panel-tab (click)="changePasswordModalShown = true" [title]="'CHANGE_PASSWORD' | translate" [icon]="'../../assets/images/admin/changePassword.svg'"/>
 
-        <admin-panel-tab (click)="logout()" [title]="'Logout'" [icon]="'../../assets/images/admin/logout.svg'"/>
+        <admin-panel-tab (click)="logout()" [title]="'LOGOUT' | translate" [icon]="'../../assets/images/admin/logout.svg'"/>
       </div>
       
       <aside>
-          <h1>Actions</h1>
+          <h1>{{ 'ACTIONS' | translate }}</h1>
           <form>
               <label (mousedown)="setTab(0)" class="checkbox-container">
-                <span class="checkbox-text">Dashboard</span>
+                <span class="checkbox-text">{{ 'DASHBOARD' | translate }}</span>
                 <input (change)="setTab(0)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 0">
                 <span class="checkmark"></span>
               </label>
               <label (mousedown)="setTab(1)" class="checkbox-container">
-                <span class="checkbox-text">Manage articles</span>
+                <span class="checkbox-text">{{ 'MANAGE_ARTICLES' | translate }}</span>
                 <input (change)="setTab(1)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 1">
                 <span class="checkmark"></span>
               </label>
               <label (mousedown)="setTab(2)" class="checkbox-container">
-                <span class="checkbox-text">Manage services</span>
+                <span class="checkbox-text">{{ 'MANAGE_SERVICES' | translate }}</span>
                 <input (change)="setTab(2)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 2">
                 <span class="checkmark"></span>
               </label>
               <label (mousedown)="setTab(3)" *ngIf="currentUser?.rank == 'Emperor'" class="checkbox-container">
-                <span class="checkbox-text">Manage users</span>
+                <span class="checkbox-text">{{ 'MANAGE_USERS' | translate }}</span>
                 <input (change)="setTab(3)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 3">
                 <span class="checkmark"></span>
               </label>
               <label (mousedown)="setTab(4)" class="checkbox-container">
-                <span class="checkbox-text">Other</span>
+                <span class="checkbox-text">{{ 'OTHER' | translate }}</span>
                 <input (change)="setTab(4)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 4">
                 <span class="checkmark"></span>
               </label>
@@ -65,19 +65,19 @@
 </main>
 
 <modal-window [showModal]="changePasswordModalShown" (onClose)="changePasswordModalShown = false">
-  <h1 class="title">Change password</h1><br>
-  <span *ngIf="passwordsDontMatch" class="error">Passwords don't match!</span>
+  <h1 class="title">{{ 'CHANGE_PASSWORD' | translate }}</h1><br>
+  <span *ngIf="passwordsDontMatch" class="error">{{ 'PASSWORDS_DONT_MATCH' | translate }}</span>
   <form (ngSubmit)="changePassword()" [formGroup]="changePasswordForm">
-    <div data-title="Current password" class="tip">
-      <input placeholder="Your current password" formControlName="oldPassword" type="password">
+    <div [attr.data-title]="'CURRENT_PASSWORD' | translate" class="tip">
+      <input placeholder="{{ 'YOUR_CURRENT_PASSWORD' | translate }}" formControlName="oldPassword" type="password">
     </div>
-    <div data-title="New password" class="tip">
-      <input [ngClass]="{ 'ng-invalid': passwordsDontMatch }" placeholder="New password you want to set" formControlName="newPassword" type="password">
+    <div [attr.data-title]="'NEW_PASSWORD' | translate" class="tip">
+      <input [ngClass]="{ 'ng-invalid': passwordsDontMatch }" placeholder="{{ 'NEW_PASSWORD_YOU_WANT' | translate }}" formControlName="newPassword" type="password">
     </div>
-    <div data-title="New password confirm" class="tip">
-      <input [ngClass]="{ 'ng-invalid': passwordsDontMatch }" placeholder="Re-type your new password" formControlName="newPasswordConfirm" type="password">
+    <div [attr.data-title]="'NEW_PASSWORD_CONFIRM' | translate" class="tip">
+      <input [ngClass]="{ 'ng-invalid': passwordsDontMatch }" placeholder="{{ 'RETYPE_NEW_PASSWORD' | translate }}" formControlName="newPasswordConfirm" type="password">
     </div>
-    <input value="Confirm change" class="button green" type="submit"/>
+    <input value="{{ 'CONFIRM_CHANGE' | translate }}" class="button green" type="submit"/>
   </form>
 </modal-window>
 
