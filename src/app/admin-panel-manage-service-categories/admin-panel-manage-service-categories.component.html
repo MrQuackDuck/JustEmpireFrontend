@@ -1,8 +1,8 @@
 <main>
     <div class="title-section">
-        <btn [color]="'gray'" routerLink="/admin">Back</btn>
-        <span class="title">Admin panel - Manage service categories</span>
-        <btn (click)="this.newCategoryModalShown = true">New</btn>
+        <btn [color]="'gray'" routerLink="/admin">{{ 'BACK' | translate }}</btn>
+        <span class="title">{{ 'ADMIN_PANEL' | translate }} - {{ 'MANAGE_SERVICE_CATEGORIES' | translate }}</span>
+        <btn (click)="this.newCategoryModalShown = true">{{ 'NEW' | translate }}</btn>
     </div>
     <div class="sections-container">
         <section class="no-padding">
@@ -11,29 +11,29 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Author</th>
-                            <th>Title</th>
-                            <th>Language</th>
-                            <th>Status</th>
-                            <th>Publish date</th>
-                            <th>Last change date</th>
-                            <th>Original ID</th>
-                            <th style="text-align: center;">Actions</th>
+                            <th>{{ 'AUTHOR' | translate }}</th>
+                            <th>{{ 'TITLE' | translate }}</th>
+                            <th>{{ 'LANGUAGE' | translate }}</th>
+                            <th>{{ 'STATUS' | translate }}</th>
+                            <th>{{ 'PUBLISH_DATE' | translate }}</th>
+                            <th>{{ 'LAST_CHANGE_DATE' | translate }}</th>
+                            <th>{{ 'ORIGINAL_ID' | translate }}</th>
+                            <th style="text-align: center;">{{ 'ACTIONS' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let category of serviceCategories">
-                            <td data-title="ID:">{{ category.id }}</td>
-                            <td data-title="Author:">{{ category.authorId | author | async }}</td>
-                            <td data-title="Title:">{{ category.title | truncate: 30 }}</td>
-                            <td data-title="Language:">{{ category.language | langCode }}</td>
-                            <td data-title="Status:" [tp]="category.status | statusDescription : 'category'" [tpDelay]="200">{{ category.status | statusCode }}</td>
-                            <td data-title="Publish date:">{{ category.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
-                            <td data-title="Last change date:">{{ category.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
-                            <td data-title="Original ID:" [tp]="category.status | originalIdTp : category.originalId : 'category'" [tpDelay]="200"><b>{{ category.originalId }}</b></td>
+                            <td [attr.data-title]="('ID' | translate) + ':'">{{ category.id }}</td>
+                            <td [attr.data-title]="('AUTHOR' | translate) + ':'">{{ category.authorId | author | async }}</td>
+                            <td [attr.data-title]="('TITLE' | translate) + ':'">{{ category.title | truncate: 30 }}</td>
+                            <td [attr.data-title]="('LANGUAGE' | translate) + ':'">{{ category.language | langCode }}</td>
+                            <td [attr.data-title]="('STATUS' | translate) + ':'" [tp]="category.status | statusDescription : 'category'" [tpDelay]="200">{{ category.status | statusCode | translate }}</td>
+                            <td [attr.data-title]="('PUBLISH_DATE' | translate) + ':'">{{ category.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td [attr.data-title]="('LAST_CHANGE_DATE' | translate) + ':'">{{ category.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td [attr.data-title]="('ORIGINAL_ID' | translate) + ':'" [tp]="category.status | originalIdTp : category.originalId : 'category'" [tpDelay]="200"><b>{{ category.originalId }}</b></td>
                             <td class="actions">
-                                <div [tp]="canEdit(category)[1]" [tpIsEnabled]="canEdit(category)[1].length > 0" class="wrp"><btn (click)="showEditModal(category.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(category)[0]}">Edit</btn></div>
-                                <div [tp]="canDelete(category)[1]" [tpIsEnabled]="canDelete(category)[1].length > 0" class="wrp"><btn (click)="showDeleteModal(category)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(category)[0]}">Delete</btn></div>
+                                <div [tp]="canEdit(category)[1]" [tpIsEnabled]="canEdit(category)[1].length > 0" class="wrp"><btn (click)="showEditModal(category.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(category)[0]}">{{ 'EDIT' | translate }}</btn></div>
+                                <div [tp]="canDelete(category)[1]" [tpIsEnabled]="canDelete(category)[1].length > 0" class="wrp"><btn (click)="showDeleteModal(category)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(category)[0]}">{{ 'DELETE' | translate }}</btn></div>
                             </td>
                         </tr>
                     </tbody>
@@ -44,41 +44,41 @@
 </main>
 
 <modal-window [showModal]="newCategoryModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Create Category</h1>
+    <h1 class="title">{{ 'CREATE_CATEGORY' | translate }}</h1>
     <form (ngSubmit)="submitNewCategory()" [formGroup]="newCategoryForm" method="post" enctype="multipart/form-data">
-        <div data-title="Category title" class="tip">
-            <input required="text" formControlName="title" type="text" placeholder="Title">
+        <div [attr.data-title]="('CATEGORY_TITLE' | translate) + ':'" class="tip">
+            <input required="text" formControlName="title" type="text" [placeholder]="'TITLE' | translate">
         </div>
-        <div data-title="Category language" class="tip">
+        <div [attr.data-title]="('CATEGORY_LANGUAGE' | translate) + ':'" class="tip">
             <select formControlName="language" required>
                 <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
             </select>
         </div>
-        <input class="button" type="submit" value="Create">
+        <input class="button" type="submit" [value]="'CREATE' | translate">
     </form>
 </modal-window>
 
 <modal-window [showModal]="editCategoryModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Edit Category</h1>
+    <h1 class="title">{{ 'EDIT_CATEGORY' | translate }}</h1>
     <form (ngSubmit)="submitEditedCategory()" [formGroup]="editCategoryForm" method="post" enctype="multipart/form-data">
-        <div data-title="Category title" class="tip">
-            <input value="{{ currentCategoryEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
+        <div [attr.data-title]="('CATEGORY_TITLE' | translate) + ':'" class="tip">
+            <input value="{{ currentCategoryEdited?.title }}" required="text" formControlName="title" type="text" [placeholder]="'TITLE' | translate">
         </div>
-        <div data-title="Category language" class="tip">
+        <div [attr.data-title]="('CATEGORY_LANGUAGE' | translate) + ':'" class="tip">
             <select formControlName="language" required>
                 <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
             </select>
         </div>
-        <input class="button green" type="submit" value="Confirm edit">
+        <input class="button green" type="submit" [value]="'CONFIRM_EDIT' | translate">
     </form>
 </modal-window>
 
 <modal-window [showModal]="confirmDeleteModalShown" (onClose)="closeAllModals()">
-    <h1 class="title left">Are you sure?</h1><br>
-    <p>You are about to delete <b>{{ categoryToDelete?.title }}</b></p>
+    <h1 class="title left">{{ 'ARE_YOU_SURE' | translate }}</h1><br>
+    <p>{{ 'ABOUT_TO_DELETE' | translate }} <b>{{ categoryToDelete?.title }}</b></p>
     <div class="block padding-top">
-        <btn (click)="closeAllModals()">Cancel</btn>
-        <btn [color]="'red'" (click)="deleteCategory()">Delete</btn>
+        <btn (click)="closeAllModals()">{{ 'CANCEL' | translate }}</btn>
+        <btn [color]="'red'" (click)="deleteCategory()">{{ 'DELETE' | translate }}</btn>
     </div>
 </modal-window>
 

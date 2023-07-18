@@ -1,8 +1,8 @@
 <main>
     <div class="title-section">
-        <btn [color]="'gray'" routerLink="/admin">Back</btn>
-        <span class="title">Admin panel - Manage services</span>
-        <btn (click)="this.newServiceModalShown = true">New</btn>
+        <btn [color]="'gray'" routerLink="/admin">{{ 'BACK' | translate }}</btn>
+        <span class="title">{{ 'ADMIN_PANEL' | translate }} - {{ 'MANAGE_SERVICES' | translate }}</span>
+        <btn (click)="this.newServiceModalShown = true">{{ 'NEW' | translate }}</btn>
     </div>
     <div class="sections-container">
         <section class="no-padding">
@@ -11,34 +11,34 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Author</th>
-                            <th>Title</th>
-                            <th>Language</th>
-                            <th>Category</th>
-                            <th>Status</th>
-                            <th>URL</th>
-                            <th>Publish date</th>
-                            <th>Last change date</th>
-                            <th>Original ID</th>
-                            <th style="text-align: center;">Actions</th>
+                            <th>{{ 'AUTHOR' | translate }}</th>
+                            <th>{{ 'TITLE' | translate }}</th>
+                            <th>{{ 'LANGUAGE' | translate }}</th>
+                            <th>{{ 'CATEGORY' | translate }}</th>
+                            <th>{{ 'STATUS' | translate }}</th>
+                            <th>{{ 'URL' | translate }}</th>
+                            <th>{{ 'PUBLISH_DATE' | translate }}</th>
+                            <th>{{ 'LAST_CHANGE_DATE' | translate }}</th>
+                            <th>{{ 'ORIGINAL_ID' | translate }}</th>
+                            <th style="text-align: center;">{{ 'ACTIONS' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let service of services">
                             <td data-title="ID:">{{ service.id }}</td>
-                            <td data-title="Author:">{{ service.authorId | author | async }}</td>
-                            <td data-title="Title:">{{ service.title | truncate: 20 }}</td>
-                            <td data-title="Language:">{{ service.language | langCode }}</td>
-                            <td tp="Category ID {{ service.categoryId }}" data-title="Category:">{{ (service.categoryId | category | async)?.title }}</td>
-                            <td data-title="Status:" [tp]="service.status | statusDescription : 'service'" [tpDelay]="200">{{ service.status | statusCode }}</td>
-                            <td data-title="URL:">{{ service.url | truncate: 20 }}</td>
-                            <td data-title="Publish date:">{{ service.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
-                            <td data-title="Last change date:">{{ service.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
-                            <td data-title="Original ID:" [tp]="service.status | originalIdTp : service.originalId : 'service'" [tpDelay]="200"><b>{{ service.originalId }}</b></td>
+                            <td [attr.data-title]="('AUTHOR' | translate) + ':'">{{ service.authorId | author | async }}</td>
+                            <td [attr.data-title]="('TITLE' | translate) + ':'">{{ service.title | truncate: 20 }}</td>
+                            <td [attr.data-title]="('LANGUAGE' | translate) + ':'">{{ service.language | langCode }}</td>
+                            <td [attr.data-title]="('CATEGORY' | translate) + ':'" tp="Category ID {{ service.categoryId }}">{{ (service.categoryId | category | async)?.title }}</td>
+                            <td [attr.data-title]="('STATUS' | translate) + ':'" [tp]="service.status | statusDescription : 'service'" [tpDelay]="200">{{ service.status | statusCode | translate }}</td>
+                            <td [attr.data-title]="('URL' | translate) + ':'">{{ service.url | truncate: 20 }}</td>
+                            <td [attr.data-title]="('PUBLISH_DATE' | translate) + ':'">{{ service.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td [attr.data-title]="('LAST_CHANGE_DATE' | translate) + ':'">{{ service.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td [attr.data-title]="('ORIGINAL_ID' | translate) + ':'" [tp]="service.status | originalIdTp : service.originalId : 'service'" [tpDelay]="200"><b>{{ service.originalId }}</b></td>
                             <td class="actions">
-                                <div class="wrp"><btn (click)="viewService(service)" [small]="true" [color]="'green'">View</btn></div>
-                                <div [tp]="canEdit(service)[1]" [tpIsEnabled]="canEdit(service)[1].length > 0" class="wrp"><btn (click)="showEditModal(service.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(service)[0]}">Edit</btn></div>
-                                <div [tp]="canDelete(service)[1]" [tpIsEnabled]="canDelete(service)[1].length > 0" class="wrp"><btn (click)="showServiceDeleteModal(service)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(service)[0]}">Delete</btn></div>
+                                <div class="wrp"><btn (click)="viewService(service)" [small]="true" [color]="'green'">{{ 'VIEW' | translate }}</btn></div>
+                                <div [tp]="canEdit(service)[1]" [tpIsEnabled]="canEdit(service)[1].length > 0" class="wrp"><btn (click)="showEditModal(service.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(service)[0]}">{{ 'EDIT' | translate }}</btn></div>
+                                <div [tp]="canDelete(service)[1]" [tpIsEnabled]="canDelete(service)[1].length > 0" class="wrp"><btn (click)="showServiceDeleteModal(service)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(service)[0]}">{{ 'DELETE' | translate }}</btn></div>
                             </td>
                         </tr>
                     </tbody>
@@ -53,101 +53,101 @@
 </modal-window>
 
 <modal-window [showModal]="newServiceModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Create Service</h1>
+    <h1 class="title">{{ 'CREATE_SERVICE' | translate }}</h1>
     <form (ngSubmit)="submitNewService(uploadPhotoLabelNew)" [formGroup]="newServiceForm" method="post" enctype="multipart/form-data">
-        <div data-title="Service title" class="tip">
-            <input required="text" formControlName="title" type="text" placeholder="Title">
+        <div [attr.data-title]="('SERVICE_TITLE' | translate) + ':'" class="tip">
+            <input required="text" formControlName="title" type="text" [placeholder]="'TITLE' | translate">
         </div>
         <quill-editor [modules]="quillModules" formControlName="text"></quill-editor>
-        <div data-title="Service URL (will be applied to 'Visit' or 'Download' button)" class="tip">
-            <input required="text" formControlName="url" type="text" placeholder="URL">
+        <div [attr.data-title]="('SERVICE_URL' | translate) + ':'" class="tip">
+            <input required="text" formControlName="url" type="text" [placeholder]="'URL' | translate">
         </div>
-        <div data-title="Service language" class="tip">
+        <div [attr.data-title]="('SERVICE_LANGUAGE' | translate) + ':'" class="tip">
             <select formControlName="language" required>
                 <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
             </select>
         </div>
-        <div data-title="Service category" class="tip">
+        <div [attr.data-title]="('SERVICE_CATEGORY' | translate) + ':'" class="tip">
             <select formControlName="categoryId" required>
                 <option *ngFor="let category of categories;" [ngValue]="category.id">{{ category.title }}</option>
             </select>
         </div>
-        <div data-title="Is downlodable?" class="tip">
+        <div [attr.data-title]="('IS_DOWNLOADABLE' | translate) + ':'" class="tip">
             <select formControlName="isDownloadable" required>
-                <option [ngValue]="true">Downloadable ['Download' button]</option>
-                <option [ngValue]="true">Not downloadable ['Visit' button]</option>
+                <option [ngValue]="true">{{ 'DOWNLODABLE' | translate }}</option>
+                <option [ngValue]="true">{{ 'NOT_DOWNLODABLE' | translate }}</option>
             </select>
         </div>
-        <div data-title="Title image (recommended aspect ratio 1 : 1)" class="tip">
-            <label [class.ng-invalid]="newServiceForm.controls['titleImage'].invalid" #uploadPhotoLabelNew class="upload-photo-label" for="upload-photo"><span>Browse</span></label>
+        <div [attr.data-title]="('SERVICE_TITLE_IMAGE' | translate) + ':'" class="tip">
+            <label [class.ng-invalid]="newServiceForm.controls['titleImage'].invalid" #uploadPhotoLabelNew class="upload-photo-label" for="upload-photo"><span>{{ 'BROWSE' | translate }}</span></label>
         </div>
         <input (change)="uploadFile($event, newServiceForm, uploadPhotoLabelNew)" id="upload-photo" accept="image/*" formControlName="titleImage" type="file" placeholder="Title image">
-        <div data-title="Service screenshots" class="tip">
+        <div [attr.data-title]="('SERVICE_SCREENSHOTS' | translate) + ':'" class="tip">
             <div class="screenshots">
                 <label *ngFor="let screenshot of newServiceScreenshots; index as i" tp="Remove screenshot" [tpDelay]="200" (click)="removeScreenshot(i, newServiceScreenshots)" class="upload-photo-label screenshot"><img src='{{ API_URL }}/uploads/{{ screenshot.screenshot }}'></label>
 
-                <label class="upload-photo-label upload-photo-label" for="upload-screenshot-new-service-1"><span>Add screenshot</span></label>
+                <label class="upload-photo-label upload-photo-label" for="upload-screenshot-new-service-1"><span>{{ 'ADD_SCREENSHOT' | translate }}</span></label>
                 <input (change)="uploadScreenshot($event, newServiceScreenshots, newServiceScreenshots.length)" id="upload-screenshot-new-service-1" accept="image/*" type="file">
             </div>
         </div>
-        <input class="button" type="submit" value="Create">
+        <input class="button" type="submit" [value]="'CREATE' | translate">
     </form>
 </modal-window>
 
 <modal-window [showModal]="editServiceModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Edit Service</h1>
+    <h1 class="title">{{ 'EDIT_SERVICE' | translate }}</h1>
     <form (ngSubmit)="submitEditedService()" [formGroup]="editServiceForm" method="post" enctype="multipart/form-data">
-        <div data-title="Service title" class="tip">
-            <input value="{{ currentServiceEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
+        <div [attr.data-title]="('SERVICE_TITLE' | translate) + ':'" class="tip">
+            <input value="{{ currentServiceEdited?.title }}" required="text" formControlName="title" type="text" [placeholder]="'TITLE' | translate">
         </div>
         <quill-editor [modules]="quillModules" formControlName="text">{{ currentServiceEdited?.text }}</quill-editor>
-        <div data-title="Service URL (will be applied to 'Visit' or 'Download' button)" class="tip">
-            <input required="text" formControlName="url" type="text" placeholder="URL">
+        <div [attr.data-title]="('SERVICE_URL' | translate) + ':'" class="tip">
+            <input required="text" formControlName="url" type="text" [placeholder]="'URL' | translate">
         </div>
-        <div data-title="Service language" class="tip">
+        <div [attr.data-title]="('SERVICE_LANGUAGE' | translate) + ':'" class="tip">
             <select formControlName="language" required>
                 <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
             </select>
         </div>
-        <div data-title="Service category" class="tip">
+        <div [attr.data-title]="('SERVICE_CATEGORY' | translate) + ':'" class="tip">
             <select formControlName="categoryId" required>
                 <option *ngFor="let category of categories; index as i" [ngValue]="category.id">{{ category.title }}</option>
             </select>
         </div>
-        <div data-title="Is downlodable?" class="tip">
+        <div [attr.data-title]="('IS_DOWNLOADABLE' | translate) + ':'" class="tip">
             <select formControlName="isDownloadable" required>
-                <option [ngValue]="true">Downloadable ['Download' button]</option>
-                <option [ngValue]="true">Not downloadable ['Visit' button]</option>
+                <option [ngValue]="true">{{ 'DOWNLODABLE' | translate }}</option>
+                <option [ngValue]="true">{{ 'NOT_DOWNLODABLE' | translate }}</option>
             </select>
         </div>
-        <div data-title="Title image (recommended aspect ratio 1 : 1)" class="tip">
-            <label [class.ng-invalid]="editServiceForm.controls['titleImage'].invalid" #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo-edit"><span>Browse</span></label>
+        <div [attr.data-title]="('SERVICE_TITLE_IMAGE' | translate) + ':'" class="tip">
+            <label [class.ng-invalid]="editServiceForm.controls['titleImage'].invalid" #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo-edit"><span>{{ 'BROWSE' | translate }}</span></label>
         </div>
         <input (change)="uploadFile($event, editServiceForm, uploadPhotoLabelEdit)" id="upload-photo-edit" accept="image/*" type="file">
-        <span class="suggestion">*If you want to manage screenshots, you should go to dedicated page of admin panel</span>
+        <span class="suggestion">{{ 'SCREENSHOTS_TIP' | translate }}</span>
 
-        <input class="button green" type="submit" value="Confirm edit">
+        <input class="button green" type="submit" [value]="'CONFIRM_EDIT' | translate">
     </form>
 </modal-window>
 
 <modal-window [showModal]="confirmDeleteModalShown" (onClose)="closeAllModals()">
-    <h1 class="title left">Are you sure?</h1><br>
-    <p>You are about to delete <b>{{ serviceToDelete?.title }}</b></p>
+    <h1 class="title left">{{ 'ARE_YOU_SURE' | translate }}</h1><br>
+    <p>{{ 'ABOUT_TO_DELETE' | translate }} <b>{{ serviceToDelete?.title }}</b></p>
     <div class="block padding-top">
-        <btn (click)="closeAllModals()">Cancel</btn>
-        <btn [color]="'red'" (click)="deleteService()">Delete</btn>
+        <btn (click)="closeAllModals()">{{ 'CANCEL' | translate }}</btn>
+        <btn [color]="'red'" (click)="deleteService()">{{ 'DELETE' | translate }}</btn>
     </div>
 </modal-window>
 
 <modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Success!</h1><br>
+    <h1 class="title">{{ 'SUCCESS' | translate }}</h1><br>
     <hr>
     <p class="message" [innerHTML]="successMessage | safeHtml"></p>
     <img src="https://media.tenor.com/JzgronqM0nsAAAAM/dancing-steve.gif" alt="">
 </modal-window>
 
 <modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Oops! Something went wrong...</h1><br>
+    <h1 class="title">{{ 'SOMETHING_WENT_WRONG' | translate }}</h1><br>
     <hr>
     <p class="message"></p>
     <img src="https://media.discordapp.net/attachments/983448971089432577/1078404457676685402/jsrip.gif" alt="">

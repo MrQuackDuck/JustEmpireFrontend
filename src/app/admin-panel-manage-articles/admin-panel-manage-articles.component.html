@@ -1,8 +1,8 @@
 <main>
     <div class="title-section">
-        <btn [color]="'gray'" routerLink="/admin">Back</btn>
-        <span class="title">Admin panel - Manage articles</span>
-        <btn (click)="this.newArticleModalShown = true">New</btn>
+        <btn [color]="'gray'" routerLink="/admin">{{ 'BACK' | translate }}</btn>
+        <span class="title">{{ 'ADMIN_PANEL' | translate }} - {{ 'MANAGE_ARTICLES' | translate }}</span>
+        <btn (click)="this.newArticleModalShown = true">{{ 'NEW' | translate }}</btn>
     </div>
     <div class="sections-container">
         <section class="no-padding">
@@ -11,30 +11,30 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Author</th>
-                            <th>Title</th>
-                            <th>Language</th>
-                            <th>Status</th>
-                            <th>Publish date</th>
-                            <th>Last change date</th>
-                            <th>Original ID</th>
-                            <th style="text-align: center;">Actions</th>
+                            <th>{{ 'AUTHOR' | translate }}</th>
+                            <th>{{ 'TITLE' | translate }}</th>
+                            <th>{{ 'LANGUAGE' | translate }}</th>
+                            <th>{{ 'STATUS' | translate }}</th>
+                            <th>{{ 'PUBLISH_DATE' | translate }}</th>
+                            <th>{{ 'LAST_CHANGE_DATE' | translate }}</th>
+                            <th>{{ 'ORIGINAL_ID' | translate }}</th>
+                            <th style="text-align: center;">{{ 'ACTIONS' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let article of articles">
                             <td data-title="ID:">{{ article.id }}</td>
-                            <td data-title="Author:">{{ article.authorId | author | async }}</td>
-                            <td data-title="Title:">{{ article.title | truncate: 20 }}</td>
-                            <td data-title="Language:">{{ article.language | langCode }}</td>
-                            <td data-title="Status:" [tp]="article.status | statusDescription : 'article'" [tpDelay]="200">{{ article.status | statusCode }}</td>
-                            <td data-title="Publish date:">{{ article.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
-                            <td data-title="Last change date:">{{ article.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
-                            <td data-title="Original ID:" [tp]="article.status | originalIdTp : article.originalId : 'article'" [tpDelay]="200"><b>{{ article.originalId }}</b></td>
+                            <td [attr.data-title]="('AUTHOR' | translate) + ':'">{{ article.authorId | author | async }}</td>
+                            <td [attr.data-title]="('TITLE' | translate) + ':'">{{ article.title | truncate: 20 }}</td>
+                            <td [attr.data-title]="('LANGUAGE' | translate) + ':'">{{ article.language | langCode }}</td>
+                            <td [attr.data-title]="('STATUS' | translate) + ':'" [tp]="article.status | statusDescription : 'article'" [tpDelay]="200">{{ article.status | statusCode | translate }}</td>
+                            <td [attr.data-title]="('PUBLISH_DATE' | translate) + ':'">{{ article.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td [attr.data-title]="('LAST_CHANGE_DATE' | translate) + ':'">{{ article.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td [attr.data-title]="('ORIGINAL_ID' | translate) + ':'" [tp]="article.status | originalIdTp : article.originalId : ('ARTICLE' | translate)" [tpDelay]="200"><b>{{ article.originalId }}</b></td>
                             <td class="actions">
-                                <div class="wrp"><btn (click)="viewArticle(article)" [small]="true" [color]="'green'">View</btn></div>
-                                <div [tp]="canEdit(article)[1]" [tpIsEnabled]="canEdit(article)[1].length > 0" class="wrp"><btn (click)="showEditModal(article.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(article)[0]}">Edit</btn></div>
-                                <div [tp]="canDelete(article)[1]" [tpIsEnabled]="canDelete(article)[1].length > 0" class="wrp"><btn (click)="showArticleDeleteModal(article)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(article)[0]}">Delete</btn></div>
+                                <div class="wrp"><btn (click)="viewArticle(article)" [small]="true" [color]="'green'">{{ 'VIEW' | translate }}</btn></div>
+                                <div [tp]="canEdit(article)[1]" [tpIsEnabled]="canEdit(article)[1].length > 0" class="wrp"><btn (click)="showEditModal(article.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(article)[0]}">{{ 'EDIT' | translate }}</btn></div>
+                                <div [tp]="canDelete(article)[1]" [tpIsEnabled]="canDelete(article)[1].length > 0" class="wrp"><btn (click)="showArticleDeleteModal(article)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(article)[0]}">{{ 'DELETE' | translate }}</btn></div>
                             </td>
                         </tr>
                     </tbody>
@@ -58,38 +58,38 @@
 </modal-window>
 
 <modal-window [showModal]="newArticleModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Create Article</h1>
+    <h1 class="title">{{ 'CREATE_ARTICLE' | translate }}</h1>
     <form (ngSubmit)="submitNewArticle(uploadPhotoLabelNew)" [formGroup]="newArticleForm" method="post" enctype="multipart/form-data">
-        <div data-title="Article title" class="tip">
+        <div [attr.data-title]="('ARTICLE_TITLE' | translate) + ':'" class="tip">
             <input data-title="Title" required="text" formControlName="title" type="text" placeholder="Title">
         </div>
         <quill-editor [modules]="quillModules" formControlName="text"></quill-editor>
-        <div data-title="Article language" class="tip">
+        <div [attr.data-title]="('ARTICLE_LANGUAGE' | translate) + ':'" class="tip">
             <select formControlName="language" required>
                 <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
             </select>
         </div>
-        <div data-title="Article title image" class="tip">
-            <label [class.ng-invalid]="newArticleForm.controls['titleImage'].invalid" #uploadPhotoLabelNew class="upload-photo-label" for="upload-photo"><span>Browse</span></label>
+        <div [attr.data-title]="('ARTICLE_TITLE_IMAGE' | translate) + ':'" class="tip">
+            <label [class.ng-invalid]="newArticleForm.controls['titleImage'].invalid" #uploadPhotoLabelNew class="upload-photo-label" for="upload-photo"><span>{{ 'BROWSE' | translate }}</span></label>
         </div>
         <input (change)="uploadFile($event, newArticleForm, uploadPhotoLabelNew)" id="upload-photo" accept="image/*" formControlName="titleImage" type="file" placeholder="Title image">
-        <input class="button" type="submit" value="Create">
+        <input class="button" type="submit" [value]="'CREATE' | translate">
     </form>
 </modal-window>
 
 <modal-window [showModal]="editArticleModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Edit Article</h1>
+    <h1 class="title">{{ 'EDIT_ARTICLE' | translate }}</h1>
     <form (ngSubmit)="submitEditedArticle()" [formGroup]="editArticleForm" method="post" enctype="multipart/form-data">
-        <div data-title="Article title" class="tip">
+        <div [attr.data-title]="('ARTICLE_TITLE' | translate) + ':'" class="tip">
             <input value="{{ currentArticleEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
         </div>
         <quill-editor [modules]="quillModules" formControlName="text">{{ currentArticleEdited?.text }}</quill-editor>
-        <div data-title="Article language" class="tip">
+        <div [attr.data-title]="('ARTICLE_LANGUAGE' | translate) + ':'" class="tip">
             <select formControlName="language" required>
                 <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
             </select>
         </div>
-        <div data-title="Article title image" class="tip">
+        <div [attr.data-title]="('ARTICLE_TITLE_IMAGE' | translate) + ':'" class="tip">
             <label [class.ng-invalid]="editArticleForm.controls['titleImage'].invalid" #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo-edit"><span>Browse</span></label>
         </div>
         <input (change)="uploadFile($event, editArticleForm, uploadPhotoLabelEdit)" id="upload-photo-edit" accept="image/*" type="file">
@@ -98,23 +98,23 @@
 </modal-window>
 
 <modal-window [showModal]="confirmDeleteModalShown" (onClose)="closeAllModals()">
-    <h1 class="title left">Are you sure?</h1><br>
-    <p>You are about to delete <b>{{ articleToDelete?.title }}</b></p>
+    <h1 class="title left">{{ 'ARE_YOU_SURE' | translate }}</h1><br>
+    <p>{{ 'ABOUT_TO_DELETE' | translate }} <b>{{ articleToDelete?.title }}</b></p>
     <div class="block padding-top">
-        <btn (click)="closeAllModals()">Cancel</btn>
-        <btn [color]="'red'" (click)="deleteArticle()">Delete</btn>
+        <btn (click)="closeAllModals()">{{ 'CANCEL' | translate }}</btn>
+        <btn [color]="'red'" (click)="deleteArticle()">{{ 'DELETE' | translate }}</btn>
     </div>
 </modal-window>
 
 <modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Success!</h1><br>
+    <h1 class="title">{{ 'SUCCESS' | translate }}</h1><br>
     <hr>
     <p class="message" [innerHTML]="successMessage | safeHtml"></p>
     <img src="https://media.tenor.com/JzgronqM0nsAAAAM/dancing-steve.gif" alt="">
 </modal-window>
 
 <modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Oops! Something went wrong...</h1><br>
+    <h1 class="title">{{ 'SOMETHING_WENT_WRONG' | translate }}</h1><br>
     <hr>
     <img src="https://media.discordapp.net/attachments/983448971089432577/1078404457676685402/jsrip.gif" alt="">
 </modal-window>

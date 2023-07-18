@@ -13,6 +13,7 @@ import { AdminSelectedTabService } from '../services/admin-selected-tab.service'
 import { LoadingService } from '../services/loading.service';
 import { Service } from '../model/service';
 import { ServiceRepositoryService } from '../services/service-repository.service';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
   selector: 'app-admin-panel-manage-service-versions',
@@ -23,7 +24,8 @@ export class AdminPanelManageServiceVersionsComponent {
   constructor(private serviceVersionRepository : ServiceVersionRepositoryService ,
     private renderer : Renderer2, private authService : AuthService, 
     private adminSelectedTab : AdminSelectedTabService, private loadingService : LoadingService,
-    private formBuilder : FormBuilder, private serviceRepository : ServiceRepositoryService) { }
+    private formBuilder : FormBuilder, private serviceRepository : ServiceRepositoryService,
+    private translateService : TranslateService) { }
 
     quillModules: QuillModules = {
       toolbar: {
@@ -165,7 +167,7 @@ export class AdminPanelManageServiceVersionsComponent {
 
   canEdit(version : ServiceVersion) : [boolean, string] { 
     if (version.status != Status.POSTED) {
-      return [false, "You can't edit pending version"];
+      return [false, this.translateService.translate('CANT_EDIT_PENDING_POSTABLE', this.translateService.translate('VERSION'))];
     }
 
     // If user is author of the version and he has permission to delete own postable
@@ -179,17 +181,17 @@ export class AdminPanelManageServiceVersionsComponent {
       return [true, ""];
     }
 
-    return [false, "You don't have enough permissions"];
+    return [false, this.translateService.translate('DONT_HAVE_ENOUGH_PERMISSIONS')];
   }
 
   canDelete(version : ServiceVersion) : [boolean, string] { 
     if (version.status != Status.POSTED) {
-      return [false, "You can't delete unpublished version"];
+      return [false, this.translateService.translate("CANT_DELETE_UNPUBLISHED_POSTABLE", this.translateService.translate("VERSION"))];
     }
     
     let target = this.serviceVersions.find(a => a.originalId == version.id)
     if (target) {
-      return [false, `Version ID ${target.id} is pending for action`];
+      return [false, this.translateService.translate("POSTABLE_PENDING_FOR_ACTION", this.translateService.translate("VERSION"), target.id)];
     }
 
     // If user is author of the image and he has permission to delete own postable
@@ -203,7 +205,7 @@ export class AdminPanelManageServiceVersionsComponent {
       return [true, ""];
     }
 
-    return [false, "You don't have enough permissions"];
+    return [false, this.translateService.translate('DONT_HAVE_ENOUGH_PERMISSIONS')];
   }
 
   showEditModal(id : number) {
@@ -227,11 +229,11 @@ export class AdminPanelManageServiceVersionsComponent {
   getSuccessDeleteMessage() : string {
     if (this.currentRank.approvementToDeletePostableOthers) 
     {
-      return "Your image is now <b>pending to be deleted</b>. Emperor can approve this request or decline it";
+      return this.translateService.translate("VERSION_PENDING_DELETED");
     }
     else 
     {
-      return "You have successfully deleted image!";
+      return this.translateService.translate("SUCCESSFULLY_DELETED_VERSION");
     }
   }
 

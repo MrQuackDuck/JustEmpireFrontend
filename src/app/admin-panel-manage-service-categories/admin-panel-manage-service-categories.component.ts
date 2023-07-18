@@ -9,6 +9,7 @@ import { AuthService } from '../services/auth.service';
 import { User } from '../model/user';
 import { AdminSelectedTabService } from '../services/admin-selected-tab.service';
 import { Status } from '../enum/Status';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
   selector: 'app-admin-panel-manage-service-categories',
@@ -19,7 +20,8 @@ export class AdminPanelManageServiceCategoriesComponent {
   constructor(private authService : AuthService,
     private serviceCategoryRepository : ServiceCategoryRepositoryService, 
     private loadingService : LoadingService, private formBuilder : FormBuilder, 
-    private adminSelectedTab: AdminSelectedTabService, private renderer: Renderer2) {}
+    private adminSelectedTab: AdminSelectedTabService, private renderer: Renderer2,
+    private translateService : TranslateService) {}
 
   newCategoryForm : FormGroup
   newCategoryModalShown : boolean;
@@ -70,7 +72,7 @@ export class AdminPanelManageServiceCategoriesComponent {
 
   canEdit(category : ServiceCategory) : [boolean, string] {
     if (category.status != Status.POSTED) {
-      return [false, "You can't edit pending category"];
+      return [false, this.translateService.translate("CANT_EDIT_PENDING_POSTABLE", this.translateService.translate("CATEGORY"))];
     }
 
     // If user is author of the category and he has permission to delete own postable
@@ -84,7 +86,7 @@ export class AdminPanelManageServiceCategoriesComponent {
       return [true, ""];
     }
 
-    return [false, "You don't have enough permissions"];
+    return [false, this.translateService.translate('DONT_HAVE_ENOUGH_PERMISSIONS')];
   }
 
   canDelete(category : ServiceCategory) : [boolean, string] {

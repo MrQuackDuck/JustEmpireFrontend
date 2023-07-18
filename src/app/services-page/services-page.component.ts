@@ -9,6 +9,7 @@ import { ServiceCategory } from '../model/serviceCategory';
 import { Language } from '../enum/Language';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingService } from '../services/loading.service';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-services-page',
@@ -17,7 +18,8 @@ import { LoadingService } from '../services/loading.service';
 })
 export class ServicesPageComponent {
   constructor(private route : ActivatedRoute, private router: Router, private serviceRepository : ServiceRepositoryService,
-    private serviceCategoryRepository : ServiceCategoryRepositoryService, private loadingService : LoadingService) {}
+    private serviceCategoryRepository : ServiceCategoryRepositoryService, private loadingService : LoadingService,
+    private languageService : LanguageService) {}
 
     services$ : Observable<Service[]>;
     serviceCategories$ : Observable<ServiceCategory[]>;
@@ -33,8 +35,11 @@ export class ServicesPageComponent {
       
       // If 'Language' enum not includes provided value, then redirect user to default language page
       if (!Object.values(Language).includes(language)) {
-        this.language = Language.EN;
-        this.router.navigate([this.pageName, 'EN']); // TODO: Get actual site language
+        this.language = this.languageService.getLanguage();
+        this.router.navigate([this.pageName, this.languageService.getLanguageCode()]); // TODO: Get actual site language
+      } 
+      else {
+        this.language = language;
       }
 
       this.updateData();

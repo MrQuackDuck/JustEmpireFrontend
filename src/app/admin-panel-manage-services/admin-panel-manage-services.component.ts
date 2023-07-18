@@ -17,6 +17,7 @@ import { API_URL, LANGUAGES } from 'src/globals';
 import { ImageUploaderService } from '../services/image-uploader.service';
 import { ServiceImageRepositoryService } from '../services/service-image-repository.service';
 import { CreateImageModel } from '../model/requestModels/createImageModel';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
   selector: 'app-admin-panel-manage-services',
@@ -28,7 +29,7 @@ export class AdminPanelManageServicesComponent {
     private adminSelectedTab : AdminSelectedTabService, private authService : AuthService,
     private formBuilder : FormBuilder, private serviceCategoryRepository : ServiceCategoryRepositoryService, 
     private renderer : Renderer2, private imageUploader : ImageUploaderService,
-    private serviceImageRepository : ServiceImageRepositoryService) {}
+    private serviceImageRepository : ServiceImageRepositoryService, private translateService : TranslateService) {}
 
   currentRank : Rank;
   currentUser : User;
@@ -247,7 +248,7 @@ export class AdminPanelManageServicesComponent {
 
   canEdit(service : Service) : [boolean, string] {
     if (service.status != Status.POSTED) {
-      return [false, "You can't edit pending service"];
+      return [false, this.translateService.translate("CANT_EDIT_PENDING_POSTABLE", this.translateService.translate('SERVICE'))];
     }
 
     // If user is author of the service and he has permission to delete own postable
@@ -261,17 +262,17 @@ export class AdminPanelManageServicesComponent {
       return [true, ""];
     }
 
-    return [false, "You don't have enough permissions"];
+    return [false, this.translateService.translate("DONT_HAVE_ENOUGH_PERMISSIONS")];
   }
 
   canDelete(service : Service) : [boolean, string] {
     if (service.status != Status.POSTED) {
-      return [false, "You can't delete unpublished service"];
+      return [false, this.translateService.translate("CANT_DELETE_UNPUBLISHED_POSTABLE", this.translateService.translate("SERVICE"))];
     }
     
     let target = this.services.find(s => s.originalId == service.id)
     if (target) {
-      return [false, `Service ID ${target.id} is pending for action`];
+      return [false, this.translateService.translate("POSTABLE_PENDING_FOR_ACTION", target.id)];
     }
 
     // If user is author of the service and he has permission to delete own postable
@@ -285,7 +286,7 @@ export class AdminPanelManageServicesComponent {
       return [true, ""];
     }
 
-    return [false, "You don't have enough permissions"];
+    return [false, this.translateService.translate("DONT_HAVE_ENOUGH_PERMISSIONS")];
   }
 
   updateData() {

@@ -4,27 +4,27 @@
             <div class="image"><img src="{{ API_URL }}/uploads/{{ service?.titleImage }}"></div>
             <div class="info">
                 <h1 class="name">{{ service?.title }}</h1>
-                <span class="type" *ngIf="currentCategory">Type: {{ currentCategory.title }}</span>
+                <span class="type" *ngIf="currentCategory">{{ 'TYPE' | translate }}: {{ currentCategory.title }}</span>
                 <span class="description" [innerHTML]="service?.text | safeHtml"></span>
             </div>
         </div>
         <div class="controls">
             <div>
                 <span class="field" *ngIf="currentVersion">Version: {{ currentVersion.title }}</span>            
-                <btn [paddingLeft]="0" [paddingRight]="0" [href]="service?.url ?? ''" *ngIf="!service?.isDownloadable" draggable="false">Visit</btn>
-                <btn [paddingLeft]="0" [paddingRight]="0" [href]="service?.url ?? ''" *ngIf="service?.isDownloadable" draggable="false" [color]="'green'">Download</btn>
+                <btn [paddingLeft]="0" [paddingRight]="0" [href]="service?.url ?? ''" *ngIf="!service?.isDownloadable" draggable="false">{{ 'VISIT' | translate }}</btn>
+                <btn [paddingLeft]="0" [paddingRight]="0" [href]="service?.url ?? ''" *ngIf="service?.isDownloadable" draggable="false" [color]="'green'">{{ 'DOWNLOAD' | translate }}</btn>
             </div>
         </div>
     </div>
 
     <div class="navigation">
-        <a *ngIf="screenshotsCount > 0" (mousedown)="setTab('screenshots')" [ngClass]="{ 'active': isTabCurrentlyActive('screenshots') }" draggable="false" class="button gray">Screenshots</a>
-        <a *ngIf="versionsCount > 0" (mousedown)="setTab('versions')" [ngClass]="{ 'active': isTabCurrentlyActive('versions') }" draggable="false" class="button gray">Versions</a>
+        <a *ngIf="screenshotsCount > 0" (mousedown)="setTab('screenshots')" [ngClass]="{ 'active': isTabCurrentlyActive('screenshots') }" draggable="false" class="button gray">{{ 'SCREENSHOTS' | translate }}</a>
+        <a *ngIf="versionsCount > 0" (mousedown)="setTab('versions')" [ngClass]="{ 'active': isTabCurrentlyActive('versions') }" draggable="false" class="button gray">{{ 'VERSIONS' | translate }}</a>
     </div>
 
     <div *ngIf="screenshotsCount > 0" [ngClass]="{'contentVisible': isTabCurrentlyActive('screenshots')}" class="content">
         <div class="screenshots-block block">
-            <h1>Screenshots</h1>
+            <h1>{{ 'SCREENSHOTS' | translate }}</h1>
             <hr>
             <div class="screenshots">
                 <img (click)="showImageViewer(i)" *ngFor="let screenshot of screenshots; index as i" class="screenshot" src="{{ API_URL }}/uploads/{{ screenshot.image }}">

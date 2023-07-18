@@ -12,6 +12,8 @@ import { API_URL, LANGUAGES } from 'src/globals';
 import { QuillModules, defaultModules } from 'ngx-quill';
 import { imageHandler } from '../quill/handlers/imageHandler';
 import { AdminSelectedTabService } from '../services/admin-selected-tab.service';
+import { LanguageService } from '../services/language.service';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
   selector: 'app-admin-panel-manage-articles',
@@ -21,7 +23,8 @@ import { AdminSelectedTabService } from '../services/admin-selected-tab.service'
 export class AdminPanelManageArticlesComponent {
   constructor(private articleRepository : ArticleRepositoryService, private formBuilder : FormBuilder, 
   private loadingService : LoadingService, private renderer: Renderer2, private authService : AuthService,
-  private imageUploader : ImageUploaderService, private adminSelectedTab : AdminSelectedTabService) {}
+  private imageUploader : ImageUploaderService, private adminSelectedTab : AdminSelectedTabService,
+  private translateService : TranslateService) {}
 
   quillModules: QuillModules = {
     toolbar: {
@@ -127,7 +130,7 @@ export class AdminPanelManageArticlesComponent {
         this.loadingService.disableLoading();
         this.successModalShown = true;
         this.updateData();
-        browseLabel.innerHTML = "<span>Browse</span>";
+        browseLabel.innerHTML = `<span>${this.translateService.translate('BROWSE')}</span>`;
         this.newArticleForm.reset();
         this.newArticleForm.markAsPristine();
         this.newArticleForm.markAsUntouched();
@@ -237,7 +240,7 @@ export class AdminPanelManageArticlesComponent {
 
   canEdit(article : Article) : [boolean, string] {
     if (article.status != Status.POSTED) {
-      return [false, "You can't edit pending article"];
+      return [false, this.translateService.translate('CANT_EDIT_PENDING_POSTABLE', this.translateService.translate('ARTICLE'))];
     }
 
     // If user is author of the article and he has permission to delete own postable
@@ -251,17 +254,17 @@ export class AdminPanelManageArticlesComponent {
       return [true, ""];
     }
 
-    return [false, "You don't have enough permissions"];
+    return [false, this.translateService.translate('DONT_HAVE_ENOUGH_PERMISSIONS')];
   }
 
   canDelete(article : Article) : [boolean, string] {
     if (article.status != Status.POSTED) {
-      return [false, "You can't delete unpublished article"];
+      return [false, this.translateService.translate('CANT_DELETE_UNPUBLISHED_POSTABLE', this.translateService.translate('ARTICLE'))];
     }
     
     let target = this.articles.find(a => a.originalId == article.id)
     if (target) {
-      return [false, `Article ID ${target.id} is pending for action`];
+      return [false, this.translateService.translate('POSTABLE_PENDING_FOR_ACTION', this.translateService.translate('ARTICLE'), target.id)];
     }
 
     // If user is author of the article and he has permission to delete own postable
@@ -275,6 +278,6 @@ export class AdminPanelManageArticlesComponent {
       return [true, ""];
     }
 
-    return [false, "You don't have enough permissions"];
+    return [false, this.translateService.translate('DONT_HAVE_ENOUGH_PERMISSIONS')];
   }
 }

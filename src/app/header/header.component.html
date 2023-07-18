@@ -7,7 +7,7 @@
             <i (click)="closeNav()" #navCloseBtn class="uil uil-times navCloseBtn"></i>
             <li><a draggable="false" routerLinkActive="active" routerLink="home">{{ "HOME" | translate }}</a></li>
             <li><a draggable="false" routerLinkActive="active" routerLink="news/{{ language.getLanguageCode() }}">{{ "NEWS" | translate }}</a></li>
-            <li><a draggable="false" routerLinkActive="active" routerLink="services">{{ "SERVICES" | translate }}</a></li>
+            <li><a draggable="false" routerLinkActive="active" routerLink="services/{{ language.getLanguageCode() }}">{{ "SERVICES" | translate }}</a></li>
           </ul>
           
           <img draggable="false" src="{{ currentIcon }}"(click)="toggleSearch()" #searchIcon id="searchIcon">

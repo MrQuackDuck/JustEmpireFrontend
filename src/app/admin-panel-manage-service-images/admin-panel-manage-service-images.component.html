@@ -1,8 +1,8 @@
 <main>
     <div class="title-section">
-        <btn [color]="'gray'" routerLink="/admin">Back</btn>
-        <span class="title">Admin panel - Manage service images</span>
-        <btn (click)="this.newImageModalShown = true">New</btn>
+        <btn [color]="'gray'" routerLink="/admin">{{ 'BACK' | translate }}</btn>
+        <span class="title">{{ 'ADMIN_PANEL' | translate }} - {{ 'MANAGE_SERVICE_IMAGES' | translate }}</span>
+        <btn (click)="this.newImageModalShown = true">{{ 'NEW' | translate }}</btn>
     </div>
     <div class="sections-container">
         <section class="no-padding">
@@ -11,31 +11,31 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Image</th>
-                            <th>Author</th>
-                            <th>Service name</th>
-                            <th>Status</th>
-                            <th>Publish date</th>
-                            <th>Last change date</th>
-                            <th>Original ID</th>
-                            <th style="text-align: center;">Actions</th>
+                            <th>{{ 'IMAGE' | translate }}</th>
+                            <th>{{ 'AUTHOR' | translate }}</th>
+                            <th>{{ 'SERVICE' | translate }}</th>
+                            <th>{{ 'STATUS' | translate }}</th>
+                            <th>{{ 'PUBLISH_DATE' | translate }}</th>
+                            <th>{{ 'LAST_CHANGE_DATE' | translate }}</th>
+                            <th>{{ 'ORIGINAL_ID' | translate }}</th>
+                            <th style="text-align: center;">{{ 'ACTIONS' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let image of serviceImages">
                             <td data-title="ID:">{{ image.id }}</td>
-                            <td data-title="Image:"><img style="cursor: zoom-in;" (click)="viewImage(image)" src="{{API_URL}}/uploads/{{ image.image }}" /></td>
-                            <td data-title="Author:">{{ image.authorId | author | async }}</td>
-                            <td tp="Service ID {{ (image.serviceId |serviceName | async)?.id }}" data-title="Service:">{{ (image.serviceId |serviceName | async)?.title }}</td>
-                            <td data-title="Status:" [tp]="image.status | statusDescription : 'image'" [tpDelay]="200">{{ image.status | statusCode }}</td>
-                            <td data-title="Publish date:">{{ image.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
-                            <td data-title="Last change date:">{{ image.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
-                            <td data-title="Original ID:" [tp]="image.status | originalIdTp : image.originalId : 'image'" [tpDelay]="200"><b>{{ image.originalId }}</b></td>
+                            <td [attr.data-title]="('IMAGE' | translate) + ':'"><img style="cursor: zoom-in;" (click)="viewImage(image)" src="{{API_URL}}/uploads/{{ image.image }}" /></td>
+                            <td [attr.data-title]="('AUTHOR' | translate) + ':'">{{ image.authorId | author | async }}</td>
+                            <td [attr.data-title]="('SERVICE' | translate) + ':'" tp="Service ID {{ (image.serviceId |serviceName | async)?.id }}">{{ (image.serviceId |serviceName | async)?.title }}</td>
+                            <td [attr.data-title]="('STATUS' | translate) + ':'" [tp]="image.status | statusDescription : 'image'" [tpDelay]="200">{{ image.status | statusCode }}</td>
+                            <td [attr.data-title]="('PUBLISH_DATE' | translate) + ':'">{{ image.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td [attr.data-title]="('LAST_CHANGE_DATE' | translate) + ':'">{{ image.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td [attr.data-title]="('ORIGINAL_ID' | translate) + ':'" [tp]="image.status | originalIdTp : image.originalId : 'image'" [tpDelay]="200"><b>{{ image.originalId }}</b></td>
                             <td class="actions">
 
-                                <div class="wrp"><btn (click)="viewImage(image)" [small]="true" [color]="'green'">View</btn></div>
-                                <div [tp]="canEdit(image)[1]" [tpIsEnabled]="canEdit(image)[1].length > 0" class="wrp"><btn (click)="showEditModal(image.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(image)[0]}">Edit</btn></div>
-                                <div [tp]="canDelete(image)[1]" [tpIsEnabled]="canDelete(image)[1].length > 0" class="wrp"><btn (click)="showDeleteModal(image)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(image)[0]}">Delete</btn></div>
+                                <div class="wrp"><btn (click)="viewImage(image)" [small]="true" [color]="'green'">{{ 'VIEW' | translate }}</btn></div>
+                                <div [tp]="canEdit(image)[1]" [tpIsEnabled]="canEdit(image)[1].length > 0" class="wrp"><btn (click)="showEditModal(image.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(image)[0]}">[attr.data-title]="('EDIT' | translate) + ':'"</btn></div>
+                                <div [tp]="canDelete(image)[1]" [tpIsEnabled]="canDelete(image)[1].length > 0" class="wrp"><btn (click)="showDeleteModal(image)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(image)[0]}">[attr.data-title]="('DELETE' | translate) + ':'"</btn></div>
                             </td>
                         </tr>
                     </tbody>

@@ -14,7 +14,9 @@ export class LanguageService {
   }
 
   getLanguage() : any { 
-    return this.cookieService.get('language');
+    let language = this.cookieService.get('language');
+    if (language === '') return 0;
+    return language;
   }
 
   getLanguageCode() { 

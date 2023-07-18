@@ -1,8 +1,8 @@
 <main>
     <div class="title-section">
-        <btn [color]="'gray'" routerLink="/admin">Back</btn>
-        <span class="title">Admin panel - Manage service versions</span>
-        <btn (click)="this.newVersionModalShown = true">New</btn>
+        <btn [color]="'gray'" routerLink="/admin">{{ 'BACK' | translate }}</btn>
+        <span class="title">{{ 'ADMIN_PANEL' | translate }} - {{ 'MANAGE_SERVICE_VERSIONS' | translate }}</span>
+        <btn (click)="this.newVersionModalShown = true">{{ 'NEW' | translate }}</btn>
     </div>
     <div class="sections-container">
         <section class="no-padding">
@@ -11,14 +11,14 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Author</th>
-                            <th>Service name</th>
-                            <th>Title</th>
-                            <th>Status</th>
-                            <th>Publish date</th>
-                            <th>Last change date</th>
-                            <th>Original ID</th>
-                            <th style="text-align: center;">Actions</th>
+                            <th>{{ 'AUTHOR' | translate }}</th>
+                            <th>{{ 'SERVICE' | translate }}</th>
+                            <th>{{ 'TITLE' | translate }}</th>
+                            <th>{{ 'STATUS' | translate }}</th>
+                            <th>{{ 'PUBLISH_DATE' | translate }}</th>
+                            <th>{{ 'LAST_CHANGE_DATE' | translate }}</th>
+                            <th>{{ 'ORIGINAL_ID' | translate }}</th>
+                            <th style="text-align: center;">{{ 'ACTIONS' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,15 +27,15 @@
                             <td data-title="Author:">{{ version.authorId | author | async }}</td>
                             <td tp="Service ID {{ (version.serviceId |serviceName | async)?.id }}" data-title="Service:">{{ (version.serviceId |serviceName | async)?.title }}</td>
                             <td data-title="Title:">{{ version.title | truncate: 30 }}</td>
-                            <td data-title="Status:" [tp]="version.status | statusDescription : 'version'" [tpDelay]="200">{{ version.status | statusCode }}</td>
+                            <td data-title="Status:" [tp]="version.status | statusDescription : 'version'" [tpDelay]="200">{{ version.status | statusCode | translate }}</td>
                             <td data-title="Publish date:">{{ version.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
                             <td data-title="Last change date:">{{ version.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
                             <td data-title="Original ID:" [tp]="version.status | originalIdTp : version.originalId : 'category'" [tpDelay]="200"><b>{{ version.originalId }}</b></td>
                             <td class="actions">
 
-                                <div class="wrp"><btn (click)="viewVersion(version)" [small]="true" [color]="'green'">View</btn></div>
-                                <div [tp]="canEdit(version)[1]" [tpIsEnabled]="canEdit(version)[1].length > 0" class="wrp"><btn (click)="showEditModal(version.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(version)[0]}">Edit</btn></div>
-                                <div [tp]="canDelete(version)[1]" [tpIsEnabled]="canDelete(version)[1].length > 0" class="wrp"><btn (click)="showDeleteModal(version)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(version)[0]}">Delete</btn></div>
+                                <div class="wrp"><btn (click)="viewVersion(version)" [small]="true" [color]="'green'">{{ 'VIEW' | translate }}</btn></div>
+                                <div [tp]="canEdit(version)[1]" [tpIsEnabled]="canEdit(version)[1].length > 0" class="wrp"><btn (click)="showEditModal(version.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(version)[0]}">{{ 'EDIT' | translate }}</btn></div>
+                                <div [tp]="canDelete(version)[1]" [tpIsEnabled]="canDelete(version)[1].length > 0" class="wrp"><btn (click)="showDeleteModal(version)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(version)[0]}">{{ 'DELETE' | translate }}</btn></div>
                             </td>
                         </tr>
                     </tbody>
@@ -52,55 +52,55 @@
 </modal-window>
 
 <modal-window [showModal]="newVersionModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Create Version</h1>
+    <h1 class="title">{{ 'CREATE_VERSION' | translate }}</h1>
     <form (ngSubmit)="submitNewVersion()" [formGroup]="newVersionForm" method="post" enctype="multipart/form-data">
-        <div data-title="Version name" class="tip">
-            <input required="text" formControlName="title" type="text" placeholder="Title">
+        <div [attr.data-title]="('VERSION_NAME' | translate) + ':'" class="tip">
+            <input required="text" formControlName="title" type="text" [placeholder]="'TITLE' | translate">
         </div>
         <quill-editor [modules]="quillModules" formControlName="text"></quill-editor>
-        <div data-title="Target service (to which the version will be applied)" class="tip">
+        <div [attr.data-title]="('TARGET_VERSION_SERVICE' | translate) + ':'" class="tip">
             <select tp="Select service" formControlName="serviceId" required>
                 <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
             </select>
         </div>
-        <input class="button" type="submit" value="Create">
+        <input class="button" type="submit" [value]="'CREATE' | translate">
     </form>
 </modal-window>
 
 <modal-window [showModal]="editVersionModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Edit Version</h1>
+    <h1 class="title">{{ 'EDIT_VERSION' | translate }}</h1>
     <form (ngSubmit)="submitEditedVersion()" [formGroup]="editVersionForm" method="post" enctype="multipart/form-data">
-        <div data-title="Version title" class="tip">
-            <input value="{{ currentVersionEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
+        <div [attr.data-title]="('VERSION_NAME' | translate) + ':'" class="tip">
+            <input value="{{ currentVersionEdited?.title }}" required="text" formControlName="title" type="text" [placeholder]="'TITLE' | translate">
         </div>
         <quill-editor [modules]="quillModules" formControlName="text"></quill-editor>
-        <div data-title="Target service (to which the version is applied)" class="tip">
+        <div [attr.data-title]="('TARGET_VERSION_SERVICE' | translate) + ':'" class="tip">
             <select formControlName="serviceId" required>
                 <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
             </select>
         </div>
-        <input class="button green" type="submit" value="Confirm edit">
+        <input class="button green" type="submit" [value]="'CONFIRM_EDIT' | translate">
     </form>
 </modal-window>
 
 <modal-window [showModal]="confirmDeleteModalShown" (onClose)="closeAllModals()">
-    <h1 class="title left">Are you sure?</h1><br>
-    <p>You are about to delete <b>{{ versionToDelete?.title }}</b></p>
+    <h1 class="title left">{{ 'ARE_YOU_SURE' | translate }}</h1><br>
+    <p>{{ 'ABOUT_TO_DELETE' | translate }} <b>{{ versionToDelete?.title }}</b></p>
     <div class="block padding-top">
-        <btn (click)="closeAllModals()">Cancel</btn>
-        <btn [color]="'red'" (click)="deleteVersion()">Delete</btn>
+        <btn (click)="closeAllModals()">{{ 'CANCEL' | translate }}</btn>
+        <btn [color]="'red'" (click)="deleteVersion()">{{ 'DELETE' | translate }}</btn>
     </div>
 </modal-window>
 
 <modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Success!</h1><br>
+    <h1 class="title">{{ 'SUCCESS' | translate }}</h1><br>
     <hr>
     <p class="message" [innerHTML]="successMessage | safeHtml"></p>
     <img src="https://media.tenor.com/JzgronqM0nsAAAAM/dancing-steve.gif" alt="">
 </modal-window>
 
 <modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Oops! Something went wrong...</h1><br>
+    <h1 class="title">{{ 'SOMETHING_WENT_WRONG' | translate }}</h1><br>
     <hr>
     <p class="message"></p>
     <img src="https://media.discordapp.net/attachments/983448971089432577/1078404457676685402/jsrip.gif" alt="">
