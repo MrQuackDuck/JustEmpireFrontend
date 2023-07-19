@@ -10,15 +10,15 @@ export class PostableTypePipe implements PipeTransform {
     let type : PostableType = value ?? PostableType.ARTICLE;
     switch (type) {
         case PostableType.ARTICLE:
-            return "📰 Article";
+            return "TYPE_ARTICLE";
         case PostableType.SERVICE:
-            return "📦 Service";
+            return "TYPE_SERVICE";
         case PostableType.CATEGORY:
-            return "🔠 Category";
+            return "TYPE_CATEGORY";
         case PostableType.VERSION:
-            return "🐧 Version";
+            return "TYPE_VERSION";
         case PostableType.IMAGE:
-            return "🖼️ Image";
+            return "TYPE_IMAGE";
             
     }
   }

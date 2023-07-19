@@ -1,8 +1,8 @@
 <main>
     <div class="title-section">
-        <btn [color]="'gray'" routerLink="/admin">Back</btn>
-        <span class="title">Admin panel - Manage users</span>
-        <btn (click)="this.newUserModalShown = true">New</btn>
+        <btn [color]="'gray'" routerLink="/admin">{{ 'BACK' | translate }}</btn>
+        <span class="title">{{ 'ADMIN_PANEL' | translate }} - {{ 'MANAGE_USERS' | translate }}</span>
+        <btn (click)="this.newUserModalShown = true">{{ 'NEW' | translate }}</btn>
     </div>
     <div class="sections-container">
         <section class="no-padding">
@@ -11,9 +11,9 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Username</th>
-                            <th>Rank</th>
-                            <th style="text-align: center;">Actions</th>
+                            <th>{{ 'USERNAME' | translate }}</th>
+                            <th>{{ 'RANK' | translate }}</th>
+                            <th style="text-align: center;">{{ 'ACTIONS' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,8 +22,8 @@
                             <td data-title="Username:">{{ user.username | truncate: 30 }}</td>
                             <td data-title="Rank:">{{ user.rankId | rank | async }}</td>
                             <td class="actions">
-                                <div class="wrp"><btn (click)="showEditModal(user.id)" [small]="true" [color]="'orange'">Edit</btn></div>
-                                <div [tp]="canDelete(user)[1]" [tpIsEnabled]="canDelete(user)[1].length > 0" class="wrp"><btn (click)="showDeleteModal(user)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(user)[0]}">Delete</btn></div>
+                                <div class="wrp"><btn (click)="showEditModal(user.id)" [small]="true" [color]="'orange'">{{ 'EDIT' | translate }}</btn></div>
+                                <div [tp]="'CANNOT_DELETE_YOURSELF' | translate" [tpIsEnabled]="canDelete(user)[1].length > 0" class="wrp"><btn (click)="showDeleteModal(user)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(user)[0]}">{{ 'DELETE' | translate }}</btn></div>
                             </td>
                         </tr>
                     </tbody>
@@ -34,56 +34,56 @@
 </main>
 
 <modal-window [showModal]="newUserModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Create User</h1>
+    <h1 class="title">{{ 'CREATE_USER' | translate }}</h1>
     <form (ngSubmit)="submitNewUser()" [formGroup]="newUserForm" method="post" enctype="multipart/form-data">
-        <div data-title="Username" class="tip">
-            <input required="text" formControlName="username" type="text" placeholder="Username">
+        <div [attr.data-title]="('USERNAME' | translate) + ':'" class="tip">
+            <input required="text" formControlName="username" type="text" [placeholder]="'USERNAME' | translate">
         </div>
-        <div data-title="Password" class="tip">
-            <input required="text" formControlName="password" type="text" placeholder="Password">
+        <div [attr.data-title]="('PASSWORD' | translate) + ':'" class="tip">
+            <input required="text" formControlName="password" type="text" [placeholder]="'PASSWORD' | translate">
         </div>
-        <div data-title="User rank" class="tip">
+        <div [attr.data-title]="('USER_RANK' | translate) + ':'" class="tip">
             <select formControlName="rankId" required>
                 <option *ngFor="let rank of ranks; index as i" [ngValue]="rank.id">{{ rank.name }}</option>
             </select>
         </div>
-        <input class="button" type="submit" value="Create">
+        <input class="button" type="submit" [value]="'CREATE' | translate">
     </form>
 </modal-window>
 
 <modal-window [showModal]="editUserModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Edit User</h1>
+    <h1 class="title">{{ 'EDIT_USER' | translate }}</h1>
     <form (ngSubmit)="submitEditedUser()" [formGroup]="editUserForm" method="post" enctype="multipart/form-data">
-        <div data-title="Username" class="tip">
+        <div [attr.data-title]="('USERNAME' | translate) + ':'" class="tip">
             <input value="{{ currentUserEdited?.username }}" required="text" formControlName="username" type="text" placeholder="Title">
         </div>
-        <div data-title="User rank" class="tip">
+        <div [attr.data-title]="('USER_RANK' | translate) + ':'" class="tip">
             <select formControlName="rankId" required>
                 <option *ngFor="let rank of ranks; index as i" [ngValue]="rank.id">{{ rank.name }}</option>
             </select>
         </div>
-        <input class="button green" type="submit" value="Confirm edit">
+        <input class="button green" type="submit" [value]="'CONFIRM_EDIT' | translate">
     </form>
 </modal-window>
 
 <modal-window [showModal]="confirmDeleteModalShown" (onClose)="closeAllModals()">
-    <h1 class="title left">Are you sure?</h1><br>
-    <p>You are about to delete <b>{{ userToDelete?.username }}</b></p>
+    <h1 class="title left">{{ 'ARE_YOU_SURE' | translate }}</h1><br>
+    <p>{{ 'ABOUT_TO_DELETE' | translate }} <b>{{ userToDelete?.username }}</b></p>
     <div class="block padding-top">
-        <btn (click)="closeAllModals()">Cancel</btn>
-        <btn [color]="'red'" (click)="deleteUser()">Delete</btn>
+        <btn (click)="closeAllModals()">{{ 'CANCEL' | translate }}</btn>
+        <btn [color]="'red'" (click)="deleteUser()">{{ 'DELETE' | translate }}</btn>
     </div>
 </modal-window>
 
 <modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Success!</h1><br>
+    <h1 class="title">{{ 'SUCCESS' | translate }}</h1><br>
     <hr>
     <p class="message" [innerHTML]="successMessage | safeHtml"></p>
     <img src="https://media.tenor.com/JzgronqM0nsAAAAM/dancing-steve.gif" alt="">
 </modal-window>
 
 <modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Oops! Something went wrong...</h1><br>
+    <h1 class="title">{{ 'SOMETHING_WENT_WRONG' | translate }}</h1><br>
     <hr>
     <p class="message"></p>
     <img src="https://media.discordapp.net/attachments/983448971089432577/1078404457676685402/jsrip.gif" alt="">

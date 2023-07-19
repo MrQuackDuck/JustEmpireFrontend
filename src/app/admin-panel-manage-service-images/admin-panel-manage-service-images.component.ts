@@ -13,6 +13,7 @@ import { Status } from '../enum/Status';
 import { ServiceRepositoryService } from '../services/service-repository.service';
 import { API_URL } from 'src/globals';
 import { ImageUploaderService } from '../services/image-uploader.service';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
   selector: 'app-admin-panel-manage-service-images',
@@ -24,7 +25,7 @@ export class AdminPanelManageServiceImagesComponent {
     private serviceImageRepository : ServiceImageRepositoryService,
     private adminSelectedTab : AdminSelectedTabService, private formBuilder : FormBuilder,
     private serviceRepository : ServiceRepositoryService, private renderer : Renderer2,
-    private imageUploader : ImageUploaderService) { }
+    private imageUploader : ImageUploaderService, private translateService : TranslateService) { }
 
   API_URL = API_URL;
 
@@ -144,7 +145,7 @@ export class AdminPanelManageServiceImagesComponent {
         this.newImageForm.markAsUntouched();
 
         let browseImageLabel : any = document.querySelector('.upload-photo-label'); 
-        browseImageLabel.innerHTML = "<span>Browse</span>";
+        browseImageLabel.innerHTML = `<span>${this.translateService.translate('BROWSE')}</span>`;
       },
       fail => {
         this.loadingService.disableLoading();
@@ -199,7 +200,7 @@ export class AdminPanelManageServiceImagesComponent {
   
   canEdit(image : ServiceImage): [boolean, string] { 
     if (image.status != Status.POSTED) {
-      return [false, "You can't edit pending image"];
+      return [false, this.translateService.translate('CANT_EDIT_PENDING_POSTABLE', this.translateService.translate('IMAGE'))];
     }
 
     // If user is author of the image and he has permission to delete own postable
@@ -213,17 +214,17 @@ export class AdminPanelManageServiceImagesComponent {
       return [true, ""];
     }
 
-    return [false, "You don't have enough permissions"];
+    return [false, this.translateService.translate('DONT_HAVE_ENOUGH_PERMISSIONS')];
   }
 
   canDelete(image : ServiceImage): [boolean, string] { 
     if (image.status != Status.POSTED) {
-      return [false, "You can't delete unpublished image"];
+      return [false, this.translateService.translate('CANT_DELETE_UNPUBLISHED_POSTABLE', this.translateService.translate('IMAGE'))];
     }
     
     let target = this.serviceImages.find(a => a.originalId == image.id)
     if (target) {
-      return [false, `Image ID ${target.id} is pending for action`];
+      return [false, this.translateService.translate('POSTABLE_PENDING_FOR_ACTION', this.translateService.translate('IMAGE'), target.id)];
     }
 
     // If user is author of the image and he has permission to delete own postable
@@ -237,17 +238,17 @@ export class AdminPanelManageServiceImagesComponent {
       return [true, ""];
     }
 
-    return [false, "You don't have enough permissions"];
+    return [false, this.translateService.translate('DONT_HAVE_ENOUGH_PERMISSIONS')];
   }
 
   getSuccessDeleteMessage() : string {
     if (this.currentRank.approvementToDeletePostableOthers) 
     {
-      return "Your image is now <b>pending to be deleted</b>. Emperor can approve this request or decline it";
+      return this.translateService.translate('POSTABLE_PENDING_TO_BE_DELETED', this.translateService.translate('IMAGE'));
     }
     else 
     {
-      return "You have successfully deleted image!";
+      return this.translateService.translate('SUCCESSFULLY_DELETED_IMAGE');
     }
   }
 

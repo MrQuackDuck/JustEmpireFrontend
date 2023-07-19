@@ -1,7 +1,7 @@
 <main>
     <div class="title-section">
-        <btn [color]="'gray'" routerLink="/admin">Back</btn>
-        <span class="title">Admin panel - Manage approvements</span>
+        <btn [color]="'gray'" routerLink="/admin">{{ 'BACK' | translate }}</btn>
+        <span class="title">{{ 'ADMIN_PANEL' | translate }} - {{ 'MANAGE_APPROVEMENTS' | translate }}</span>
         <a class="button empty" href=""></a>
     </div>
     <div class="sections-container">
@@ -11,30 +11,30 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Content type</th>
-                            <th>Author</th>
-                            <th>Title</th>
-                            <th>Status</th>
-                            <th>Publish date</th>
-                            <th>Original ID</th>
-                            <th style="text-align: center;">Actions</th>
+                            <th>{{ 'CONTENT_TYPE' | translate }}</th>
+                            <th>{{ 'AUTHOR' | translate }}</th>
+                            <th>{{ 'TITLE' | translate }}</th>
+                            <th>{{ 'STATUS' | translate }}</th>
+                            <th>{{ 'PUBLISH_DATE' | translate }}</th>
+                            <th>{{ 'ORIGINAL_ID' | translate }}</th>
+                            <th style="text-align: center;">{{ 'ACTIONS' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let approvement of approvements">
                             <td data-title="ID:">{{ approvement.id }}</td>
-                            <td data-title="Content type:">{{ approvement.type | postableType }}</td>
-                            <td data-title="Author:">{{ approvement.authorId | author | async }}</td>
-                            <td data-title="Title:">{{ approvement.title | truncate: 20 }}</td>
-                            <td data-title="Status:" [tp]="approvement.status | statusDescription : (approvement.type | postableTypeShort)" [tpDelay]="200">{{ approvement.status | statusCode }}</td>
-                            <td data-title="Publish date:">{{ approvement.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
-                            <td data-title="Original ID:" [tp]="approvement.status | originalIdTp : approvement.originalId : 'article'" [tpDelay]="200"><b>{{ approvement.originalId }}</b></td>
+                            <td [attr.data-title]="('CONTENT_TYPE' | translate) + ':'">{{ approvement.type | postableType | translate }}</td>
+                            <td [attr.data-title]="('AUTHOR' | translate) + ':'">{{ approvement.authorId | author | async }}</td>
+                            <td [attr.data-title]="('TITLE' | translate) + ':'">{{ approvement.title | truncate: 20 }}</td>
+                            <td [attr.data-title]="('STATUS' | translate) + ':'" [tp]="approvement.status | statusDescription : (approvement.type | postableTypeShort)" [tpDelay]="200">{{ approvement.status | statusCode | translate }}</td>
+                            <td [attr.data-title]="('PUBLISH_DATE' | translate) + ':'">{{ approvement.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
+                            <td [attr.data-title]="('ORIGINAL_ID' | translate) + ':'" [tp]="approvement.status | originalIdTp : approvement.originalId : 'article'" [tpDelay]="200"><b>{{ approvement.originalId }}</b></td>
                             <td class="actions">
-                                <div *ngIf="approvement.status != 2" class="wrp"><btn (click)="viewPostable(approvement)" [small]="true">View</btn></div>
-                                <div *ngIf="approvement.status == 2" class="wrp"><btn (click)="viewOriginalPostable(approvement)" [small]="true">View original</btn></div>
-                                <div *ngIf="approvement.status == 2" class="wrp"><btn (click)="viewPostable(approvement)" [small]="true" [color]="'orange'">View edited</btn></div>
-                                <div class="wrp"><btn (click)="showModalToApprove(approvement)" [small]="true" [color]="'green'">Approve</btn></div>
-                                <div class="wrp"><btn (click)="showModalToDecline(approvement)" [small]="true" [color]="'red'">Decline</btn></div>
+                                <div *ngIf="approvement.status != 2" class="wrp"><btn (click)="viewPostable(approvement)" [small]="true">{{ 'VIEW' | translate }}</btn></div>
+                                <div *ngIf="approvement.status == 2" class="wrp"><btn (click)="viewOriginalPostable(approvement)" [small]="true">{{ 'VIEW_ORIGINAL' | translate }}</btn></div>
+                                <div *ngIf="approvement.status == 2" class="wrp"><btn (click)="viewPostable(approvement)" [small]="true" [color]="'orange'">{{ 'VIEW_EDITED' | translate }}</btn></div>
+                                <div class="wrp"><btn (click)="showModalToApprove(approvement)" [small]="true" [color]="'green'">{{ 'APPROVE' | translate }}</btn></div>
+                                <div class="wrp"><btn (click)="showModalToDecline(approvement)" [small]="true" [color]="'red'">{{ 'DECLINE' | translate }}</btn></div>
                             </td>
                         </tr>
                     </tbody>
@@ -74,22 +74,22 @@
         <div data-title="Id" class="tip">
             {{ currentViewedCategory?.id }}
         </div>
-        <div data-title="Title" class="tip">
+        <div [attr.data-title]="('TITLE' | translate) + ':'" class="tip">
             {{ currentViewedCategory?.title }}
         </div>
-        <div data-title="Author" class="tip">
+        <div [attr.data-title]="('AUTHOR' | translate) + ':'" class="tip">
             {{ currentViewedCategory?.authorId! | author | async }}
         </div>
-        <div data-title="Status" class="tip">
+        <div [attr.data-title]="('STATUS' | translate) + ':'" class="tip">
             {{ currentViewedCategory?.status | statusCode }}
         </div>
-        <div data-title="Language" class="tip">
+        <div [attr.data-title]="('LANGUAGE' | translate) + ':'" class="tip">
             {{ currentViewedCategory?.language! | langFull }}
         </div>
-        <div data-title="Publish date" class="tip">
+        <div [attr.data-title]="('PUBLISH_DATE' | translate) + ':'" class="tip">
             {{ currentViewedCategory?.publishDate | date: "MMM dd yyyy hh:mm:ss" }}
         </div>
-        <div data-title="Last change date" class="tip">
+        <div [attr.data-title]="('LAST_CHANGE_DATE' | translate) + ':'" class="tip">
             {{ currentViewedCategory?.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}
         </div>
     </div>
@@ -100,32 +100,32 @@
 </modal-window>
 
 <modal-window [showModal]="confirmApproveModalShown" (onClose)="closeAllModals()">
-    <h1 class="title left">Are you sure?</h1><br>
-    <p>You are about to approve the request</p>
+    <h1 class="title left">{{ 'ARE_YOU_SURE' | translate }}</h1><br>
+    <p>{{ 'ARE_YOU_SURE_APPROVE' | translate }}</p>
     <div class="block padding-top">
-        <btn (click)="closeAllModals()">Cancel</btn>
-        <btn [color]="'green'" (click)="approvePostable(postableToBeApproved!)">Approve</btn>
+        <btn (click)="closeAllModals()">{{ 'CANCEL' | translate }}</btn>
+        <btn [color]="'green'" (click)="approvePostable(postableToBeApproved!)">{{ 'APPROVE' | translate }}</btn>
     </div>
 </modal-window>
 
 <modal-window [showModal]="confirmDeclineModalShown" (onClose)="closeAllModals()">
-    <h1 class="title left">Are you sure?</h1><br>
-    <p>You are about to decline the request</p>
+    <h1 class="title left">{{ 'ARE_YOU_SURE' | translate }}</h1><br>
+    <p>{{ 'ARE_YOU_SURE_DECLINE' | translate }}</p>
     <div class="block padding-top">
-        <btn (click)="closeAllModals()">Cancel</btn>
-        <btn [color]="'red'" (click)="approvePostable(postableToBeDeclined!)">Decline</btn>
+        <btn (click)="closeAllModals()">{{ 'CANCEL' | translate }}</btn>
+        <btn [color]="'red'" (click)="approvePostable(postableToBeDeclined!)">{{ 'DECLINE' | translate }}</btn>
     </div>
 </modal-window>
 
 <modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Success!</h1><br>
+    <h1 class="title">{{ 'SUCCESS' | translate }}</h1><br>
     <hr>
     <p class="message" [innerHTML]="successMessage | safeHtml"></p>
     <img src="https://media.tenor.com/JzgronqM0nsAAAAM/dancing-steve.gif" alt="">
 </modal-window>
 
 <modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Oops! Something went wrong...</h1><br>
+    <h1 class="title">{{ 'SOMETHING_WENT_WRONG' | translate }}</h1><br>
     <hr>
     <p class="message"></p>
     <img src="https://media.discordapp.net/attachments/983448971089432577/1078404457676685402/jsrip.gif" alt="">

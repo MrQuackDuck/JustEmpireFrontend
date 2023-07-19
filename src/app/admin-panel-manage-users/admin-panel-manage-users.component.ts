@@ -9,6 +9,7 @@ import { AuthService } from '../services/auth.service';
 import { LoadingService } from '../services/loading.service';
 import { Router } from '@angular/router';
 import { RankRepositoryService } from '../services/rank-repository.service';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
   selector: 'app-admin-panel-manage-users',
@@ -19,7 +20,8 @@ export class AdminPanelManageUsersComponent {
   constructor(private userRepository : UserRepositoryService, 
     private adminSelectedTab : AdminSelectedTabService, private authService : AuthService,
     private loadingService : LoadingService, private formBuilder : FormBuilder, 
-    private router : Router, private renderer : Renderer2, private rankRepository : RankRepositoryService) { }
+    private router : Router, private renderer : Renderer2, private rankRepository : RankRepositoryService,
+    private translateService : TranslateService) { }
 
   users : User[];
   ranks : Rank[];
@@ -162,10 +164,10 @@ export class AdminPanelManageUsersComponent {
     }
   }
 
-  canDelete(user : User): [boolean, string] { 
+  canDelete(user : User): [boolean, string] {
     if (user.id == this.currentUser?.id)
     {
-      return [false, "You cannot delete yourself!"];
+      return [false, this.translateService.translate("CANNOT_DELETE_YOURSELF")];
     }
 
     return [true, ""];
@@ -184,7 +186,7 @@ export class AdminPanelManageUsersComponent {
   }
 
   getSuccessDeleteMessage() {
-    return "You have successfully deleted user!";
+    return this.translateService.translate('SUCCESSFULLY_DELETED_USER');
   }
 
   closeAllModals() { 

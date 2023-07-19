@@ -26,16 +26,16 @@
                             <td data-title="ID:">{{ image.id }}</td>
                             <td [attr.data-title]="('IMAGE' | translate) + ':'"><img style="cursor: zoom-in;" (click)="viewImage(image)" src="{{API_URL}}/uploads/{{ image.image }}" /></td>
                             <td [attr.data-title]="('AUTHOR' | translate) + ':'">{{ image.authorId | author | async }}</td>
-                            <td [attr.data-title]="('SERVICE' | translate) + ':'" tp="Service ID {{ (image.serviceId |serviceName | async)?.id }}">{{ (image.serviceId |serviceName | async)?.title }}</td>
-                            <td [attr.data-title]="('STATUS' | translate) + ':'" [tp]="image.status | statusDescription : 'image'" [tpDelay]="200">{{ image.status | statusCode }}</td>
+                            <td [attr.data-title]="('SERVICE' | translate) + ':'" [tp]="('SERVICE' | translate) + ' ID ' + (image.serviceId |serviceName | async)?.id">{{ (image.serviceId |serviceName | async)?.title }}</td>
+                            <td [attr.data-title]="('STATUS' | translate) + ':'" [tp]="image.status | statusDescription : 'image'" [tpDelay]="200">{{ image.status | statusCode | translate }}</td>
                             <td [attr.data-title]="('PUBLISH_DATE' | translate) + ':'">{{ image.publishDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
                             <td [attr.data-title]="('LAST_CHANGE_DATE' | translate) + ':'">{{ image.lastChangeDate | date: "MMM dd yyyy hh:mm:ss" }}</td>
                             <td [attr.data-title]="('ORIGINAL_ID' | translate) + ':'" [tp]="image.status | originalIdTp : image.originalId : 'image'" [tpDelay]="200"><b>{{ image.originalId }}</b></td>
                             <td class="actions">
 
                                 <div class="wrp"><btn (click)="viewImage(image)" [small]="true" [color]="'green'">{{ 'VIEW' | translate }}</btn></div>
-                                <div [tp]="canEdit(image)[1]" [tpIsEnabled]="canEdit(image)[1].length > 0" class="wrp"><btn (click)="showEditModal(image.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(image)[0]}">[attr.data-title]="('EDIT' | translate) + ':'"</btn></div>
-                                <div [tp]="canDelete(image)[1]" [tpIsEnabled]="canDelete(image)[1].length > 0" class="wrp"><btn (click)="showDeleteModal(image)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(image)[0]}">[attr.data-title]="('DELETE' | translate) + ':'"</btn></div>
+                                <div [tp]="canEdit(image)[1]" [tpIsEnabled]="canEdit(image)[1].length > 0" class="wrp"><btn (click)="showEditModal(image.id)" [small]="true" [color]="'orange'" [ngClass]="{'disabled': !canEdit(image)[0]}">{{ 'EDIT' | translate }}</btn></div>
+                                <div [tp]="canDelete(image)[1]" [tpIsEnabled]="canDelete(image)[1].length > 0" class="wrp"><btn (click)="showDeleteModal(image)" [small]="true" [color]="'red'" [ngClass]="{'disabled': !canDelete(image)[0]}">{{ 'DELETE' | translate }}</btn></div>
                             </td>
                         </tr>
                     </tbody>
@@ -50,51 +50,51 @@
 </modal-window>
 
 <modal-window [showModal]="newImageModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Create Image</h1>
+    <h1 class="title">{{ 'CREATE_IMAGE' | translate }}</h1>
     <form (ngSubmit)="submitNewImage()" [formGroup]="newImageForm" method="post" enctype="multipart/form-data">
-        <div data-title="Target service" class="select-wrapper">
+        <div [attr.data-title]="('TARGET_IMAGE_SERVICE' | translate) + ':'" class="select-wrapper">
             <select tp="Select service" formControlName="serviceId" required>
                 <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
             </select>
         </div>
-        <label [class.ng-invalid]="newImageForm.controls['image'].invalid" #uploadPhotoLabelNew class="upload-photo-label upload-photo-label-new" for="upload-photo-new"><span>Browse</span></label>
+        <label [class.ng-invalid]="newImageForm.controls['image'].invalid" #uploadPhotoLabelNew class="upload-photo-label upload-photo-label-new" for="upload-photo-new"><span>{{ 'BROWSE' | translate }}</span></label>
         <input (change)="uploadFile($event, newImageForm, uploadPhotoLabelNew)" id="upload-photo-new" accept="image/*" type="file">
-        <input class="button" type="submit" value="Create">
+        <input class="button" type="submit" [value]="'CREATE' | translate">
     </form>
 </modal-window>
 
 <modal-window [showModal]="editImageModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Edit Image</h1>
+    <h1 class="title">{{ 'EDIT_IMAGE' | translate }}</h1>
     <form (ngSubmit)="submitEditedImage()" [formGroup]="editImageForm" method="post" enctype="multipart/form-data">
-        <div data-title="Target service" class="select-wrapper">
+        <div [attr.data-title]="('TARGET_IMAGE_SERVICE' | translate) + ':'" class="select-wrapper">
             <select formControlName="serviceId" required>
                 <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
             </select>
         </div>
-        <label [class.ng-invalid]="editImageForm.controls['image'].invalid" #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo-edit"><span>Browse</span></label>
+        <label [class.ng-invalid]="editImageForm.controls['image'].invalid" #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo-edit"><span>{{ 'BROWSE' | translate }}</span></label>
         <input (change)="uploadFile($event, editImageForm, uploadPhotoLabelEdit)" id="upload-photo-edit" accept="image/*" type="file">
-        <input class="button green" type="submit" value="Confirm edit">
+        <input class="button green" type="submit" [value]="'CONFIRM_EDIT' | translate">
     </form>
 </modal-window>
 
 <modal-window [showModal]="confirmDeleteModalShown" (onClose)="closeAllModals()">
-    <h1 class="title left">Are you sure?</h1><br>
-    <p>You are about to delete image <b>ID {{ imageToDelete?.id }}</b></p>
+    <h1 class="title left">{{ 'ARE_YOU_SURE' | translate }}</h1><br>
+    <p>{{ 'ABOUT_TO_DELETE' | translate }} <b>ID {{ imageToDelete?.id }}</b></p>
     <div class="block padding-top">
-        <btn (click)="closeAllModals()">Cancel</btn>
-        <btn [color]="'red'" (click)="deleteImage()">Delete</btn>
+        <btn (click)="closeAllModals()">{{ 'CANCEL' | translate }}</btn>
+        <btn [color]="'red'" (click)="deleteImage()">{{ 'DELETE' | translate }}</btn>
     </div>
 </modal-window>
 
 <modal-window [showModal]="successModalShown" (onClose)="closeAllModals()"> 
-    <h1 class="title">Success!</h1><br>
+    <h1 class="title">{{ 'SUCCESS' | translate }}</h1><br>
     <hr>
     <p class="message" [innerHTML]="successMessage | safeHtml"></p>
     <img src="https://media.tenor.com/JzgronqM0nsAAAAM/dancing-steve.gif" alt="">
 </modal-window>
 
 <modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">Oops! Something went wrong...</h1><br>
+    <h1 class="title">{{ 'SOMETHING_WENT_WRONG' | translate }}</h1><br>
     <hr>
     <p class="message"></p>
     <img src="https://media.discordapp.net/attachments/983448971089432577/1078404457676685402/jsrip.gif" alt="">
