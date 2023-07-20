@@ -47,13 +47,13 @@
 }
 
 .service .info .type {
-    font-family: BalooThambi2, Inter;
+    font-family: BalooThambi2, SourceSans;
     font-size: 18px;
     color: #909090;
 }
 
 .service .info .description {
-    font-family: BalooThambi2, Inter;
+    font-family: BalooThambi2, SourceSans;
     font-size: 18px;
 }
 
@@ -80,7 +80,7 @@
 
 .service .controls .field {
     position: relative;
-    font-family: BalooThambi2, Inter;
+    font-family: BalooThambi2, SourceSans;
     font-size: 20px;
     color: #909090;
 }

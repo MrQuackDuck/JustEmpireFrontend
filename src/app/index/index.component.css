@@ -40,7 +40,7 @@ body {
 .head-block .content .description {
     font-size: 22px;
     width: 70%;
-    font-family: BalooThambi2, Inter;
+    font-family: BalooThambi2, SourceSans;
 }
 
 .head-block .content div {
@@ -115,7 +115,7 @@ section .block .block-title {
 }
 
 section .block .block-text {
-    font-family: BalooThambi2, Inter;
+    font-family: BalooThambi2, SourceSans;
     font-size: 22px;
 }
 
@@ -123,7 +123,7 @@ section .block a {
     text-decoration: none;
     color: black;
     font-weight: 600;
-    font-family: BalooThambi2, Inter;
+    font-family: BalooThambi2, SourceSans;
 }
 
 img {

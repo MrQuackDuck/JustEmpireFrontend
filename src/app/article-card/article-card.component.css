@@ -31,7 +31,7 @@
 }
 
 .article .info-section .article-text, .article-text *{
-    font-family: BalooThambi2, Inter;
+    font-family: BalooThambi2, SourceSans;
     font-size: 19px !important;
     max-width: 100%;
     overflow-wrap: break-word;

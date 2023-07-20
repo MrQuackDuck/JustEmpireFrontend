@@ -61,7 +61,7 @@
     <h1 class="title">{{ 'CREATE_ARTICLE' | translate }}</h1>
     <form (ngSubmit)="submitNewArticle(uploadPhotoLabelNew)" [formGroup]="newArticleForm" method="post" enctype="multipart/form-data">
         <div [attr.data-title]="('ARTICLE_TITLE' | translate) + ':'" class="tip">
-            <input data-title="Title" required="text" formControlName="title" type="text" placeholder="Title">
+            <input data-title="Title" required="text" formControlName="title" type="text" [placeholder]="'TITLE' | translate">
         </div>
         <quill-editor [modules]="quillModules" formControlName="text"></quill-editor>
         <div [attr.data-title]="('ARTICLE_LANGUAGE' | translate) + ':'" class="tip">
@@ -72,7 +72,7 @@
         <div [attr.data-title]="('ARTICLE_TITLE_IMAGE' | translate) + ':'" class="tip">
             <label [class.ng-invalid]="newArticleForm.controls['titleImage'].invalid" #uploadPhotoLabelNew class="upload-photo-label" for="upload-photo"><span>{{ 'BROWSE' | translate }}</span></label>
         </div>
-        <input (change)="uploadFile($event, newArticleForm, uploadPhotoLabelNew)" id="upload-photo" accept="image/*" formControlName="titleImage" type="file" placeholder="Title image">
+        <input (change)="uploadFile($event, newArticleForm, uploadPhotoLabelNew)" id="upload-photo" accept="image/*" formControlName="titleImage" type="file">
         <input class="button" type="submit" [value]="'CREATE' | translate">
     </form>
 </modal-window>
@@ -81,7 +81,7 @@
     <h1 class="title">{{ 'EDIT_ARTICLE' | translate }}</h1>
     <form (ngSubmit)="submitEditedArticle()" [formGroup]="editArticleForm" method="post" enctype="multipart/form-data">
         <div [attr.data-title]="('ARTICLE_TITLE' | translate) + ':'" class="tip">
-            <input value="{{ currentArticleEdited?.title }}" required="text" formControlName="title" type="text" placeholder="Title">
+            <input value="{{ currentArticleEdited?.title }}" required="text" formControlName="title" type="text" [placeholder]="'TITLE' | translate">
         </div>
         <quill-editor [modules]="quillModules" formControlName="text">{{ currentArticleEdited?.text }}</quill-editor>
         <div [attr.data-title]="('ARTICLE_LANGUAGE' | translate) + ':'" class="tip">
@@ -93,7 +93,7 @@
             <label [class.ng-invalid]="editArticleForm.controls['titleImage'].invalid" #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo-edit"><span>Browse</span></label>
         </div>
         <input (change)="uploadFile($event, editArticleForm, uploadPhotoLabelEdit)" id="upload-photo-edit" accept="image/*" type="file">
-        <input class="button green" type="submit" value="Confirm edit">
+        <input class="button green" type="submit" [value]="'CONFIRM_EDIT' | translate">
     </form>
 </modal-window>
 

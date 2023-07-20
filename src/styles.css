@@ -94,6 +94,70 @@ body {
     font-weight: 700;
 }
 
+@font-face {
+    font-family: IstokWeb;
+    src: url("assets/fonts/IstokWeb.ttf");
+    font-weight: 500;
+}
+
+
+@font-face {
+    font-family: SourceSans;
+    src: url("assets/fonts/SourceSans3-Light.ttf");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: SourceSans;
+    src: url("assets/fonts/SourceSans3-LightItalic.ttf");
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: SourceSans;
+    src: url("assets/fonts/SourceSans3-Regular.ttf");
+    font-weight: 500;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: SourceSans;
+    src: url("assets/fonts/SourceSans3-Italic.ttf");
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: SourceSans;
+    src: url("assets/fonts/SourceSans3-Medium.ttf");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: SourceSans;
+    src: url("assets/fonts/SourceSans3-MediumItalic.ttf");
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: SourceSans;
+    src: url("assets/fonts/SourceSans3-SemiBold.ttf");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: SourceSans;
+    src: url("assets/fonts/SourceSans3-SemiBoldItalic.ttf");
+    font-weight: 700;
+    font-style: italic;
+}
+
 .button {
     background-color: #2F63B0;
     border: 1px solid #738fd7;
@@ -318,7 +382,7 @@ form input[type="submit"] {
     padding: 0px 0px;
     padding-right: 0;
     color: #BAB8B6;
-    font-family: BalooThambi2;
+    font-family: BalooThambi2, SourceSans;
     font-weight: 600;
 }
 
@@ -335,7 +399,7 @@ form .upload-photo-label span {
 }
 
 .article .info-section .article-text * {
-    font-family: BalooThambi2;
+    font-family: BalooThambi2, SourceSans;
     font-size: 19px !important;
     max-width: 100%;
     overflow-wrap: break-word;
