@@ -7,7 +7,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: Ebrima;
+    font-family: Ebrima, Tahoma;
     position: relative;
     -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
     -webkit-tap-highlight-color: transparent;
@@ -73,6 +73,24 @@ body {
 @font-face {
     font-family: BalooThambi2;
     src: url("assets/fonts/BalooThambi2-SemiBold.ttf");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url("assets/fonts/Inter-Regular.ttf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url("assets/fonts/Inter-Medium.ttf");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url("assets/fonts/Inter-SemiBold.ttf");
     font-weight: 700;
 }
 

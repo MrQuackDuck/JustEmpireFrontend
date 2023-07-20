@@ -1,39 +1,3 @@
-@font-face {
-    font-family: FuturaMd;
-    src: url("/src/assets/fonts/FuturaMd.ttf");
-    font-weight: 500;
-}
-
-@font-face {
-    font-family: Ebrima;
-    src: url("/src/assets/fonts/ebrima.ttf");
-    font-weight: 500;
-}
-
-@font-face {
-    font-family: Ebrima;
-    src: url("/src/assets/fonts/ebrima-bold.ttf");
-    font-weight: 600;
-}
-
-@font-face {
-    font-family: BalooThambi2;
-    src: url("/src/assets/fonts/BalooThambi2-Regular.ttf");
-    font-weight: 500;
-}
-
-@font-face {
-    font-family: BalooThambi2;
-    src: url("/src/assets/fonts/BalooThambi2-Medium.ttf");
-    font-weight: 600;
-}
-
-@font-face {
-    font-family: BalooThambi2;
-    src: url("/src/assets/fonts/BalooThambi2-SemiBold.ttf");
-    font-weight: 700;
-}
-
 .nav {
     position: relative;
     top: 0;
@@ -81,7 +45,7 @@ nav a {
 .nav .nav-links a {
     color: #E0E0E0;
     font-size: 24px;
-    font-family: FuturaMd;
+    font-family: FuturaMd, Inter;
     transition: all 0.2s linear;
 }
 

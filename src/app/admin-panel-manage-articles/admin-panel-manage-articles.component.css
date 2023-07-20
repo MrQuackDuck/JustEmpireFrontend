@@ -240,7 +240,7 @@ modal-window article .article-title .article-date {
     position: relative;
     z-index: 1;
     font-size: 17.92px;
-    font-family: BalooThambi2;
+    font-family: BalooThambi2, Inter;
 }
 
 @media screen and (max-width: 1150px) {
