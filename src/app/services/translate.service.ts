@@ -23,4 +23,10 @@ export class TranslateService {
 
     return result;
   }
+
+  capitalizeFirstLetter(str) {
+    const capitalized = str.charAt(0).toUpperCase() + str.slice(1);
+
+    return capitalized;
+}
 }
