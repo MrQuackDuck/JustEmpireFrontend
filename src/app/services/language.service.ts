@@ -9,7 +9,7 @@ export class LanguageService {
   constructor(private cookieService : CookieService) { }
 
   setLanguage(language : Language) {
-    this.cookieService.set('language', language.toString());
+    this.cookieService.set('language', language.toString(), 100);
     window.location.reload();
   }
 

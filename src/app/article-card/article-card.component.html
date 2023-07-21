@@ -1,4 +1,4 @@
-<a class="article" [routerLink]="['/article', languageCode, article.id, slugifiedTitle ]" draggable="false">
+<a class="article" [routerLink]="['/', languageCode.toLowerCase(), 'article', article.id, slugifiedTitle ]" draggable="false">
     <div class="info-section">
         <div class="article-title">{{ article.title! | truncate: 50 }}</div>
         <div class="article-date">{{ article.publishDate | date : 'MM/dd/yyyy hh:mm:ss' }}</div>

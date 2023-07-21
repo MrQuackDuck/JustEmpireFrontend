@@ -27,13 +27,13 @@ export class ArticlesComponent implements OnInit {
   ngOnInit() {
     this.loadingService.enableLoading();
 
-    let language : Language = this.route.snapshot.params['language'];
+    let language : Language = this.route.snapshot.params['language'].toUpperCase();
     let pageIndex : number = +this.route.snapshot.params['pageIndex'];
     
     // If 'Language' enum not includes provided value, then redirect user to default language page
     if (!Object.values(Language).includes(language)) {
       this.language = Language.EN;
-      this.router.navigate([this.pageName, 'EN']); // TODO: Get actual site language
+      this.router.navigate(['EN', this.pageName]); // TODO: Get actual site language
       return;
     }
     else {

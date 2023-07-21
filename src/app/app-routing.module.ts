@@ -30,36 +30,37 @@ const routes: Routes = [
     component: IndexComponent
   },
   {
-    path: "articles",
-    title: "JustEmpire | Articles",
-    component: ArticlesComponent,
-  },
-  {
     path: "news",
     title: "JustEmpire | Articles",
     pathMatch: 'prefix',
     component: ArticlesComponent,
   },
   {
-    path: "news/:language",
+    path: ":language/news",
     pathMatch: "full",
     title: "JustEmpire | Articles",
     component: ArticlesComponent,
   },
   {
-    path: "news/:language/:pageIndex",
+    path: ":language/news/:pageIndex",
     pathMatch: "full",
     title: "JustEmpire | Articles",
     component: ArticlesComponent,
   },
   {
-    path: "article/:language/:id",
+    path: "article/:id",
     pathMatch: "prefix",
     title: "JustEmpire | Article",
     component: ArticlePageComponent,
   },
   {
-    path: "article/:language/:id/:str",
+    path: ":language/article/:id",
+    pathMatch: "prefix",
+    title: "JustEmpire | Article",
+    component: ArticlePageComponent,
+  },
+  {
+    path: ":language/article/:id/:str",
     pathMatch: "prefix",
     title: "JustEmpire | Article",
     component: ArticlePageComponent,
@@ -72,27 +73,34 @@ const routes: Routes = [
     component: ServicesPageComponent,
   },
   {
-    path: "services/:language",
+    path: ":language/services",
     pathMatch: "full",
     title: "JustEmpire | Services",
     component: ServicesPageComponent,
   },
   {
-    path: "services/:language/:pageIndex",
+    path: ":language/services/:pageIndex",
     pathMatch: "full",
     title: "JustEmpire | Services",
     component: ServicesPageComponent,
   },
   // Service Page
   {
-    path: "service/:language/:id",
+    path: "service/:id",
     pathMatch: "prefix",
     title: "JustEmpire | Service",
     component: ServicePageComponent,
     data: { "type": 'versions' }
   },
   {
-    path: "service/:language/:id/:str",
+    path: ":language/service/:id",
+    pathMatch: "prefix",
+    title: "JustEmpire | Service",
+    component: ServicePageComponent,
+    data: { "type": 'versions' }
+  },
+  {
+    path: ":language/service/:id/:str",
     pathMatch: "prefix",
     title: "JustEmpire | Service",
     component: ServicePageComponent,

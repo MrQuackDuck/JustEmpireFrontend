@@ -63,13 +63,19 @@ nav .nav-links a.active::before {
     left: 0;
     bottom: 0;
     width: 0;
-    height: 1.5px;
-    background-color: rgb(255, 255, 255);
+    height: 2px;
+    background-color: #E0E0E0;
     transition: width 0.1s ease-out;
 }
+
+.nav .nav-links a.active::before {
+    background-color: #FFFFFF;
+}
+
 .nav .nav-links a:hover::before {
     width: 100%;
 }
+
 .nav.openSearch .nav-links a {
     opacity: 0;
     pointer-events: none;
@@ -117,6 +123,7 @@ nav .nav-links a.active::before {
     border: 1px solid #7E7E7E;
     color: #FFFFFF;
     padding: 15px;
+    z-index: 20;
 }
 
 .right-side img {
@@ -129,6 +136,33 @@ nav .nav-links a.active::before {
     font-size: 30px !important;
     display: none;
 }
+
+.search-results {
+    border-radius: 4px;
+    border: 0.5px solid #646464;
+    background-color: #2E2E2E;
+    top: 8px;
+    z-index: 19;
+    overflow: hidden;
+}
+
+.search-results a {
+    display: block;
+    cursor: pointer;
+    padding: 15px;
+    background-color: #2E2E2E;
+    border-bottom: 0.5px solid #646464;
+}
+
+.search-results a:hover {
+    background-color: #424242;
+    text-decoration: underline;
+}
+
+.search-results a:last-child {
+    border-bottom: none;
+}
+
 /* responsive */
 @media screen and (max-width: 1160px) {
     .nav {
