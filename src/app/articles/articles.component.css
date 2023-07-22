@@ -31,7 +31,7 @@ article-pagination {
 }
 
 article-card:nth-child(n) {
-    width: 58%;
+    width: 58.6%;
 }
 
 article-card:nth-child(2n) {

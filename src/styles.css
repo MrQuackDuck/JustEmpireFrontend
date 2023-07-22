@@ -1,7 +1,18 @@
 @import 'quill.smoke.css';
 @import '~tippy.js/dist/tippy.css';
 @import '~tippy.js/themes/light.css';
-@import '~tippy.js/animations/scale.css';
+@import '~tippy.js/animations/scale.css'; 
+@import "node_modules/angular-notifier/styles";
+
+notifier-notification {
+    z-index: 1000;
+    user-select: none;
+}
+
+.notifier__notification--error {
+    background-color: #b6403c;
+    color: #fff;
+}
 
 * {
     margin: 0px;
@@ -351,12 +362,12 @@ not-found {
     margin-top: auto;
 }
 
-app-footer {
-    margin-top: auto;
-}
-
 app-login {
     height: 100%;
+}
+
+app-footer {
+    margin-top: auto;
 }
 
 form .upload-photo-label img {

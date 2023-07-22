@@ -1,5 +1,5 @@
 <div class="pages">
     <div *ngIf="pages.length > 1">
-        <a routerLink="/{{articlesPageName}}/{{language}}/{{page}}" *ngFor="let page of pages" draggable="false">{{ page }}</a>
+        <a routerLink="/{{language.toString().toLowerCase()}}/{{articlesPageName}}/{{page}}" *ngFor="let page of pages" draggable="false">{{ page }}</a>
     </div>
 </div>

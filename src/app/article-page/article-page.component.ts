@@ -8,6 +8,8 @@ import slugify from 'slugify';
 import { LoadingService } from '../services/loading.service';
 import { API_URL } from 'src/globals';
 import { LanguageService } from '../services/language.service';
+import { NotifierService } from 'angular-notifier';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
   selector: 'app-article-page',
@@ -16,7 +18,8 @@ import { LanguageService } from '../services/language.service';
 })
 export class ArticlePageComponent {
   constructor(private route : ActivatedRoute, private router: Router, private articleRepository : ArticleRepositoryService,
-    private loadingService : LoadingService, private language : LanguageService) {}
+    private loadingService : LoadingService, private language : LanguageService, private notifierService : NotifierService,
+    private translateService : TranslateService) {}
 
   API_URL = API_URL;
 
@@ -43,7 +46,13 @@ export class ArticlePageComponent {
         this.article = data;
         delay(300);
         this.loadingService.disableLoading();
-      }, error => this.router.navigate(['/404']));
+      }, error => {
+        if (error.status == 503) {
+          this.notifierService.notify('error', this.translateService.translate('TOO_MANY_REQUESTS'));
+          return;
+        }
+        this.router.navigate(['/404'])
+      });
   }
 
   getSlugifiedTitle(title : string) {

@@ -50,6 +50,7 @@ import { PostableTypePipe } from './pipes/postableType.pipe';
 import { PostableTypeShortPipe } from './pipes/postableTypeShort.pipe';
 import { LangFullPipe } from './pipes/lang-full.pipe';
 import { TranslatePipe } from './pipes/translate.pipe';
+import { NotifierModule, NotifierService } from 'angular-notifier';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import { TranslatePipe } from './pipes/translate.pipe';
     FormsModule,
     ReactiveFormsModule,
     QuillModule,
-    TippyDirective
+    TippyDirective,
+    NotifierModule
   ],
   providers: [
     LoadingService,

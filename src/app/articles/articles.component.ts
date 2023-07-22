@@ -8,6 +8,9 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { LoadingService } from '../services/loading.service';
 import { API_URL } from 'src/globals';
 import { LanguageService } from '../services/language.service';
+import { NotifierService } from 'angular-notifier';
+import { TranslateService } from '../services/translate.service';
+import { TitleService } from '../services/title-service.service';
 
 @Component({
   selector: 'app-articles',
@@ -16,49 +19,42 @@ import { LanguageService } from '../services/language.service';
 })
 export class ArticlesComponent implements OnInit {
   constructor(private route : ActivatedRoute, private router: Router, private articleRepository : ArticleRepositoryService,
-    private loadingService : LoadingService, private languageService : LanguageService) {}
+    private loadingService : LoadingService, private languageService : LanguageService, 
+    private notifierService : NotifierService, private translateService : TranslateService,
+    private titleService : TitleService) {}
 
   articles : Article[];
   itemsOnPage : number = 5; // How many articles will be displayed per page
   currentPage : number;
   language : Language = Language.EN;
+  totalPageCount : number;
 
   readonly pageName = 'news';
 
   ngOnInit() {
+    this.titleService.setTitle(this.translateService.translate('NEWS'));
+
     this.loadingService.enableLoading();
 
     let language : Language = this.route.snapshot.params['language']?.toUpperCase();
     let pageIndex : number = +this.route.snapshot.params['pageIndex'];
+
+    if (Number.isNaN(pageIndex)) pageIndex = 1;
     
     // If 'Language' enum not includes provided value, then redirect user to default language page
     if (!Object.values(Language).includes(language)) {
       this.language = this.languageService.getLanguage();
-      this.router.navigate([this.languageService.getLanguageCode().toLowerCase(), this.pageName]); // TODO: Get actual site language
+      this.router.navigate([this.languageService.getLanguageCode().toLowerCase(), this.pageName]);
       return;
     }
     else {
       this.language = language
     }
 
-    let totalPageCount : number;
-    
-    this.articleRepository.getPagesCount(this.language, this.itemsOnPage).subscribe(pageCount => {
-      totalPageCount = pageCount;
-      if (pageIndex < 0 || pageIndex > pageCount) {
-        this.currentPage = 1;
-        this.router.navigate([this.pageName, 'en', 1], { replaceUrl: true });
-        return;
-      } 
-      else {
-        this.currentPage = pageIndex;
-      }
-    })
-
     this.route.paramMap.subscribe((params: ParamMap) =>
     {
       let index : number = Number(params.get('pageIndex'))
-      if (index < 0 || index > totalPageCount) {
+      if (index < 0 || index > this.totalPageCount) {
         this.currentPage = 1;
         this.router.navigate([this.pageName, 'EN', 1], { replaceUrl: true });
         return;
@@ -77,11 +73,12 @@ export class ArticlesComponent implements OnInit {
   async updateData() {
     this.loadingService.enableLoading()
     await this.delay(300);
-    await this.delay(30);
     this.articleRepository.getPage(this.language, this.currentPage, this.itemsOnPage).subscribe(articles => {
       this.articles = articles;
       this.loadingService.disableLoading()
-    })
+    }, error => {
+      if (error.status == 503) this.notifierService.notify('error', this.translateService.translate('TOO_MANY_REQUESTS'));
+    });
   }
 
   delay(ms: number) {

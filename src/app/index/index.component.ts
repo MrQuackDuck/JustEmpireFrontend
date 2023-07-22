@@ -1,6 +1,8 @@
 import { AfterViewInit, Component} from '@angular/core';
 import { NgOptimizedImage } from '@angular/common'
 import { LoadingService } from '../services/loading.service';
+import { TitleService } from '../services/title-service.service';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
   selector: 'app-index',
@@ -10,7 +12,8 @@ import { LoadingService } from '../services/loading.service';
 
 
 export class IndexComponent implements AfterViewInit {
-  constructor(private loadingService : LoadingService) {}
+  constructor(private loadingService : LoadingService, private translateService : TranslateService,
+    private titleService : TitleService) {}
 
   imagesLoaded: boolean = false;
 
@@ -60,6 +63,8 @@ export class IndexComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.titleService.setTitle(this.translateService.translate('HOME'));
+
     this.loadingService.enableLoading()
 
     const observer = new IntersectionObserver((entries) => {

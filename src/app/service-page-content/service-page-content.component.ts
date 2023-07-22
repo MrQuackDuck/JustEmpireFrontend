@@ -11,6 +11,8 @@ import { ServiceCategoryRepositoryService } from '../services/service-category-r
 import { ServiceImageRepositoryService } from '../services/service-image-repository.service';
 import { ServiceRepositoryService } from '../services/service-repository.service';
 import { ServiceVersionRepositoryService } from '../services/service-version-repository.service';
+import { TranslateService } from '../services/translate.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'service-page-content',
@@ -24,7 +26,9 @@ export class ServicePageContentComponent {
     private serviceCategoryRepository : ServiceCategoryRepositoryService,
     private router : Router,
     private route : ActivatedRoute,
-    private loadingService : LoadingService)
+    private loadingService : LoadingService,
+    private notifierService : NotifierService,
+    private translateService : TranslateService)
     { }
 
     @Input()
@@ -103,6 +107,10 @@ export class ServicePageContentComponent {
         
         this.loadingService.disableLoading();
       }, error => {
+        if (error.status == 503) {
+          this.notifierService.notify('error', this.translateService.translate('TOO_MANY_REQUESTS'));
+          return;
+        }
         this.router.navigate(['/404'])
         this.loadingService.disableLoading();
       })
@@ -140,6 +148,10 @@ export class ServicePageContentComponent {
         
         this.loadingService.disableLoading();
       }, error => {
+        if (error.status == 503) {
+          this.notifierService.notify('error', this.translateService.translate('TOO_MANY_REQUESTS'));
+          return;
+        }
         this.router.navigate(['/404'])
         this.loadingService.disableLoading();
       })

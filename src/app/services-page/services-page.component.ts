@@ -10,6 +10,9 @@ import { Language } from '../enum/Language';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingService } from '../services/loading.service';
 import { LanguageService } from '../services/language.service';
+import { TranslateService } from '../services/translate.service';
+import { NotifierService } from 'angular-notifier';
+import { TitleService } from '../services/title-service.service';
 
 @Component({
   selector: 'app-services-page',
@@ -19,10 +22,13 @@ import { LanguageService } from '../services/language.service';
 export class ServicesPageComponent {
   constructor(private route : ActivatedRoute, private router: Router, private serviceRepository : ServiceRepositoryService,
     private serviceCategoryRepository : ServiceCategoryRepositoryService, private loadingService : LoadingService,
-    private languageService : LanguageService) {}
+    private languageService : LanguageService, private notifierService : NotifierService, 
+    private translateService : TranslateService, private titleService : TitleService) {}
 
     services$ : Observable<Service[]>;
+    services : Service[];
     serviceCategories$ : Observable<ServiceCategory[]>;
+    serviceCategories : ServiceCategory[];
     selectedCategories : number[] = [];
     language : Language;
     searchString : string = "";
@@ -31,6 +37,8 @@ export class ServicesPageComponent {
     readonly pageName : string = "services";
 
     ngOnInit() {
+      this.titleService.setTitle(this.translateService.translate('SERVICES'));
+
       let language : Language = this.route.snapshot.params['language']?.toUpperCase();
       
       // If 'Language' enum not includes provided value, then redirect user to default language page
@@ -45,29 +53,32 @@ export class ServicesPageComponent {
       this.updateData();
     }
 
+    search() {
+      this.updateData();
+      return false;
+    }
+
     async updateData() {   
       this.loadingService.enableLoading();
       await this.delay(100);
 
       this.services$ = this.serviceRepository.getAll(this.language, this.selectedCategories, this.searchString)
       this.services$.subscribe(services => {
+        this.services = services;
         this.nothingFound = services.length == 0;
+        this.loadingService.disableLoading();
+      }, error => {
+        if (error.status == 503) this.notifierService.notify('error', this.translateService.translate('TOO_MANY_REQUESTS'));
+        return;
       })
       
-      if (this.serviceCategories$ == null) {
-        this.serviceCategories$ = this.serviceCategoryRepository.getAll(this.language);
-        this.serviceCategories$.subscribe(categories => {
-          categories.forEach(category => this.selectedCategories.push(category.id));
-        })
-      }
-      
-      await this.delay(100);
-      this.services$.subscribe(() => this.loadingService.disableLoading())
-    }
+      if (this.serviceCategories$ != null) return;
 
-    search() {
-      this.updateData();
-      return false;
+      this.serviceCategories$ = this.serviceCategoryRepository.getAll(this.language);
+      this.serviceCategories$.subscribe(categories => {
+        this.serviceCategories = categories;
+        categories.forEach(category => this.selectedCategories.push(category.id));
+      })
     }
 
     categoryClicked(event, id) {

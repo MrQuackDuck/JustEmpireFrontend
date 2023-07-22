@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { LoadingService } from '../services/loading.service';
+import { TranslateService } from '../services/translate.service';
+import { NotifierService } from 'angular-notifier';
 
 interface LoginResponse {
   token: string;
@@ -18,7 +20,9 @@ export class LoginComponent {
   form : FormGroup;
   showError : boolean = false;
 
-  constructor(private formBuilder : FormBuilder, private loadingService : LoadingService, private router : Router, private authService : AuthService) {}
+  constructor(private formBuilder : FormBuilder, private loadingService : LoadingService, 
+  private router : Router, private authService : AuthService, private translateService : TranslateService,
+  private notifierService : NotifierService) {}
 
   ngOnInit() {
     this.loadingService.disableLoading();
@@ -34,8 +38,12 @@ export class LoginComponent {
     this.authService.login(formData.username, formData.password)
       .subscribe(() => this.router.navigate(['/admin']),
       error => {
-        this.showError = true;
         this.loadingService.disableLoading();
+        if (error.status == 503) {
+          this.notifierService.notify('error', this.translateService.translate('TOO_MANY_REQUESTS'));
+          return;
+        }
+        this.showError = true;
       });
   }
 }
