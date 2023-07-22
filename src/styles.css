@@ -158,6 +158,11 @@ body {
     font-style: italic;
 }
 
+@font-face {
+    font-family: Tahoma;
+    src: url("assets/fonts/Tahoma.ttf");
+}
+
 .button {
     background-color: #2F63B0;
     border: 1px solid #738fd7;
