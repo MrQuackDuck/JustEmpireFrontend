@@ -7,6 +7,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { LoadingService } from '../services/loading.service';
 import { API_URL } from 'src/globals';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-articles',
@@ -15,7 +16,7 @@ import { API_URL } from 'src/globals';
 })
 export class ArticlesComponent implements OnInit {
   constructor(private route : ActivatedRoute, private router: Router, private articleRepository : ArticleRepositoryService,
-    private loadingService : LoadingService) {}
+    private loadingService : LoadingService, private languageService : LanguageService) {}
 
   articles : Article[];
   itemsOnPage : number = 5; // How many articles will be displayed per page
@@ -27,13 +28,13 @@ export class ArticlesComponent implements OnInit {
   ngOnInit() {
     this.loadingService.enableLoading();
 
-    let language : Language = this.route.snapshot.params['language'].toUpperCase();
+    let language : Language = this.route.snapshot.params['language']?.toUpperCase();
     let pageIndex : number = +this.route.snapshot.params['pageIndex'];
     
     // If 'Language' enum not includes provided value, then redirect user to default language page
     if (!Object.values(Language).includes(language)) {
-      this.language = Language.EN;
-      this.router.navigate(['EN', this.pageName]); // TODO: Get actual site language
+      this.language = this.languageService.getLanguage();
+      this.router.navigate([this.languageService.getLanguageCode().toLowerCase(), this.pageName]); // TODO: Get actual site language
       return;
     }
     else {
@@ -46,7 +47,7 @@ export class ArticlesComponent implements OnInit {
       totalPageCount = pageCount;
       if (pageIndex < 0 || pageIndex > pageCount) {
         this.currentPage = 1;
-        this.router.navigate([this.pageName, 'EN', 1], { replaceUrl: true });
+        this.router.navigate([this.pageName, 'en', 1], { replaceUrl: true });
         return;
       } 
       else {

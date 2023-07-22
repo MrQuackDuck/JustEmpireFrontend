@@ -39,7 +39,6 @@ export class HeaderComponent {
     let nav = document.querySelector(".nav"),
     searchIcon = document.querySelector("#searchIcon")
     nav?.classList.remove("openSearch");
-    nav?.classList.remove("openNav");
     if (nav?.classList.contains("openSearch")) {
         searchIcon?.classList.replace("uil-search", "uil-times");
         this.currentIcon = "../../assets/images/svg/cross-1.svg";

@@ -31,12 +31,12 @@ export class ServicesPageComponent {
     readonly pageName : string = "services";
 
     ngOnInit() {
-      let language : Language = this.route.snapshot.params['language'].toUpperCase();
+      let language : Language = this.route.snapshot.params['language']?.toUpperCase();
       
       // If 'Language' enum not includes provided value, then redirect user to default language page
       if (!Object.values(Language).includes(language)) {
         this.language = this.languageService.getLanguage();
-        this.router.navigate([this.languageService.getLanguageCode(), this.pageName]); // TODO: Get actual site language
+        this.router.navigate([this.languageService.getLanguageCode().toLowerCase(), this.pageName]);
       } 
       else {
         this.language = language;
