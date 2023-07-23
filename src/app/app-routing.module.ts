@@ -26,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: "home",
-    title: "JustEmpire | Home",
+    title: "JustEmpire",
     component: IndexComponent
   },
   {

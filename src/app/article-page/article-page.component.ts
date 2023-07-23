@@ -10,6 +10,7 @@ import { API_URL } from 'src/globals';
 import { LanguageService } from '../services/language.service';
 import { NotifierService } from 'angular-notifier';
 import { TranslateService } from '../services/translate.service';
+import { TitleService } from '../services/title-service.service';
 
 @Component({
   selector: 'app-article-page',
@@ -19,7 +20,7 @@ import { TranslateService } from '../services/translate.service';
 export class ArticlePageComponent {
   constructor(private route : ActivatedRoute, private router: Router, private articleRepository : ArticleRepositoryService,
     private loadingService : LoadingService, private language : LanguageService, private notifierService : NotifierService,
-    private translateService : TranslateService) {}
+    private translateService : TranslateService, private titleService : TitleService) {}
 
   API_URL = API_URL;
 
@@ -42,8 +43,9 @@ export class ArticlePageComponent {
   async updateData() {
     this.loadingService.enableLoading()
     this.articleRepository.getById(this.id)
-      .subscribe(async data => {
-        this.article = data;
+      .subscribe(async article => {
+        this.titleService.setTitle(article.title);
+        this.article = article;
         delay(300);
         this.loadingService.disableLoading();
       }, error => {

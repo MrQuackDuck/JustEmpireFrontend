@@ -6,6 +6,7 @@ import { AuthService } from '../services/auth.service';
 import { LoadingService } from '../services/loading.service';
 import { TranslateService } from '../services/translate.service';
 import { NotifierService } from 'angular-notifier';
+import { TitleService } from '../services/title-service.service';
 
 interface LoginResponse {
   token: string;
@@ -22,9 +23,10 @@ export class LoginComponent {
 
   constructor(private formBuilder : FormBuilder, private loadingService : LoadingService, 
   private router : Router, private authService : AuthService, private translateService : TranslateService,
-  private notifierService : NotifierService) {}
+  private notifierService : NotifierService, private titleService : TitleService) {}
 
   ngOnInit() {
+    this.titleService.setTitle(this.translateService.translate('AUTHORIZATION'));
     this.loadingService.disableLoading();
     this.form = this.formBuilder.group({
       username: '',

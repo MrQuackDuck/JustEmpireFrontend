@@ -14,6 +14,4 @@ export class AppComponent implements OnInit {
   }
 
   imagesLoaded : boolean = false;
-  
-  title = 'JustEmpire | Home';
 }

@@ -13,6 +13,7 @@ import { ServiceRepositoryService } from '../services/service-repository.service
 import { ServiceVersionRepositoryService } from '../services/service-version-repository.service';
 import { TranslateService } from '../services/translate.service';
 import { NotifierService } from 'angular-notifier';
+import { TitleService } from '../services/title-service.service';
 
 @Component({
   selector: 'service-page-content',
@@ -28,7 +29,8 @@ export class ServicePageContentComponent {
     private route : ActivatedRoute,
     private loadingService : LoadingService,
     private notifierService : NotifierService,
-    private translateService : TranslateService)
+    private translateService : TranslateService,
+    private titleService : TitleService)
     { }
 
     @Input()
@@ -80,6 +82,7 @@ export class ServicePageContentComponent {
   
       // Getting service by id
       this.serviceRepository.getById(this.id).subscribe(async service => {
+        this.titleService.setTitle(service.title);
         this.service = service;
   
         // Getting service's category by category ID

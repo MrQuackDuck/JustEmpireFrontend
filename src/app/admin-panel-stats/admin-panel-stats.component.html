@@ -1,7 +1,7 @@
 <main>
     <div class="title-section">
-        <a class="button gray" routerLink="/admin">Back</a>
-        <span class="title">Admin panel - Stats</span>
+        <a class="button gray" routerLink="/admin">{{ 'BACK' | translate }}</a>
+        <span class="title">{{ 'ADMIN_PANEL' | translate }} - {{ 'STATS' | translate }}</span>
         <a class="button empty" href=""></a>
     </div>
     <div class="sections-container">
@@ -10,25 +10,25 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Period</th>
-                            <th>Views</th>
+                            <th>{{ 'PERIOD' | translate }}</th>
+                            <th>{{ 'VIEWS' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>24 Hours</td>
+                            <td>24 {{ 'HOURS' | translate }}</td>
                             <td>{{ views24h }}</td>
                         </tr>
                         <tr>
-                            <td>7 days</td>
+                            <td>7 {{ 'DAYS' | translate }}</td>
                             <td>{{ views7d }}</td>
                         </tr>
                         <tr>
-                            <td>1 month</td>
+                            <td>1 {{ 'MONTH' | translate }}</td>
                             <td>{{ views1mo }}</td>
                         </tr>
                         <tr>
-                            <td>3 months</td>
+                            <td>3 {{ 'MONTHS' | translate }}</td>
                             <td>{{ views3mo }}</td>
                         </tr>
                     </tbody>

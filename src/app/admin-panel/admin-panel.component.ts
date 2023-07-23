@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
 import { ServiceImageRepositoryService } from '../services/service-image-repository.service';
 import { ApprovementsService } from '../services/approvements.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { TitleService } from '../services/title-service.service';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -34,7 +36,9 @@ export class AdminPanelComponent {
   private router : Router,
   public selectedTabService : AdminSelectedTabService,
   private formBuilder : FormBuilder,
-  private loadingService : LoadingService) {}
+  private loadingService : LoadingService,
+  private titleService : TitleService,
+  private translateService : TranslateService) {}
 
   articlesCount : number;
   servicesCount : number;
@@ -57,6 +61,7 @@ export class AdminPanelComponent {
   failModalShown : boolean;
 
   ngOnInit() {
+    this.titleService.setTitle(this.translateService.translate('ADMIN_PANEL'));
     this.imageLoader.loadImages();
 
     this.changePasswordForm = this.formBuilder.group({
