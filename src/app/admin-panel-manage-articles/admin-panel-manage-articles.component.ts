@@ -14,6 +14,7 @@ import { imageHandler } from '../quill/handlers/imageHandler';
 import { AdminSelectedTabService } from '../services/admin-selected-tab.service';
 import { LanguageService } from '../services/language.service';
 import { TranslateService } from '../services/translate.service';
+import { TitleService } from '../services/title-service.service';
 
 @Component({
   selector: 'app-admin-panel-manage-articles',
@@ -24,7 +25,7 @@ export class AdminPanelManageArticlesComponent {
   constructor(private articleRepository : ArticleRepositoryService, private formBuilder : FormBuilder, 
   private loadingService : LoadingService, private renderer: Renderer2, private authService : AuthService,
   private imageUploader : ImageUploaderService, private adminSelectedTab : AdminSelectedTabService,
-  private translateService : TranslateService) {}
+  private translateService : TranslateService, private titleService : TitleService) {}
 
   quillModules: QuillModules = {
     toolbar: {
@@ -64,6 +65,7 @@ export class AdminPanelManageArticlesComponent {
   languages = LANGUAGES;
 
   ngOnInit() {
+    this.titleService.setTitle(this.translateService.translate('MANAGE_ARTICLES'));
     this.updateData()
 
     this.adminSelectedTab.selectedTab = 1;

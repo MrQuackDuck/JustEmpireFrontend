@@ -9,7 +9,6 @@ import { AdminSelectedTabService } from '../services/admin-selected-tab.service'
 import { AuthService } from '../services/auth.service';
 import { Rank } from '../model/rank';
 import { User } from '../model/user';
-import { ServiceVersionRepositoryService } from '../services/service-version-repository.service';
 import { Status } from '../enum/Status';
 import { ServiceCategory } from '../model/serviceCategory';
 import { ServiceCategoryRepositoryService } from '../services/service-category-repository.service';
@@ -18,6 +17,7 @@ import { ImageUploaderService } from '../services/image-uploader.service';
 import { ServiceImageRepositoryService } from '../services/service-image-repository.service';
 import { CreateImageModel } from '../model/requestModels/createImageModel';
 import { TranslateService } from '../services/translate.service';
+import { TitleService } from '../services/title-service.service';
 
 @Component({
   selector: 'app-admin-panel-manage-services',
@@ -29,7 +29,8 @@ export class AdminPanelManageServicesComponent {
     private adminSelectedTab : AdminSelectedTabService, private authService : AuthService,
     private formBuilder : FormBuilder, private serviceCategoryRepository : ServiceCategoryRepositoryService, 
     private renderer : Renderer2, private imageUploader : ImageUploaderService,
-    private serviceImageRepository : ServiceImageRepositoryService, private translateService : TranslateService) {}
+    private serviceImageRepository : ServiceImageRepositoryService, private translateService : TranslateService,
+    private titleService : TitleService) {}
 
   currentRank : Rank;
   currentUser : User;
@@ -69,6 +70,8 @@ export class AdminPanelManageServicesComponent {
   languages = LANGUAGES;
 
   async ngOnInit() {
+    this.titleService.setTitle(this.translateService.translate('MANAGE_SERVICES'));
+
     // Setting up input forms
     this.newServiceForm = this.formBuilder.group({
       title: new FormControl(null, Validators.required),

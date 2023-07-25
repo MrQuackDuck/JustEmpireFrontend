@@ -14,6 +14,7 @@ import { LoadingService } from '../services/loading.service';
 import { Service } from '../model/service';
 import { ServiceRepositoryService } from '../services/service-repository.service';
 import { TranslateService } from '../services/translate.service';
+import { TitleService } from '../services/title-service.service';
 
 @Component({
   selector: 'app-admin-panel-manage-service-versions',
@@ -25,7 +26,7 @@ export class AdminPanelManageServiceVersionsComponent {
     private renderer : Renderer2, private authService : AuthService, 
     private adminSelectedTab : AdminSelectedTabService, private loadingService : LoadingService,
     private formBuilder : FormBuilder, private serviceRepository : ServiceRepositoryService,
-    private translateService : TranslateService) { }
+    private translateService : TranslateService, private titleService : TitleService) { }
 
     quillModules: QuillModules = {
       toolbar: {
@@ -62,6 +63,7 @@ export class AdminPanelManageServiceVersionsComponent {
   currentRank : Rank;
 
   ngOnInit() {
+    this.titleService.setTitle(this.translateService.translate('MANAGE_VERSIONS'));
     this.updateData()
 
     this.adminSelectedTab.selectedTab = 2;

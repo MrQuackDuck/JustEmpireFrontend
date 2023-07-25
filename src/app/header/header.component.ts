@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { LanguageService } from '../services/language.service';
 import { Location } from '@angular/common';
 import { SearchService } from '../services/search.service';
-import { Postable } from '../model/postable';
 import { PostableType } from '../enum/PostableType';
 import { SearchPostable } from '../model/searchPostable';
 import { NotifierService } from 'angular-notifier';
 import { TranslateService } from '../services/translate.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +19,7 @@ import { TranslateService } from '../services/translate.service';
 export class HeaderComponent {
   constructor(public language : LanguageService, private location : Location,
   private searchService : SearchService, private notifierService : NotifierService,
-  private translateService : TranslateService) { }
+  private translateService : TranslateService, public router : Router) { }
 
   // Search icon | Cross icon
   currentIcon = "../../assets/images/svg/search_icon.svg";
@@ -49,20 +49,6 @@ export class HeaderComponent {
     }
     
     this.currentIcon = "../../assets/images/svg/search_icon.svg";
-  }
-
-  setActiveNav() {
-    const currentRoute = this.location.path();
-    const links = document.querySelectorAll('.hlink');
-
-    links.forEach(link => {
-      if (link.getAttribute('routerLink') === currentRoute) link.classList.add('active');
-      else link.classList.remove('active');
-    });
-  }
-
-  ngOnInit() {
-    this.setActiveNav();
   }
 
   openNav() : void {

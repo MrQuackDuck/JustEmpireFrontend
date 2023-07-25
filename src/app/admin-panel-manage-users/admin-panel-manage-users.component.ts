@@ -10,6 +10,7 @@ import { LoadingService } from '../services/loading.service';
 import { Router } from '@angular/router';
 import { RankRepositoryService } from '../services/rank-repository.service';
 import { TranslateService } from '../services/translate.service';
+import { TitleService } from '../services/title-service.service';
 
 @Component({
   selector: 'app-admin-panel-manage-users',
@@ -21,7 +22,7 @@ export class AdminPanelManageUsersComponent {
     private adminSelectedTab : AdminSelectedTabService, private authService : AuthService,
     private loadingService : LoadingService, private formBuilder : FormBuilder, 
     private router : Router, private renderer : Renderer2, private rankRepository : RankRepositoryService,
-    private translateService : TranslateService) { }
+    private translateService : TranslateService, private titleService : TitleService) { }
 
   users : User[];
   ranks : Rank[];
@@ -47,6 +48,8 @@ export class AdminPanelManageUsersComponent {
   currentRank? : Rank;
 
   ngOnInit() {
+    this.titleService.setTitle(this.translateService.translate('MANAGE_USERS'));
+
     this.updateData()
 
     this.adminSelectedTab.selectedTab = 3;

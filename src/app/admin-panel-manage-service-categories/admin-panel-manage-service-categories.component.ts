@@ -10,6 +10,7 @@ import { User } from '../model/user';
 import { AdminSelectedTabService } from '../services/admin-selected-tab.service';
 import { Status } from '../enum/Status';
 import { TranslateService } from '../services/translate.service';
+import { TitleService } from '../services/title-service.service';
 
 @Component({
   selector: 'app-admin-panel-manage-service-categories',
@@ -21,7 +22,7 @@ export class AdminPanelManageServiceCategoriesComponent {
     private serviceCategoryRepository : ServiceCategoryRepositoryService, 
     private loadingService : LoadingService, private formBuilder : FormBuilder, 
     private adminSelectedTab: AdminSelectedTabService, private renderer: Renderer2,
-    private translateService : TranslateService) {}
+    private translateService : TranslateService, private titleService : TitleService) {}
 
   newCategoryForm : FormGroup
   newCategoryModalShown : boolean;
@@ -46,6 +47,7 @@ export class AdminPanelManageServiceCategoriesComponent {
   currentUser : User;
 
   ngOnInit() {
+    this.titleService.setTitle(this.translateService.translate('MANAGE_CATEGORIES'));
     this.updateData();
 
     this.adminSelectedTab.selectedTab = 2;

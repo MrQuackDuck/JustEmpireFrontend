@@ -21,6 +21,8 @@ import { ServiceCategory } from '../model/serviceCategory';
 import { ServiceImage } from '../model/serviceImage';
 import { Status } from '../enum/Status';
 import { Observable } from 'rxjs';
+import { TitleService } from '../services/title-service.service';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
   selector: 'app-admin-panel-manage-approvements',
@@ -36,7 +38,9 @@ export class AdminPanelManageApprovementsComponent {
     private serviceRepository : ServiceRepositoryService, 
     private serviceVersionRepository : ServiceVersionRepositoryService,
     private serviceCategoryRepository : ServiceCategoryRepositoryService,
-    private serviceImageRepository : ServiceImageRepositoryService) { }
+    private serviceImageRepository : ServiceImageRepositoryService,
+    private titleService : TitleService,
+    private translateService : TranslateService) { }
 
   API_URL = API_URL
 
@@ -51,6 +55,7 @@ export class AdminPanelManageApprovementsComponent {
   currentRank? : Rank;
 
   ngOnInit() {
+    this.titleService.setTitle(this.translateService.translate('MANAGE_APPROVEMENTS'));
     this.updateData()
 
     this.adminSelectedTab.selectedTab = 3;

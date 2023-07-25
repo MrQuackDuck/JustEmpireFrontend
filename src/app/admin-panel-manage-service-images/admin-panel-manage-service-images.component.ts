@@ -14,6 +14,7 @@ import { ServiceRepositoryService } from '../services/service-repository.service
 import { API_URL } from 'src/globals';
 import { ImageUploaderService } from '../services/image-uploader.service';
 import { TranslateService } from '../services/translate.service';
+import { TitleService } from '../services/title-service.service';
 
 @Component({
   selector: 'app-admin-panel-manage-service-images',
@@ -25,7 +26,8 @@ export class AdminPanelManageServiceImagesComponent {
     private serviceImageRepository : ServiceImageRepositoryService,
     private adminSelectedTab : AdminSelectedTabService, private formBuilder : FormBuilder,
     private serviceRepository : ServiceRepositoryService, private renderer : Renderer2,
-    private imageUploader : ImageUploaderService, private translateService : TranslateService) { }
+    private imageUploader : ImageUploaderService, private translateService : TranslateService,
+    private titleService : TitleService) { }
 
   API_URL = API_URL;
 
@@ -58,6 +60,7 @@ export class AdminPanelManageServiceImagesComponent {
   currentRank : Rank;
 
   ngOnInit() { 
+    this.titleService.setTitle(this.translateService.translate('MANAGE_IMAGES'));
     this.updateData()
 
     this.adminSelectedTab.selectedTab = 2;
