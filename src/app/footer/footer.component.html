@@ -6,12 +6,12 @@
             <div class="sl-nav">
               {{ 'LANGUAGE' | translate }}:
               <ul>
-                <li><b *ngIf="languageService.getLanguage() == '0'">English</b><b *ngIf="languageService.getLanguage() == '1'">Ukrainian</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
+                <li><b *ngIf="currentLanguage == '0'">English</b><b *ngIf="currentLanguage == '1'">Ukrainian</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
                 <div class="triangle"></div>
                 <div class="hitbox"></div>
                   <ul>
-                    <li (click)="setLanguage(0)"><i class="sl-flag flag-usa"></i><span [ngClass]="{'active': languageService.getLanguage() == '0'}">English</span></li>
-                    <li (click)="setLanguage(1)" (mouseover)="addTriangle()" (mouseleave)="removeTriangle()" class="ua"><i class="sl-flag flag-ua"><div id="ukraine"></div></i><span [ngClass]="{'active': languageService.getLanguage() == '1'}">Ukrainian</span></li>
+                    <li (click)="setLanguage(0)"><i class="sl-flag flag-usa"></i><span [ngClass]="{'active': currentLanguage == '0'}">English</span></li>
+                    <li (click)="setLanguage(1)" (mouseover)="addTriangle()" (mouseleave)="removeTriangle()" class="ua"><i class="sl-flag flag-ua"><div id="ukraine"></div></i><span [ngClass]="{'active': currentLanguage == '1'}">Ukrainian</span></li>
                   </ul>
                 </li>
               </ul>

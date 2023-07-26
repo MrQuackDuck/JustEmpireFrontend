@@ -10,6 +10,12 @@ import { LanguageService } from '../services/language.service';
 export class FooterComponent {
   constructor(public languageService : LanguageService) { }
 
+  currentLanguage : any;
+
+  ngOnInit() {
+    this.currentLanguage = this.languageService.getLanguage()
+  }
+
   addTriangle() : void {
     let triangle = document.querySelector('.triangle');
     triangle?.classList.add("triangle-active");

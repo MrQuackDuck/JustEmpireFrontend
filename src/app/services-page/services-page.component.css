@@ -149,7 +149,7 @@ app-service-card {
 
 @media screen and (max-width: 1700px) {
     .sections-container {
-        padding: 40px 60px;
+        padding: 20px 10px;
     }
 
     .service .image img {

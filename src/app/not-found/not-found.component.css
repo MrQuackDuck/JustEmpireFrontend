@@ -28,3 +28,24 @@ main .sprite img {
     user-select: none;
     max-width: 460px;
 }
+
+@media screen and (max-width: 1000px) {
+    main {
+        flex-direction: column-reverse;
+        padding: 30px 60px;
+    }
+
+    main .info h1 {
+        font-size: 70px;
+    }
+
+    main .info h2 {
+        font-size: 40px;
+    }
+
+    main .sprite img {
+        max-width: 70%;
+        margin: 0 auto;
+        display: block;
+    }
+}

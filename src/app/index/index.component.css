@@ -138,6 +138,10 @@ section .block a:hover {
     text-decoration: underline;
 }
 
+.mobile {
+    display: none;
+}
+
 .block.left-1 {
     background: url("../../assets/images/svg/block-1-left-background.svg");
     background-position: bottom;
@@ -329,6 +333,10 @@ section .right-1 {
 @media screen and (max-width: 900px) {
     main {
         flex-direction: column-reverse;
+    }
+
+    .mobile { 
+        display: block;
     }
 
     .head-block {

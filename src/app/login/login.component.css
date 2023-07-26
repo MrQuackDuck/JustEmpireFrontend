@@ -62,3 +62,9 @@ main .login-block form {
 .login-block form input[type="button"] {
     cursor: pointer;
 }
+
+@media screen and (max-width: 700px) {
+    main .login-block {
+        width: unset;
+    }
+}

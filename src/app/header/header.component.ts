@@ -65,9 +65,12 @@ export class HeaderComponent {
   }
 
   onClick(event) {
-    if(event.target.tagName == "INPUT") return;
-    if(event.target.tagName == "IMG") return;
+    if (event.target.tagName == "INPUT") return;
+    if (event.target.tagName == "IMG") return;
+    if (event.target.tagName == "UL") return;
+    if (event.target.tagName == "I") return;
     
+    this.closeNav();
     this.disableSearch();
   }
 

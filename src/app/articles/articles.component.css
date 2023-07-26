@@ -44,7 +44,7 @@ article-card:nth-child(3n) {
 
 @media screen and (max-width: 1400px) {
     .articles {
-        padding: 0px 60px;
+        padding: 0px 10px;
     }
 
     article-card {
