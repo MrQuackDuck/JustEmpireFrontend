@@ -65,6 +65,10 @@ export class ArticlePageComponent {
     return Language[language];
   }
 
+  back() {
+    history.back();
+  }
+
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }

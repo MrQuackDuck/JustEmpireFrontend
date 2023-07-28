@@ -1,20 +1,18 @@
-<main *ngIf="article">
+<div *ngIf="article" class="wrapper">
     <article>
-        <div class="article-title">
-            <h1>{{ article.title! | truncate: 100 }}</h1>
-            <div class="article-date">{{ article.publishDate | date: 'dd.MM.yyyy hh:mm' }}</div>
-            <div style="background-image: url('{{ API_URL }}/uploads/{{ article.titleImage }}');" class="title-bg"></div>
+        <div style="background-image: url('{{ API_URL }}/uploads/{{ article.titleImage }}')" class="head">
+            <div class="top">
+                <img (click)="back()" alt="⬅ {{ 'BACK' | translate }}" class="back" src="../assets/images/svg/back.svg" draggable="false">
+            </div>
+            <div class="bottom">
+                <div class="title">{{ article.title }}</div>
+                <div class="date">{{ article.publishDate | date : "MM.dd.yyyy" }}</div>
+            </div>
         </div>
-        <div class="container">
-            <div class="content" [innerHTML]="article.text | safeHtml"></div>
-        </div>
+        <div class="content">
+            <div *ngIf="article.tags?.length! > 0" class="tags">{{ 'TAGS' | translate }}: {{ article.tags }}</div>
+            <span [innerHTML]="article.text | safeHtml"></span>
+            </div>
     </article>
-    <aside>
-        <h1>{{ 'RECENT_ARTICLES' | translate }}</h1>
-        <hr>
-        <ul>
-            <li *ngFor="let recentArticle of recentArticles$ | async" routerLinkActive="active"><a [routerLink]="['/', getLanguageCode(recentArticle.language).toLowerCase(), 'article', recentArticle.id, getSlugifiedTitle(recentArticle.title)]">{{ recentArticle.title! | truncate: 20 }}</a></li>
-        </ul>
-    </aside>
-</main>
+</div>
 <app-loading/>

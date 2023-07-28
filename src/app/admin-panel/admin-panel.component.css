@@ -70,7 +70,7 @@ main .title {
 }
 
 aside {
-    background-color: #282828;
+    background-color: #252525;
     color: #FFFFFF;
     display: flex;
     flex-direction: column;
@@ -91,13 +91,13 @@ aside h1 {
     gap: 25px;
     width: 100%;
     overflow: hidden;
-    background-color: #282828;
+    background-color: #252525;
     border-radius: 10px;
     padding: 40px;
 }
 
 aside {
-    background-color: #282828;
+    background-color: #252525;
     color: #FFFFFF;
     display: flex;
     flex-direction: column;

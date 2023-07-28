@@ -5,7 +5,7 @@
     left: 0;
     width: 100%;
     padding: 25px 175px;
-    background: #202020;
+    background: #212121;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     z-index: 31;
 }
@@ -45,7 +45,7 @@ nav a {
 .nav .nav-links a {
     color: #E0E0E0;
     font-size: 24px;
-    font-family: FuturaMd, IstokWeb;
+    font-family: FuturaMd, Inter;
     transition: all 0.2s linear;
 }
 
@@ -156,11 +156,24 @@ nav .nav-links a.active::before {
 
 .search-results a:hover {
     background-color: #424242;
+}
+
+.search-results a:hover .result-title {
     text-decoration: underline;
 }
 
 .search-results a:last-child {
     border-bottom: none;
+}
+
+.result-title {
+    color: #dedede;
+}
+
+.result-description {
+    font-size: 14px;
+    color: #929292;
+    text-decoration: none !important;
 }
 
 /* responsive */

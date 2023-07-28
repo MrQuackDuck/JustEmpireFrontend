@@ -19,8 +19,10 @@
         "POWERED_BY": "Powered by ASP.NET & Angular",
         "LANGUAGE": "Language",
         "RECENT_ARTICLES": "Recent articles",
-        "ARTICLE": "article",
-        "SERVICE": "service",
+        "RECENT": "Recent",
+        "PAST": "Past",
+        "ARTICLE": "Article",
+        "SERVICE": "Service",
         "IMAGE_MISSING": "Image missing",
         "OUR_SERVICES_AND_PRODUCTS": "Our Services & Products",
         "TYPE": "Type",
@@ -80,6 +82,7 @@
         "DELETE": "Delete",
         "NEW": "New",
         "CREATE_ARTICLE": "Create Article",
+        "EDIT_ARTICLE": "Edit Article",
         "ARTICLE_TITLE": "Article title",
         "INSERT_TEXT_HERE": "Insert text here",
         "ARTICLE_LANGUAGE": "Article language",
@@ -159,7 +162,12 @@
         "TYPE_CATEGORY": "🔠 Category",
         "TYPE_VERSION": "🐧 Version",
         "TYPE_IMAGE": "🖼️ Image",
-        "TOO_MANY_REQUESTS": "Too many requests! Try a bit later."
+        "TOO_MANY_REQUESTS": "Too many requests! Try a bit later.",
+        "NO_APPROVEMENTS": "All clear! Nothing to approve.",
+        "OPTIONAL": "Optional",
+        "TAGS": "Tags",
+        "TAGS_DESCRIPTION": "Your tags separated by comma and space",
+        "TAGS_EXAMPLE": "Example: #gaming, #mentalHealth, #programming"
     },
     "UA": {
         "INDEX_SUBTITLE": "Команда індивідуумів, які створюють унікальні продукти. Ми спеціалізуємося на створенні програмного забезпечення, веб-сайтів, Discord-ботів, Minecraft-речей та багатьох інших!",
@@ -180,7 +188,9 @@
         "POWERED_BY": "Працює на ASP.NET та Angular",
         "LANGUAGE": "Мова",
         "RECENT_ARTICLES": "Останні статті",
-        "ARTICLE": "стаття",
+        "RECENT": "Останнє",
+        "PAST": "Минуле",
+        "ARTICLE": "Стаття",
         "SERVICE": "Послуга",
         "IMAGE_MISSING": "Зображення відсутнє",
         "OUR_SERVICES_AND_PRODUCTS": "Наші послуги та продукти",
@@ -241,6 +251,7 @@
         "DELETE": "Видалити",
         "NEW": "Створити",
         "CREATE_ARTICLE": "Створити статтю",
+        "EDIT_ARTICLE": "Редагувати статтю",
         "ARTICLE_TITLE": "Заголовок статті",
         "INSERT_TEXT_HERE": "Вставити текст тут",
         "ARTICLE_LANGUAGE": "Мова статті",
@@ -320,7 +331,12 @@
         "TYPE_CATEGORY": "🔠 Категорія",
         "TYPE_VERSION": "🐧 Версія",
         "TYPE_IMAGE": "🖼️ Зображення",
-        "TOO_MANY_REQUESTS": "Занадто багато запитів! Спробуйте трохи пізніше"
+        "TOO_MANY_REQUESTS": "Занадто багато запитів! Спробуйте трохи пізніше",
+        "NO_APPROVEMENTS": "Все чисто! Нема чого схвалювати.",
+        "OPTIONAL": "Не обов'язково",
+        "TAGS": "Теги",
+        "TAGS_DESCRIPTION": "Ваші теги, розділені комою із пробілом",
+        "TAGS_EXAMPLE": "Наприклад: #gaming, #mentalHealth, #programming"
     }
   }
 }

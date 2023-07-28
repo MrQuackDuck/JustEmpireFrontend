@@ -74,6 +74,7 @@ export class ArticlesComponent implements OnInit {
     this.loadingService.enableLoading()
     await this.delay(300);
     this.articleRepository.getPage(this.language, this.currentPage, this.itemsOnPage).subscribe(articles => {
+      if (articles.length == 0) this.router.navigateByUrl(`/${ this.language.toString().toLowerCase() }/news`)
       this.articles = articles;
       this.loadingService.disableLoading()
     }, error => {

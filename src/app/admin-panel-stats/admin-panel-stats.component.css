@@ -46,7 +46,7 @@ main .title-section .title {
 
 .sections-container section {
     width: 100%;
-    background-color: #282828;
+    background-color: #252525;
     padding: 30px;
     border-radius: 10px;
     color: #FFFFFF;
@@ -62,4 +62,10 @@ b {
 
 .sections-container section.no-padding {
     padding: 0px;
+}
+
+@media screen and (max-width: 1150px) {
+    main .title-section, main .sections-container {
+        padding: 20px 20px;
+    }
 }

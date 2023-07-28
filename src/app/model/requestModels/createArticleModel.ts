@@ -5,4 +5,5 @@ export class CreateArticleModel {
     public titleImage : string;
     public language : Language;
     public text : string;
+    public tags? : string;
 }

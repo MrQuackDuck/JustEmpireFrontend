@@ -85,6 +85,7 @@ export class AdminPanelManageArticlesComponent {
       title: new FormControl(null, Validators.required),
       titleImage: new FormControl(null, Validators.required),
       text: new FormControl(null, Validators.required),
+      tags: new FormControl(null),
       language : new FormControl(0, Validators.required)
     });
 
@@ -93,6 +94,7 @@ export class AdminPanelManageArticlesComponent {
       title: new FormControl(null, Validators.required),
       titleImage: new FormControl(null, Validators.required),
       text: new FormControl(null, Validators.required),
+      tags: new FormControl(null),
       language : new FormControl(0, Validators.required)
     });
   }
@@ -152,6 +154,7 @@ export class AdminPanelManageArticlesComponent {
       this.editArticleForm.controls['id'].setValue(targetArticle.id);
       this.editArticleForm.controls['title'].setValue(targetArticle.title);
       this.editArticleForm.controls['text'].setValue(targetArticle.text);
+      this.editArticleForm.controls['tags'].setValue(targetArticle.tags);
       this.editArticleForm.controls['language'].setValue(targetArticle.language);
       this.editArticleForm.controls['titleImage'].setValue(targetArticle.titleImage);
       
@@ -224,11 +227,11 @@ export class AdminPanelManageArticlesComponent {
   getSuccessDeleteMessage() : string {
     if (this.currentRank.approvementToDeletePostableOthers) 
     {
-      return "Your article is now <b>pending to be deleted</b>. Emperor can approve this request or decline it";
+      return this.translateService.translate('ARTICLE_PENDING_TO_BE_DELETED');
     }
     else 
     {
-      return "You have successfully deleted article!";
+      return this.translateService.translate('SUCCESSFULLY_DELETED_ARTICLE');
     }
   }
 

@@ -10,12 +10,15 @@
             <li><a class="hlink" [class.active]="router.isActive('/' + language.getLanguageCode().toLowerCase() + '/services', false)" draggable="false" routerLink="{{ language.getLanguageCode().toLowerCase() }}/services">{{ "SERVICES" | translate }}</a></li>
           </ul>
           
-          <img draggable="false" src="{{ currentIcon }}"(click)="toggleSearch()" #searchIcon id="searchIcon">
+          <label for="searchBox"><img draggable="false" src="{{ currentIcon }}"(click)="toggleSearch()" #searchIcon id="searchIcon"></label>
     </div>
     <div class="search-box">
-        <input (keyup)="find($event)" type="text" [placeholder]="'SEARCH_HERE' | translate" />
+        <input [disabled]="blockSearchInput" id="searchBox" (keyup)="find($event)" type="text" [placeholder]="'SEARCH_HERE' | translate" />
         <div *ngIf="searchResults.length > 0" class="search-results">
-          <a [routerLink]="result.url" *ngFor="let result of searchResults" [innerHtml]="result.title | safeHtml"></a>
+          <a [routerLink]="result.url" *ngFor="let result of searchResults">
+            <span class="result-title" [innerHtml]="result.title | truncate : 70 | safeHtml"></span><br>
+            <span class="result-description" [innerHtml]="result.text | safeHtml"></span>
+          </a>
         </div>
     </div>
 </nav>

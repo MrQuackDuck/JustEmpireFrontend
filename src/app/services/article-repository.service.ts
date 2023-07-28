@@ -16,11 +16,12 @@ export class ArticleRepositoryService {
   create(articleModel: CreateArticleModel): Observable<Article> {
     let title = articleModel.title;
     let text = articleModel.text;
+    let tags = articleModel.tags;
     let titleImage = articleModel.titleImage;
     let language = articleModel.language;
 
     return this.httpClient.post<any>(`${API_URL}/API/Article/Create`, 
-    { title, text, titleImage, language },
+    { title, text, tags, titleImage, language },
     { withCredentials: true });
   }
 
@@ -28,11 +29,12 @@ export class ArticleRepositoryService {
     let id = articleModel.id
     let title = articleModel.title;
     let text = articleModel.text;
+    let tags = articleModel.tags;
     let titleImage = articleModel.titleImage;
     let language = articleModel.language;
 
     return this.httpClient.put<boolean>(`${API_URL}/API/Article/Edit`, 
-    { id, title, text, titleImage, language },
+    { id, title, text, tags, titleImage, language },
     { withCredentials: true });
   }
 

@@ -12,6 +12,7 @@ export class Article implements Postable {
     public language : Language = Language.EN;
     public type : PostableType;
     public text? : string;
+    public tags? : string;
     public status : Status;
     public lastChangeDate : Date;
     public publishDate : Date;

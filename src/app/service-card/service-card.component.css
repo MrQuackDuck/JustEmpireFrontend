@@ -2,12 +2,13 @@
     min-height: 300px;
     max-height: 300px;
     width: 100%;
-    background-color: #282828;
+    background-color: #252525;
     border-radius: 10px;
     display: flex;
     flex-direction: row;
     color: #FFFFFF;
     padding: 25px;
+    border: 1px solid #373737;
 }
 
 .service .container {

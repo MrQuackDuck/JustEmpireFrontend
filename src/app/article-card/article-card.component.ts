@@ -15,6 +15,10 @@ export class ArticleCardComponent {
 
   @Input()
   article : Article;
+
+  @Input()
+  isRecent : boolean;
+
   languageCode : string;
 
   slugifiedTitle : string;
@@ -22,7 +26,7 @@ export class ArticleCardComponent {
   API_URL = API_URL;
 
   ngOnInit() {
-    this.languageCode = Language[this.article.language];
+    this.languageCode = Language[this.article.language].toLowerCase();
     this.slugifiedTitle = slugify(this.article.title, '-').toLowerCase();
   }
 }

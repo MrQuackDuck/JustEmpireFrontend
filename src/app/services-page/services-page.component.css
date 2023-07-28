@@ -28,13 +28,14 @@ main .title {
 }
 
 aside {
-    background-color: #282828;
+    background-color: #252525;
     color: #FFFFFF;
     display: flex;
     flex-direction: column;
     padding: 30px 45px;
     border-radius: 10px;
     width: 30%;
+    border: 1px solid #373737;
 }
 
 aside h1 {

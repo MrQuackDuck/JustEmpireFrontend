@@ -21,20 +21,22 @@ export class HeaderComponent {
   private searchService : SearchService, private notifierService : NotifierService,
   private translateService : TranslateService, public router : Router) { }
 
+  blockSearchInput : boolean;
+
   // Search icon | Cross icon
   currentIcon = "../../assets/images/svg/search_icon.svg";
 
   toggleSearch() : void {
-    let nav = document.querySelector(".nav"),
-    searchIcon = document.querySelector("#searchIcon")
+    let nav = document.querySelector(".nav")
     nav?.classList.toggle("openSearch");
     nav?.classList.remove("openNav");
     if (nav?.classList.contains("openSearch")) {
-        searchIcon?.classList.replace("uil-search", "uil-times");
         this.currentIcon = "../../assets/images/svg/cross-1.svg";
+        this.blockSearchInput = false;
         return;
     }
 
+    this.blockSearchInput = true;
     this.currentIcon = "../../assets/images/svg/search_icon.svg";
   }
 
@@ -76,6 +78,35 @@ export class HeaderComponent {
 
   searchResults : SearchPostable[] = [];
 
+  boldString(str, find) {
+    var reg = new RegExp('('+find+')', 'gi');
+    return str.replace(reg, '<b>$1</b>');
+  }
+
+  removeTags(str : string) : string {
+    let tagsToReplace = ["<br>", "<b>", "</b>", "<a>", "</a>", "<h1>", "</h1>", "<h2>", "</h2>", "<h3>", "</h3>", "<h4>", "</h4>", "<h5>", "</h5>", "<strong>", "</strong>", "<p>", "</p>"]
+    tagsToReplace.forEach(element => {
+      str = str.replaceAll(element, "");
+    });
+
+    return str;
+  }
+
+  cutOffString(str : string, target : string) : string {
+    let targetIndex = str.indexOf(target);
+
+    if (targetIndex >= 20) {
+      str = '...' + str.substring(targetIndex - 20, targetIndex + 20) + '...';
+    } 
+    else
+    {
+      str = str.substring(0, targetIndex + target.length + (20 - (targetIndex + target.length))) + '...';
+    }
+
+    if (str == "...") return "";
+    return str;
+  }
+
   find(event) {
     let searchString : any = document.querySelector('input')?.value;
     if (searchString == '') 
@@ -88,8 +119,10 @@ export class HeaderComponent {
         if (element.type == PostableType.ARTICLE) element.url = `/article/${element.id}`;
         if (element.type == PostableType.SERVICE) element.url = `/service/${element.id}`;
 
-        let bolder = '<b>' + element.title.substring(0, searchString.toString().length) + '</b>';
-        element.title = bolder + element.title.substring(searchString.toString().length, element.title.length);
+        element.title = this.boldString(element.title, searchString);
+        element.text = this.removeTags(element.text);
+        element.text = this.cutOffString(element.text, searchString)
+        element.text = this.boldString(element.text, searchString);
       });
 
       this.searchResults = results

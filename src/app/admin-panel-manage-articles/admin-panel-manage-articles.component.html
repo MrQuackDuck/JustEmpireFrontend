@@ -69,6 +69,9 @@
                 <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
             </select>
         </div>
+        <div [attr.data-title]="('TAGS' | translate) + ' (' + ('TAGS_DESCRIPTION' | translate) + ')' + ':'" class="tip">
+            <input value="{{ currentArticleEdited?.tags }}" required="text" formControlName="tags" type="text" [placeholder]="'TAGS_EXAMPLE' | translate">
+        </div>
         <div [attr.data-title]="('ARTICLE_TITLE_IMAGE' | translate) + ':'" class="tip">
             <label [class.ng-invalid]="newArticleForm.controls['titleImage'].invalid" #uploadPhotoLabelNew class="upload-photo-label" for="upload-photo"><span>{{ 'BROWSE' | translate }}</span></label>
         </div>
@@ -88,6 +91,9 @@
             <select formControlName="language" required>
                 <option *ngFor="let lang of languages; index as i" [ngValue]="lang.value">{{ lang.key }}</option>
             </select>
+        </div>
+        <div [attr.data-title]="('TAGS' | translate) + ':'" class="tip">
+            <input value="{{ currentArticleEdited?.tags }}" required="text" formControlName="tags" type="text" [placeholder]="'TAGS' | translate">
         </div>
         <div [attr.data-title]="('ARTICLE_TITLE_IMAGE' | translate) + ':'" class="tip">
             <label [class.ng-invalid]="editArticleForm.controls['titleImage'].invalid" #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo-edit"><span>Browse</span></label>

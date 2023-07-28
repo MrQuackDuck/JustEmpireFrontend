@@ -6,7 +6,7 @@
     </div>
     <div class="sections-container">
         <section class="no-padding">
-            <div class="table__wrapper">
+            <div *ngIf="approvements.length > 0" class="table__wrapper">
                 <table *ngIf="approvements">
                     <thead>
                         <tr>
@@ -40,6 +40,7 @@
                     </tbody>
                 </table>
             </div>
+            <div class="no-approvements" *ngIf="approvements.length == 0">{{ 'NO_APPROVEMENTS' | translate }}</div>
         </section>
     </div>
 </main>

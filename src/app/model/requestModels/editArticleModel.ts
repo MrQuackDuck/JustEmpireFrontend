@@ -6,4 +6,5 @@ export class EditArticleModel {
     public titleImage : string;
     public language : Language;
     public text : string;
+    public tags? : string;
 }

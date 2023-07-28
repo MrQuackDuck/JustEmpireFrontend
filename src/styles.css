@@ -106,13 +106,6 @@ body {
 }
 
 @font-face {
-    font-family: IstokWeb;
-    src: url("assets/fonts/IstokWeb.ttf");
-    font-weight: 500;
-}
-
-
-@font-face {
     font-family: SourceSans;
     src: url("assets/fonts/SourceSans3-Light.ttf");
     font-weight: 300;
@@ -169,11 +162,6 @@ body {
     font-style: italic;
 }
 
-@font-face {
-    font-family: Tahoma;
-    src: url("assets/fonts/Tahoma.ttf");
-}
-
 .button {
     background-color: #2F63B0;
     border: 1px solid #738fd7;
@@ -219,7 +207,7 @@ body {
 }
 
 .button.gray {
-    background-color: #282828;
+    background-color: #252525;
     border: 1px solid #696969;
     box-shadow: 0px 6px 0px #0e0e0e;
 }
@@ -398,8 +386,12 @@ form input[type="submit"] {
     padding: 0px 0px;
     padding-right: 0;
     color: #BAB8B6;
-    font-family: BalooThambi2, SourceSans;
-    font-weight: 600;
+    font-family: Inter;
+    font-weight: 500;
+}
+
+article .content a {
+    color: #3286ED;
 }
 
 .content b {
@@ -520,7 +512,20 @@ modal-window form.ng-submitted .ng-invalid {
     outline: 1px solid #FF6363;
 }
 
+.result-title b {
+    color: #ffffff;
+}
+
+.result-description b {
+    color: #c1c1c1 !important;
+}
+
 @media screen and (max-width: 900px) {
+    td.actions {
+        display: flex;
+        flex-direction: column;
+    }
+
     footer {
         font-size: 16px;
     }
@@ -557,7 +562,7 @@ modal-window form.ng-submitted .ng-invalid {
     }
 
     table tbody tr:nth-child(odd) {
-        background-color: #282828;
+        background-color: #252525;
     }
 
     table tbody tr:nth-child(even) {
