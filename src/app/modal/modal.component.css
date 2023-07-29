@@ -12,8 +12,8 @@ main {
 	min-height: 100vh;
     color: #FFFFFF;
 	z-index: 34;
-	flex-direction: column;
 	padding: 40px;
+	flex-direction: column;
 }
 
 .content {
@@ -115,7 +115,12 @@ main {
 }
 
 @media screen and (max-width: 800px) {
+	main {
+		padding: 30px;
+	}
+
 	.content {
 		padding: 16px;
+		padding-bottom: 40px !important;
 	}
 }

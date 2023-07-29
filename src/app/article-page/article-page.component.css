@@ -29,7 +29,7 @@ article {
     position: absolute;
     left: 0;
     top: 0;
-    background: linear-gradient(0deg, rgba(40,40,40,1) 0%, rgba(0,0,0,.15) 30%);
+    background: linear-gradient(0deg, rgba(40,40,40,1) 0%, rgba(0,0,0,.15) 100%);
 }
 
 .back {
@@ -37,6 +37,11 @@ article {
     font-weight: 600;
     user-select: none;
     cursor: pointer;
+    transition: .1s;
+}
+
+.back:hover, .back:active {
+    filter: brightness(110%);
 }
 
 .head .bottom {
@@ -61,7 +66,8 @@ article {
 .tags {
     width: 100%;
     display: block;
-    font-weight: 600;
+    font-weight: 700;
+    opacity: 0.8;
     font-size: 20px;
     padding-bottom: 15px;
 }
@@ -75,7 +81,7 @@ article {
 }
 
 .wrapper {
-    padding: 0% 22%;
+    padding: 0% 273px;
     margin-bottom: 90px;
 }
 

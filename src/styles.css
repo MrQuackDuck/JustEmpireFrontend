@@ -53,61 +53,61 @@ body {
 
 @font-face {
     font-family: FuturaMd;
-    src: url("assets/fonts/FuturaMd.ttf");
+    src: url("assets/fonts/FuturaMd.woff2");
     font-weight: 500;
 }
 
 @font-face {
     font-family: Ebrima;
-    src: url("assets/fonts/ebrima.ttf");
+    src: url("assets/fonts/ebrima.woff2");
     font-weight: 500;
 }
 
 @font-face {
     font-family: Ebrima;
-    src: url("assets/fonts/ebrima-bold.ttf");
+    src: url("assets/fonts/ebrima-bold.woff2");
     font-weight: 600;
 }
 
 @font-face {
     font-family: BalooThambi2;
-    src: url("assets/fonts/BalooThambi2-Regular.ttf");
+    src: url("assets/fonts/BalooThambi2-Regular.woff2");
     font-weight: 500;
 }
 
 @font-face {
     font-family: BalooThambi2;
-    src: url("assets/fonts/BalooThambi2-Medium.ttf");
+    src: url("assets/fonts/BalooThambi2-Medium.woff2");
     font-weight: 600;
 }
 
 @font-face {
     font-family: BalooThambi2;
-    src: url("assets/fonts/BalooThambi2-SemiBold.ttf");
+    src: url("assets/fonts/BalooThambi2-SemiBold.woff2");
     font-weight: 700;
 }
 
 @font-face {
     font-family: Inter;
-    src: url("assets/fonts/Inter-Regular.ttf");
+    src: url("assets/fonts/Inter-Regular.woff2");
     font-weight: 500;
 }
 
 @font-face {
     font-family: Inter;
-    src: url("assets/fonts/Inter-Medium.ttf");
+    src: url("assets/fonts/Inter-Medium.woff2");
     font-weight: 600;
 }
 
 @font-face {
     font-family: Inter;
-    src: url("assets/fonts/Inter-SemiBold.ttf");
+    src: url("assets/fonts/Inter-SemiBold.woff2");
     font-weight: 700;
 }
 
 @font-face {
     font-family: SourceSans;
-    src: url("assets/fonts/SourceSans3-Light.ttf");
+    src: url("assets/fonts/SourceSans3-Light.woff2");
     font-weight: 300;
     font-style: normal;
 }
@@ -121,7 +121,7 @@ body {
 
 @font-face {
     font-family: SourceSans;
-    src: url("assets/fonts/SourceSans3-Regular.ttf");
+    src: url("assets/fonts/SourceSans3-Regular.woff2");
     font-weight: 500;
     font-style: normal;
 }
@@ -129,21 +129,21 @@ body {
 
 @font-face {
     font-family: SourceSans;
-    src: url("assets/fonts/SourceSans3-Italic.ttf");
+    src: url("assets/fonts/SourceSans3-Italic.woff2");
     font-weight: 500;
     font-style: italic;
 }
 
 @font-face {
     font-family: SourceSans;
-    src: url("assets/fonts/SourceSans3-Medium.ttf");
+    src: url("assets/fonts/SourceSans3-Medium.woff2");
     font-weight: 600;
     font-style: normal;
 }
 
 @font-face {
     font-family: SourceSans;
-    src: url("assets/fonts/SourceSans3-MediumItalic.ttf");
+    src: url("assets/fonts/SourceSans3-MediumItalic.woff2");
     font-weight: 600;
     font-style: italic;
 }

@@ -46,14 +46,17 @@
 
 <modal-window [showModal]="viewArticleModalShown" [noPadding]="true" (onClose)="closeAllModals()">
     <article>
-        <div class="article-title">
-            <h1>{{ currentViewedArticle?.title! | truncate: 100 }}</h1>
-            <div class="article-date">{{ currentViewedArticle?.publishDate | date: 'MMM dd, yyyy' }}</div>
-            <div style="background-image: url('{{ API_URL }}/uploads/{{ currentViewedArticle?.titleImage }}');" class="title-bg"></div>
+        <div style="background-image: url('{{ API_URL }}/uploads/{{ currentViewedArticle?.titleImage }}')" class="head">
+            <div class="top"></div>
+            <div class="bottom">
+                <div class="title">{{ currentViewedArticle?.title }}</div>
+                <div class="date">{{ currentViewedArticle?.publishDate | date : "MM.dd.yyyy" }}</div>
+            </div>
         </div>
-        <div class="container">
-            <div class="content" [innerHTML]="currentViewedArticle?.text | safeHtml"></div>
-        </div>
+        <div class="content">
+            <div *ngIf="currentViewedArticle?.tags?.length! > 0" class="tags">{{ 'TAGS' | translate }}: {{ currentViewedArticle?.tags }}</div>
+            <span [innerHTML]="currentViewedArticle?.text | safeHtml"></span>
+            </div>
     </article>
 </modal-window>
 
