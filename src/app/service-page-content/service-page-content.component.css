@@ -1,19 +1,22 @@
+* {
+    font-family: Inter !important;
+}
+
 .sections-container {
     padding: 40px 273px;
     overflow-x: hidden;
 }
 
 .service {
-    min-height: 300px;
-    max-height: 300px;
+    min-height: 270px;
+    max-height: 270px;
     width: 100%;
-    background-color: #252525;
+    background-color: #282828;
     border-radius: 10px;
     display: flex;
     flex-direction: row;
     color: #FFFFFF;
-    padding: 25px;
-    border: 1px solid #373737;
+    padding: 10px 15px;
 }
 
 .container {
@@ -23,8 +26,14 @@
     flex-grow: 1;
 }
 
-.image img {
-    max-width: 250px;
+.service .image {
+    display: flex;
+    align-items: center;
+}
+
+.service .image img {
+    max-width: 190px;
+    max-height: 100%;
     border-radius: 10px;
 }
 
@@ -48,13 +57,12 @@
 }
 
 .service .info .type {
-    font-family: BalooThambi2, SourceSans;
-    font-size: 18px;
+    font-size: 21px;
     color: #909090;
 }
 
 .service .info .description {
-    font-family: BalooThambi2, SourceSans;
+    padding-top: 8px;
     font-size: 18px;
 }
 
@@ -74,14 +82,13 @@
 }
 
 .service .controls div btn {
-    min-width: 180px;
-    max-width: 180px;
+    min-width: 200px;
+    max-width: 200px;
     padding: 10px 0px;
 }
 
 .service .controls .field {
     position: relative;
-    font-family: BalooThambi2, SourceSans;
     font-size: 20px;
     color: #909090;
 }
@@ -94,7 +101,7 @@
 
 .content {
     width: 100%;
-    background-color: #252525;
+    background-color: #282828;
     border-radius: 10px;
     color: #FFFFFF;
     margin-bottom: 20px; /* TODO: Remove this property */
@@ -109,7 +116,6 @@
     display: flex;
     flex-direction: column;
     padding: 25px 46px;
-    border: 1px solid #373737;
     border-radius: 10px;
 }
 

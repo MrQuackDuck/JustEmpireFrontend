@@ -22,20 +22,19 @@ main .title {
 .sections-container {
     display: flex;
     flex-direction: row;
-    padding: 40px 273px;
+    padding: 40px 243px;
     width: 100%;
     gap: 25px;
 }
 
 aside {
-    background-color: #252525;
+    background-color: #282828;
     color: #FFFFFF;
     display: flex;
     flex-direction: column;
-    padding: 30px 45px;
+    padding: 30px;
     border-radius: 10px;
     width: 30%;
-    border: 1px solid #373737;
 }
 
 aside h1 {
@@ -70,7 +69,7 @@ aside input:focus[type="text"] {
     outline: 1px solid #7E7E7E;
 }
 
- .checkbox-container {
+.checkbox-container {
     display: block;
     position: relative;
     padding-left: 35px;
@@ -81,17 +80,17 @@ aside input:focus[type="text"] {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
-  
-  .checkbox-container input {
+}
+
+.checkbox-container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
     height: 0;
     width: 0;
-  }
-  
-  .checkmark {
+}
+
+.checkmark {
     position: absolute;
     top: 0;
     left: 0;
@@ -100,38 +99,38 @@ aside input:focus[type="text"] {
     background-color: #2E2E2E;
     outline: 1px solid #7E7E7E;
     border-radius: 5px;
-  }
-  
-  .checkbox-container:hover input ~ .checkmark {
+}
+
+.checkbox-container:hover input ~ .checkmark {
     background-color: #4b4b4b;
     border: 2px solid #2E2E2E;
-  }
-  
-  .checkbox-container input:checked ~ .checkmark {
+}
+
+.checkbox-container input:checked ~ .checkmark {
     background-color: #2F63B0;
     border: 2px solid #2E2E2E;
-  }
+}
 
-  .checkbox-text {
+.checkbox-text {
     position: relative;
     left: 16px;
     top: 4px;
-  }
-  
-  .checkmark:after {
+}
+
+.checkmark:after {
     content: "";
     position: absolute;
     display: none;
-  }
-  
-  .checkbox-container input:checked ~ .checkmark:after {
-    display: block;
-  }
+}
 
-  .apply {
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block; 
+}
+
+.apply {
     cursor: pointer;
     margin-top: 10px;
-  }
+}
 
 
 .services {

@@ -1,7 +1,7 @@
 <div class="sections-container">
     <div class="service">
         <div class="container">
-            <div class="image"><img src="{{ API_URL }}/uploads/{{ service?.titleImage }}"></div>
+            <div class="image"><img src="{{ API_URL }}/uploads/{{ service?.titleImage }}" alt=""></div>
             <div class="info">
                 <h1 class="name">{{ service?.title }}</h1>
                 <span class="type" *ngIf="currentCategory">{{ 'TYPE' | translate }}: {{ currentCategory.title }}</span>

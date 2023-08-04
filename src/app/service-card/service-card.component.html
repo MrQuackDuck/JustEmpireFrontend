@@ -1,6 +1,6 @@
 <div class="service">
     <div class="container">
-        <div class="image"><a [routerLink]="['/', languageCode.toLowerCase() ,'service', service.id, slugifiedTitle ]"><img src="{{ API_URL }}/uploads/{{service.titleImage}}"></a></div>
+        <div class="image"><a [routerLink]="['/', languageCode.toLowerCase() ,'service', service.id, slugifiedTitle ]"><img src="{{ API_URL }}/uploads/{{service.titleImage}}" alt=""></a></div>
         <div class="info">
             <h1 class="name" title="{{ service.title }}"><a [routerLink]="['/', languageCode.toLowerCase(),'service', service.id, slugifiedTitle ]">{{ service.title }}</a></h1>
             <span class="type" *ngIf="currentCategory">{{ 'TYPE' | translate }}: {{ currentCategory.title }}</span>

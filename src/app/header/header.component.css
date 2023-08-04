@@ -95,15 +95,22 @@ nav .nav-links a.active::before {
     pointer-events: none;
     transition: all 0.2s linear;
 }
+
 .nav.openSearch .search-box {
     opacity: 1;
     pointer-events: auto;
 }
+
+.nav.openSearch .search-results {
+    display: block !important;
+}
+
 .right-side {
     display: flex;
     flex-direction: row;
     gap: 30px;
 }
+
 .search-box .search-icon {
     position: absolute;
     left: 15px;
@@ -112,6 +119,7 @@ nav .nav-links a.active::before {
     color: #4a98f7;
     transform: translateY(-50%);
 }
+
 .search-box input {
     height: 100%;
     width: 100%;
@@ -144,6 +152,7 @@ nav .nav-links a.active::before {
     top: 8px;
     z-index: 19;
     overflow: hidden;
+    display: none;
 }
 
 .search-results a {

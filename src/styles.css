@@ -163,6 +163,7 @@ body {
 }
 
 .button {
+    font-family: Inter;
     background-color: #2F63B0;
     border: 1px solid #738fd7;
     padding: 10px 64px;
@@ -222,11 +223,11 @@ body {
 
 .button.gray.active {
     background-color: #3A3A3A;
-    border: 1px solid #C6C6C6;
+    border: 1px solid #676767;
 }
 
 .button.gray.active:active {
-    border: 1px solid #8e8e8e;
+    border: 1px solid #5f5f5f;
 }
 
 .button.small {
@@ -381,7 +382,7 @@ form input[type="submit"] {
 }
 
 .content p {
-    font-size: 21px;
+    font-size: 18px;
     line-height: 28px;
     padding: 0px 0px;
     padding-right: 0;

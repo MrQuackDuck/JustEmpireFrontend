@@ -9,13 +9,17 @@
     gap: 10px;
 }
 
+.active {
+    background-color: #343434;
+}
+
 a {
     color: #FFFFFF;
     text-decoration: none;
     font-size: 20px;
     font-family: BalooThambi2, SourceSans;
     background-color: #282828;
-    border: 1px solid #343434;
+    border: 2px solid #343434;
     text-align: center;
     display: flex;
     justify-content: center;
