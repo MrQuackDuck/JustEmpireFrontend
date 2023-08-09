@@ -27,8 +27,10 @@
         "OUR_SERVICES_AND_PRODUCTS": "Our Services & Products",
         "TYPE": "Type",
         "APPLY": "Apply",
+        "APPLY_FILTERS": "Apply filters",
         "FILTERS": "Filters",
         "VERSION": "Version",
+        "SEARCH": "Search",
         "SEARCH_HERE": "Search here...",
         "SCREENSHOTS": "Screenshots",
         "VERSIONS": "Versions",
@@ -167,7 +169,10 @@
         "OPTIONAL": "Optional",
         "TAGS": "Tags",
         "TAGS_DESCRIPTION": "Your tags separated by comma and space",
-        "TAGS_EXAMPLE": "Example: #gaming, #mentalHealth, #programming"
+        "TAGS_EXAMPLE": "Example: #gaming, #mentalHealth, #programming",
+        "CHANGELOG": "Changelog",
+        "DESCRIPTION": "Description",
+        "READ": "Read"
     },
     "UA": {
         "INDEX_SUBTITLE": "Команда індивідуумів, які створюють унікальні продукти. Ми спеціалізуємося на створенні програмного забезпечення, веб-сайтів, Discord-ботів, Minecraft-речей та багатьох інших!",
@@ -196,8 +201,10 @@
         "OUR_SERVICES_AND_PRODUCTS": "Наші послуги та продукти",
         "TYPE": "Тип",
         "APPLY": "Застосувати",
+        "APPLY_FILTERS": "Застосувати фільтри",
         "FILTERS": "Фільтри",
         "VERSION": "Версія",
+        "SEARCH": "Пошук",
         "SEARCH_HERE": "Шукати тут...",
         "SCREENSHOTS": "Скріншоти",
         "VERSIONS": "Версії",
@@ -336,7 +343,10 @@
         "OPTIONAL": "Не обов'язково",
         "TAGS": "Теги",
         "TAGS_DESCRIPTION": "Ваші теги, розділені комою із пробілом",
-        "TAGS_EXAMPLE": "Наприклад: #gaming, #mentalHealth, #programming"
+        "TAGS_EXAMPLE": "Наприклад: #gaming, #mentalHealth, #programming",
+        "CHANGELOG": "Зміни",
+        "DESCRIPTION": "Опис",
+        "READ": "Читати"
     }
   }
 }

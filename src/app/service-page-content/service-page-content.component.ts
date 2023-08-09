@@ -57,7 +57,7 @@ export class ServicePageContentComponent {
     versionsCount : number;
   
     ngOnInit() {
-      this.selectedTab = "screenshots";
+      this.selectedTab = "description";
   
       if (this.isStaff) {
         this.updateDataStaff();

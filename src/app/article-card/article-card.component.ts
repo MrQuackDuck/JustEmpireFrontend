@@ -19,6 +19,9 @@ export class ArticleCardComponent {
   @Input()
   isRecent : boolean;
 
+  @Input()
+  page : number = 0;
+
   languageCode : string;
 
   slugifiedTitle : string;

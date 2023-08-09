@@ -1,17 +1,16 @@
-<div class="service">
-    <div class="container">
-        <div class="image"><a [routerLink]="['/', languageCode.toLowerCase() ,'service', service.id, slugifiedTitle ]"><img src="{{ API_URL }}/uploads/{{service.titleImage}}" alt=""></a></div>
+<div *ngIf="service" class="service">
+    <div class="image-and-info">
+        <div class="image-section">
+            <a draggable="false" [routerLink]="['/', languageCode.toLowerCase(),'service', service.id, slugifiedTitle ]" [queryParams]="{ 'categories': selectedCategories, 'searchString': searchString }"><img draggable="false" src="{{ API_URL }}/uploads/{{ service.titleImage }}" alt=""></a>
+        </div>
         <div class="info">
-            <h1 class="name" title="{{ service.title }}"><a [routerLink]="['/', languageCode.toLowerCase(),'service', service.id, slugifiedTitle ]">{{ service.title }}</a></h1>
-            <span class="type" *ngIf="currentCategory">{{ 'TYPE' | translate }}: {{ currentCategory.title }}</span>
-            <span class="description" [innerHTML]="service.text | safeHtml"></span>
+            <div class="title"><a [routerLink]="['/', languageCode.toLowerCase(),'service', service.id, slugifiedTitle ]" [queryParams]="{ 'categories': selectedCategories, 'searchString': searchString }">{{ service.title }}</a></div>
+            <div *ngIf="currentCategory" class="type">{{ currentCategory.title }}</div>
+            <div class="description">{{ service.text | removeHtmlTags | truncate : 255 }}</div>
         </div>
     </div>
-    <div class="controls">
-        <div>
-            <span class="field" *ngIf="latestVersion">{{ 'VERSION' | translate }}: {{ latestVersion.title }}</span>
-            <btn [paddingLeft]="0" [paddingRight]="0" [href]="service.url" *ngIf="!service.isDownloadable">{{ 'VISIT' | translate }}</btn>
-            <btn [paddingLeft]="0" [paddingRight]="0" [color]="'green'" [href]="service.url" *ngIf="service.isDownloadable">{{ 'DOWNLOAD' | translate }}</btn>
-        </div>
+    <div class="action">
+        <btn class="action-button" [flat]="true" [paddingLeft]="0" [paddingRight]="0" [href]="service.url" *ngIf="!service.isDownloadable">{{ 'VISIT' | translate }}</btn>
+        <btn class="action-button" [flat]="true" [paddingLeft]="0" [paddingRight]="0" [color]="'green'" [href]="service.url" *ngIf="service.isDownloadable">{{ 'DOWNLOAD' | translate }}</btn>
     </div>
 </div>

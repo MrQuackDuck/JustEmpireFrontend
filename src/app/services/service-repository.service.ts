@@ -43,13 +43,14 @@ export class ServiceRepositoryService {
     let id = serviceModel.id
     let title = serviceModel.title;
     let text = serviceModel.text;
+    let isDownloadable = serviceModel.isDownloadable;
     let titleImage = serviceModel.titleImage;
     let language = serviceModel.language;
     let categoryId = serviceModel.categoryId;
     let url = serviceModel.url;
 
     return this.httpClient.put<Service>(`${API_URL}/API/Service/Edit`, 
-    { id, title, text, titleImage, language, categoryId, url },
+    { id, title, text, isDownloadable, titleImage, language, categoryId, url },
     { withCredentials: true });
   }
 

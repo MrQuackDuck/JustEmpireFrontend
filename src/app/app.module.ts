@@ -51,6 +51,7 @@ import { PostableTypeShortPipe } from './pipes/postableTypeShort.pipe';
 import { LangFullPipe } from './pipes/lang-full.pipe';
 import { TranslatePipe } from './pipes/translate.pipe';
 import { NotifierModule, NotifierService } from 'angular-notifier';
+import { RemoveHtmlTagsPipe } from './pipes/removeHtmlTags.pipe';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { NotifierModule, NotifierService } from 'angular-notifier';
     PostableTypeShortPipe,
     LangFullPipe,
     TranslatePipe,
+    RemoveHtmlTagsPipe,
     ServicePageContentComponent,
     AdminPanelManageServiceCategoriesComponent,
     AdminPanelManageServiceVersionsComponent,

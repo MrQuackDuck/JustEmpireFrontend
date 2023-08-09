@@ -264,6 +264,52 @@ body {
     border: 1px solid rgb(106, 75, 75);
 }
 
+.flat-button {
+    font-weight: 600;
+    font-family: Inter;
+    display: inline-block;
+    color: #FFFFFF;
+    background-color: #2F63B0;
+    border: 1px solid #5891e6;
+    border-radius: 4px;
+    padding: 8px 0px;
+    text-decoration: none;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+    box-shadow: 0 4px #1c3a68;
+    transition: .04s;
+}
+
+.flat-button:hover {
+    background-color: #3576d7;
+    text-decoration: none;
+}
+
+.flat-button:active {
+    transform: translateY(4px);
+    box-shadow: none !important;
+    background-color: #275292;
+    border: 1px solid #2F63B0;
+}
+
+.flat-button.green {
+    background-color: #25A02A;
+    box-shadow: 0 4px #204911;
+    border: 1px solid #8acc7f;
+}
+
+.flat-button.green:hover {
+    background-color: #2cbc31;
+    box-shadow: 0 4px #204911;
+    border: 1px solid #8acc7f;
+}
+
+.flat-button.green:active {
+    background-color: #1e8221;
+    border: 1px solid #71a768;
+}
+
 btn.disabled {
     filter: brightness(60%);
     pointer-events: none;
@@ -366,6 +412,12 @@ form .upload-photo-label img {
 
 form input[type="submit"] {
     position: initial !important;
+}
+
+service-page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .container .content {
@@ -533,22 +585,22 @@ modal-window form.ng-submitted .ng-invalid {
 }
 
 @media screen and (max-width: 1150px) {
-    table {
+    .table__wrapper table {
         display: flex;
         flex-direction: column;
     }
 
-    table thead {
+    .table__wrapper table thead {
         display: none;
     }
 
-    table tr {
+    .table__wrapper table tr {
         display: flex;
         flex-direction: column;
         padding: 20px;
     }
 
-    table td::before {
+    .table__wrapper table td::before {
         content: attr(data-title);
         color: #6b6b6b;
         font-size: 16px;
@@ -558,15 +610,15 @@ modal-window form.ng-submitted .ng-invalid {
         width: 100%;
     }
 
-    table .actions::before {
+    .table__wrapper table .actions::before {
         display: none;
     }
 
-    table tbody tr:nth-child(odd) {
+    .table__wrapper table tbody tr:nth-child(odd) {
         background-color: #252525;
     }
 
-    table tbody tr:nth-child(even) {
+    .table__wrapper table tbody tr:nth-child(even) {
         background-color: #363636;
     }
 }
@@ -580,5 +632,13 @@ modal-window form.ng-submitted .ng-invalid {
 @media screen and (max-width: 800px) {
     .sections-container {
         padding: 40px 20px;
+    }
+}
+
+
+@media screen and (max-width: 1000px) {
+    .flat-button {
+        padding: 5px 0px;
+        border: none !important;
     }
 }

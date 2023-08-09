@@ -24,6 +24,9 @@ export class ButtonComponent {
   @Input()
   paddingRight : number;
 
+  @Input()
+  flat : boolean = false;
+
   allowedColors : string[] = ['red', 'orange', 'gray', 'green']
 
   paddings : any = {};

@@ -1,209 +1,109 @@
 * {
-    font-family: Inter !important;
+    font-family: Inter;
 }
 
-.service {
-    min-height: 270px;
-    max-height: 270px;
-    width: 100%;
-    background-color: #282828;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row;
-    color: #FFFFFF;
-    padding: 10px 15px;
-}
-
-.service .container {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    flex-grow: 1;
-}
-
-.service .image {
-    display: flex;
-    align-items: center;
-}
-
-.service .image img {
-    max-width: 190px;
-    max-height: 100%;
-    border-radius: 10px;
-}
-
-.service .info {
-    display: flex;
-    flex-direction: column;
-    padding-top: 25px;
-}
-
-.service .info .name {
-    font-size: 40px;
-}
-
-.service .info .name a {
+a {
     color: #FFFFFF;
     text-decoration: none;
 }
 
-.service .info .name a:hover {
+a:hover {
     text-decoration: underline;
 }
 
+.service {
+    background-color: #282828;
+    width: 100%;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 16px;
+    min-height: 196px;
+}
+
+.service .image-and-info {
+    display: flex;
+    gap: 16px;
+    color: #FFFFFF;
+}
+
+.service .image-section {
+    border-radius: 7px;
+    overflow: hidden;
+    display: flex;
+    min-width: 160px;
+}
+
+.service .image-section img {
+    border-radius: 7px;
+    user-select: none;
+    max-width: 160px;
+    max-height: 160px;
+    display: inline-block;
+}
+
+.service .info .title {
+    font-size: 26px;
+    font-weight: 700;
+}
+
 .service .info .type {
-    font-size: 21px;
-    color: #909090;
+    color: #B2B2B2;
+    font-weight: 600;
 }
 
 .service .info .description {
-    padding-top: 8px;
+    padding-top: 6px;
+}
+
+.service .action {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.service .action-button {
+    bottom: 0;
+    width: 160px;
+    font-weight: 600;
     font-size: 18px;
 }
 
-.service .controls {
-    width: 40%;
-}
 
-.service .controls div {
-    display: inline-block;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    bottom: 0;
-    right: 0;
-    width: min-content;
-}
-
-.service .controls div btn {
-    min-width: 200px;
-    max-width: 200px;
-    padding: 10px 0px;
-}
-
-.service .controls .field {
-    position: relative;
-    text-align: left;
-    font-family: Inter;
-    font-size: 20px;
-    color: #909090;
-}
-
-@media screen and (max-width: 1700px) {
-    .service .image {
-        aspect-ratio: 2 / 1;
-        display: flex;
-        flex-direction: column;
+@media screen and (max-width: 1000px) {
+    .service .action-button {
+        width: 120px;
+        font-size: 16px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
     }
 
-    .service .controls {
-        min-width: 180px;
+    .service {
+        min-height: 160px;
     }
 
-    .service .image img {
-        max-width: 100%;
-        aspect-ratio: 1 / 1;
-        max-height: unset;
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    .service .info {
-        padding-top: 0;
-    }
-
-    .service .info .name a {
-        font-size: 26px;
-    }
-
-    .service .image {
-        max-width: 200px;
+    .service .info .title {
+        font-size: 22px;
     }
 
     .service .info .type {
-        font-size: 18px;
+        font-size: 15px;
     }
 
     .service .info .description {
         font-size: 16px;
+        max-height: 47px;
+        display: block;
+        overflow: hidden;
     }
 
-    .service .controls div .button {
-        font-size: 18px;
+    .service .image-section {
+        min-width: 110px;
     }
-
-    .service .controls .field {
-        font-size: 18px;
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    .service {
-        gap: 20px;
-    }
-
-    .service .container {
-        gap: 0;
-    }
-
-    .service .controls div {
-        gap: 4px;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .services {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 2%;
-    }
-
-    .services .service {
-        flex-direction: column;
-        max-width: 48%;
-    }
-
-    .service .container {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .service {
-        margin-bottom: 15px;
-        min-height: unset;
-        max-height: unset !important;
-    }
-
-    .service .image {
-        aspect-ratio: unset !important;
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .service .image img {
-        max-width: 220px;
-    }
-
-    .service .info {
-        text-align: center;
-    }
-
-    .service .controls {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-    .controls div {
-        position: unset !important;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .service {
-        flex-direction: column;
-        max-width: 100%;
+    
+    .service .image-section img {
+        max-width: 110px;
+        max-height: 110px;
     }
 }

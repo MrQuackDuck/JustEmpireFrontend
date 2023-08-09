@@ -1,21 +1,28 @@
-<main>
-    <!-- <span class="title">{{ 'OUR_SERVICES_AND_PRODUCTS' | translate }}</span> -->
-    <div class="sections-container">
-        <div class="services">
-            <app-service-card *ngFor="let service of services" [service]="service"></app-service-card>
-            <not-found [show404]="false" *ngIf="nothingFound"/>
+<div class="wrapper">
+    <form (submit)="search()">
+        <div class="bar">
+            <a title="{{ 'FILTERS' | translate }}" (click)="toggleFiltersMenu()" [ngClass]="{ 'filter-icon-active': showFiltersMenu}" class="filter-icon"><img draggable="false" src="assets/images/svg/filter.svg" alt=""><span class="filter-text">{{ 'FILTERS' | translate }}</span></a>
+            <input (input)="updateSearchString($event.target)" [value]="searchString" class="searchbar" type="text" [placeholder]="'SEARCH' | translate">
+            <button class="submit" type="submit"><img draggable="false" src="assets/images/svg/search.svg" alt=""></button>
+            <button type="button" (click)="reset()" *ngIf="searchString.length > 0 || selectedCategories.length < serviceCategories.length" class="reset"><img draggable="false" src="assets/images/svg/reset.svg" alt=""></button>
+            <div [ngClass]="{ 'shown': showFiltersMenu}" class="filters">
+                <div class="checkboxes">
+                    <label *ngFor="let category of serviceCategories" class="filter">
+                        <label class="checkbox-container">
+                            <span class="checkbox-text">{{ category.title }}</span>
+                            <input type="checkbox" (change)="categoryClicked($event.target, category?.id)" checked="{{ selectedCategories.includes(category.id) ? 'checked' : '' }}">
+                            <span class="checkmark"></span>
+                        </label>
+                    </label>
+                </div>
+
+                <button type="submit" class="flat-button apply-filters">{{ 'APPLY_FILTERS' | translate }}</button>
+            </div>
         </div>
-        <aside>
-            <h1>{{ 'FILTERS' | translate }}</h1>
-            <form (submit)="search()">
-                <input type="text" [value]="searchString" (input)="updateSearchString($event.target)" placeholder="{{ 'SERVICE_NAME' | translate }}">
-                <label *ngFor="let category of serviceCategories" class="checkbox-container">
-                    <span class="checkbox-text">{{ category?.title }}</span>
-                    <input type="checkbox" (change)="categoryClicked($event.target, category?.id)" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
-                <a (click)="updateData()" class="apply button">{{ 'APPLY' | translate }}</a>
-            </form>
-        </aside>
+    </form>
+
+    <div class="services">
+        <app-service-card *ngFor="let service of services" [service]="service" [selectedCategories]="separateArray(selectedCategories)" [searchString]="searchString"></app-service-card>
+        <not-found *ngIf="services.length == 0" [show404]="false"></not-found>
     </div>
-</main>
+</div>

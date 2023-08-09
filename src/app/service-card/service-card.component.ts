@@ -21,7 +21,12 @@ export class ServiceCardComponent {
   @Input()
   service : Service;
 
-  latestVersion? : ServiceVersion;
+  @Input()
+  selectedCategories : any = [];
+
+  @Input()
+  searchString : string
+
   languageCode : string;
   slugifiedTitle : string;
   currentCategory? : ServiceCategory;
@@ -29,15 +34,8 @@ export class ServiceCardComponent {
   ngOnInit() {
     this.languageCode = Language[this.service.language];
     this.slugifiedTitle = slugify(this.service.title, '-').toLowerCase();
-    this.getLatestServiceVersion(this.service.id)
     this.serviceCategoryRepository.getById(this.service.categoryId).subscribe(category => {
       this.currentCategory = category;
     })
-  }
-
-  getLatestServiceVersion(serviceId : number) {
-    this.versionRepository.getLatestVersion(serviceId).subscribe(value =>{
-       this.latestVersion = value
-      });
   }
 }

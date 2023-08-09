@@ -1,58 +1,58 @@
-<div class="sections-container">
-    <div class="service">
-        <div class="container">
-            <div class="image"><img src="{{ API_URL }}/uploads/{{ service?.titleImage }}" alt=""></div>
-            <div class="info">
-                <h1 class="name">{{ service?.title }}</h1>
-                <span class="type" *ngIf="currentCategory">{{ 'TYPE' | translate }}: {{ currentCategory.title }}</span>
-                <span class="description" [innerHTML]="service?.text | safeHtml"></span>
-            </div>
+<div class="block main">
+    <div class="image-and-info">
+        <div class="image-section">
+            <img src="{{ API_URL }}/uploads/{{ service?.titleImage }}" alt="">
         </div>
-        <div class="controls">
-            <div>
-                <span class="field" *ngIf="currentVersion">Version: {{ currentVersion.title }}</span>            
-                <btn [paddingLeft]="0" [paddingRight]="0" [href]="service?.url ?? ''" *ngIf="!service?.isDownloadable" draggable="false">{{ 'VISIT' | translate }}</btn>
-                <btn [paddingLeft]="0" [paddingRight]="0" [href]="service?.url ?? ''" *ngIf="service?.isDownloadable" draggable="false" [color]="'green'">{{ 'DOWNLOAD' | translate }}</btn>
-            </div>
-        </div>
-    </div>
-
-    <div class="navigation">
-        <a *ngIf="screenshotsCount > 0" (mousedown)="setTab('screenshots')" [ngClass]="{ 'active': isTabCurrentlyActive('screenshots') }" draggable="false" class="button gray">{{ 'SCREENSHOTS' | translate }}</a>
-        <a *ngIf="versionsCount > 0" (mousedown)="setTab('versions')" [ngClass]="{ 'active': isTabCurrentlyActive('versions') }" draggable="false" class="button gray">{{ 'VERSIONS' | translate }}</a>
-    </div>
-
-    <div *ngIf="screenshotsCount > 0" [ngClass]="{'contentVisible': isTabCurrentlyActive('screenshots')}" class="content">
-        <div class="screenshots-block block">
-            <h1>{{ 'SCREENSHOTS' | translate }}</h1>
-            <hr>
-            <div class="screenshots">
-                <img (click)="showImageViewer(i)" *ngFor="let screenshot of screenshots; index as i" class="screenshot" src="{{ API_URL }}/uploads/{{ screenshot.image }}">
-            </div>
+        <div class="info">
+            <div class="title">{{ service?.title }}</div>
+            <div *ngIf="currentCategory" class="type">{{ currentCategory.title }}</div>
+            <div *ngIf="currentVersion" class="version">{{ 'VERSION' | translate }}: {{ currentVersion.title }}</div>
         </div>
     </div>
     
-    <div *ngIf="versionsCount > 0" [ngClass]="{'contentVisible': isTabCurrentlyActive('versions')}" class="content">
-        <div class="table__wrapper block">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Version</th>
-                        <th>Publish date</th>
-                        <th>Changes</th>
-                    </tr>
-                </thead>
-                <tbody>
+    <div class="action">
+        <btn [href]="service?.url ?? ''" *ngIf="!service?.isDownloadable" class="action-button" [flat]="true">{{ 'VISIT' | translate }}</btn>
+        <btn [href]="service?.url ?? ''" *ngIf="service?.isDownloadable" class="action-button" [color]="'green'" [flat]="true">{{ 'DOWNLOAD' | translate }}</btn>
+    </div>
+</div>
+<div class="block selelct-tab">
+    <div [ngClass]="{ 'active': isTabCurrentlyActive('description') }" (click)="setTab('description')" class="tab-button">{{ 'DESCRIPTION' | translate }}</div>
+    <div [ngClass]="{ 'active': isTabCurrentlyActive('screenshots') }" (click)="setTab('screenshots')" *ngIf="screenshotsCount > 0" class="tab-button">{{ 'SCREENSHOTS' | translate }}</div>
+    <div  [ngClass]="{ 'active': isTabCurrentlyActive('versions') }" (click)="setTab('versions')" *ngIf="versionsCount > 0" class="tab-button">{{ 'VERSIONS' | translate }}</div>
+</div>
+
+<div [ngClass]="{'contentVisible': isTabCurrentlyActive('description')}" class="block description">
+    <div class="content" [innerHTML]="service?.text | safeHtml"></div>
+</div>
+
+<div [ngClass]="{'contentVisible': isTabCurrentlyActive('screenshots')}" *ngIf="screenshotsCount > 0" class="block images__wrapper">
+    <div class="images">
+        <img (click)="showImageViewer(i)" *ngFor="let screenshot of screenshots; index as i" src="{{ API_URL }}/uploads/{{ screenshot.image }}">
+    </div>
+</div>
+
+<div [ngClass]="{'contentVisible': isTabCurrentlyActive('versions')}" *ngIf="versionsCount > 0" class="block versions no-padding">
+        <table>
+            <thead>
+                <tr>
+                    <th>{{ 'VERSION' | translate }}</th>
+                    <th>{{ 'PUBLISH_DATE' | translate }}</th>
+                    <th>{{ 'CHANGELOG' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
                 <tr *ngFor="let version of versions$ | async">
                     <td>{{ version?.title }}</td>
                     <td>{{ version?.publishDate | date: "M/d/yyyy hh:mm:ss" }}</td>
-                    <td><a (click)="showVersionReader(version)">Read</a></td>
+                    <td><a (click)="showVersionReader(version)">{{ 'READ' | translate }}</a></td>
                 </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+            </tbody>
+        </table>
 </div>
 <app-image-viewer *ngIf="isImageViewerShown" (onClose)="disableImageViewer()" (onImageChanged)="imageChanged($event)" [selectedImageIndex]="imageViewerIndex" [images]="screenshots" [shown]="isImageViewerShown" />
-<app-version-reader (onClose)="hideVersionReader()" [shown]="isVersionReaderShown" [version]="currentReaderVersion"/>
+<modal-window [showModal]="isVersionReaderShown" (onClose)="hideVersionReader()">
+    <h1>{{ currentReaderVersion?.title }}</h1>
+    <div class="date">{{ currentReaderVersion?.publishDate | date: "MMM d yyyy hh:mm:ss" }}</div>
+    <p [innerHTML]="currentReaderVersion?.text | safeHtml"></p>
+</modal-window>
 <app-loading/>

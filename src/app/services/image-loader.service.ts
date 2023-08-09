@@ -15,6 +15,7 @@ export class ImageLoaderService {
       '../../assets/images/characters/NotFound.png',
       '../../assets/images/svg/cross-1.svg',
       '../../assets/images/svg/search_icon.svg',
+      '../assets/images/svg/back.svg',
 
       '../../assets/images/admin/stats.svg',
       '../../assets/images/admin/manageArticles.svg',

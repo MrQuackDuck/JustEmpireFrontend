@@ -27,8 +27,15 @@ export class ArticlePageComponent {
   id;
   article : Article;
   recentArticles$ : Observable<Article[]>;
+  page : string = '0';
+  currentLanguage : string;
 
   async ngOnInit() {
+    let page = this.route.snapshot.queryParamMap.get('page')!;
+    if (page != '') this.page = page;
+
+    this.currentLanguage = this.language.getLanguageCode().toLowerCase();
+
     this.id = this.route.snapshot.params['id'];
 
     this.recentArticles$ = this.articleRepository.getRecent(this.language.getLanguage(), 3);
@@ -66,7 +73,7 @@ export class ArticlePageComponent {
   }
 
   back() {
-    history.back();
+    this.router.navigate([this.currentLanguage, 'news', this.page]);
   }
 
   delay(ms: number) {

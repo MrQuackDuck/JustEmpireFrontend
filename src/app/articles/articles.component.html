@@ -3,13 +3,13 @@
 
     <div class="wrapper">
         <p *ngIf="articles && currentPage <= 1" class="section-title">{{ 'RECENT' | translate }}</p>
-            <article-card *ngIf="articles && articles[0] && currentPage <= 1" [article]="articles[0]" [isRecent]="true"></article-card>
+            <article-card [page]="currentPage" *ngIf="articles && articles[0] && currentPage <= 1" [article]="articles[0]" [isRecent]="true"></article-card>
         <p *ngIf="articles && currentPage <= 1" class="section-title past">{{ 'PAST' | translate }}</p>
         <div *ngIf="articles && currentPage <= 1" class="articles">
-            <article-card *ngFor="let article of articles | slice : 1; index as i" [article]="article"></article-card>
+            <article-card [page]="currentPage" *ngFor="let article of articles | slice : 1; index as i" [article]="article"></article-card>
         </div>
         <div *ngIf="articles && currentPage > 1" class="articles">
-            <article-card *ngFor="let article of articles; index as i" [article]="article"></article-card>
+            <article-card [page]="currentPage" *ngFor="let article of articles; index as i" [article]="article"></article-card>
         </div>
     </div>
 

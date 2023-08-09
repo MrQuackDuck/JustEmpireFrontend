@@ -20,6 +20,7 @@ export class LanguageService {
 
     let path = this.location.path();
     path = path.replace('/' + currentLanguage, '/' + newLanguage);
+    path = path.split('?')[0]; // Removing query params
     
     this.router.navigateByUrl(path).then(() => window.location.reload());
   }

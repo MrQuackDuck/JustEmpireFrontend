@@ -1,0 +1,46 @@
+.wrapper {
+    padding: 40px 22%;
+    margin-bottom: 40px;
+}
+
+.back {
+    position: absolute;
+    margin-left: -48px;
+    user-select: none;
+    cursor: pointer;
+    z-index: 2;
+    color: #FFFFFF;
+    font-weight: 600;
+    pointer-events: painted;
+}
+
+.back img {
+    width: 35px;
+}
+
+.back:hover {
+    filter: brightness(110%);
+}
+
+@media screen and (max-width: 1400px) {
+    .wrapper {
+        padding: 40px 14%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .wrapper {
+        padding: 40px 6%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .back {
+        margin-left: 0px;
+        margin-top: -44px;
+    }
+
+    .wrapper {
+        padding: 60px 10px;
+    }
+}
