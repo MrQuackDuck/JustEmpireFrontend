@@ -17,6 +17,7 @@ import { AdminPanelManageServiceVersionsComponent } from './admin-panel-manage-s
 import { AdminPanelManageServiceImagesComponent } from './admin-panel-manage-service-images/admin-panel-manage-service-images.component';
 import { AdminPanelManageUsersComponent } from './admin-panel-manage-users/admin-panel-manage-users.component';
 import { AdminPanelManageApprovementsComponent } from './admin-panel-manage-approvements/admin-panel-manage-approvements.component';
+import { PolicyComponent } from './policy/policy.component';
 
 const routes: Routes = [
   {
@@ -175,6 +176,13 @@ const routes: Routes = [
     title: "JustEmpire | Manage approvements",
     component: AdminPanelManageApprovementsComponent,
     canActivate: [AdminGuard]
+  },
+  // Policy page
+  {
+    path: "policy",
+    "pathMatch": "prefix",
+    "title": "JustEmpire | Our Policy",
+    component: PolicyComponent,
   },
   // Not found page
   {

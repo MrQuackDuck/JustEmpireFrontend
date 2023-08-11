@@ -1,0 +1,30 @@
+.wrapper {
+    padding: 40px 273px;
+    margin-bottom: 90px;
+}
+
+.block {
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #282828;
+        padding: 20px;
+        padding-top: 10px !important;
+}
+
+@media screen and (max-width: 1400px) {
+    .wrapper {
+        padding: 20px 14%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .wrapper {
+        padding: 20px 6%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .wrapper {
+        padding: 20px 10px;
+    }
+}

@@ -172,7 +172,8 @@
         "TAGS_EXAMPLE": "Example: #gaming, #mentalHealth, #programming",
         "CHANGELOG": "Changelog",
         "DESCRIPTION": "Description",
-        "READ": "Read"
+        "READ": "Read",
+        "OUR_POLICY": "Our policy"
     },
     "UA": {
         "INDEX_SUBTITLE": "Команда індивідуумів, які створюють унікальні продукти. Ми спеціалізуємося на створенні програмного забезпечення, веб-сайтів, Discord-ботів, Minecraft-речей та багатьох інших!",
@@ -346,7 +347,8 @@
         "TAGS_EXAMPLE": "Наприклад: #gaming, #mentalHealth, #programming",
         "CHANGELOG": "Зміни",
         "DESCRIPTION": "Опис",
-        "READ": "Читати"
+        "READ": "Читати",
+        "OUR_POLICY": "Наша політика"
     }
   }
 }

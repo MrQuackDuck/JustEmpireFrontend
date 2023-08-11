@@ -52,6 +52,7 @@ import { LangFullPipe } from './pipes/lang-full.pipe';
 import { TranslatePipe } from './pipes/translate.pipe';
 import { NotifierModule, NotifierService } from 'angular-notifier';
 import { RemoveHtmlTagsPipe } from './pipes/removeHtmlTags.pipe';
+import { PolicyComponent } from './policy/policy.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +100,7 @@ import { RemoveHtmlTagsPipe } from './pipes/removeHtmlTags.pipe';
     AdminPanelManageServiceImagesComponent,
     AdminPanelManageUsersComponent,
     AdminPanelManageApprovementsComponent,
+    PolicyComponent,
   ],
   imports: [
     BrowserModule,

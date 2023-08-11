@@ -424,6 +424,7 @@ service-page-content {
     padding: 22px 40px;
     padding-bottom: 20px;
     width: 90%;
+    color: #BAB8B6;
 }
 
 .content h1 {
@@ -431,6 +432,10 @@ service-page-content {
     font-size: 28px;
     letter-spacing: 0.6px;
     padding: 8px 0px;
+}
+
+.content h2,h3,h4,h5 {
+    color: #BAB8B6;
 }
 
 .content p {
