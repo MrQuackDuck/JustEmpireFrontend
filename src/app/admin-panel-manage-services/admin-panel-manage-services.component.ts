@@ -140,6 +140,7 @@ export class AdminPanelManageServicesComponent {
   }
 
   submitNewService(browseLabel : HTMLLabelElement) {
+    this.successMessage = "";
     if (!this.newServiceForm.valid) {
       return; 
     }
@@ -209,6 +210,7 @@ export class AdminPanelManageServicesComponent {
   }
   
   submitEditedService() {
+    this.successMessage = "";
     if (!this.editServiceForm.valid) {
       return; 
     }

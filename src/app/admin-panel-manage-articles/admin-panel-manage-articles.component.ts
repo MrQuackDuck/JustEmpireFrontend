@@ -122,6 +122,7 @@ export class AdminPanelManageArticlesComponent {
   }
 
   submitNewArticle(browseLabel : HTMLLabelElement) {
+    this.successMessage = "";
     if (!this.newArticleForm.valid) {
       return; 
     }
@@ -164,6 +165,7 @@ export class AdminPanelManageArticlesComponent {
   }
 
   submitEditedArticle() {
+    this.successMessage = "";
     if (!this.editArticleForm.valid) {
       return; 
     }

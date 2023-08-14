@@ -131,6 +131,7 @@ export class AdminPanelManageServiceImagesComponent {
   }
 
   submitNewImage() { 
+    this.successMessage = "";
     if (!this.newImageForm.valid) {
       return; 
     }
@@ -157,6 +158,7 @@ export class AdminPanelManageServiceImagesComponent {
   }
 
   submitEditedImage() { 
+    this.successMessage = "";
     if (!this.editImageForm.valid) {
       return; 
     }

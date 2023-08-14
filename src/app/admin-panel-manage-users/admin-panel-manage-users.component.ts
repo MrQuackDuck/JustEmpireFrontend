@@ -99,7 +99,8 @@ export class AdminPanelManageUsersComponent {
     this.confirmDeleteModalShown = true;
   }
 
-  submitNewUser() { 
+  submitNewUser() {
+    this.successMessage = "";
     if (!this.newUserForm.valid) {
       return; 
     }
@@ -123,6 +124,7 @@ export class AdminPanelManageUsersComponent {
   }
 
   submitEditedUser() { 
+    this.successMessage = "";
     if (!this.editUserForm.valid) {
       return; 
     }

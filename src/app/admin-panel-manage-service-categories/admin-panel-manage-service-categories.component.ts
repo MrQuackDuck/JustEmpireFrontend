@@ -133,6 +133,7 @@ export class AdminPanelManageServiceCategoriesComponent {
   }
 
   submitNewCategory() {
+    this.successMessage = "";
     if (!this.newCategoryForm.valid) {
       return; 
     }
@@ -156,6 +157,7 @@ export class AdminPanelManageServiceCategoriesComponent {
   }
 
   submitEditedCategory() {
+    this.successMessage = "";
     if (!this.editCategoryForm.valid) {
       return; 
     }

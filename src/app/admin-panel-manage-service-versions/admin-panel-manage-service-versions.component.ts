@@ -100,7 +100,8 @@ export class AdminPanelManageServiceVersionsComponent {
     this.currentViewedVersion = version;
   }
 
-  submitNewVersion() { 
+  submitNewVersion() {
+    this.successMessage = "";
     if (!this.newVersionForm.valid) {
       return; 
     }
@@ -124,6 +125,7 @@ export class AdminPanelManageServiceVersionsComponent {
   }
 
   submitEditedVersion() { 
+    this.successMessage = "";
     if (!this.editVersionForm.valid) {
       return; 
     }
