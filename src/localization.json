@@ -3,16 +3,17 @@
     "EN": {
         "INDEX_SUBTITLE": "Team of individuals who create unique products. We are specialized on creating software, websites, Discord bots, Minecraft stuff and more!",
         "ABOUT_US": "About us",
-        "ABOUT_US_TEXT": "We have started our path in 2018. We are creating interesting and unique products such as programs on different platforms, websites, gaming stuff and more! Products that are ready are displayed on",
+        "ABOUT_US_TEXT": "We have started our path in 2018. We are a small community of people who create unique and interesting projects! Our finished products are displayed on",
         "OUR_SERVICES": "Our services",
-        "OUR_SERVICES_TEXT": "We are creating websites, software, stuff for games and more! You can check it on",
+        "OUR_SERVICES_TEXT": "The list of our services (projects) includes websites, software, stuff for games and more! You can check it out on",
+        "OUR_SERVICES_TEXT_2": "We add more as time goes by!",
         "OUR_CONDITIONS": "Our conditions",
         "OUR_CONDITIONS_TEXT": "We don’t collect or share your personal information so you can stay safe using our services. We are standing for privacy of users data. Our only income is from advertisements.",
         "SUPPORT_US": "Support us!",
-        "SUPPORT_US_TEXT": "You can support us by sharing our services among your friends.",
+        "SUPPORT_US_TEXT": "You can support us by sharing our services among your acquaintances and friends.",
         "CHECK_OUR_NEWS": "Check our news!",
-        "CHECK_OUR_NEWS_TEXT_1": "Check our news on ",
-        "CHECK_OUR_NEWS_TEXT_2": "We are publishing news about new things that we create!",
+        "CHECK_OUR_NEWS_TEXT_1": "See our news on ",
+        "CHECK_OUR_NEWS_TEXT_2": "We are publishing news about new things that we create and more!",
         "HOME": "Home",
         "NEWS": "News",
         "SERVICES": "Services",
@@ -173,21 +174,23 @@
         "CHANGELOG": "Changelog",
         "DESCRIPTION": "Description",
         "READ": "Read",
-        "OUR_POLICY": "Our policy"
+        "OUR_POLICY": "Our policy",
+        "RESET_FILTERS": "Reset filters"
     },
     "UA": {
-        "INDEX_SUBTITLE": "Команда індивідуумів, які створюють унікальні продукти. Ми спеціалізуємося на створенні програмного забезпечення, веб-сайтів, Discord-ботів, Minecraft-речей та багатьох інших!",
+        "INDEX_SUBTITLE": "Команда індивідуумів, що створюють унікальні продукти. Ми спеціалізуємося на створенні програмного забезпечення, веб-сайтів, Discord-ботів, Minecraft-контенту та іншого!",
         "ABOUT_US": "Про нас",
-        "ABOUT_US_TEXT": "Ми розпочали наш шлях у 2018 році. Ми створюємо цікаві та унікальні продукти, такі як програми на різних платформах, веб-сайти, ігрові речі та багато іншого! Готові продукти відображені на",
+        "ABOUT_US_TEXT": "Ми - невеличка спільнота людей, що розпочали свій шлях у 2018 та спеціалізуємось на створенні самих різних речей. Наші готові проекти відображені на",
         "OUR_SERVICES": "Наші послуги",
-        "OUR_SERVICES_TEXT": "Ми створюємо веб-сайти, програмне забезпечення, речі для ігор та багато іншого! Ви можете перевірити це на",
+        "OUR_SERVICES_TEXT": "В перелік наших послуг (проектів) входять веб-сайти, програмне забезпечення, модифікації для ігор та інше! Ви можете переглянути їх на",
+        "OUR_SERVICES_TEXT_2": "З часом ми додаємо все більше!",
         "OUR_CONDITIONS": "Наші умови",
         "OUR_CONDITIONS_TEXT": "Ми не збираємо та не передаємо вашу особисту інформацію, щоб ви могли безпечно користуватися нашими послугами. Ми підтримуємо приватність даних користувачів. Наш єдиний дохід отримується від реклами.",
         "SUPPORT_US": "Підтримайте нас!",
-        "SUPPORT_US_TEXT": "Ви можете підтримати нас, поширюючи наші продукти зі своїми друзями.",
-        "CHECK_OUR_NEWS": "Дивіться наші новини!",
+        "SUPPORT_US_TEXT": "Ви можете підтримати нас, поширивши наші продукти зі своїми знайомими та друзями.",
+        "CHECK_OUR_NEWS": "Спостарігайте за подіями!",
         "CHECK_OUR_NEWS_TEXT_1": "Переглядайте наші новини на ",
-        "CHECK_OUR_NEWS_TEXT_2": "Ми публікуємо новини про нові речі, які ми створюємо!",
+        "CHECK_OUR_NEWS_TEXT_2": "Там ми публікуємо новини про нові речі, які ми створюємо та інше!",
         "HOME": "Головна",
         "NEWS": "Новини",
         "SERVICES": "Послуги",
@@ -348,7 +351,8 @@
         "CHANGELOG": "Зміни",
         "DESCRIPTION": "Опис",
         "READ": "Читати",
-        "OUR_POLICY": "Наша політика"
+        "OUR_POLICY": "Наша політика",
+        "RESET_FILTERS": "Скинути фільтри"
     }
   }
 }

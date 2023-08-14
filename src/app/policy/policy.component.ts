@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-policy',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./policy.component.css']
 })
 export class PolicyComponent {
+  constructor(private loadingService : LoadingService) { }
 
+  ngOnInit() {
+    this.loadingService.disableLoading();
+  }
 }

@@ -3,6 +3,7 @@ import { NgOptimizedImage } from '@angular/common'
 import { LoadingService } from '../services/loading.service';
 import { TitleService } from '../services/title-service.service';
 import { TranslateService } from '../services/translate.service';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-index',
@@ -13,7 +14,7 @@ import { TranslateService } from '../services/translate.service';
 
 export class IndexComponent implements AfterViewInit {
   constructor(private loadingService : LoadingService, private translateService : TranslateService,
-    private titleService : TitleService) {}
+    private titleService : TitleService, public language : LanguageService) {}
 
   imagesLoaded: boolean = false;
 

@@ -1,10 +1,10 @@
-<div class="wrapper">
+<div *ngIf="services" class="wrapper">
     <form (submit)="search()">
         <div class="bar">
             <a title="{{ 'FILTERS' | translate }}" (click)="toggleFiltersMenu()" [ngClass]="{ 'filter-icon-active': showFiltersMenu}" class="filter-icon"><img draggable="false" src="assets/images/svg/filter.svg" alt=""><span class="filter-text">{{ 'FILTERS' | translate }}</span></a>
             <input (input)="updateSearchString($event.target)" [value]="searchString" class="searchbar" type="text" [placeholder]="'SEARCH' | translate">
             <button class="submit" type="submit"><img draggable="false" src="assets/images/svg/search.svg" alt=""></button>
-            <button type="button" (click)="reset()" *ngIf="searchString.length > 0 || selectedCategories.length < serviceCategories.length" class="reset"><img draggable="false" src="assets/images/svg/reset.svg" alt=""></button>
+            <button [title]="'RESET_FILTERS' | translate" type="button" (click)="reset()" *ngIf="searchString.length > 0 || selectedCategories.length < serviceCategories.length" class="reset"><img draggable="false" src="assets/images/svg/reset.svg" alt=""></button>
             <div [ngClass]="{ 'shown': showFiltersMenu}" class="filters">
                 <div class="checkboxes">
                     <label *ngFor="let category of serviceCategories" class="filter">
