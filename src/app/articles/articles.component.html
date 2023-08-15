@@ -1,10 +1,10 @@
-<main>
+<main *ngIf="articles">
     <!-- <span class="section-title">{{ 'NEWS' | translate }}</span> -->
 
-    <div class="wrapper">
+    <div *ngIf="articles.length > 0" class="wrapper">
         <p *ngIf="articles && currentPage <= 1" class="section-title">{{ 'RECENT' | translate }}</p>
             <article-card [page]="currentPage" *ngIf="articles && articles[0] && currentPage <= 1" [article]="articles[0]" [isRecent]="true"></article-card>
-        <p *ngIf="articles && currentPage <= 1" class="section-title past">{{ 'PAST' | translate }}</p>
+        <p *ngIf="articles.length > 1 && currentPage <= 1" class="section-title past">{{ 'PAST' | translate }}</p>
         <div *ngIf="articles && currentPage <= 1" class="articles">
             <article-card [page]="currentPage" *ngFor="let article of articles | slice : 1; index as i" [article]="article"></article-card>
         </div>

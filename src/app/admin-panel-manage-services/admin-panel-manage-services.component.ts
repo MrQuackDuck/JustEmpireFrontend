@@ -100,12 +100,10 @@ export class AdminPanelManageServicesComponent {
 
     this.authService.getCurrentRank().subscribe(rank => {
       this.currentRank = rank
-      console.log(rank);
     })
     
     this.authService.getUser().subscribe(user => {
       this.currentUser = user
-      console.log(user);
     })
   }
 
@@ -299,7 +297,7 @@ export class AdminPanelManageServicesComponent {
     
     this.serviceCategoryRepository.getAllStaff().subscribe(categories => {
       this.categories = categories;
-      this.newServiceForm.controls["categoryId"].setValue(categories[0].id)
+      this.newServiceForm.controls["categoryId"].setValue(categories[0]?.id ?? 0)
 
       this.serviceRepository.getAllStaff().subscribe(services => {
         this.services = services;

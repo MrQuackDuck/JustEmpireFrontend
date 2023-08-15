@@ -72,12 +72,10 @@ export class AdminPanelManageArticlesComponent {
 
     this.authService.getCurrentRank().subscribe(rank => {
       this.currentRank = rank
-      console.log(rank);
     })
     
     this.authService.getUser().subscribe(user => {
       this.currentUser = user
-      console.log(user);
     })
 
     // Setting up input forms

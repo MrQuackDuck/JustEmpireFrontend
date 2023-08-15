@@ -72,7 +72,6 @@ export class AdminPanelComponent {
 
     this.authService.getUser().subscribe(user => {
       this.currentUser = user
-      console.log(user);
     })
 
     this.authService.getCurrentRank().subscribe(rank => {
