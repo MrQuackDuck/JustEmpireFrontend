@@ -277,7 +277,7 @@ export class AdminPanelManageServicesComponent {
     
     let target = this.services.find(s => s.originalId == service.id)
     if (target) {
-      return [false, this.translateService.translate("POSTABLE_PENDING_FOR_ACTION", target.id)];
+      return [false, this.translateService.translate("POSTABLE_PENDING_FOR_ACTION", this.translateService.translate("SERVICE"), target.id)];
     }
 
     // If user is author of the service and he has permission to delete own postable
@@ -321,11 +321,11 @@ export class AdminPanelManageServicesComponent {
   getSuccessDeleteMessage() : string {
     if (this.currentRank.approvementToDeletePostableOthers) 
     {
-      return "Your service is now <b>pending to be deleted</b>. Emperor can approve this request or decline it";
+      return this.translateService.translate('POSTABLE_PENDING_TO_BE_DELETED', this.translateService.translate('SERVICE'));
     }
     else 
     {
-      return "You have successfully deleted service!";
+      return this.translateService.translate('SUCCESSFULLY_DELETED_SERVICE');
     }
   }
 

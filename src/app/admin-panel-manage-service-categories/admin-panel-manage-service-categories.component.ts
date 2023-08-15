@@ -222,11 +222,11 @@ export class AdminPanelManageServiceCategoriesComponent {
   getSuccessDeleteMessage() : string {
     if (this.currentRank.approvementToDeletePostableOthers) 
     {
-      return "Your category is now <b>pending to be deleted</b>. Emperor can approve this request or decline it";
+      return this.translateService.translate('POSTABLE_PENDING_TO_BE_DELETED', this.translateService.translate('CATEGORY'));
     }
     else 
     {
-      return "You have successfully deleted category!";
+      return this.translateService.translate('SUCCESSFULLY_DELETED_CATEGORY');
     }
   }
 }
