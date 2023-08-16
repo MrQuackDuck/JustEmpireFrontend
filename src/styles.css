@@ -646,4 +646,8 @@ modal-window form.ng-submitted .ng-invalid {
         padding: 5px 0px;
         border: none !important;
     }
+
+    modal-window input.button {
+        padding: 10px 4px;
+    }
 }

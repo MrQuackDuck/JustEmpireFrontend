@@ -85,7 +85,7 @@ article {
     margin-bottom: 90px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1300px) {
     .wrapper {
         padding: 0% 20px;
     }
@@ -99,7 +99,7 @@ article {
     }
 
     .head .date {
-        font-size: 27px;
+        font-size: 22px;
         opacity: 0.67;
         left: 0;
         bottom: 2px;

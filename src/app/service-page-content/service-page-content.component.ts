@@ -168,7 +168,6 @@ export class ServicePageContentComponent {
   
     showImageViewer(index) {
       this.imageViewerIndex = index;
-      console.log(index);
       
       this.isImageViewerShown = true;
     }

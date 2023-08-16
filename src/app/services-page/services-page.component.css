@@ -12,7 +12,7 @@ a:hover {
 }
 
 .wrapper {
-    padding: 40px 22%;
+    padding: 30px 22%;
     margin-bottom: 40px;
 }
 
@@ -22,7 +22,6 @@ a:hover {
     flex-wrap: nowrap;
     width: 70%;
     margin: 0 auto;
-    padding-left: 10px;
 }
 
 .searchbar {
@@ -62,6 +61,8 @@ button {
 }
 
 .filter-icon {
+    min-width: 40px;
+    min-height: 40px;
     user-select: none;
     z-index: 1;
     background-color: #D9D9D9;
@@ -71,7 +72,7 @@ button {
     aspect-ratio: 1 / 1;
     height: min-content;
     border-radius: 100px;
-    margin-right: -49px;
+    margin-right: -46px;
     top: 7px;
     display: flex;
     gap: 4px;
@@ -89,6 +90,7 @@ button {
 }
 
 .filter-icon-active {
+    text-decoration: underline;
     transition: .02s;
     filter: brightness(102%) invert();
 }
@@ -157,7 +159,8 @@ button {
 .apply-filters {
     background-color: #2F63B0;
     border: 1px solid #5891e6;
-    padding: 6px 0px;
+    padding: 4px 0px;
+    font-size: 16px !important;
 }
 
 .apply-filters:hover {
@@ -232,7 +235,7 @@ button {
 .services {
     display: flex;
     flex-direction: column;
-    margin-top: 50px;
+    margin-top: 30px;
     gap: 20px;
 }
 
@@ -285,7 +288,7 @@ button {
     .filter-icon {
         aspect-ratio: unset;
         position: absolute;
-        left: 18px;
+        left: 8px;
         top: 9px;
     }
 

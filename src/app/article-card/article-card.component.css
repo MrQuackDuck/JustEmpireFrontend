@@ -106,7 +106,7 @@ article a {
     top: 0;
     z-index: 20;
     background: linear-gradient(-90deg,rgba(255,0,0,0) 60%,#282828 90%);
-    transition: .2s;
+    transition: .1s ease-in-out;
 }
 
 .image-section img {

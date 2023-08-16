@@ -2,12 +2,20 @@
     <div class="displayedImage">
         <img *ngIf="images" src="{{ API_URL }}/uploads/{{ (images[selectedImageIndex]).image }}" alt="Screenshot">
     </div>
-    <div class="otherImages">
+    <div class="otherImages" *ngIf="images?.length! > 1">
         <img [ngClass]="{ 'selected': i == selectedImageIndex }" *ngFor="let image of images; index as i" (click)="imageChanged(i)" src="{{ API_URL }}/uploads/{{ image.image }}" alt="">
     </div>
     
     <div (click)="close()" class="close">
         <img src="/assets/images/svg/cross-1.svg" alt="">
+    </div>
+    
+    <div class="previous" (click)="previousImage()">
+        <img src="/assets/images/svg/arrow_left.svg" alt="">
+    </div>
+
+    <div class="next" (click)="nextImage()">
+        <img src="/assets/images/svg/arrow_right.svg" alt="">
     </div>
     <div class="background" (click)="close()"></div>
 </main>

@@ -73,6 +73,7 @@ export class ArticlePageComponent {
   }
 
   back() {
+    if (!this.page) this.page = '0'
     this.router.navigate([this.currentLanguage, 'news', this.page]);
   }
 

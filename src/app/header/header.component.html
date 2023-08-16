@@ -4,10 +4,10 @@
 
     <div class="right-side">
         <ul class="nav-links">
-            <i (click)="closeNav()" #navCloseBtn class="uil uil-times navCloseBtn"></i>
             <li><a class="hlink" [class.active]="router.isActive('/home', false)" draggable="false" routerLink="home">{{ "HOME" | translate }}</a></li>
             <li><a class="hlink" [class.active]="router.isActive('/' + language.getLanguageCode().toLowerCase() + '/news', false)" draggable="false" routerLink="{{ language.getLanguageCode().toLowerCase() }}/news">{{ "NEWS" | translate }}</a></li>
             <li><a class="hlink" [class.active]="router.isActive('/' + language.getLanguageCode().toLowerCase() + '/services', false)" draggable="false" routerLink="{{ language.getLanguageCode().toLowerCase() }}/services">{{ "SERVICES" | translate }}</a></li>
+            <i (click)="closeNav()" #navCloseBtn class="uil uil-times navCloseBtn"></i>
           </ul>
           
           <label for="searchBox"><img draggable="false" src="{{ currentIcon }}"(click)="toggleSearch()" #searchIcon id="searchIcon"></label>

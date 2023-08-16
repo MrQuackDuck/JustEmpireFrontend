@@ -54,14 +54,14 @@ article-pagination {
     margin: 0 auto;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1300px) {
     .section-title {
-        font-size: 26px;
+        font-size: 22px;
         margin-bottom: 15px;
     }
 
     .section-title::before, .section-title::after {
-        top: 14px;
+        top: 12px;
         height: 4px;
     }
 
