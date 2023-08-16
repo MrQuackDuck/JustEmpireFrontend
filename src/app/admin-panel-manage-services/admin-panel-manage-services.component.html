@@ -75,7 +75,7 @@
         <div [attr.data-title]="('IS_DOWNLOADABLE' | translate) + ':'" class="tip">
             <select formControlName="isDownloadable" required>
                 <option [ngValue]="true">{{ 'DOWNLODABLE' | translate }}</option>
-                <option [ngValue]="true">{{ 'NOT_DOWNLODABLE' | translate }}</option>
+                <option [ngValue]="false">{{ 'NOT_DOWNLODABLE' | translate }}</option>
             </select>
         </div>
         <div [attr.data-title]="('SERVICE_TITLE_IMAGE' | translate) + ':'" class="tip">

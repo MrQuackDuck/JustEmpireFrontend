@@ -117,8 +117,13 @@ article a {
 @media screen and (max-width: 1000px) {
     article {
         user-select: none;
-        padding: 5px;
+        padding: 4px;
         height: 120px;
+    }
+
+    .image-section img {
+        height: 100%;
+        width: unset;
     }
 
     .wrp:hover article {
@@ -144,6 +149,7 @@ article a {
 
     article .info {
         min-width: 60%;
+        padding: 15px 15px;
     }
 
     .info .title {

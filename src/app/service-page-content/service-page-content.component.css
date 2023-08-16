@@ -104,7 +104,6 @@
     display: flex;
     flex-wrap: nowrap;
     gap: 15px;
-    padding-bottom: 15px;
     overflow-x: auto;
     scrollbar-base-color: #515151;
 }
