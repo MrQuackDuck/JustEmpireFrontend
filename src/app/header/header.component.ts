@@ -54,11 +54,9 @@ export class HeaderComponent {
   }
 
   openNav() : void {
-    let nav = document.querySelector(".nav"),
-    searchIcon = document.querySelector("#searchIcon")
+    let nav = document.querySelector(".nav")
     nav?.classList.add("openNav");
     nav?.classList.remove("openSearch");
-    searchIcon?.classList.replace("uil-times", "uil-search");
   }
 
   closeNav() : void {
