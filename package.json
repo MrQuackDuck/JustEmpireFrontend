@@ -29,6 +29,7 @@
     "rxjs": "~7.8.0",
     "slugify": "^1.6.6",
     "tslib": "^2.3.0",
+    "vanilla-cookieconsent": "^3.0.0-rc.16",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {

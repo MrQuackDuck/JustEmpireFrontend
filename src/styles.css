@@ -3,6 +3,98 @@
 @import '~tippy.js/themes/light.css';
 @import '~tippy.js/animations/scale.css'; 
 @import "node_modules/angular-notifier/styles";
+@import "cookieconsent.css";
+
+:root {
+    --cc-bg: #232323;
+    --cc-primary-color: #fcfcfc;
+    --cc-secondary-color: #b7b7b7;
+
+    --cc-btn-primary-bg: #F4BC16;
+    --cc-btn-primary-color: #000000;
+    --cc-btn-primary-border-color: var(--cc-btn-primary-bg);
+    --cc-btn-primary-hover-bg: #ffcf3d;
+    --cc-btn-primary-hover-color: #1b1b1b;
+    --cc-btn-primary-hover-border-color: var(--cc-btn-primary-hover-bg);
+
+    --cc-btn-secondary-bg: #e1e1e1;
+    --cc-btn-secondary-color: #000000;
+    --cc-btn-secondary-border-color: var(--cc-btn-secondary-bg);
+    --cc-btn-secondary-hover-bg: #fcfcfc;
+    --cc-btn-secondary-hover-color: #000000;
+    --cc-btn-secondary-hover-border-color: #dbdbdb;
+
+    --cc-separator-border-color: #424242;
+
+    --cc-toggle-on-bg: var(--cc-btn-primary-bg);
+    --cc-toggle-off-bg: #777777;
+    --cc-toggle-on-knob-bg: #ffffff;
+    --cc-toggle-off-knob-bg: var(--cc-toggle-on-knob-bg);
+
+    --cc-toggle-enabled-icon-color: var(--cc-bg);
+    --cc-toggle-disabled-icon-color: var(--cc-bg);
+
+    --cc-toggle-readonly-bg: #414141;
+    --cc-toggle-readonly-knob-bg: #676767;
+    --cc-toggle-readonly-knob-icon-color: var(--cc-toggle-readonly-bg);
+
+    --cc-section-category-border: var(--cc-cookie-category-block-bg);
+
+    --cc-cookie-category-block-bg: #353535;
+    --cc-cookie-category-block-border: #0C0C0C;
+    --cc-cookie-category-block-hover-bg: #525252;
+    --cc-cookie-category-block-hover-border: #7a7a7a;
+    --cc-cookie-category-expanded-block-bg: transparent;
+    --cc-cookie-category-expanded-block-hover-bg: #424242;
+
+    --cc-overlay-bg: rgba(0, 0, 0, 0.541);
+    --cc-webkit-scrollbar-bg: var(--cc-section-category-border);
+    --cc-webkit-scrollbar-hover-bg: var(--cc-btn-primary-hover-bg);
+
+    --cc-footer-bg: var(--cc-btn-secondary-bg);
+    --cc-footer-color: var(--cc-secondary-color);
+    --cc-footer-border-color: #e4eaed;
+
+    --cc-link-color: var(--cc-btn-primary-bg);
+
+    /*A few more */
+    --cc-font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    --cc-modal-margin: 1em;
+    --cc-modal-border-radius: .6em;
+    --cc-modal-transition-duration: .25s;
+    --cc-btn-gap: 5px;
+    --cc-btn-border-radius: .5em;
+    --cc-pm-toggle-border-radius: 4em;
+}
+
+.pm__close-btn {
+    background-color: #3a3a3a !important;
+}
+
+.pm__section-title {
+    user-select: none !important;
+}
+
+.pm__section-arrow {
+    background-color: #b7b7b7 !important;
+}
+
+.pm__btn, .cm__btn {
+    font-family: Inter !important;
+    user-select: none !important;
+}
+
+#cc-main .pm__close-btn:hover svg {
+    stroke: #FFFFFF;
+}
+
+#cc-main .pm__close-btn svg {
+    stroke: #c0c0c0;
+}
+
+#cc-main .pm__close-btn {
+    border: none;
+}
 
 notifier-notification {
     z-index: 1000;
@@ -20,8 +112,8 @@ notifier-notification {
     box-sizing: border-box;
     font-family: Ebrima, Tahoma;
     position: relative;
-    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0) !important;
+    -webkit-tap-highlight-color: transparent !important;
 }
 
 *::selection {
@@ -576,6 +668,17 @@ modal-window form.ng-submitted .ng-invalid {
 
 .result-description b {
     color: #c1c1c1 !important;
+}
+
+.cc-window {
+    min-width: 100vw;
+    max-width: 100vw;
+    bottom: 0;
+    transition: opacity .1s;
+}
+
+.cc-btn {
+    font-family: Ebrima, Arial;
 }
 
 @media screen and (max-width: 900px) {

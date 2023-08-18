@@ -177,7 +177,25 @@
         "DESCRIPTION": "Description",
         "READ": "Read",
         "OUR_POLICY": "Our policy",
-        "RESET_FILTERS": "Reset filters"
+        "RESET_FILTERS": "Reset filters",
+        "WE_USE_COOKIES": "We use cookies",
+        "COOKIE_WARNING": "This website uses cookies to ensure you get the best experience on our website.",
+        "GOT_IT": "Got it",
+        "ALLOW_COOKIES": "Allow cookies",
+        "DENY": "Decline",
+        "LINK": "Link",
+        "MANAGE_INDIVIDUAL_PREFERENCES": "Manage Individual preferences",
+        "MANAGE_COOKIE_PREFERENCES": "Manage Cookie Preferences",
+        "ACCEPT_ALL": "Accept all",
+        "REJECT_ALL": "Reject all",
+        "SAVE": "Save",
+        "CLOSE_MODAL": "Close modal",
+        "STRICTLY_NECESSARY_COOKIES": "Strictly Necessary cookies",
+        "STRICTLY_NECESSARY_COOKIES_DESCRIPTION": "These cookies are essential for the proper functioning of the website and cannot be disabled.",
+        "PERFORMANCE_AND_ANALYTICS": "Performance and Analytics",
+        "PERFORMANCE_AND_ANALYTICS_DESCRIPTION": "These cookies collect information about how you use our website. All of the data is anonymized and cannot be used to identify you.",
+        "MORE_INFORMATION": "More information",
+        "MORE_INFORMATION_DESCRIPTION": "For more information about cookies, you can read <a href='/policy'>our policy</a>"
     },
     "UA": {
         "INDEX_SUBTITLE": "Команда індивідуумів, що створюють унікальні продукти. Ми спеціалізуємося на створенні програмного забезпечення, веб-сайтів, Discord-ботів, Minecraft-контенту та іншого!",
@@ -356,7 +374,25 @@
         "DESCRIPTION": "Опис",
         "READ": "Читати",
         "OUR_POLICY": "Наша політика",
-        "RESET_FILTERS": "Скинути фільтри"
+        "RESET_FILTERS": "Скинути фільтри",
+        "WE_USE_COOKIES": "Ми використвуємо cookie",
+        "COOKIE_WARNING": "Цей веб-сайт використовує файли cookie, щоб забезпечити вам найкращий досвід використання нашого веб-сайту.",
+        "GOT_IT": "Зрозуміло",
+        "ALLOW_COOKIES": "Дозволити cookie",
+        "DENY": "Відхилити",
+        "LINK": "Більше інформації",
+        "MANAGE_INDIVIDUAL_PREFERENCES": "Індивідуальні налаштування",
+        "MANAGE_COOKIE_PREFERENCES": "Керування налаштуваннями файлів cookie",
+        "ACCEPT_ALL": "Прийняти всі",
+        "REJECT_ALL": "Відхилити всі",
+        "SAVE": "Зберегти",
+        "CLOSE_MODAL": "Закрити вікно",
+        "STRICTLY_NECESSARY_COOKIES": "Строго необхідні файли cookie",
+        "STRICTLY_NECESSARY_COOKIES_DESCRIPTION": "Ці файли cookie є обов'язковими для правильної роботи веб-сайту і не можуть бути вимкнені.",
+        "PERFORMANCE_AND_ANALYTICS": "Продуктивність та аналітика",
+        "PERFORMANCE_AND_ANALYTICS_DESCRIPTION": "Ці файли cookie збирають інформацію про ваше використання нашого веб-сайту. Всі дані анонімні і не можуть бути використані для ідентифікації.",
+        "MORE_INFORMATION": "Додаткова інформація",
+        "MORE_INFORMATION_DESCRIPTION": "Для додаткової інформації про файли cookie ви можете прочитати <a href='/policy'>нашу політику</a>"
     }
   }
 }

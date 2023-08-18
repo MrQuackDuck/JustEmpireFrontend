@@ -11,6 +11,15 @@
         padding-top: 10px !important;
 }
 
+a {
+    color: #3286ed;
+}
+
+li {
+    color: white;
+    list-style: none;
+}
+
 @media screen and (max-width: 1400px) {
     .wrapper {
         padding: 20px 14%;
