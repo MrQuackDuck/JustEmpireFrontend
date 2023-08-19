@@ -99,11 +99,11 @@ a:hover {
     }
 
     .service .image-section {
-        min-width: 110px;
+        min-width: 130px;
     }
     
     .service .image-section img {
-        max-width: 110px;
-        max-height: 110px;
+        max-width: 130px;
+        max-height: 130px;
     }
 }

@@ -16,8 +16,10 @@ a {
 }
 
 li {
-    color: white;
-    list-style: none;
+    font-weight: 500;
+    font-family: Inter;
+    font-size: 18px;
+    color: #BAB8B6;
 }
 
 @media screen and (max-width: 1400px) {
