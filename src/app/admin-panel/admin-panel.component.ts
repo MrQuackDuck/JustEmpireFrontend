@@ -16,6 +16,7 @@ import { ApprovementsService } from '../services/approvements.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TitleService } from '../services/title-service.service';
 import { TranslateService } from '../services/translate.service';
+import { ScrollService } from '../services/scroll.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -38,7 +39,8 @@ export class AdminPanelComponent {
   private formBuilder : FormBuilder,
   private loadingService : LoadingService,
   private titleService : TitleService,
-  private translateService : TranslateService) {}
+  private translateService : TranslateService,
+  private scrollService : ScrollService) {}
 
   articlesCount : number;
   servicesCount : number;
@@ -61,6 +63,7 @@ export class AdminPanelComponent {
   failModalShown : boolean;
 
   ngOnInit() {
+    this.scrollService.enableScrolling();
     this.titleService.setTitle(this.translateService.translate('ADMIN_PANEL'));
     this.imageLoader.loadImages();
 
@@ -98,6 +101,7 @@ export class AdminPanelComponent {
   logout() {
     this.authService.logOut().subscribe(() => {
       this.router.navigate(["/login"]);
+      this.selectedTabService.selectedTab = 0;
     });
   }
 
