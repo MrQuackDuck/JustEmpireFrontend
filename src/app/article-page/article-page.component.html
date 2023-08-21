@@ -2,7 +2,7 @@
     <article>
         <div style="background-image: url('{{ API_URL }}/uploads/{{ article.titleImage }}')" class="head">
             <div class="top">
-                <img (click)="back()" alt="⬅ {{ 'BACK' | translate }}" class="back" src="../assets/images/svg/back.svg" draggable="false">
+                <img (contextmenu)="preventContextMenu()" (click)="back()" alt="⬅ {{ 'BACK' | translate }}" class="back" src="../assets/images/svg/back.svg" draggable="false">
             </div>
             <div class="bottom">
                 <div class="title">{{ article.title }}</div>

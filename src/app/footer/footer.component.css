@@ -244,4 +244,12 @@ footer .select-lang ul li a:hover {
   .policy {
     text-align: center !important;
   }
+
+  .sl-nav li ul {
+    transform: translateY(-20px);
+  }
+
+  .triangle {
+    transform: translateY(-23px);
+  }
 }

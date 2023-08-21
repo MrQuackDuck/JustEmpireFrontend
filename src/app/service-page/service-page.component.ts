@@ -25,6 +25,10 @@ export class ServicePageComponent {
     this.currentLanguage = this.language.getLanguageCode().toLowerCase();
   }
 
+  preventContextMenu() {
+    return false;
+  }
+
   back() {
     this.router.navigate([this.currentLanguage, 'services'], { queryParams: { 'categories': this.selectedCategories, 
     'searchString': this.searchString } })

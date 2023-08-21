@@ -1,14 +1,21 @@
 <nav #nav class="nav">
-    <i #navOpenBtn (click)="openNav()" class="uil uil-bars navOpenBtn"></i>
+    <!-- <i #navOpenBtn (click)="openNav()" class="uil uil-bars navOpenBtn"></i> -->
+    <img width="32px" src="../assets/images/svg/header/menu.svg" #navOpenBtn (click)="openNav()" class="uil uil-bars navOpenBtn"/>
     <a routerLink="/" class="logo">JustEmpire</a>
 
     <div class="right-side">
         <ul class="nav-links">
-            <li><a class="hlink" [class.active]="router.isActive('/home', false)" draggable="false" routerLink="home">{{ "HOME" | translate }}</a></li>
-            <li><a class="hlink" [class.active]="router.isActive('/' + language.getLanguageCode().toLowerCase() + '/news', false)" draggable="false" routerLink="{{ language.getLanguageCode().toLowerCase() }}/news">{{ "NEWS" | translate }}</a></li>
-            <li><a class="hlink" [class.active]="router.isActive('/' + language.getLanguageCode().toLowerCase() + '/services', false)" draggable="false" routerLink="{{ language.getLanguageCode().toLowerCase() }}/services">{{ "SERVICES" | translate }}</a></li>
+          <ul class="links">
+            <li><img (contextmenu)="preventContextMenu()" src="../assets/images/svg/header/home.svg" alt=""><a class="hlink" [class.active]="router.isActive('/home', false)" draggable="false" routerLink="home">{{ "HOME" | translate }}</a></li>
+            <li><img (contextmenu)="preventContextMenu()" src="../assets/images/svg/header/news.svg" alt=""><a class="hlink" [class.active]="router.isActive('/' + language.getLanguageCode().toLowerCase() + '/news', false)" draggable="false" routerLink="{{ language.getLanguageCode().toLowerCase() }}/news">{{ "NEWS" | translate }}</a></li>
+            <li><img (contextmenu)="preventContextMenu()" src="../assets/images/svg/header/services.svg" alt=""><a class="hlink" [class.active]="router.isActive('/' + language.getLanguageCode().toLowerCase() + '/services', false)" draggable="false" routerLink="{{ language.getLanguageCode().toLowerCase() }}/services">{{ "SERVICES" | translate }}</a></li>
+            <ul class="languages">
+              <li (click)="setLanguage(lang.index)" *ngFor="let lang of availableLanguages" [ngClass]="{ 'visible': availableLanguages[lang.index].index != currentLanguage && showOtherlanguages }" class="availableLanguage"><a>{{ lang.value }}</a></li>
+              <li (click)="showOtherlanguages = !showOtherlanguages;" class="currentLanguage"><img (contextmenu)="preventContextMenu()" src="../assets/images/svg/header/language.svg" alt=""><a class="current">{{ availableLanguages[currentLanguage].value }}</a></li>
+            </ul>
             <i (click)="closeNav()" #navCloseBtn class="uil uil-times navCloseBtn"></i>
           </ul>
+        </ul>
           
           <label for="searchBox"><img draggable="false" src="{{ currentIcon }}"(click)="toggleSearch()" #searchIcon id="searchIcon"></label>
     </div>

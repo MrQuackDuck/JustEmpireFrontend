@@ -32,4 +32,8 @@ export class ArticleCardComponent {
     this.languageCode = Language[this.article.language].toLowerCase();
     this.slugifiedTitle = slugify(this.article.title, '-').toLowerCase();
   }
+
+  preventContextMenu() {
+    return false;
+  }
 }

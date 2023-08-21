@@ -86,7 +86,7 @@ section .block {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    overflow: hidden;
+    overflow: visible;
     background-repeat: no-repeat !important;
     background-size: cover !important;
     position: relative;
@@ -373,6 +373,10 @@ section .right-1 {
 
     section .block .block-title {
         font-size: 40px;
+    }
+    
+    section .right-1 {
+        transform: scaleY(1.005);
     }
 
     section .right-1 img {

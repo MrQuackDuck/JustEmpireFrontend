@@ -1,4 +1,4 @@
 <div class="wrapper">
-    <div draggable="false" (click)="back()" class="back"><img draggable="false" src="assets/images/svg/back.svg" alt="⬅ {{ 'BACK' | translate }}"></div>
+    <div draggable="false" (click)="back()" class="back"><img (contextmenu)="preventContextMenu()" draggable="false" src="assets/images/svg/back.svg" alt="⬅ {{ 'BACK' | translate }}"></div>
     <service-page-content></service-page-content>
 </div>

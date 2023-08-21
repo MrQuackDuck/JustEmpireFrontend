@@ -31,7 +31,7 @@ article {
     transform: translateY(-10px);
 }
 
-.wrp:hover article .image-section::before {
+.wrp:hover article .image-section__wrapper::before {
     background-position: -40px;
 }
 
@@ -96,13 +96,18 @@ article a {
     border-top-right-radius: 12px;
 }
 
-.image-section::before {
+.image-section__wrapper {
+    display: flex;
+    overflow: visible;
+}
+
+.image-section__wrapper::before {
     content: "";
     display: block;
     position: absolute;
     width: 120%;
     height: 100%;
-    left: 0;
+    left: -2px;
     top: 0;
     z-index: 20;
     background: linear-gradient(-90deg,rgba(255,0,0,0) 60%,#282828 90%);
@@ -130,8 +135,8 @@ article a {
         transform: translateY(-4px);
     }
 
-    .wrp:hover article .image-section::before {
-        background-position: 0px;
+    .wrp:hover article .image-section__wrapper::before {
+        background-position: -20px;
     }
     
     .recent-article {

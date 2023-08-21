@@ -80,4 +80,8 @@ export class ArticlePageComponent {
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
+  preventContextMenu() {
+    return false;
+  }
 }

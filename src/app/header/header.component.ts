@@ -17,27 +17,48 @@ import { Router } from '@angular/router';
   },
 })
 export class HeaderComponent {
-  constructor(public language : LanguageService, private location : Location,
-  private searchService : SearchService, private notifierService : NotifierService,
-  private translateService : TranslateService, public router : Router) { }
+  constructor(public language : LanguageService, private searchService : SearchService, 
+  private notifierService : NotifierService, private translateService : TranslateService, 
+  public router : Router, private languageService : LanguageService) { }
+
+  currentLanguage : any;
+
+  availableLanguages = [
+    { index: 0, value: 'English' },
+    { index: 1, value: 'Ukrainian' }
+  ]
 
   blockSearchInput : boolean;
 
   // Search icon | Cross icon
-  currentIcon = "../../assets/images/svg/search_icon.svg";
+  currentIcon = "../../assets/images/svg/header/search.svg";
+
+  showOtherlanguages = false;
+
+  ngOnInit() {
+    this.currentLanguage = this.languageService.getLanguage();
+  }
+
+  preventContextMenu() {
+    return false;
+  }
+
+  setLanguage(lang) {
+    this.languageService.setLanguage(lang);
+  }
 
   toggleSearch() : void {
     let nav = document.querySelector(".nav")
     nav?.classList.toggle("openSearch");
     nav?.classList.remove("openNav");
     if (nav?.classList.contains("openSearch")) {
-        this.currentIcon = "../../assets/images/svg/cross-1.svg";
+        this.currentIcon = "../../assets/images/svg/header/close.svg";
         this.blockSearchInput = false;
         return;
     }
 
     this.blockSearchInput = true;
-    this.currentIcon = "../../assets/images/svg/search_icon.svg";
+    this.currentIcon = "../../assets/images/svg/header/search.svg";
   }
 
   disableSearch() : void {
@@ -69,6 +90,8 @@ export class HeaderComponent {
     if (event.target.tagName == "IMG") return;
     if (event.target.tagName == "UL") return;
     if (event.target.tagName == "I") return;
+    if (event.target.className == "current") return;
+    if (event.target.className == "currentLanguage") return;
     
     this.closeNav();
     this.disableSearch();
@@ -91,7 +114,7 @@ export class HeaderComponent {
   }
 
   cutOffString(str : string, target : string) : string {
-    let targetIndex = str.indexOf(target);
+    let targetIndex = str.toLowerCase().indexOf(target.toLowerCase());
 
     if (targetIndex >= 20) {
       str = '...' + str.substring(targetIndex - 20, targetIndex + 20) + '...';

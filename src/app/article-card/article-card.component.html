@@ -10,8 +10,10 @@
                     <div *ngIf="article.tags?.length! > 0" class="tags">{{ 'TAGS' | translate }}: {{ article.tags }}</div>
                 </div>
             </div>
-            <div class="image-section">
-                <img src="{{ API_URL }}/uploads/{{ article.titleImage }}" alt="" draggable="false">
+            <div class="image-section__wrapper">
+                <div class="image-section">
+                    <img (contextmenu)="preventContextMenu()" src="{{ API_URL }}/uploads/{{ article.titleImage }}" alt="" draggable="false">
+                </div>
             </div>
         </div>
     </article>

@@ -540,6 +540,10 @@ service-page-content {
     font-weight: 500;
 }
 
+.content li {
+    list-style: inside;
+}
+
 article .content a {
     color: #3286ED;
 }
@@ -547,6 +551,10 @@ article .content a {
 .content b {
     font-weight: 600;
     line-height: 28px;
+}
+
+.ql-size-large {
+    font-size: 24px;
 }
 
 form .upload-photo-label span {
