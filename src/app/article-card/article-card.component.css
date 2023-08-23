@@ -41,6 +41,7 @@ article .content {
     background-color: #282828;
     border-radius: 12px;
     display: flex;
+    overflow: hidden;
     flex-direction: row;
     justify-content: space-between;
 }
