@@ -17,7 +17,7 @@
           </ul>
         </ul>
           
-          <label for="searchBox"><img draggable="false" src="{{ currentIcon }}"(click)="toggleSearch()" #searchIcon id="searchIcon"></label>
+          <label for="searchBox" style="display: flex;"><img draggable="false" src="{{ currentIcon }}"(click)="toggleSearch()" #searchIcon id="searchIcon"></label>
     </div>
     <div class="search-box">
         <input [disabled]="blockSearchInput" id="searchBox" (keyup)="find($event)" type="text" [placeholder]="'SEARCH_HERE' | translate" />

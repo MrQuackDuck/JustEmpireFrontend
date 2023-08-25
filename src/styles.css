@@ -524,6 +524,12 @@ service-page-content {
     color: #BAB8B6;
 }
 
+app-article-page .content img {
+    max-width: 100%;
+    width: 400px;
+    border-radius: 5px;
+}
+
 .content h1 {
     color: #e3e3e3;
     font-size: 28px;

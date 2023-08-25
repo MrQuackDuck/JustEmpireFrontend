@@ -25,6 +25,10 @@ main .title-section btn, .empty {
     flex-grow: 1;
 }
 
+.title-section .title {
+    text-align: center;
+}
+
 .title {
     flex-grow: 10;
     justify-self: center;

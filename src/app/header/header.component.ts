@@ -71,7 +71,7 @@ export class HeaderComponent {
         return;
     }
     
-    this.currentIcon = "../../assets/images/svg/search_icon.svg";
+    this.currentIcon = "../../assets/images/svg/header/search.svg";
   }
 
   openNav() : void {
