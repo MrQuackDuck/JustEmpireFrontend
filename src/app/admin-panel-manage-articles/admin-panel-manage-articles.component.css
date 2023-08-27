@@ -265,6 +265,10 @@ modal-window .content {
     letter-spacing: .2px;
 }
 
+.modalTitle {
+    text-align: center;
+}
+
 @media screen and (max-width: 1150px) {
     main .title-section, main .sections-container {
         padding: 20px 20px;

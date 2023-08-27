@@ -61,7 +61,7 @@
 </modal-window>
 
 <modal-window [showModal]="newArticleModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">{{ 'CREATE_ARTICLE' | translate }}</h1>
+    <h1 class="title modalTitle">{{ 'CREATE_ARTICLE' | translate }}</h1>
     <form (ngSubmit)="submitNewArticle(uploadPhotoLabelNew)" [formGroup]="newArticleForm" method="post" enctype="multipart/form-data">
         <div [attr.data-title]="('ARTICLE_TITLE' | translate) + ':'" class="tip">
             <input data-title="Title" required="text" formControlName="title" type="text" [placeholder]="'TITLE' | translate">
@@ -84,7 +84,7 @@
 </modal-window>
 
 <modal-window [showModal]="editArticleModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">{{ 'EDIT_ARTICLE' | translate }}</h1>
+    <h1 class="title modalTitle">{{ 'EDIT_ARTICLE' | translate }}</h1>
     <form (ngSubmit)="submitEditedArticle()" [formGroup]="editArticleForm" method="post" enctype="multipart/form-data">
         <div [attr.data-title]="('ARTICLE_TITLE' | translate) + ':'" class="tip">
             <input value="{{ currentArticleEdited?.title }}" required="text" formControlName="title" type="text" [placeholder]="'TITLE' | translate">
@@ -116,14 +116,14 @@
 </modal-window>
 
 <modal-window [showModal]="successModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">{{ 'SUCCESS' | translate }}</h1><br>
+    <h1 class="title modalTitle">{{ 'SUCCESS' | translate }}</h1><br>
     <hr>
     <p class="message" [innerHTML]="successMessage | safeHtml"></p>
     <img src="https://media.tenor.com/JzgronqM0nsAAAAM/dancing-steve.gif" alt="">
 </modal-window>
 
 <modal-window [showModal]="failModalShown" (onClose)="closeAllModals()">
-    <h1 class="title">{{ 'SOMETHING_WENT_WRONG' | translate }}</h1><br>
+    <h1 class="title modalTitle">{{ 'SOMETHING_WENT_WRONG' | translate }}</h1><br>
     <hr>
     <img src="https://media.discordapp.net/attachments/983448971089432577/1078404457676685402/jsrip.gif" alt="">
 </modal-window>
