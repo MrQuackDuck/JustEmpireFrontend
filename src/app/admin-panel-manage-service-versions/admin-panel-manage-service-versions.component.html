@@ -60,7 +60,7 @@
         <quill-editor [modules]="quillModules" formControlName="text"></quill-editor>
         <div [attr.data-title]="('TARGET_VERSION_SERVICE' | translate) + ':'" class="tip">
             <select tp="Select service" formControlName="serviceId" required>
-                <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
+                <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }} [{{ service.language | langCode }}]</option>
             </select>
         </div>
         <input class="button" type="submit" [value]="'CREATE' | translate">
@@ -76,7 +76,7 @@
         <quill-editor [modules]="quillModules" formControlName="text"></quill-editor>
         <div [attr.data-title]="('TARGET_VERSION_SERVICE' | translate) + ':'" class="tip">
             <select formControlName="serviceId" required>
-                <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
+                <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }} [{{ service.language | langCode }}]</option>
             </select>
         </div>
         <input class="button green" type="submit" [value]="'CONFIRM_EDIT' | translate">

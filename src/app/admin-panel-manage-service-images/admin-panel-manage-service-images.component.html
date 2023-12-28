@@ -54,7 +54,7 @@
     <form (ngSubmit)="submitNewImage()" [formGroup]="newImageForm" method="post" enctype="multipart/form-data">
         <div [attr.data-title]="('TARGET_IMAGE_SERVICE' | translate) + ':'" class="select-wrapper">
             <select tp="Select service" formControlName="serviceId" required>
-                <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
+                <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }} [{{ service.language | langCode }}]</option>
             </select>
         </div>
         <label [class.ng-invalid]="newImageForm.controls['image'].invalid" #uploadPhotoLabelNew class="upload-photo-label upload-photo-label-new" for="upload-photo-new"><span>{{ 'BROWSE' | translate }}</span></label>
@@ -68,7 +68,7 @@
     <form (ngSubmit)="submitEditedImage()" [formGroup]="editImageForm" method="post" enctype="multipart/form-data">
         <div [attr.data-title]="('TARGET_IMAGE_SERVICE' | translate) + ':'" class="select-wrapper">
             <select formControlName="serviceId" required>
-                <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }}</option>
+                <option *ngFor="let service of allServices; index as i" [ngValue]="service.id">{{ service.title }} [{{ service.language | langCode }}]</option>
             </select>
         </div>
         <label [class.ng-invalid]="editImageForm.controls['image'].invalid" #uploadPhotoLabelEdit class="upload-photo-label upload-photo-label-edit" for="upload-photo-edit"><span>{{ 'BROWSE' | translate }}</span></label>
