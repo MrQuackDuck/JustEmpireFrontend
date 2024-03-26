@@ -56,11 +56,10 @@ export class ArticlesComponent implements OnInit {
       let index : number = Number(params.get('pageIndex'))
       if (index < 0 || index > this.totalPageCount) {
         this.currentPage = 1;
-        this.router.navigate([this.pageName, 'EN', 1], { replaceUrl: true });
+        this.router.navigate([this.language.toString().toLowerCase(), this.pageName, 1], { replaceUrl: true });
         return;
-      } 
-      else 
-      {
+      }
+      else {
         let oldPage = this.currentPage;
         this.currentPage = index;
         if (!this.articles || oldPage != index) {
@@ -74,11 +73,19 @@ export class ArticlesComponent implements OnInit {
     this.loadingService.enableLoading()
     await this.delay(300);
     this.articleRepository.getPage(this.language, this.currentPage, this.itemsOnPage).subscribe(articles => {
-      this.articles = articles;
-      this.loadingService.disableLoading()
-    }, error => {
-      if (error.status == 503) this.notifierService.notify('error', this.translateService.translate('TOO_MANY_REQUESTS'));
-    });
+        // If there is not articles on page (and page number is higher than 1)
+        if (articles.length == 0 && this.currentPage > 1) {
+          this.currentPage -= 1;
+          this.router.navigate([this.language.toString().toLowerCase(), this.pageName, this.currentPage], { replaceUrl: true }); 
+          return;
+        }
+
+        this.articles = articles;
+        this.loadingService.disableLoading()
+      }, error => {
+        if (error.status == 503) this.notifierService.notify('error', this.translateService.translate('TOO_MANY_REQUESTS'));
+      }
+    );
   }
 
   delay(ms: number) {

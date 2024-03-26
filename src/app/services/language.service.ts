@@ -3,13 +3,14 @@ import { Language } from '../enum/Language';
 import { CookieService } from 'ngx-cookie-service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LanguageService {
-  constructor(private cookieService : CookieService, private location : Location,
-    private router : Router) { }
+  constructor(private cookieService : CookieService, private location : Location, private router : Router, private http : HttpClient) { }
 
   setLanguage(language : Language) {
     let currentLanguage = this.getLanguageCode().toLowerCase();
@@ -27,7 +28,16 @@ export class LanguageService {
 
   getLanguage() : any { 
     let language = this.cookieService.get('language');
-    if (language === '') return 0;
+
+    // If language cookie is empty or not correct
+    if (language === '' || isNaN(+language)) {
+      let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if (timezone === "Europe/Kyiv") this.setLanguage(Language.UA);
+      else this.setLanguage(Language.EN);
+
+      language = this.cookieService.get('language');
+    }
+    
     return language;
   }
 

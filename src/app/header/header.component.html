@@ -9,10 +9,12 @@
             <li><img (contextmenu)="preventContextMenu()" src="../assets/images/svg/header/home.svg" alt=""><a class="hlink" [class.active]="router.isActive('/home', false)" draggable="false" routerLink="home">{{ "HOME" | translate }}</a></li>
             <li><img (contextmenu)="preventContextMenu()" src="../assets/images/svg/header/news.svg" alt=""><a class="hlink" [class.active]="router.isActive('/' + language.getLanguageCode().toLowerCase() + '/news', false)" draggable="false" routerLink="{{ language.getLanguageCode().toLowerCase() }}/news">{{ "NEWS" | translate }}</a></li>
             <li><img (contextmenu)="preventContextMenu()" src="../assets/images/svg/header/services.svg" alt=""><a class="hlink" [class.active]="router.isActive('/' + language.getLanguageCode().toLowerCase() + '/services', false)" draggable="false" routerLink="{{ language.getLanguageCode().toLowerCase() }}/services">{{ "SERVICES" | translate }}</a></li>
+            <!-- Language select on mobile -->
             <ul class="languages">
               <li (click)="setLanguage(lang.index)" *ngFor="let lang of availableLanguages" [ngClass]="{ 'visible': availableLanguages[lang.index].index != currentLanguage && showOtherlanguages }" class="availableLanguage"><a>{{ lang.value }}</a></li>
               <li (click)="showOtherlanguages = !showOtherlanguages;" class="currentLanguage"><img (contextmenu)="preventContextMenu()" src="../assets/images/svg/header/language.svg" alt=""><a class="current">{{ availableLanguages[currentLanguage].value }}</a></li>
             </ul>
+
             <i (click)="closeNav()" #navCloseBtn class="uil uil-times navCloseBtn"></i>
           </ul>
         </ul>
@@ -22,7 +24,7 @@
     <div class="search-box">
         <input [disabled]="blockSearchInput" id="searchBox" (keyup)="find($event)" type="text" [placeholder]="'SEARCH_HERE' | translate" />
         <div *ngIf="searchResults.length > 0" class="search-results">
-          <a [routerLink]="result.url" *ngFor="let result of searchResults">
+          <a [routerLink]="result.url" *ngFor="let result of searchResults | slice : 0 : 10">
             <span class="result-title" [innerHtml]="result.title | truncate : 70 | safeHtml"></span><br>
             <span class="result-description" [innerHtml]="result.text | safeHtml"></span>
           </a>

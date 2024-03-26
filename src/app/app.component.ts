@@ -12,14 +12,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(public loadingService : LoadingService, private translateService : TranslateService) { }
 
   ngAfterViewInit(): void {
-    let config = {
-        onConsent: function () {
-            // consent was given
-        },
+    let cookieConsentConfig = {        
+        // consent was given
+        onConsent: function () {},
     
-        onChange: function () {
-            // user changed his/her preferences
-        },
+        // user changed his/her preferences
+        onChange: function () {},
     
         categories: {
             necessary: {
@@ -33,12 +31,8 @@ export class AppComponent implements OnInit, AfterViewInit {
                 // Delete specific cookies when the user opts-out of this category
                 autoClear: {
                     cookies: [
-                        {
-                            name: /^_ga/,   // regex: match all cookies starting with '_ga'
-                        },
-                        {
-                            name: '_gid',   // string: exact cookie name
-                        }
+                        { name: /^_ga/, },  // regex: match all cookies starting with '_ga'
+                        { name: '_gid', },   // string: exact cookie name
                     ]
                 }
             }
@@ -97,12 +91,8 @@ export class AppComponent implements OnInit, AfterViewInit {
         }
     }
 
-    CookieConsent.run(config); 
+    CookieConsent.run(cookieConsentConfig); 
   }
 
-  
-  ngOnInit() : void {
-  }
-
-  imagesLoaded : boolean = false;
+  ngOnInit() : void { }
 }
