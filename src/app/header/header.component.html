@@ -22,8 +22,10 @@
           <label for="searchBox" style="display: flex;"><img draggable="false" src="{{ currentIcon }}"(click)="toggleSearch()" #searchIcon id="searchIcon"></label>
     </div>
     <div class="search-box">
-        <input [disabled]="blockSearchInput" id="searchBox" (keyup)="find($event)" type="text" [placeholder]="'SEARCH_HERE' | translate" />
+        <!-- Search input -->
+        <input [disabled]="blockSearchInput" id="searchBox" (keyup)="findAndShowResults()" type="text" [placeholder]="'SEARCH_HERE' | translate" />
         <div *ngIf="searchResults.length > 0" class="search-results">
+          <!-- Iterating through search results -->
           <a [routerLink]="result.url" *ngFor="let result of searchResults | slice : 0 : 10">
             <span class="result-title" [innerHtml]="result.title | truncate : 70 | safeHtml"></span><br>
             <span class="result-description" [innerHtml]="result.text | safeHtml"></span>

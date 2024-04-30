@@ -105,10 +105,7 @@ export class HeaderComponent {
   }
 
   removeTags(str : string) : string {
-    let tagsToReplace = ["<br>", "<b>", "</b>", "<a>", "</a>", "<h1>", "</h1>", "<h2>", "</h2>", "<h3>", "</h3>", "<h4>", "</h4>", "<h5>", "</h5>", "<strong>", "</strong>", "<p>", "</p>"]
-    tagsToReplace.forEach(element => {
-      str = str.replaceAll(element, "");
-    });
+    str = str.replace(/<[^>]*>?/gm, '');
 
     return str;
   }
@@ -116,25 +113,25 @@ export class HeaderComponent {
   cutOffString(str : string, target : string) : string {
     let targetIndex = str.toLowerCase().indexOf(target.toLowerCase());
 
-    if (targetIndex >= 20) {
-      str = '...' + str.substring(targetIndex - 20, targetIndex + 20) + '...';
-    } 
+    let maxStringLength = 70;
+
+    if (targetIndex >= maxStringLength)
+      str = '...' + str.substring(targetIndex - maxStringLength / 2, targetIndex + maxStringLength / 2) + '...';
     else
-    {
-      str = str.substring(0, targetIndex + target.length + (20 - (targetIndex + target.length))) + '...';
-    }
+      str = str.substring(0, targetIndex + target.length + (maxStringLength - (targetIndex + target.length))) + '...';
 
     if (str == "...") return "";
     return str;
   }
 
-  find(event) {
+  findAndShowResults() {
     let searchString : any = document.querySelector('input')?.value;
     if (searchString == '') 
     {
       this.searchResults = [];
       return;
     }
+
     this.searchService.find(searchString).subscribe(results => {
       results.forEach(element => {
         if (element.type == PostableType.ARTICLE) element.url = `/article/${element.id}`;
