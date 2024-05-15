@@ -11,7 +11,7 @@
 
 ## 📃 About community
 
-Briefly, <b>JustEmpire</b> is a <b>closed community</b> I am part of. One day I decided to make a website so other members would have the ability to post news and projects they're creating. Another reason for making this website was to practice my skills in creating web applications with <b>Angular</b>.
+Briefly, <b>JustEmpire</b> is a <b>closed community</b> I am part of. One day I decided to make a website so other members would have the ability to post news and projects they're creating. Another reason for making this website was to practice my skills in creating web applications with <b>Angular</b> & <b>ASP.NET</b>.
 
 ## 🖥 Development server
 
