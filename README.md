@@ -1,4 +1,4 @@
-<h1><div>JustEmpire (FrontEnd)</div></h1>
+<h1><img src="https://github.com/MrQuackDuck/JustEmpireBackend/assets/61251075/e263f541-9e62-4852-9cd4-bb990b09e9bf" height=80 /><div>JustEmpire (FrontEnd)</div></h1>
 <p>
   <a href="https://angular.io/"><img src="https://img.shields.io/badge/Angular-gray?color=DE3036&logo=angular" /></a>
   <a href="https://rxjs.dev/"><img src="https://img.shields.io/badge/RxJs-gray?color=D11B9A&logo=reactivex" /></a>
