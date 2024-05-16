@@ -7,7 +7,7 @@
 <b>FrontEnd</b> for <b>JustEmpire</b> - a website where you can find interesting news and projects.<br>
 🌌 It serves as a <b>creative hub</b> for community members, so they can <b>share</b> their <b>ideas</b> and <b>projects</b>.
 
-<b>BackEnd</b> can be found <a href="https://github.com/MrQuackDuck/JustEmpireFrontend/">here<a>.
+<b>BackEnd</b> can be found <a href="https://github.com/MrQuackDuck/JustEmpireBackend/">here<a>.
 
 ## 📃 About community
 
