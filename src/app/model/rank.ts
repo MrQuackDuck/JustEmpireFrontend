@@ -12,4 +12,5 @@ export class Rank {
     public deletePostableOthers: boolean;
     public approvementToEditPostableOthers: boolean;
     public approvementToDeletePostableOthers: boolean;
+    public manageApprovements: boolean;
   }

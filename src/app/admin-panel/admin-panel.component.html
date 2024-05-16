@@ -20,9 +20,9 @@
       </div>
 
       <div *ngIf="selectedTabService.selectedTab == 3" class="tabs">          
-        <admin-panel-tab *ngIf="currentUser?.rank == 'Emperor'" [title]="'MANAGE_USERS' | translate" [grayText]="userCount" routerLink="/admin/manageUsers" [icon]="'../../assets/images/admin/manageUsers.svg'"/>
+        <admin-panel-tab *ngIf="currentRank?.manageApprovements" [title]="'MANAGE_USERS' | translate" [grayText]="userCount" routerLink="/admin/manageUsers" [icon]="'../../assets/images/admin/manageUsers.svg'"/>
 
-        <admin-panel-tab *ngIf="currentUser?.rank == 'Emperor'" [title]="'AWAITING_APPROVEMENTS' | translate" [grayText]="approvementsCount" routerLink="/admin/manageApprovements" [icon]="'../../assets/images/admin/approvements.svg'"/>
+        <admin-panel-tab *ngIf="currentRank?.manageApprovements" [title]="'AWAITING_APPROVEMENTS' | translate" [grayText]="approvementsCount" routerLink="/admin/manageApprovements" [icon]="'../../assets/images/admin/approvements.svg'"/>
       </div>
 
       <div *ngIf="selectedTabService.selectedTab == 4" class="tabs">          
@@ -49,7 +49,7 @@
                 <input (change)="setTab(2)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 2">
                 <span class="checkmark"></span>
               </label>
-              <label (mousedown)="setTab(3)" *ngIf="currentUser?.rank == 'Emperor'" class="checkbox-container">
+              <label (mousedown)="setTab(3)" *ngIf="currentRank?.manageApprovements" class="checkbox-container">
                 <span class="checkbox-text">{{ 'MANAGE_USERS' | translate }}</span>
                 <input (change)="setTab(3)" name="category" type="radio" [checked]="selectedTabService.selectedTab == 3">
                 <span class="checkmark"></span>

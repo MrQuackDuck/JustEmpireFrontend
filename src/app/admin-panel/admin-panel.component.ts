@@ -80,7 +80,7 @@ export class AdminPanelComponent {
     this.authService.getCurrentRank().subscribe(rank => {
       this.currentRank = rank
 
-      if (this.currentRank.name == "Emperor") {
+      if (this.currentRank.manageApprovements) {
         this.userRepository.getCount().subscribe(count => this.userCount = count);
         this.approvementRepository.getCount().subscribe(count => this.approvementsCount = count)
       }
