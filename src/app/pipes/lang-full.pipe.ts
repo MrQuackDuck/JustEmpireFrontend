@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Language } from '../enum/Language';
 import { LANGUAGES } from 'src/globals';
 
 @Pipe({

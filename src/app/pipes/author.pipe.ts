@@ -1,6 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Language } from '../enum/Language';
-import { ArticleRepositoryService } from '../services/article-repository.service';
 import { UserRepositoryService } from '../services/user-repository.service';
 
 @Pipe({

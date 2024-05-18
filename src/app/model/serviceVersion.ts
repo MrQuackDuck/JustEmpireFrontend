@@ -1,4 +1,3 @@
-import { Language } from "../enum/Language";
 import { PostableType } from "../enum/PostableType";
 import { Status } from "../enum/Status";
 import { Postable } from "./postable";

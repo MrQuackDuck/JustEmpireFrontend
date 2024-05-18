@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Status } from '../enum/Status';
 import { PostableType } from '../enum/PostableType';
 
 @Pipe({

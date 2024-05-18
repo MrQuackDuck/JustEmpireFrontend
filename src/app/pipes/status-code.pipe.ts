@@ -1,7 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Language } from '../enum/Language';
 import { Status } from '../enum/Status';
-import { TranslatePipe } from './translate.pipe';
 
 @Pipe({
   name: 'statusCode'

@@ -62,7 +62,7 @@ export class AdminPanelManageApprovementsComponent {
 
     this.authService.getCurrentRank().subscribe(rank => {
       this.currentRank = rank
-      if (this.currentRank.name.toLowerCase() != "emperor") {
+      if (!this.currentRank.manageApprovements) {
         this.router.navigate(["/admin"]);
         this.adminSelectedTab.selectedTab = 0;
         return;
